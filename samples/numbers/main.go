@@ -1,53 +1,40 @@
 package main
 
 import (
-	"fmt"
 	"github.com/wesovilabs/koazee"
 )
 
-var numbers = []int{0, 2, 3, 10, 3, 7, 0, -1, -9, 1, -7}
+var numbers1 = []int{1, 3, 5, 7, 9}
+var numbers2 = []int{2, 4, 6, 8}
+var numbers3 = []int{3, 4, 2}
 
 func main() {
 
-	isEven := func(val int) bool { return val%2 == 0 }
+	lowerThan5 := func(val int) bool { return val < 5 }
 	duplicate := func(val int) int { return val * 2 }
-	desc := func(left, right int) int {
-		if left > right {
-			return 1
-		}
-		if left < right {
-			return -1
-		}
-		return 0
-	}
-	asc := func(left, right int) int {
-		return desc(left, right) * -1
-	}
-	printNumber := func(val int) {
-		fmt.Printf("Value %d\n", val)
-	}
 	sum := func(acc, value int) int {
 		return acc + value
 	}
 
-	stream := koazee.StreamOf(numbers).
-		RemoveDuplicates().
-		Filter(isEven).
-		Map(duplicate)
+	stream1 := koazee.Stream().
+		SetTraceID("stream-1").
+		Filter(lowerThan5).
+		Map(duplicate).
+		Add(2).
+		With(numbers1)
 
-	stream.Sort(asc).
+
+	stream2 := koazee.Stream().
+		SetTraceID("stream-2").
 		Add(3).
-		Drop(20).Sort(asc).
-		ForEach(printNumber)
+		With(numbers2)
 
-	//Hasta aqui no hace nada!!!!!!!!!!!!!
-	out := stream.
-		Reduce(sum)
+	stream3 := koazee.StreamOf(numbers3).SetTraceID("stream-3")
 
-	if out.Err() != nil {
-		fmt.Println(out.Err().Error())
-	} else {
-		fmt.Println(out.Int())
-	}
+	stream4:=koazee.
+		Stream().
+		SetTraceID("stream-4").
+		Compose(stream1, stream2, stream3)
 
+	stream4.Reduce(sum).Int()
 }
