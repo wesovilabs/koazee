@@ -22,14 +22,15 @@ func (op *removeDuplicates) run(s *stream) *stream {
 		return s
 	}
 	items := reflect.ValueOf(s.items)
-	itemsType := reflect.TypeOf(s.items)
+	itemsType := reflect.TypeOf(s.items).Elem()
 	newItems := reflect.MakeSlice(reflect.SliceOf(itemsType), 0, 0)
+
 	for index := 0; index < items.Len(); index++ {
 		if !arrayContains(newItems, items.Index(index)) {
 			newItems = reflect.Append(newItems, items.Index(index))
 		}
 	}
-	s.items = newItems
+	s.items = newItems.Interface()
 	return s
 }
 

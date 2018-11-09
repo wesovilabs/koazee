@@ -3,9 +3,6 @@ package stream_test
 import (
 	"testing"
 
-	"github.com/wesovilabs/koazee"
-	"github.com/wesovilabs/koazee/errors"
-
 	"github.com/stretchr/testify/assert"
 )
 
@@ -51,15 +48,4 @@ func TestStream_Contains(t *testing.T) {
 	assert.Equal(t, false, contains)
 	contains, _ = structPointerStream.Contains(structPointersArray[1])
 	assert.Equal(t, true, contains)
-}
-
-func TestStream_Contains_ValidateErrors(t *testing.T) {
-	stream := koazee.StreamOf([]int{})
-	val, err := stream.Contains("home")
-	assert.False(t, val)
-	assert.Equal(t, errors.InvalidType("stream contains elements of type int but the element is string"), err)
-	stream = koazee.StreamOf([]int{})
-	val, err = stream.Contains(nil)
-	assert.False(t, val)
-	assert.Equal(t, errors.InvalidArgument("Value whose value is nil is not permitted"), err)
 }

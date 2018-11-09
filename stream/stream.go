@@ -2,6 +2,7 @@ package stream
 
 import (
 	"github.com/wesovilabs/koazee/errors"
+	"reflect"
 )
 
 // S interface for dealing with streams
@@ -19,6 +20,7 @@ type S interface {
 	ForEach(function interface{}) S
 	Sort(function interface{}) S
 	RemoveDuplicates() S
+	Out() output
 }
 
 // Outoput strcture for operations. It contains an element and and error
@@ -51,6 +53,7 @@ type lazyOp interface {
 
 type stream struct {
 	items      interface{}
+	itemsType  reflect.Type
 	err        *errors.Error
 	operations []lazyOp
 }
@@ -71,7 +74,8 @@ func (s *stream) run() *stream {
 // New creates error stream with given input
 func New(items interface{}) S {
 	return &stream{
-		items: items,
+		items:     items,
+		itemsType: reflect.TypeOf(items).Elem(),
 	}
 }
 

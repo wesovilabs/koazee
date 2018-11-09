@@ -1,8 +1,9 @@
 package stream
 
 import (
-	"github.com/wesovilabs/koazee/errors"
 	"reflect"
+
+	"github.com/wesovilabs/koazee/errors"
 )
 
 const OperationCountIdentifier = ".count"
@@ -36,5 +37,5 @@ func (s *stream) Count() (int, *errors.Error) {
 	if current.err != nil {
 		return 0, current.err
 	}
-	return count{current.items}.run()
+	return (&count{current.items}).run()
 }

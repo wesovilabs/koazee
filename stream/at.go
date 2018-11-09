@@ -1,8 +1,9 @@
 package stream
 
 import (
-	"github.com/wesovilabs/koazee/errors"
 	"reflect"
+
+	"github.com/wesovilabs/koazee/errors"
 )
 
 const OperationAtIdentifier = ":at"
@@ -45,5 +46,5 @@ func (s *stream) At(index int) output {
 	if current.err != nil {
 		return output{nil, current.err}
 	}
-	return at{current.items, index}.run()
+	return (&at{current.items, index}).run()
 }

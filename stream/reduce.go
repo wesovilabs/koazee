@@ -39,7 +39,7 @@ func (op *reduce) validate() *errors.Error {
 	if op.items == nil {
 		return errors.ItemsNil(op.name(), "You can not iterate over a nil stream")
 	}
-	itemsType := reflect.TypeOf(op.items)
+	itemsType := reflect.TypeOf(op.items).Elem()
 	function := reflect.ValueOf(op.fn)
 	if function.Type().NumIn() != 2 {
 		return errors.InvalidArgument(op.name(), "The provided function must retrieve 2 arguments")
@@ -65,5 +65,5 @@ func (s *stream) Reduce(fn interface{}) output {
 	if current.err != nil {
 		return output{nil, current.err}
 	}
-	return reduce{current.items, fn}.run()
+	return (&reduce{current.items, fn}).run()
 }

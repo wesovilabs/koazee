@@ -22,7 +22,7 @@ func (op *sort) run(s *stream) *stream {
 		s.err = err
 		return s
 	}
-	itemsType := reflect.TypeOf(s.items)
+	itemsType := reflect.TypeOf(s.items).Elem()
 	items := reflect.ValueOf(s.items)
 	s.items = quickSort(items, itemsType, op.fn).Interface()
 	return s
@@ -32,7 +32,8 @@ func (op *sort) validate(s *stream) *errors.Error {
 	if s.items == nil {
 		return errors.ItemsNil(op.name(), "You can not filter a nil stream")
 	}
-	itemsType := reflect.TypeOf(s.items)
+	itemsType := reflect.TypeOf(s.items).Elem()
+
 	function := reflect.ValueOf(op.fn)
 	if function.Type().NumIn() != 2 {
 		return errors.InvalidArgument(op.name(), "The provided function must retrieve 2 arguments")
@@ -55,8 +56,6 @@ func (op *sort) validate(s *stream) *errors.Error {
 
 // Sort sorts the elements in the stream by applying the provided function
 func (s *stream) Sort(fn interface{}) S {
-	s.operations = append(s.operations, &sort{})
+	s.operations = append(s.operations, &sort{fn})
 	return s
 }
-
-

@@ -3,9 +3,6 @@ package stream_test
 import (
 	"testing"
 
-	"github.com/wesovilabs/koazee"
-	"github.com/wesovilabs/koazee/errors"
-
 	"github.com/stretchr/testify/assert"
 )
 
@@ -30,12 +27,4 @@ func TestStream_Count(t *testing.T) {
 	assert.Equal(t, len(structsArray), counter)
 	counter, _ = structPointerStream.Count()
 	assert.Equal(t, len(structPointersArray), counter)
-}
-
-func TestStream_Count_ValidationErrors(t *testing.T) {
-
-	stream := koazee.StreamOf(6)
-	_, err := stream.Count()
-	assert.NotNil(t, err)
-	assert.Equal(t, errors.InvalidType("Unsupported type! Only arrays are permitted"), err)
 }

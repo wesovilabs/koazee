@@ -1,8 +1,9 @@
 package stream
 
 import (
-	"github.com/wesovilabs/koazee/errors"
 	"reflect"
+
+	"github.com/wesovilabs/koazee/errors"
 )
 
 const OperationFirstIdentifier = ":first"
@@ -24,6 +25,7 @@ func (op *first) run() output {
 }
 
 func (op *first) validate() *errors.Error {
+
 	if op.items == nil {
 		return errors.ItemsNil(op.name(), "You can not take an element for a nil stream")
 	}
@@ -37,9 +39,11 @@ func (op *first) validate() *errors.Error {
 
 // At returns the element in the stream in the given position
 func (s *stream) First() output {
+
 	current := s.run()
 	if current.err != nil {
 		return output{nil, current.err}
 	}
-	return first{current.items,}.run()
+
+	return (&first{current.items}).run()
 }

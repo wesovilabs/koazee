@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-
 	"github.com/wesovilabs/koazee"
 )
 
@@ -30,15 +29,25 @@ func main() {
 	sum := func(acc, value int) int {
 		return acc + value
 	}
-	val, _ := koazee.StreamOf(numbers).
+
+	stream := koazee.StreamOf(numbers).
 		RemoveDuplicates().
 		Filter(isEven).
-		Map(duplicate).
-		Sort(asc).
+		Map(duplicate)
+
+	stream.Sort(asc).
 		Add(3).
-		Drop(20).
-		Sort(asc).
-		ForEach(printNumber).
+		Drop(20).Sort(asc).
+		ForEach(printNumber)
+
+	//Hasta aqui no hace nada!!!!!!!!!!!!!
+	out := stream.
 		Reduce(sum)
-	fmt.Println(val)
+
+	if out.Err() != nil {
+		fmt.Println(out.Err().Error())
+	} else {
+		fmt.Println(out.Int())
+	}
+
 }

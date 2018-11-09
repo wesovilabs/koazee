@@ -11,9 +11,9 @@ func TestStreamAdapter_toStream(t *testing.T) {
 	stream := streamAdapter.toStream([]int{100})
 	count, _ := stream.Count()
 	assert.Equal(t, count, 1)
-	assert.Nil(t, stream.Error())
+	assert.Nil(t, stream.Out().Err())
 	stream = streamAdapter.toStream([]string{"welcome", "to", "my", "place"})
 	count, _ = stream.Count()
 	assert.Equal(t, 4, count)
-	assert.Nil(t, stream.Error())
+	assert.Nil(t, stream.Out().Err())
 }

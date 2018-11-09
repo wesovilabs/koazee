@@ -2,8 +2,6 @@ package stream
 
 import (
 	"reflect"
-
-	"github.com/wesovilabs/koazee/errors"
 )
 
 func emptySlice(arrayType reflect.Type) interface{} {
@@ -27,19 +25,6 @@ func elementLast(s *stream) interface{} {
 
 func itemsToArray(s *stream) reflect.Value {
 	return reflect.ValueOf(s.items)
-}
-
-func streamValidate(s *stream, fn func() *errors.Error) *errors.Error {
-	if s.Error() != nil {
-		return s.Error()
-	}
-	if s.items == nil {
-		return errors.ItemsNil("stream items is nil")
-	}
-	if fn == nil {
-		return nil
-	}
-	return fn()
 }
 
 func isPointer(value reflect.Value) bool {

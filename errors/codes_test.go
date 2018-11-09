@@ -1,6 +1,7 @@
 package errors_test
 
 import (
+	"github.com/wesovilabs/koazee/stream"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -14,25 +15,25 @@ func TestErrCode_String(t *testing.T) {
 }
 
 func TestInvalidType(t *testing.T) {
-	err := errors.InvalidType("My error is %s, %d times", "fail", 3)
+	err := errors.InvalidType(stream.OperationAddIdentifier,"My error is %s, %d times", "fail", 3)
 	assert.Equal(t, "koazee:invalid-type", err.Code.String())
 	assert.Equal(t, "My error is fail, 3 times", err.Msg)
 }
 
 func TestInvalidStreamIndex(t *testing.T) {
-	err := errors.InvalidStreamIndex("Index not valid")
+	err := errors.InvalidStreamIndex(stream.OperationAddIdentifier,"Index not valid")
 	assert.Equal(t, "koazee:index", err.Code.String())
 	assert.Equal(t, "Index not valid", err.Msg)
 }
 
 func TestItemsNil(t *testing.T) {
-	err := errors.ItemsNil("items is nil")
+	err := errors.ItemsNil(stream.OperationAddIdentifier,"items is nil")
 	assert.Equal(t, "koazee:items-nil", err.Code.String())
 	assert.Equal(t, "items is nil", err.Msg)
 }
 
 func TestInvalidArgument(t *testing.T) {
-	err := errors.InvalidArgument("Argument %s is not valid", "name")
+	err := errors.InvalidArgument("default","Argument %s is not valid", "name")
 	assert.Equal(t, "koazee:argument", err.Code.String())
 	assert.Equal(t, "Argument name is not valid", err.Msg)
 }

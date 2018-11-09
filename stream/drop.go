@@ -39,7 +39,7 @@ func (op *drop) validate(s *stream) *errors.Error {
 	if s.items == nil {
 		return errors.ItemsNil(op.name(), "You can not drop an element in a nil stream")
 	}
-	itemsType := reflect.TypeOf(s.items)
+	itemsType := reflect.TypeOf(s.items).Elem()
 	elementType := reflect.TypeOf(op.input)
 	if itemsType.Kind() != reflect.Ptr && op.input == nil {
 		return errors.InvalidArgument(op.name(), "You can not drop a nil object in a stream of values")

@@ -22,19 +22,19 @@ func (op *filter) run(s *stream) *stream {
 		s.err = err
 		return s
 	}
-	itemsType := reflect.TypeOf(s.items)
 	function := reflect.ValueOf(op.fn)
+	itemsType := reflect.TypeOf(s.items).Elem()
 	newItems := reflect.MakeSlice(reflect.SliceOf(itemsType), 0, 0)
-	v := reflect.ValueOf(s.items)
-	for index := 0; index < v.Len(); index++ {
-		item := v.Index(index)
+	items := reflect.ValueOf(s.items)
+	for index := 0; index < items.Len(); index++ {
+		item := items.Index(index)
 		argv := make([]reflect.Value, 1)
 		argv[0] = item
 		if function.Call(argv)[0].Bool() {
 			newItems = reflect.Append(newItems, item)
 		}
 	}
-	s.items = newItems
+	s.items = newItems.Interface()
 	return s
 }
 
@@ -52,10 +52,10 @@ func (op *filter) validate(s *stream) *errors.Error {
 	}
 	fnOut := reflect.New(function.Type().Out(0)).Elem()
 	fnIn := reflect.New(function.Type().In(0)).Elem()
-	if fnIn.Type() != itemsType {
+	if fnIn.Type() != itemsType.Elem() {
 		return errors.InvalidArgument(op.name(), "The type of the argument in the provided function must be %s", itemsType.String())
 	}
-	if fnOut.Type().Kind() != reflect.Bool {
+	if fnOut.Kind() != reflect.Bool {
 		return errors.InvalidArgument(op.name(), "The type of the output in the provided function must be bool")
 	}
 	return nil

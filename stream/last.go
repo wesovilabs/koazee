@@ -1,8 +1,9 @@
 package stream
 
 import (
-	"github.com/wesovilabs/koazee/errors"
 	"reflect"
+
+	"github.com/wesovilabs/koazee/errors"
 )
 
 const OperationLastIdentifier = ":last"
@@ -41,5 +42,5 @@ func (s *stream) Last() output {
 	if current.err != nil {
 		return output{nil, current.err}
 	}
-	return last{current.items,}.run()
+	return (&last{current.items}).run()
 }

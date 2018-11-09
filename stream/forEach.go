@@ -37,7 +37,7 @@ func (op *forEach) validate(s *stream) *errors.Error {
 	if s.items == nil {
 		return errors.ItemsNil(op.name(), "You can not iterate over a nil stream")
 	}
-	itemsType := reflect.TypeOf(s.items)
+	itemsType := reflect.TypeOf(s.items).Elem()
 	function := reflect.ValueOf(op.fn)
 	if function.Type().NumIn() != 1 {
 		return errors.InvalidArgument(op.name(), "The provided function must retrieve 1 argument")

@@ -14,7 +14,7 @@ type Error struct {
 
 // Error function
 func (e Error) Error() string {
-	return fmt.Sprintf("%s - %s: %s",e.Op, e.Code, e.Msg)
+	return fmt.Sprintf("ERROR koazee%s - %s: %s", e.Op, e.Code, e.Msg)
 }
 
 // New creates an Error

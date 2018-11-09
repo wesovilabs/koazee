@@ -54,16 +54,16 @@ var structPointersArray = []*person{
 		age:       13,
 	},
 }
-var numberStream = stream.new(numbersArray)
-var numberPointerStream = stream.new(numberPointersArray)
-var textStream = stream.new(textsArray)
-var textPointerStream = stream.new(textPointersArray)
-var booleanStream = stream.new(booleansArray)
-var booleanPointerStream = stream.new(booleanPointersArray)
-var multiTypesStream = stream.new(multiTypesArray)
-var multiTypesPointerStream = stream.new(multiTypePointersArray)
-var structStream = stream.new(structsArray)
-var structPointerStream = stream.new(structPointersArray)
+var numberStream = stream.New(numbersArray)
+var numberPointerStream = stream.New(numberPointersArray)
+var textStream = stream.New(textsArray)
+var textPointerStream = stream.New(textPointersArray)
+var booleanStream = stream.New(booleansArray)
+var booleanPointerStream = stream.New(booleanPointersArray)
+var multiTypesStream = stream.New(multiTypesArray)
+var multiTypesPointerStream = stream.New(multiTypePointersArray)
+var structStream = stream.New(structsArray)
+var structPointerStream = stream.New(structPointersArray)
 
 func booleanPtr(value bool) *bool {
 	val := value

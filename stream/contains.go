@@ -1,8 +1,9 @@
 package stream
 
 import (
-	"github.com/wesovilabs/koazee/errors"
 	"reflect"
+
+	"github.com/wesovilabs/koazee/errors"
 )
 
 const OperationContainsIdentifier = ":contains"
@@ -52,5 +53,5 @@ func (s *stream) Contains(element interface{}) (bool, *errors.Error) {
 	if current.err != nil {
 		return false, current.err
 	}
-	return contains{current.items, element}.run()
+	return (&contains{current.items, element}).run()
 }
