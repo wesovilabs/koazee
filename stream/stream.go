@@ -2,6 +2,7 @@ package stream
 
 import (
 	"github.com/wesovilabs/koazee/errors"
+	"github.com/wesovilabs/koazee/logger"
 	"reflect"
 )
 
@@ -21,6 +22,9 @@ type S interface {
 	Sort(function interface{}) S
 	RemoveDuplicates() S
 	Out() output
+	With(interface{}) S
+	SetTraceID(value string) S
+	Compose(...S) S
 }
 
 // Outoput strcture for operations. It contains an element and and error
@@ -53,29 +57,48 @@ type lazyOp interface {
 
 type stream struct {
 	items      interface{}
-	itemsType  reflect.Type
 	err        *errors.Error
+	streams    []stream
 	operations []lazyOp
+	traceID    string
 }
 
 func (s *stream) run() *stream {
+	if s.streams != nil && len(s.streams) > 0 {
+		for _, child := range s.streams {
+			out := child.run().Out()
+			if out.error != nil {
+				s.err = out.error
+				return s
+			}
+			if s.items == nil {
+				s.items = reflect.ValueOf(out.Val()).Interface()
+			} else {
+				s.items = reflect.AppendSlice(
+					reflect.ValueOf(s.items),
+					reflect.ValueOf(out.value),
+				).Interface()
+			}
+		}
+	}
 	if len(s.operations) <= 0 {
 		return s
 	}
 	op := s.operations[0]
+	previousItems := s.items
 	s = op.run(s)
 	if s.err != nil {
 		return s
 	}
+	logger.DebugInfo(s.traceID, "%s %v -> %v", op.name(), previousItems, s.items, )
 	s.operations = s.operations[1:]
 	return s.run()
 }
 
 // New creates error stream with given input
 func New(items interface{}) S {
-	return &stream{
-		items:     items,
-		itemsType: reflect.TypeOf(items).Elem(),
+	return stream{
+		items: items,
 	}
 }
 

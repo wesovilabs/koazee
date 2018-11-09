@@ -26,7 +26,7 @@ func (op *out) validate() *errors.Error {
 }
 
 // At returns the element in the stream in the given position
-func (s *stream) Out() output {
+func (s stream) Out() output {
 	current := s.run()
 	if current.err != nil {
 		return output{nil, current.err}

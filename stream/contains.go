@@ -1,6 +1,7 @@
 package stream
 
 import (
+	"github.com/wesovilabs/koazee/logger"
 	"reflect"
 
 	"github.com/wesovilabs/koazee/errors"
@@ -11,6 +12,7 @@ const OperationContainsIdentifier = ":contains"
 type contains struct {
 	items   interface{}
 	element interface{}
+	traceID string
 }
 
 func (op *contains) name() string {
@@ -25,9 +27,11 @@ func (op *contains) run() (bool, *errors.Error) {
 	elementValue := reflect.ValueOf(op.element)
 	for index := 0; index < items.Len(); index++ {
 		if eqyalsValues(items.Index(index), elementValue) {
+			logger.DebugInfo(op.traceID, "%s %v in %v", op.name(), op.element, op.items)
 			return true, nil
 		}
 	}
+	logger.DebugInfo(op.traceID, "%s %v not in %v", op.name(), op.element, op.items)
 	return false, nil
 }
 
@@ -48,10 +52,10 @@ func (op *contains) validate() *errors.Error {
 }
 
 // Contains check if the passed element is found in the stream
-func (s *stream) Contains(element interface{}) (bool, *errors.Error) {
+func (s stream) Contains(element interface{}) (bool, *errors.Error) {
 	current := s.run()
 	if current.err != nil {
 		return false, current.err
 	}
-	return (&contains{current.items, element}).run()
+	return (&contains{current.items, element, s.traceID}).run()
 }

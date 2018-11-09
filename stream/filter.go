@@ -62,7 +62,7 @@ func (op *filter) validate(s *stream) *errors.Error {
 }
 
 // Filter discard the elements in the stream that don't match with the provided filter
-func (s *stream) Filter(fn interface{}) S {
+func (s stream) Filter(fn interface{}) S {
 	s.operations = append(s.operations, &filter{fn})
 	return s
 }

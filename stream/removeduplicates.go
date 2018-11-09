@@ -43,7 +43,7 @@ func (op *removeDuplicates) validate(s *stream) *errors.Error {
 
 // RemoveDuplicates remove all thoese elements are duplicated in the stream, leaving only
 // an element with the same value
-func (s *stream) RemoveDuplicates() S {
+func (s stream) RemoveDuplicates() S {
 	s.operations = append(s.operations, &removeDuplicates{})
 	return s
 }

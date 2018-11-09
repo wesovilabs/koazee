@@ -55,7 +55,7 @@ func (op *sort) validate(s *stream) *errors.Error {
 }
 
 // Sort sorts the elements in the stream by applying the provided function
-func (s *stream) Sort(fn interface{}) S {
+func (s stream) Sort(fn interface{}) S {
 	s.operations = append(s.operations, &sort{fn})
 	return s
 }

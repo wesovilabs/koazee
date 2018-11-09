@@ -8,16 +8,14 @@ import (
 )
 
 func TestStream_Add(t *testing.T) {
-	s := koazee.StreamOf(textsArray)
+	s := koazee.StreamOf([]string{"home", "welcome", "beer"})
 	counter, _ := s.Count()
-	s.Add("animals")
-	newCounter, _ := s.Count()
+
+	newCounter, _ := s.Add("animals").Count()
 	assert.Equal(t, counter+1, newCounter)
 
-	s = koazee.StreamOf(structPointersArray)
+	s = koazee.StreamOf([]*person{{age: 20, firstName: "John"}})
 	counter, _ = s.Count()
-	s.Add(&person{firstName: "Ivan", age: 34})
-	newCounter, _ = s.Count()
+	newCounter, _ = s.Add(&person{firstName: "Ivan", age: 34}).Count()
 	assert.Equal(t, counter+1, newCounter)
-
 }

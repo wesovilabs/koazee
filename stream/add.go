@@ -46,7 +46,7 @@ func (op *add) validate(s *stream) *errors.Error {
 	return nil
 }
 
-func (s *stream) Add(input interface{}) S {
+func (s stream) Add(input interface{}) S {
 	s.operations = append(s.operations, &add{input})
 	return s
 }

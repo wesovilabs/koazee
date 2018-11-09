@@ -51,7 +51,7 @@ func (op *drop) validate(s *stream) *errors.Error {
 	return nil
 }
 
-func (s *stream) Drop(input interface{}) S {
+func (s stream) Drop(input interface{}) S {
 	s.operations = append(s.operations, &drop{input})
 	return s
 }

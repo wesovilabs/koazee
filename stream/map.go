@@ -60,7 +60,7 @@ func (op *streamMap) validate(s *stream) *errors.Error {
 }
 
 // Map performs a mutation over all the elements in the stream and return a new stream
-func (s *stream) Map(fn interface{}) S {
+func (s stream) Map(fn interface{}) S {
 	s.operations = append(s.operations, &streamMap{fn})
 	return s
 }

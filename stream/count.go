@@ -1,6 +1,7 @@
 package stream
 
 import (
+	"github.com/wesovilabs/koazee/logger"
 	"reflect"
 
 	"github.com/wesovilabs/koazee/errors"
@@ -9,33 +10,35 @@ import (
 const OperationCountIdentifier = ".count"
 
 type count struct {
-	items interface{}
+	items   interface{}
+	traceID string
 }
 
-func (o *count) name() string {
+func (op *count) name() string {
 	return OperationCountIdentifier
 }
 
-func (o *count) run() (int, *errors.Error) {
-	if err := o.validate(); err != nil {
+func (op *count) run() (int, *errors.Error) {
+	if err := op.validate(); err != nil {
 		return 0, err
 	}
-	itemsValue := reflect.ValueOf(o.items)
+	itemsValue := reflect.ValueOf(op.items)
+	logger.DebugInfo(op.traceID, "%s %v len %v", op.name(), op.items, itemsValue.Len())
 	return itemsValue.Len(), nil
 }
 
-func (o *count) validate() *errors.Error {
-	if o.items == nil {
-		return errors.ItemsNil(o.name(), "Count of a nil stream is not permitted")
+func (op *count) validate() *errors.Error {
+	if op.items == nil {
+		return errors.ItemsNil(op.name(), "Count of a nil stream is not permitted")
 	}
 	return nil
 }
 
 // Count function that returns the number of elements in the stream
-func (s *stream) Count() (int, *errors.Error) {
+func (s stream) Count() (int, *errors.Error) {
 	current := s.run()
 	if current.err != nil {
 		return 0, current.err
 	}
-	return (&count{current.items}).run()
+	return (&count{current.items, s.traceID}).run()
 }

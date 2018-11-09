@@ -4,7 +4,7 @@ package koazee
 import (
 	"reflect"
 
-	"github.com/wesovilabs/koazee/stream"
+	 "github.com/wesovilabs/koazee/stream"
 )
 
 type streamAdapter struct {
@@ -19,5 +19,7 @@ func (adapter *streamAdapter) toStream(data interface{}) stream.S {
 		field := v.Index(index)
 		slice.Index(index).Set(field)
 	}
-	return stream.New(slice.Interface())
+	items := slice.Interface()
+	s := stream.New(items)
+	return s
 }

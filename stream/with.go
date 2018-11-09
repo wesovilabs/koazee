@@ -1,52 +1,51 @@
 package stream
 
 import (
+	"github.com/wesovilabs/koazee/logger"
 	"reflect"
 
 	"github.com/wesovilabs/koazee/errors"
 )
 
-const OperationAddIdentifier = ":add"
+const OperationWithIdentifier = ":with"
 
-// OperationAdd struct for defining add operation
-type add struct {
-	input interface{}
+// with struct for defining add operation
+type with struct {
+	data    interface{}
+	traceID string
 }
 
-func (op *add) name() string {
-	return OperationAddIdentifier
+func (op *with) name() string {
+	return OperationWithIdentifier
 }
 
 // Run performs the operations whenever is called
-func (op *add) run(s *stream) *stream {
-	if err := op.validate(s); err != nil {
-		s.err = err
+func (op *with) run(s stream) stream {
+	nature := natureOf(op.data)
+	switch nature {
+	case natureArray:
+		out := items(op.data)
+		logger.DebugInfo(op.traceID, "%s  %v", op.name(), out)
+		s.items = out
+
+	default:
+		s.err = errors.InvalidType(":load", "Unsupported type! Only arrays are permitted")
 		return s
 	}
-	element := reflect.ValueOf(op.input)
-	v := reflect.ValueOf(s.items)
-	newItems := reflect.Append(v, element)
-	s.items = newItems.Interface()
+
 	return s
 }
 
-func (op *add) validate(s *stream) *errors.Error {
-	if s.items == nil {
-		return errors.ItemsNil(op.name(), "You can not add an element in a nil stream")
-	}
-	itemsType := reflect.TypeOf(s.items).Elem()
-	elementType := reflect.TypeOf(op.input)
-	if itemsType.Kind() != reflect.Ptr && op.input == nil {
-		return errors.InvalidArgument(op.name(), "You can not add a nil object in a stream of values")
-	}
-	if elementType != itemsType {
-		return errors.InvalidArgument(op.name(),
-			"You can not add an element whose type is %s in a stream of type %s", elementType, itemsType)
-	}
-	return nil
+func (s stream) With(data interface{}) S {
+	return (&with{data, s.traceID}).run(s)
 }
 
-func (s *stream) Add(input interface{}) S {
-	s.operations = append(s.operations, &add{input})
-	return s
+func items(data interface{}) interface{} {
+	elemType := reflect.TypeOf(data).Elem()
+	v := reflect.ValueOf(data)
+	slice := reflect.MakeSlice(reflect.SliceOf(elemType), v.Len(), v.Len())
+	for index := 0; index < v.Len(); index++ {
+		slice.Index(index).Set(v.Index(index))
+	}
+	return slice.Interface()
 }

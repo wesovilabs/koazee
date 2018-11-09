@@ -1,6 +1,7 @@
 package stream
 
 import (
+	"github.com/wesovilabs/koazee/logger"
 	"reflect"
 
 	"github.com/wesovilabs/koazee/errors"
@@ -30,6 +31,7 @@ func (op *forEach) run(s *stream) *stream {
 		argv[0] = item
 		function.Call(argv)
 	}
+	logger.DebugInfo("%s", op.name())
 	return s
 }
 
@@ -53,7 +55,7 @@ func (op *forEach) validate(s *stream) *errors.Error {
 }
 
 // ForEach executes the provided function for all the elements in the stream
-func (s *stream) ForEach(fn interface{}) S {
+func (s stream) ForEach(fn interface{}) S {
 	s.operations = append(s.operations, &forEach{fn})
 	return s
 }

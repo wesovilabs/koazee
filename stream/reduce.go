@@ -1,6 +1,7 @@
 package stream
 
 import (
+	"github.com/wesovilabs/koazee/logger"
 	"reflect"
 
 	"github.com/wesovilabs/koazee/errors"
@@ -10,8 +11,9 @@ import (
 const OperationReduceIdentifier = ":reduce"
 
 type reduce struct {
-	items interface{}
-	fn    interface{}
+	items   interface{}
+	fn      interface{}
+	traceID string
 }
 
 func (op *reduce) name() string {
@@ -19,6 +21,7 @@ func (op *reduce) name() string {
 }
 
 func (op *reduce) run() output {
+
 	if err := op.validate(); err != nil {
 		return output{nil, err}
 	}
@@ -32,6 +35,7 @@ func (op *reduce) run() output {
 		result := function.Call(argv)
 		acc = reflect.ValueOf(result[0].Interface())
 	}
+	logger.DebugInfo(op.traceID, "%s %v -> %v", op.name(), op.items, acc.Interface())
 	return output{acc.Interface(), nil}
 }
 
@@ -60,10 +64,10 @@ func (op *reduce) validate() *errors.Error {
 }
 
 // Reduce
-func (s *stream) Reduce(fn interface{}) output {
+func (s stream) Reduce(fn interface{}) output {
 	current := s.run()
 	if current.err != nil {
 		return output{nil, current.err}
 	}
-	return (&reduce{current.items, fn}).run()
+	return (&reduce{current.items, fn, s.traceID}).run()
 }

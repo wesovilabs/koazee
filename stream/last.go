@@ -1,6 +1,7 @@
 package stream
 
 import (
+	"github.com/wesovilabs/koazee/logger"
 	"reflect"
 
 	"github.com/wesovilabs/koazee/errors"
@@ -9,7 +10,8 @@ import (
 const OperationLastIdentifier = ":last"
 
 type last struct {
-	items interface{}
+	items   interface{}
+	traceID string
 }
 
 func (op *last) name() string {
@@ -21,7 +23,9 @@ func (op *last) run() output {
 		return output{nil, err}
 	}
 	itemsValue := reflect.ValueOf(op.items)
-	return output{itemsValue.Index(itemsValue.Len() - 1).Interface(), nil}
+	out := itemsValue.Index(itemsValue.Len() - 1).Interface()
+	logger.DebugInfo(op.traceID, "%s %v -> %v", op.name(), op.items, out)
+	return output{out, nil}
 }
 
 func (op *last) validate() *errors.Error {
@@ -37,10 +41,10 @@ func (op *last) validate() *errors.Error {
 }
 
 // At returns the element in the stream in the given position
-func (s *stream) Last() output {
+func (s stream) Last() output {
 	current := s.run()
 	if current.err != nil {
 		return output{nil, current.err}
 	}
-	return (&last{current.items}).run()
+	return (&last{current.items, s.traceID}).run()
 }

@@ -8,19 +8,14 @@ import (
 )
 
 func TestStream_Drop(t *testing.T) {
-	stream := koazee.StreamOf(textsArray)
+	stream := koazee.StreamOf([]string{"home", "phone"})
 	counter, _ := stream.Count()
-	stream.Drop(textsArray[1])
-	newCounter, _ := stream.Count()
+	newCounter, _ := stream.Drop("phone").Count()
 	assert.Equal(t, counter-1, newCounter)
 
-	stream = koazee.StreamOf(structPointersArray)
+	stream = koazee.StreamOf([]string{"home", "phone"})
 	counter, _ = stream.Count()
-	stream.Drop(&person{
-		firstName: "Jane",
-		age:       50,
-	})
-	newCounter, _ = stream.Count()
-	assert.Equal(t, counter-1, newCounter)
+	newCounter, _ = stream.Drop("missing").Count()
+	assert.Equal(t, counter, newCounter)
 
 }

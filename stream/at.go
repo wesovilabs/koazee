@@ -1,6 +1,7 @@
 package stream
 
 import (
+	"github.com/wesovilabs/koazee/logger"
 	"reflect"
 
 	"github.com/wesovilabs/koazee/errors"
@@ -9,8 +10,9 @@ import (
 const OperationAtIdentifier = ":at"
 
 type at struct {
-	items interface{}
-	index int
+	items   interface{}
+	index   int
+	traceID string
 }
 
 func (op *at) name() string {
@@ -22,7 +24,9 @@ func (op *at) run() output {
 		return output{nil, err}
 	}
 	itemsValue := reflect.ValueOf(op.items)
-	return output{itemsValue.Index(op.index).Interface(), nil}
+	out := itemsValue.Index(op.index).Interface()
+	logger.DebugInfo(op.traceID,"%s %v -> %v", op.name(), op.items, out)
+	return output{out, nil}
 }
 
 func (op *at) validate() *errors.Error {
@@ -41,10 +45,10 @@ func (op *at) validate() *errors.Error {
 }
 
 // At returns the element in the stream in the given position
-func (s *stream) At(index int) output {
+func (s stream) At(index int) output {
 	current := s.run()
 	if current.err != nil {
 		return output{nil, current.err}
 	}
-	return (&at{current.items, index}).run()
+	return (&at{current.items, index, s.traceID}).run()
 }
