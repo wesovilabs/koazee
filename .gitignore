@@ -1,0 +1,14 @@
+# Created by .ignore support plugin (hsz.mobi)
+test
+.gopath
+bin
+
+build
+dist
+pkg
+
+#IDEs
+/.idea
+docs/_site
+docs/.sass-cache
+coverage.txt
