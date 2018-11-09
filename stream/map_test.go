@@ -1,9 +1,10 @@
 package stream_test
 
 import (
-	"github.com/wesovilabs/koazee/stream"
 	"strings"
 	"testing"
+
+	"github.com/wesovilabs/koazee/stream"
 
 	"github.com/stretchr/testify/assert"
 )

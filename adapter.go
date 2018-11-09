@@ -4,7 +4,7 @@ package koazee
 import (
 	"reflect"
 
-	 "github.com/wesovilabs/koazee/stream"
+	"github.com/wesovilabs/koazee/stream"
 )
 
 type streamAdapter struct {

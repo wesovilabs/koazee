@@ -1,8 +1,9 @@
 package stream
 
 import (
-	"github.com/wesovilabs/koazee/logger"
 	"reflect"
+
+	"github.com/wesovilabs/koazee/logger"
 
 	"github.com/wesovilabs/koazee/errors"
 )
@@ -25,7 +26,7 @@ func (op *at) run() output {
 	}
 	itemsValue := reflect.ValueOf(op.items)
 	out := itemsValue.Index(op.index).Interface()
-	logger.DebugInfo(op.traceID,"%s %v -> %v", op.name(), op.items, out)
+	logger.DebugInfo(op.traceID, "%s %v -> %v", op.name(), op.items, out)
 	return output{out, nil}
 }
 

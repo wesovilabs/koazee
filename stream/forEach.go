@@ -1,8 +1,9 @@
 package stream
 
 import (
-	"github.com/wesovilabs/koazee/logger"
 	"reflect"
+
+	"github.com/wesovilabs/koazee/logger"
 
 	"github.com/wesovilabs/koazee/errors"
 )

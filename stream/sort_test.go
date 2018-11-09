@@ -8,7 +8,7 @@ import (
 )
 
 func TestStream_Sort(t *testing.T) {
-	stream := koazee.StreamOf([]person{{"John",23},{"David",30},{"Michael",27}})
+	stream := koazee.StreamOf([]person{{"John", 23}, {"David", 30}, {"Michael", 27}})
 	stream = stream.Sort(func(person1, person2 person) int {
 		if person1.age < person2.age {
 			return -1
@@ -21,7 +21,7 @@ func TestStream_Sort(t *testing.T) {
 	assert.True(t, array.([]person)[0].age > array.([]person)[1].age)
 	assert.True(t, array.([]person)[1].age > array.([]person)[2].age)
 
-	stream = koazee.StreamOf([]person{{"John",23},{"David",30},{"Michael",27}})
+	stream = koazee.StreamOf([]person{{"John", 23}, {"David", 30}, {"Michael", 27}})
 	stream = stream.Sort(func(person1, person2 person) int {
 		if person1.age < person2.age {
 			return 1

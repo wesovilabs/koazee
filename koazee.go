@@ -17,7 +17,7 @@ func StreamOf(data interface{}) stream.S {
 	switch nature {
 	case natureArray:
 		adapter := streamAdapter{}
-		s:=adapter.toStream(data)
+		s := adapter.toStream(data)
 		return s
 	default:
 		s := stream.Error(errors.InvalidType(":load", "Unsupported type! Only arrays are permitted"))

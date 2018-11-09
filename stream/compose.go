@@ -32,7 +32,6 @@ func (op *compose) run(s stream) stream {
 	return s
 }
 
-
 func (op *compose) validate(streams []S) *errors.Error {
 	if streams == nil || len(streams) == 0 {
 		return errors.InvalidArgument(op.name(), "You need to provide streams to compose one")

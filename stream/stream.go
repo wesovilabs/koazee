@@ -1,9 +1,10 @@
 package stream
 
 import (
+	"reflect"
+
 	"github.com/wesovilabs/koazee/errors"
 	"github.com/wesovilabs/koazee/logger"
-	"reflect"
 )
 
 // S interface for dealing with streams
@@ -90,7 +91,7 @@ func (s *stream) run() *stream {
 	if s.err != nil {
 		return s
 	}
-	logger.DebugInfo(s.traceID, "%s %v -> %v", op.name(), previousItems, s.items, )
+	logger.DebugInfo(s.traceID, "%s %v -> %v", op.name(), previousItems, s.items)
 	s.operations = s.operations[1:]
 	return s.run()
 }
