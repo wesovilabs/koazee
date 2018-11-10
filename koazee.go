@@ -12,7 +12,7 @@ func Stream() stream.S {
 	return stream.New(nil)
 }
 
-// StreamOf loads the user data into the stream
+// StreamOf loads the data into the stream
 func StreamOf(data interface{}) stream.S {
 	nature := utils.NatureOf(data)
 	switch nature {
