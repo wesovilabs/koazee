@@ -8,7 +8,7 @@ import (
 	"github.com/wesovilabs/koazee/errors"
 )
 
-// OpCodeMap identifier for operation map
+// OpCodeReduce identifier for operation reduce
 const OpCodeReduce = "reduce"
 
 type reduce struct {

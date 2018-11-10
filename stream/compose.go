@@ -6,6 +6,7 @@ import (
 	"github.com/wesovilabs/koazee/errors"
 )
 
+// OpCodeCompose identifier for operation compose
 const OpCodeCompose = "compose"
 
 // compose struct for defining add operation

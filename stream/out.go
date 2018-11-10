@@ -4,6 +4,7 @@ import (
 	"github.com/wesovilabs/koazee/errors"
 )
 
+// OpCodeOut identifier for operation out
 const OpCodeOut = "out"
 
 type out struct {

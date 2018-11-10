@@ -6,6 +6,7 @@ import (
 	"github.com/wesovilabs/koazee/errors"
 )
 
+// OpCodeAdd identifier for operation add
 const OpCodeAdd = "add"
 
 // OperationAdd struct for defining add operation

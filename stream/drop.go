@@ -6,6 +6,7 @@ import (
 	"github.com/wesovilabs/koazee/errors"
 )
 
+// OpCodeDrop identifier for operation drop
 const OpCodeDrop = "drop"
 
 type drop struct {

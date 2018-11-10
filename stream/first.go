@@ -8,7 +8,8 @@ import (
 	"github.com/wesovilabs/koazee/errors"
 )
 
-const OpCodeFirst = ":first"
+// OpCodeFirst identifier for operation first
+const OpCodeFirst = "first"
 
 type first struct {
 	items interface{}

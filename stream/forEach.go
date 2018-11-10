@@ -8,7 +8,7 @@ import (
 	"github.com/wesovilabs/koazee/errors"
 )
 
-// OpCodeFilter identifier for operation filter
+// OpCodeForEach identifier for operation forEach
 const OpCodeForEach = "forEach"
 
 type forEach struct {

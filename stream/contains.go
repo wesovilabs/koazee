@@ -8,6 +8,7 @@ import (
 	"github.com/wesovilabs/koazee/errors"
 )
 
+// OpCodeContains identifier for operation contains
 const OpCodeContains = "contains"
 
 type contains struct {

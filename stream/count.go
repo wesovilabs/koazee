@@ -8,6 +8,7 @@ import (
 	"github.com/wesovilabs/koazee/errors"
 )
 
+// OpCodeCount identifier for operation count
 const OpCodeCount = "count"
 
 type count struct {

@@ -8,6 +8,7 @@ import (
 	"github.com/wesovilabs/koazee/errors"
 )
 
+// OpCodeAt identifier for operation at
 const OpCodeAt = "at"
 
 type at struct {

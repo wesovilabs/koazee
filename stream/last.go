@@ -8,6 +8,7 @@ import (
 	"github.com/wesovilabs/koazee/errors"
 )
 
+// OpCodeLast identifier for operation last
 const OpCodeLast = "last"
 
 type last struct {

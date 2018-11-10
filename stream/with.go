@@ -10,6 +10,7 @@ import (
 	"github.com/wesovilabs/koazee/errors"
 )
 
+// OpCodeWith identifier for operation with
 const OpCodeWith = "with"
 
 // with struct for defining add operation
