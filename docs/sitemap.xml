@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>/blog/welcome/</loc>
+    <lastmod>2017-03-02T21:56:55+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/docs/quick-start/</loc>
+  </url>
+  
+  <url>
+    <loc>/docs/custom-plugins/</loc>
+  </url>
+  
+  <url>
+    <loc>/docs/typography/</loc>
+  </url>
+  
+  <url>
+    <loc>/blog/typography/</loc>
+  </url>
+  
+  <url>
+    <loc>/blog/prototyping/</loc>
+    <lastmod>2017-04-02T22:01:15+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/docs/grid/</loc>
+  </url>
+  
+  <url>
+    <loc>/docs/tables/</loc>
+    <lastmod>2017-04-10T16:40:43+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/docs/forms/</loc>
+    <lastmod>2017-04-10T16:40:50+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/docs/buttons/</loc>
+    <lastmod>2017-04-10T16:41:16+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/docs/labels/</loc>
+    <lastmod>2017-04-10T16:40:43+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blog/messages/</loc>
+    <lastmod>2017-04-10T16:41:34+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/docs/messages/</loc>
+    <lastmod>2017-04-10T16:41:34+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/docs/tabs/</loc>
+    <lastmod>2017-04-10T16:41:40+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/docs/breadcrumbs/</loc>
+    <lastmod>2017-04-10T16:41:54+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/docs/pagination/</loc>
+    <lastmod>2017-04-10T16:42:03+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/docs/dropdown/</loc>
+    <lastmod>2017-04-10T16:42:12+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/docs/modal/</loc>
+    <lastmod>2017-04-10T16:42:18+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/docs/sticky/</loc>
+    <lastmod>2017-04-10T16:42:26+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blog/collapse/</loc>
+    <lastmod>2017-04-10T16:42:50+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/docs/collapse/</loc>
+    <lastmod>2017-04-10T16:42:50+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/docs/offcanvas/</loc>
+    <lastmod>2017-04-10T16:42:43+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/docs/toggleme/</loc>
+    <lastmod>2017-04-10T16:42:59+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/docs/animation/</loc>
+    <lastmod>2017-04-10T16:43:08+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/docs/colors/</loc>
+    <lastmod>2017-04-10T16:43:14+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/docs/sizing/</loc>
+    <lastmod>2017-04-10T16:43:21+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/docs/mixins/</loc>
+    <lastmod>2017-04-10T16:43:36+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/docs/utils/</loc>
+    <lastmod>2017-04-10T16:43:30+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blog/inline-style/</loc>
+    <lastmod>2017-04-02T21:56:55+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blog/</loc>
+    <lastmod>2017-03-02T21:56:55+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/company/</loc>
+  </url>
+  
+  <url>
+    <loc>/categories/design/</loc>
+    <lastmod>2017-04-02T22:01:15+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/docs/</loc>
+    <lastmod>2017-04-10T16:40:43+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/example/</loc>
+    <lastmod>2017-03-02T21:56:55+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/faq/</loc>
+  </url>
+  
+  <url>
+    <loc>/categories/general/</loc>
+    <lastmod>2017-03-02T21:56:55+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/hugo/</loc>
+    <lastmod>2017-04-02T22:01:15+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2017-03-02T21:56:55+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/markdown/</loc>
+    <lastmod>2017-03-02T21:56:55+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/password-recovery/</loc>
+  </url>
+  
+  <url>
+    <loc>/tags/prototype/</loc>
+    <lastmod>2017-04-02T22:01:15+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/account/</loc>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2017-03-02T21:56:55+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>
