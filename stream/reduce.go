@@ -12,9 +12,8 @@ import (
 const OpCodeReduce = "reduce"
 
 type reduce struct {
-	items   interface{}
-	fn      interface{}
-	traceID string
+	items interface{}
+	fn    interface{}
 }
 
 func (op *reduce) name() string {
@@ -36,16 +35,19 @@ func (op *reduce) run() output {
 		result := function.Call(argv)
 		acc = reflect.ValueOf(result[0].Interface())
 	}
-	logger.DebugInfo(op.traceID, "%s %v -> %v", op.name(), op.items, acc.Interface())
+	logger.DebugInfo("%s %v -> %v", op.name(), op.items, acc.Interface())
 	return output{acc.Interface(), nil}
 }
 
 func (op *reduce) validate() *errors.Error {
 	if op.items == nil {
-		return errors.ItemsNil(op.name(), "You can not iterate over a nil stream")
+		return errors.ItemsNil(op.name(), "A nil stream can not be reduced")
 	}
 	itemsType := reflect.TypeOf(op.items).Elem()
 	function := reflect.ValueOf(op.fn)
+	if function.Type().Kind() != reflect.Func {
+		return errors.InvalidArgument(op.name(), "The filter operation requires a function as argument")
+	}
 	if function.Type().NumIn() != 2 {
 		return errors.InvalidArgument(op.name(), "The provided function must retrieve 2 arguments")
 	}
@@ -56,10 +58,12 @@ func (op *reduce) validate() *errors.Error {
 	fnIn2 := reflect.New(function.Type().In(1)).Elem()
 	fnOut := reflect.New(function.Type().Out(0)).Elem()
 	if fnIn2.Type() != itemsType {
-		return errors.InvalidArgument(op.name(), "The type of the second argument in the provided function must be %s", itemsType.String())
+		return errors.InvalidArgument(op.name(), "The type of the "+
+			"second argument in the provided function must be %s", itemsType.String())
 	}
 	if fnIn1.Type() != fnOut.Type() {
-		return errors.InvalidArgument(op.name(), "The type of the first argument and the output in the provided function must be the same")
+		return errors.InvalidArgument(op.name(), "The type of the first argument and "+
+			"the output in the provided function must be the same")
 	}
 	return nil
 }
@@ -70,5 +74,5 @@ func (s stream) Reduce(fn interface{}) output {
 	if current.err != nil {
 		return output{nil, current.err}
 	}
-	return (&reduce{current.items, fn, s.traceID}).run()
+	return (&reduce{current.items, fn}).run()
 }

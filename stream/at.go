@@ -11,9 +11,8 @@ import (
 const OpCodeAt = "at"
 
 type at struct {
-	items   interface{}
-	index   int
-	traceID string
+	items interface{}
+	index int
 }
 
 func (op *at) name() string {
@@ -26,21 +25,25 @@ func (op *at) run() output {
 	}
 	itemsValue := reflect.ValueOf(op.items)
 	out := itemsValue.Index(op.index).Interface()
-	logger.DebugInfo(op.traceID, "%s %v -> %v", op.name(), op.items, out)
+	logger.DebugInfo("%s %v -> %v", op.name(), op.items, out)
 	return output{out, nil}
 }
 
 func (op *at) validate() *errors.Error {
 	if op.items == nil {
-		return errors.ItemsNil(op.name(), "It can not be taken an element from a nil stream")
+		return errors.ItemsNil(op.name(), "It can not be taken an element "+
+			"from a nil stream")
 	}
 	itemsValue := reflect.ValueOf(op.items)
 	len := itemsValue.Len()
 	if len == 0 {
-		return errors.ItemsNil(op.name(), "It can not be taken an element from an empty stream")
+		return errors.ItemsNil(op.name(), "It can not be taken an element "+
+			"from an empty stream")
 	}
 	if op.index < 0 || len-1 < op.index {
-		return errors.InvalidIndex(op.name(), "The length of this stream is %d, so the index must be between 0 and %d", len, len-1)
+		return errors.InvalidIndex(op.name(),
+			"The length of this stream is %d, so the index must be "+
+				"between 0 and %d", len, len-1)
 	}
 	return nil
 }
@@ -51,5 +54,5 @@ func (s stream) At(index int) output {
 	if current.err != nil {
 		return output{nil, current.err}
 	}
-	return (&at{current.items, index, s.traceID}).run()
+	return (&at{current.items, index}).run()
 }

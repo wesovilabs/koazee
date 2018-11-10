@@ -40,10 +40,13 @@ func (op *filter) run(s *stream) *stream {
 
 func (op *filter) validate(s *stream) *errors.Error {
 	if s.items == nil {
-		return errors.ItemsNil(op.name(), "You can not filter a nil stream")
+		return errors.ItemsNil(op.name(), "A nil stream can not be filtered")
 	}
 	itemsType := reflect.TypeOf(s.items)
 	function := reflect.ValueOf(op.fn)
+	if function.Type().Kind() != reflect.Func {
+		return errors.InvalidArgument(op.name(), "The filter operation requires a function as argument")
+	}
 	if function.Type().NumIn() != 1 {
 		return errors.InvalidArgument(op.name(), "The provided function must retrieve 1 argument")
 	}
@@ -53,7 +56,9 @@ func (op *filter) validate(s *stream) *errors.Error {
 	fnOut := reflect.New(function.Type().Out(0)).Elem()
 	fnIn := reflect.New(function.Type().In(0)).Elem()
 	if fnIn.Type() != itemsType.Elem() {
-		return errors.InvalidArgument(op.name(), "The type of the argument in the provided function must be %s", itemsType.String())
+		return errors.InvalidArgument(op.name(),
+			"The type of the argument in the provided function must be %s",
+			itemsType.Elem().String())
 	}
 	if fnOut.Kind() != reflect.Bool {
 		return errors.InvalidArgument(op.name(), "The type of the output in the provided function must be bool")

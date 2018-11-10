@@ -38,10 +38,13 @@ func (op *forEach) run(s *stream) *stream {
 
 func (op *forEach) validate(s *stream) *errors.Error {
 	if s.items == nil {
-		return errors.ItemsNil(op.name(), "You can not iterate over a nil stream")
+		return errors.ItemsNil(op.name(), "A nil stream can not be used to perform ForEach operation")
 	}
 	itemsType := reflect.TypeOf(s.items).Elem()
 	function := reflect.ValueOf(op.fn)
+	if function.Type().Kind() != reflect.Func {
+		return errors.InvalidArgument(op.name(), "The filter operation requires a function as argument")
+	}
 	if function.Type().NumIn() != 1 {
 		return errors.InvalidArgument(op.name(), "The provided function must retrieve 1 argument")
 	}
@@ -50,7 +53,9 @@ func (op *forEach) validate(s *stream) *errors.Error {
 	}
 	fnIn := reflect.New(function.Type().In(0)).Elem()
 	if fnIn.Type() != itemsType {
-		return errors.InvalidArgument(op.name(), "The type of the argument in the provided function must be %s", itemsType.String())
+		return errors.InvalidArgument(op.name(),
+			"The type of the argument in the provided function "+
+				"must be %s", itemsType.String())
 	}
 	return nil
 }

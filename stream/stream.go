@@ -24,7 +24,6 @@ type S interface {
 	RemoveDuplicates() S
 	Out() output
 	With(interface{}) S
-	SetTraceID(value string) S
 	Compose(...S) S
 }
 
@@ -36,20 +35,90 @@ type output struct {
 
 func (o output) Val() interface{}   { return o.value }
 func (o output) Err() *errors.Error { return o.error }
-func (o output) Bool() bool         { return o.value.(bool) }
-func (o output) String() string     { return o.value.(string) }
-func (o output) Int() int           { return o.value.(int) }
-func (o output) Int8() int8         { return o.value.(int8) }
-func (o output) Int16() int16       { return o.value.(int16) }
-func (o output) Int32() int32       { return o.value.(int32) }
-func (o output) Int64() int64       { return o.value.(int64) }
-func (o output) Uint() uint         { return o.value.(uint) }
-func (o output) Uint8() uint8       { return o.value.(uint8) }
-func (o output) Uint16() uint16     { return o.value.(uint16) }
-func (o output) Uint32() uint32     { return o.value.(uint32) }
-func (o output) Uint64() uint64     { return o.value.(uint64) }
-func (o output) Float32() float32   { return o.value.(float32) }
-func (o output) Float64() float64   { return o.value.(float64) }
+func (o output) Bool() bool {
+	if reflect.TypeOf(o.value).Kind() == reflect.Bool {
+		return o.value.(bool)
+	}
+	return false
+}
+func (o output) String() string {
+	if reflect.TypeOf(o.value).Kind() == reflect.String {
+		return o.value.(string)
+	}
+	return ""
+}
+func (o output) Int() int {
+	if reflect.TypeOf(o.value).Kind() == reflect.Int {
+		return o.value.(int)
+	}
+	return 0
+}
+func (o output) Int8() int8 {
+	if reflect.TypeOf(o.value).Kind() == reflect.Int8 {
+		return o.value.(int8)
+	}
+	return 0
+}
+func (o output) Int16() int16 {
+	if reflect.TypeOf(o.value).Kind() == reflect.Int16 {
+		return o.value.(int16)
+	}
+	return 0
+}
+func (o output) Int32() int32 {
+	if reflect.TypeOf(o.value).Kind() == reflect.Int32 {
+		return o.value.(int32)
+	}
+	return 0
+}
+func (o output) Int64() int64 {
+	if reflect.TypeOf(o.value).Kind() == reflect.Int64 {
+		return o.value.(int64)
+	}
+	return 0
+}
+func (o output) Uint() uint {
+	if reflect.TypeOf(o.value).Kind() == reflect.Uint {
+		return o.value.(uint)
+	}
+	return 0
+}
+func (o output) Uint8() uint8 {
+	if reflect.TypeOf(o.value).Kind() == reflect.Uint8 {
+		return o.value.(uint8)
+	}
+	return 0
+}
+func (o output) Uint16() uint16 {
+	if reflect.TypeOf(o.value).Kind() == reflect.Uint16 {
+		return o.value.(uint16)
+	}
+	return 0
+}
+func (o output) Uint32() uint32 {
+	if reflect.TypeOf(o.value).Kind() == reflect.Uint32 {
+		return o.value.(uint32)
+	}
+	return 0
+}
+func (o output) Uint64() uint64 {
+	if reflect.TypeOf(o.value).Kind() == reflect.Uint64 {
+		return o.value.(uint64)
+	}
+	return 0
+}
+func (o output) Float32() float32 {
+	if reflect.TypeOf(o.value).Kind() == reflect.Float32 {
+		return o.value.(float32)
+	}
+	return 0.00
+}
+func (o output) Float64() float64 {
+	if reflect.TypeOf(o.value).Kind() == reflect.Float64 {
+		return o.value.(float64)
+	}
+	return 0.00
+}
 
 type lazyOp interface {
 	name() string
@@ -61,7 +130,6 @@ type stream struct {
 	err        *errors.Error
 	streams    []stream
 	operations []lazyOp
-	traceID    string
 }
 
 func (s *stream) run() *stream {
@@ -82,7 +150,7 @@ func (s *stream) run() *stream {
 			}
 		}
 	}
-	if len(s.operations) <= 0 {
+	if len(s.operations) == 0 {
 		return s
 	}
 	op := s.operations[0]
@@ -91,7 +159,7 @@ func (s *stream) run() *stream {
 	if s.err != nil {
 		return s
 	}
-	logger.DebugInfo(s.traceID, "%s %v -> %v", op.name(), previousItems, s.items)
+	logger.DebugInfo("%s %v -> %v", op.name(), previousItems, s.items)
 	s.operations = s.operations[1:]
 	return s.run()
 }

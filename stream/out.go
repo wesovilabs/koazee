@@ -15,12 +15,15 @@ func (op *out) name() string {
 }
 
 func (op *out) run() output {
+	if err := op.validate(); err != nil {
+		return output{nil, err}
+	}
 	return output{op.items, nil}
 }
 
 func (op *out) validate() *errors.Error {
 	if op.items == nil {
-		return errors.ItemsNil(op.name(), "You can not take an element for a nil stream")
+		return errors.ItemsNil(op.name(), "It can not be outputted a nil stream")
 	}
 	return nil
 }

@@ -4,18 +4,19 @@ package koazee
 import (
 	"github.com/wesovilabs/koazee/errors"
 	"github.com/wesovilabs/koazee/stream"
+	"github.com/wesovilabs/koazee/utils"
 )
 
-// StreamOf loads the user data into the stream
+// Stream Initialize an empty stream
 func Stream() stream.S {
 	return stream.New(nil)
 }
 
 // StreamOf loads the user data into the stream
 func StreamOf(data interface{}) stream.S {
-	nature := natureOf(data)
+	nature := utils.NatureOf(data)
 	switch nature {
-	case natureArray:
+	case utils.NatureArray:
 		adapter := streamAdapter{}
 		s := adapter.toStream(data)
 		return s

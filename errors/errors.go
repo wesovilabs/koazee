@@ -46,7 +46,7 @@ func (e Error) Code() string {
 // With permits add extra info to show displayed when printing the error
 func (e Error) With(key string, value interface{}) Error {
 	if e.meta == nil {
-		e.meta = make(map[string]interface{}, 0)
+		e.meta = make(map[string]interface{})
 	}
 	e.meta[key] = value
 	return e

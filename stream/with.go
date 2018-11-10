@@ -3,6 +3,8 @@ package stream
 import (
 	"reflect"
 
+	"github.com/wesovilabs/koazee/utils"
+
 	"github.com/wesovilabs/koazee/logger"
 
 	"github.com/wesovilabs/koazee/errors"
@@ -12,8 +14,7 @@ const OpCodeWith = "with"
 
 // with struct for defining add operation
 type with struct {
-	data    interface{}
-	traceID string
+	data interface{}
 }
 
 func (op *with) name() string {
@@ -22,15 +23,15 @@ func (op *with) name() string {
 
 // Run performs the operations whenever is called
 func (op *with) run(s stream) stream {
-	nature := natureOf(op.data)
+	nature := utils.NatureOf(op.data)
 	switch nature {
-	case natureArray:
+	case utils.NatureArray:
 		out := items(op.data)
-		logger.DebugInfo(op.traceID, "%s  %v", op.name(), out)
+		logger.DebugInfo("%s  %v", op.name(), out)
 		s.items = out
 
 	default:
-		s.err = errors.InvalidType(":load", "Unsupported type! Only arrays are permitted")
+		s.err = errors.InvalidType(op.name(), "Unsupported type! Only arrays are permitted")
 		return s
 	}
 
@@ -38,7 +39,7 @@ func (op *with) run(s stream) stream {
 }
 
 func (s stream) With(data interface{}) S {
-	return (&with{data, s.traceID}).run(s)
+	return (&with{data}).run(s)
 }
 
 func items(data interface{}) interface{} {

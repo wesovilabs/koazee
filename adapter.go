@@ -8,7 +8,6 @@ import (
 )
 
 type streamAdapter struct {
-	elementType reflect.Type
 }
 
 func (adapter *streamAdapter) toStream(data interface{}) stream.S {

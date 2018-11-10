@@ -30,11 +30,14 @@ func (op *sort) run(s *stream) *stream {
 
 func (op *sort) validate(s *stream) *errors.Error {
 	if s.items == nil {
-		return errors.ItemsNil(op.name(), "You can not filter a nil stream")
+		return errors.ItemsNil(op.name(), "A nil stream can not be sorted")
 	}
 	itemsType := reflect.TypeOf(s.items).Elem()
 
 	function := reflect.ValueOf(op.fn)
+	if function.Type().Kind() != reflect.Func {
+		return errors.InvalidArgument(op.name(), "The filter operation requires a function as argument")
+	}
 	if function.Type().NumIn() != 2 {
 		return errors.InvalidArgument(op.name(), "The provided function must retrieve 2 arguments")
 	}

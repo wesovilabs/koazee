@@ -4,6 +4,9 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/wesovilabs/koazee"
+	"github.com/wesovilabs/koazee/errors"
+
 	"github.com/wesovilabs/koazee/stream"
 
 	"github.com/stretchr/testify/assert"
@@ -11,9 +14,7 @@ import (
 
 func TestStream_Map(t *testing.T) {
 	s := stream.New([]string{"HomE", "welcome", "SoftWare", "tech", "GEEK"})
-	out := s.Map(func(element string) string {
-		return strings.ToUpper(element)
-	}).Out().Val()
+	out := s.Map(strings.ToUpper).Out().Val()
 
 	assert.Equal(t, []string{"HOME", "WELCOME", "SOFTWARE", "TECH", "GEEK"}, out)
 	s = stream.New([]*person{
@@ -34,4 +35,32 @@ func TestStream_Map(t *testing.T) {
 		return p.firstName
 	}).Out().Val()
 	assert.Equal(t, []string{"John", "Jane", "Jean"}, out)
+}
+
+func TestStream_Map_validation(t *testing.T) {
+	assert.Equal(
+		t,
+		errors.InvalidArgument(stream.OpCodeMap, "The filter operation requires a function as argument"),
+		koazee.StreamOf([]string{"Freedom", "for", "the", "animals"}).Map(10).Out().Err())
+
+	assert.Equal(
+		t,
+		errors.ItemsNil(stream.OpCodeMap, "A nil stream can not be iterated"),
+		koazee.Stream().Map(func() {}).Out().Err())
+
+	assert.Equal(
+		t,
+		errors.InvalidArgument(stream.OpCodeMap, "The provided function must retrieve 1 argument"),
+		koazee.StreamOf([]int{2, 3, 2}).Map(func() {}).Out().Err())
+
+	assert.Equal(
+		t,
+		errors.InvalidArgument(stream.OpCodeMap, "The type of the argument in the provided function must be int"),
+		koazee.StreamOf([]int{2, 3, 2}).Map(func(val string) bool { return true }).Out().Err())
+
+	assert.Equal(
+		t,
+		errors.InvalidArgument(stream.OpCodeMap, "The provided function must return 1 value"),
+		koazee.StreamOf([]int{2, 3, 2}).Map(func(val int) {}).Out().Err())
+
 }

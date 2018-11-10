@@ -33,16 +33,19 @@ func (op *compose) run(s stream) stream {
 }
 
 func (op *compose) validate(streams []S) *errors.Error {
-	if streams == nil || len(streams) == 0 {
+	if len(streams) == 0 {
 		return errors.InvalidArgument(op.name(), "You need to provide streams to compose one")
 	}
-	var lastType reflect.Type = nil
+	var lastType reflect.Type
+
 	for _, s := range streams {
+
 		if s.(stream).items != nil {
 			itemsType := reflect.TypeOf(s.(stream).items)
-			if itemsType != lastType && lastType != reflect.TypeOf(nil) {
-				return errors.InvalidType(op.name(), "You can not compose an stream if all the streams don not have the same type")
+			if itemsType != lastType && lastType != nil {
+				return errors.InvalidType(op.name(), "An stream can not be composed with stream of different type")
 			}
+			lastType = itemsType
 		}
 	}
 	return nil

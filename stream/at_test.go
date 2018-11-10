@@ -1,8 +1,9 @@
 package stream_test
 
 import (
-	"github.com/wesovilabs/koazee/errors"
 	"testing"
+
+	"github.com/wesovilabs/koazee/errors"
 
 	"github.com/wesovilabs/koazee/stream"
 

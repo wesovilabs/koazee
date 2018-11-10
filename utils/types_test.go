@@ -1,7 +1,8 @@
 // Package koazee contains code for library koazee
-package koazee
+package utils_test
 
 import (
+	"github.com/wesovilabs/koazee/utils"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -59,24 +60,13 @@ var unsupportedTypes = []struct {
 	},
 }
 
-func TestNatureOf(t *testing.T) {
+func Test_NatureOf(t *testing.T) {
 	for _, c := range arraysTypes {
-		streamType := natureOf(c.data)
-		assert.Equal(t, natureArray, streamType)
+		streamType := utils.NatureOf(c.data)
+		assert.Equal(t, utils.NatureArray, streamType)
 	}
 	for _, c := range unsupportedTypes {
-		streamType := natureOf(c.data)
-		assert.Equal(t, unsupported, streamType)
-	}
-}
-
-func TestIsArray(t *testing.T) {
-	for _, c := range arraysTypes {
-		result := isArray(c.data)
-		assert.True(t, result)
-	}
-	for _, c := range unsupportedTypes {
-		result := isArray(c.data)
-		assert.False(t, result)
+		streamType := utils.NatureOf(c.data)
+		assert.Equal(t, utils.Unsupported, streamType)
 	}
 }

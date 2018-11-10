@@ -11,8 +11,7 @@ import (
 const OpCodeFirst = ":first"
 
 type first struct {
-	items   interface{}
-	traceID string
+	items interface{}
 }
 
 func (op *first) name() string {
@@ -25,18 +24,18 @@ func (op *first) run() output {
 	}
 	itemsValue := reflect.ValueOf(op.items)
 	out := itemsValue.Index(0).Interface()
-	logger.DebugInfo(op.traceID, "%s %v -> %v", op.name(), op.items, out)
+	logger.DebugInfo("%s %v -> %v", op.name(), op.items, out)
 	return output{out, nil}
 }
 
 func (op *first) validate() *errors.Error {
 	if op.items == nil {
-		return errors.ItemsNil(op.name(), "You can not take an element for a nil stream")
+		return errors.ItemsNil(op.name(), "It can not be taken an element from a nil stream")
 	}
 	itemsValue := reflect.ValueOf(op.items)
 	len := itemsValue.Len()
 	if len == 0 {
-		return errors.ItemsNil(op.name(), "You can not take an element for an empty stream")
+		return errors.ItemsNil(op.name(), "It can not be taken an element from an empty stream")
 	}
 	return nil
 }
@@ -47,5 +46,5 @@ func (s stream) First() output {
 	if current.err != nil {
 		return output{nil, current.err}
 	}
-	return (&first{current.items, s.traceID}).run()
+	return (&first{current.items}).run()
 }

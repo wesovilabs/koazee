@@ -2,8 +2,9 @@ package errors_test
 
 import (
 	"fmt"
-	"github.com/wesovilabs/koazee/stream"
 	"testing"
+
+	"github.com/wesovilabs/koazee/stream"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/wesovilabs/koazee/errors"
@@ -38,8 +39,6 @@ func TestError_Error(t *testing.T) {
 	assert.Equal(t, "[removeDuplicates:unknown] argument", err.Error())
 	err = errors.New(stream.OpCodeSort, "unknown", "argument")
 	assert.Equal(t, "[sort:unknown] argument", err.Error())
-	err = errors.New(stream.OpCodeTraceID, "unknown", "argument")
-	assert.Equal(t, "[traceID:unknown] argument", err.Error())
 	err = errors.New(stream.OpCodeWith, "unknown", "argument")
 	assert.Equal(t, "[with:unknown] argument", err.Error())
 }
@@ -51,5 +50,7 @@ func TestError_Code(t *testing.T) {
 	fmt.Println(err.Error())
 	assert.Equal(t, errors.ErrInvalidType.String(), err.Code())
 	assert.Equal(t, stream.OpCodeForEach, err.Operation())
-	assert.Equal(t, "[forEach:err.invalid-type] This is so weird\n  - when: today\n  - developed_on: 10/11/2019", err.Error())
+	assert.Equal(t, "[forEach:err.invalid-type] This is so weird\n  "+
+		"- when: today\n  "+
+		"- developed_on: 10/11/2019", err.Error())
 }

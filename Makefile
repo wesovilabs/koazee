@@ -3,11 +3,9 @@ GO  = GO111MODULE=on go
 all: fmt check build test info
 clean:
 	rm -f coverage.txt
-	rm -rr docs/_site
-	rm -r docs/.sass-cache
 	rm -rf vendor
 deps:
-	${GO} mod vendor
+	#${GO} mod vendor
 	${GO} mod download
 test:
 	${GO} test  -v ./...
@@ -17,7 +15,7 @@ fmt:
 	GO111MODULE=on ${GO} fmt .
 	goimports -w .
 check: fmt
-	gometalinter
+	golangci-lint run
 lint:
 	golint
 benchmark: fmt
@@ -28,9 +26,8 @@ info: fmt
 std-info: fmt
 	depscheck -stdlib -v .
 install:
-	${GO} get github.com/divan/depscheck
-	GO111MODULE=off go get github.com/alecthomas/gometalinter
-	GO111MODULE=off gometalinter --install --force
+	${GO} get -u github.com/divan/depscheck
+	curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s -- -b $GOPATH/bin v1.12.1
 site:
 	cd docs; \
 	bundle install; \

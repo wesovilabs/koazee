@@ -11,8 +11,7 @@ import (
 const OpCodeCount = "count"
 
 type count struct {
-	items   interface{}
-	traceID string
+	items interface{}
 }
 
 func (op *count) name() string {
@@ -24,7 +23,7 @@ func (op *count) run() (int, *errors.Error) {
 		return 0, err
 	}
 	itemsValue := reflect.ValueOf(op.items)
-	logger.DebugInfo(op.traceID, "%s %v len %v", op.name(), op.items, itemsValue.Len())
+	logger.DebugInfo("%s %v len %v", op.name(), op.items, itemsValue.Len())
 	return itemsValue.Len(), nil
 }
 
@@ -41,5 +40,5 @@ func (s stream) Count() (int, *errors.Error) {
 	if current.err != nil {
 		return 0, current.err
 	}
-	return (&count{current.items, s.traceID}).run()
+	return (&count{current.items}).run()
 }

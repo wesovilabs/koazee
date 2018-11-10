@@ -18,22 +18,19 @@ func main() {
 	}
 
 	stream1 := koazee.Stream().
-		SetTraceID("stream-1").
 		Filter(lowerThan5).
 		Map(duplicate).
 		Add(2).
 		With(numbers1)
 
 	stream2 := koazee.Stream().
-		SetTraceID("stream-2").
 		Add(3).
 		With(numbers2)
 
-	stream3 := koazee.StreamOf(numbers3).SetTraceID("stream-3")
+	stream3 := koazee.StreamOf(numbers3)
 
 	stream4 := koazee.
 		Stream().
-		SetTraceID("stream-4").
 		Compose(stream1, stream2, stream3)
 
 	stream4.Reduce(sum).Int()

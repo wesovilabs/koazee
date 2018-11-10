@@ -13,7 +13,6 @@ const OpCodeContains = "contains"
 type contains struct {
 	items   interface{}
 	element interface{}
-	traceID string
 }
 
 func (op *contains) name() string {
@@ -27,12 +26,12 @@ func (op *contains) run() (bool, *errors.Error) {
 	items := reflect.ValueOf(op.items)
 	elementValue := reflect.ValueOf(op.element)
 	for index := 0; index < items.Len(); index++ {
-		if eqyalsValues(items.Index(index), elementValue) {
-			logger.DebugInfo(op.traceID, "%s %v in %v", op.name(), op.element, op.items)
+		if equalsValues(items.Index(index), elementValue) {
+			logger.DebugInfo("%s %v in %v", op.name(), op.element, op.items)
 			return true, nil
 		}
 	}
-	logger.DebugInfo(op.traceID, "%s %v not in %v", op.name(), op.element, op.items)
+	logger.DebugInfo("%s %v not in %v", op.name(), op.element, op.items)
 	return false, nil
 }
 
@@ -58,5 +57,5 @@ func (s stream) Contains(element interface{}) (bool, *errors.Error) {
 	if current.err != nil {
 		return false, current.err
 	}
-	return (&contains{current.items, element, s.traceID}).run()
+	return (&contains{current.items, element}).run()
 }
