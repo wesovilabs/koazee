@@ -11,4 +11,5 @@ pkg
 /.idea
 docs/_site
 docs/.sass-cache
-coverage.txt
+coverage.txt/themes/
+.hugo
