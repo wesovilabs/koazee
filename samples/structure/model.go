@@ -1,38 +1,37 @@
 package structure
 
-type ItemType int
+type itemType int
 
 const (
-	Bakery ItemType = iota
-	Fruits
-	Vegetables
-	Drinks
-	Frozen
-	HealthAndBeauty
-	FrozenFood
+	bakery itemType = iota
+	fruits
+	vegetables
+	drinks
+	frozen
+	healthAndBeauty
 )
 
-type ShoppingItem struct {
+type shoppingItem struct {
 	Name     string
 	Price    float32
-	ItemType ItemType
+	ItemType itemType
 }
 
-func NewShoppingItem(name string, itemType ItemType, price float32) *ShoppingItem {
-	return &ShoppingItem{
+func newShoppingItem(name string, itemType itemType, price float32) *shoppingItem {
+	return &shoppingItem{
 		Name:     name,
 		ItemType: itemType,
 		Price:    price,
 	}
 }
 
-func currentShoppingCart() []*ShoppingItem {
-	return []*ShoppingItem{
-		NewShoppingItem("Bread", Bakery, 0.78),
-		NewShoppingItem("Watermelon", Fruits, 1.23),
-		NewShoppingItem("Deodorant", HealthAndBeauty, 2.25),
-		NewShoppingItem("Pack 6 Cokes", Drinks, 4.10),
-		NewShoppingItem("Red wine", Drinks, 7.10),
-		NewShoppingItem("Vegetarian Pizza", Frozen, 3.18),
+func currentShoppingCart() []*shoppingItem {
+	return []*shoppingItem{
+		newShoppingItem("Bread", bakery, 0.78),
+		newShoppingItem("Watermelon", fruits, 1.23),
+		newShoppingItem("Deodorant", healthAndBeauty, 2.25),
+		newShoppingItem("Pack 6 Cokes", drinks, 4.10),
+		newShoppingItem("Red wine", drinks, 7.10),
+		newShoppingItem("Vegetarian Pizza", frozen, 3.18),
 	}
 }

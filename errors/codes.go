@@ -6,13 +6,13 @@ type ErrCode string
 // ErrInvalidType code for errors related to invalid type
 const ErrInvalidType ErrCode = "err.invalid-type"
 
-// ErrInvalidType code for errors related to invalid index when accessing to a position in the stream
+// ErrInvalidIndex code for errors related to invalid index when accessing to a position in the stream
 const ErrInvalidIndex ErrCode = "err.invalid-index"
 
-// ErrInvalidType code for errors produced by a nil stream
+// ErrItemsNil code for errors produced by a nil stream
 const ErrItemsNil ErrCode = "err.items-nil"
 
-// ErrInvalidType code for errors produced by an invalid input in the operation
+// ErrInvalidArgument code for errors produced by an invalid input in the operation
 const ErrInvalidArgument ErrCode = "err.invalid-argument"
 
 // InvalidType creates an invalid type error
