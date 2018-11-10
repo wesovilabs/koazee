@@ -48,5 +48,5 @@ func TestError_Code(t *testing.T) {
 	assert.Equal(t, errors.ErrInvalidType.String(), err.Code())
 	assert.Equal(t, stream.OpCodeForEach, err.Operation())
 	assert.Equal(t, "[forEach:err.invalid-type] This is so weird\n  "+
-		"- when: today\n  ", err.Error())
+		"- when: today", err.Error())
 }
