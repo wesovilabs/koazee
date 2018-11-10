@@ -8,7 +8,7 @@ import (
 	"github.com/wesovilabs/koazee/errors"
 )
 
-const OperationCountIdentifier = ".count"
+const OpCodeCount = "count"
 
 type count struct {
 	items   interface{}
@@ -16,7 +16,7 @@ type count struct {
 }
 
 func (op *count) name() string {
-	return OperationCountIdentifier
+	return OpCodeCount
 }
 
 func (op *count) run() (int, *errors.Error) {

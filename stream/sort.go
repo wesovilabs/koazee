@@ -6,15 +6,15 @@ import (
 	"github.com/wesovilabs/koazee/errors"
 )
 
-// OperationSortIdentifier identifier for operation sort
-const OperationSortIdentifier = ":sort"
+// OpCodeSort identifier for operation sort
+const OpCodeSort = "sort"
 
 type sort struct {
 	fn interface{}
 }
 
 func (op *sort) name() string {
-	return OperationSortIdentifier
+	return OpCodeSort
 }
 
 func (op *sort) run(s *stream) *stream {

@@ -4,15 +4,9 @@
 [![](https://godoc.org/github.com/wesovilabs/koazee?status.svg)](http://godoc.org/github.com/wesovilabs/koazee)
 
 
-
-![Playing with streams](https://github.com/wesovilabs/koazee/raw/master/docs/logo.png)
-      
-
 # Koazee
 
 ## Lazy like a koala, smart like a chimpanzee
-
-Documentation can de found [here](http://wesovilabs.com/koazee/)
 
 Are you interested in collaborating in this project?
 Drop me an email at developer@wesovilabs.com

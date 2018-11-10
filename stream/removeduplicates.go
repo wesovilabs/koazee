@@ -6,14 +6,14 @@ import (
 	"github.com/wesovilabs/koazee/errors"
 )
 
-// OperationRemoveDuplicatesIdentifier identifier for operation removeDuplicates
-const OperationRemoveDuplicatesIdentifier = ":removeDuplicates"
+// OpCodeRemoveDuplicates identifier for operation removeDuplicates
+const OpCodeRemoveDuplicates = "removeDuplicates"
 
 type removeDuplicates struct {
 }
 
 func (op *removeDuplicates) name() string {
-	return OperationRemoveDuplicatesIdentifier
+	return OpCodeRemoveDuplicates
 }
 
 func (op *removeDuplicates) run(s *stream) *stream {

@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/wesovilabs/koazee"
+	koazeeLogger "github.com/wesovilabs/koazee/logger"
 )
 
 var numbers1 = []int{1, 3, 5, 7, 9}
@@ -9,7 +10,7 @@ var numbers2 = []int{2, 4, 6, 8}
 var numbers3 = []int{3, 4, 2}
 
 func main() {
-
+	koazeeLogger.Enabled = true
 	lowerThan5 := func(val int) bool { return val < 5 }
 	duplicate := func(val int) int { return val * 2 }
 	sum := func(acc, value int) int {

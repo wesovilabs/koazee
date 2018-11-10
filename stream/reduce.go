@@ -8,8 +8,8 @@ import (
 	"github.com/wesovilabs/koazee/errors"
 )
 
-// OperationMapIdentifier identifier for operation map
-const OperationReduceIdentifier = ":reduce"
+// OpCodeMap identifier for operation map
+const OpCodeReduce = "reduce"
 
 type reduce struct {
 	items   interface{}
@@ -18,7 +18,7 @@ type reduce struct {
 }
 
 func (op *reduce) name() string {
-	return OperationReduceIdentifier
+	return OpCodeReduce
 }
 
 func (op *reduce) run() output {

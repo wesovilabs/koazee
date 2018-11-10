@@ -1,35 +1,33 @@
-//Package errors implements utilities to handle errors in koazee execution
+//Package errors implements utilities to handle errors in koazee
 package errors
-
-const ()
 
 // ErrCode type
 type ErrCode string
 
-var errInvalidType ErrCode = "koazee:invalid-type"
-var errUnknown ErrCode = "koazee:unknown"
-var errInvalidIndex ErrCode = "koazee:index"
-var errItemsNil ErrCode = "koazee:items-nil"
-var errInvalidArgument ErrCode = "koazee:argument"
+const ErrInvalidType ErrCode = "err.invalid-type"
+const ErrUnknown ErrCode = "err.unknown"
+const ErrInvalidIndex ErrCode = "err.invalid-index"
+const ErrItemsNil ErrCode = "err.items-nil"
+const ErrInvalidArgument ErrCode = "err.invalid-argument"
 
 // InvalidType creates a invalid type error
 func InvalidType(op string, msg string, args ...interface{}) *Error {
-	return New(op, errInvalidType, msg, args...)
+	return New(op, ErrInvalidType, msg, args...)
 }
 
 // InvalidArgument creates a invalid type error
 func InvalidArgument(op string, msg string, args ...interface{}) *Error {
-	return New(op, errInvalidArgument, msg, args...)
+	return New(op, ErrInvalidArgument, msg, args...)
 }
 
 // ItemsNil creates a invalid type error
 func ItemsNil(op string, msg string, args ...interface{}) *Error {
-	return New(op, errItemsNil, msg, args...)
+	return New(op, ErrItemsNil, msg, args...)
 }
 
-// InvalidStreamIndex creates a invalid type error
-func InvalidStreamIndex(op string, msg string, args ...interface{}) *Error {
-	return New(op, errInvalidIndex, msg, args...)
+// InvalidIndex creates a invalid type error
+func InvalidIndex(op string, msg string, args ...interface{}) *Error {
+	return New(op, ErrInvalidIndex, msg, args...)
 }
 
 // String print string of error code

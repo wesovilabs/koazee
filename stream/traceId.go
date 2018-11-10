@@ -1,6 +1,6 @@
 package stream
 
-const OperationTraceIDIdentifier = ":traceID"
+const OpCodeTraceID = "traceID"
 
 // with struct for defining add operation
 type traceID struct {
@@ -8,7 +8,7 @@ type traceID struct {
 }
 
 func (op *traceID) name() string {
-	return OperationTraceIDIdentifier
+	return OpCodeTraceID
 }
 
 // Run performs the operations whenever is called

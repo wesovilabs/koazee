@@ -8,7 +8,7 @@ import (
 	"github.com/wesovilabs/koazee/errors"
 )
 
-const OperationLastIdentifier = ":last"
+const OpCodeLast = "last"
 
 type last struct {
 	items   interface{}
@@ -16,7 +16,7 @@ type last struct {
 }
 
 func (op *last) name() string {
-	return OperationLastIdentifier
+	return OpCodeLast
 }
 
 func (op *last) run() output {

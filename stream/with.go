@@ -8,7 +8,7 @@ import (
 	"github.com/wesovilabs/koazee/errors"
 )
 
-const OperationWithIdentifier = ":with"
+const OpCodeWith = "with"
 
 // with struct for defining add operation
 type with struct {
@@ -17,7 +17,7 @@ type with struct {
 }
 
 func (op *with) name() string {
-	return OperationWithIdentifier
+	return OpCodeWith
 }
 
 // Run performs the operations whenever is called

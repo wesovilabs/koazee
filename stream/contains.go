@@ -8,7 +8,7 @@ import (
 	"github.com/wesovilabs/koazee/errors"
 )
 
-const OperationContainsIdentifier = ":contains"
+const OpCodeContains = "contains"
 
 type contains struct {
 	items   interface{}
@@ -17,7 +17,7 @@ type contains struct {
 }
 
 func (op *contains) name() string {
-	return OperationContainsIdentifier
+	return OpCodeContains
 }
 
 func (op *contains) run() (bool, *errors.Error) {
@@ -38,16 +38,16 @@ func (op *contains) run() (bool, *errors.Error) {
 
 func (op *contains) validate() *errors.Error {
 	if op.items == nil {
-		return errors.ItemsNil(op.name(), "You can not take an element for a nil stream")
+		return errors.ItemsNil(op.name(), "It can not be checked if an element is in a nil stream")
 	}
 	itemsType := reflect.TypeOf(op.items).Elem()
 	if itemsType.Kind() != reflect.Ptr && op.element == nil {
-		return errors.InvalidArgument(op.name(), "You can not check if an array of values contains a nil object")
+		return errors.InvalidArgument(op.name(), "It can not be checked if an array of non-pointers contains a nil value")
 	}
 	elementType := reflect.TypeOf(op.element)
 	if elementType != itemsType {
 		return errors.InvalidArgument(op.name(),
-			"The stream contains elements of type %s and your argument has type %s", itemsType, elementType)
+			"The stream contains elements of type %s and the passed argument has type %s", itemsType, elementType)
 	}
 	return nil
 }

@@ -12,3 +12,7 @@ func TestStream_Count(t *testing.T) {
 	counter, _ := stream.New([]bool{true, false, false}).Count()
 	assert.Equal(t, 3, counter)
 }
+
+func TestStream_Count_validate(t *testing.T) {
+
+}

@@ -6,15 +6,15 @@ import (
 	"github.com/wesovilabs/koazee/errors"
 )
 
-// OperationMapIdentifier identifier for operation map
-const OperationMapIdentifier = ":map"
+// OpCodeMap identifier for operation map
+const OpCodeMap = "map"
 
 type streamMap struct {
 	fn interface{}
 }
 
 func (op *streamMap) name() string {
-	return OperationMapIdentifier
+	return OpCodeMap
 }
 
 func (op *streamMap) run(s *stream) *stream {

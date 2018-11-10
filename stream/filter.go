@@ -6,15 +6,15 @@ import (
 	"github.com/wesovilabs/koazee/errors"
 )
 
-// OperationFilterIdentifier identifier for operation filter
-const OperationFilterIdentifier = ":filter"
+// OpCodeFilter identifier for operation filter
+const OpCodeFilter = "filter"
 
 type filter struct {
 	fn interface{}
 }
 
 func (op *filter) name() string {
-	return OperationFilterIdentifier
+	return OpCodeFilter
 }
 
 func (op *filter) run(s *stream) *stream {

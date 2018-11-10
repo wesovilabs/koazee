@@ -4,14 +4,14 @@ import (
 	"github.com/wesovilabs/koazee/errors"
 )
 
-const OperationOutIdentifier = ":out"
+const OpCodeOut = "out"
 
 type out struct {
 	items interface{}
 }
 
 func (op *out) name() string {
-	return OperationOutIdentifier
+	return OpCodeOut
 }
 
 func (op *out) run() output {

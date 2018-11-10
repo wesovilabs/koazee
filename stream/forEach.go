@@ -8,15 +8,15 @@ import (
 	"github.com/wesovilabs/koazee/errors"
 )
 
-// OperationFilterIdentifier identifier for operation filter
-const OperationForEachIdentifier = ":forEach"
+// OpCodeFilter identifier for operation filter
+const OpCodeForEach = "forEach"
 
 type forEach struct {
 	fn interface{}
 }
 
 func (op *forEach) name() string {
-	return OperationForEachIdentifier
+	return OpCodeForEach
 }
 
 func (op *forEach) run(s *stream) *stream {

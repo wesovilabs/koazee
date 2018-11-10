@@ -6,7 +6,7 @@ import (
 	"github.com/wesovilabs/koazee/errors"
 )
 
-const OperationComposeIdentifier = ":compose"
+const OpCodeCompose = "compose"
 
 // compose struct for defining add operation
 type compose struct {
@@ -14,7 +14,7 @@ type compose struct {
 }
 
 func (op *compose) name() string {
-	return OperationComposeIdentifier
+	return OpCodeCompose
 }
 
 // Run performs the operations whenever is called

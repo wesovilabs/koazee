@@ -8,7 +8,7 @@ import (
 	"github.com/wesovilabs/koazee/errors"
 )
 
-const OperationFirstIdentifier = ":first"
+const OpCodeFirst = ":first"
 
 type first struct {
 	items   interface{}
@@ -16,7 +16,7 @@ type first struct {
 }
 
 func (op *first) name() string {
-	return OperationFirstIdentifier
+	return OpCodeFirst
 }
 
 func (op *first) run() output {

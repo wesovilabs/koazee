@@ -17,9 +17,7 @@ fmt:
 	GO111MODULE=on ${GO} fmt .
 	goimports -w .
 check: fmt
-	gometalinter --deadline 60s --enable lll --enable goimports --disable errcheck --disable gotype --disable golint --disable aligncheck
-check-fast:
-	gometalinter --enable goimports --enable lll --disable errcheck --disable gotype  --disable golint --fast
+	gometalinter
 lint:
 	golint
 benchmark: fmt

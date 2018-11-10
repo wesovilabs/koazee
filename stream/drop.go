@@ -6,14 +6,14 @@ import (
 	"github.com/wesovilabs/koazee/errors"
 )
 
-const OperationDropIdentifier = ":drop"
+const OpCodeDrop = "drop"
 
 type drop struct {
 	input interface{}
 }
 
 func (op *drop) name() string {
-	return OperationDropIdentifier
+	return OpCodeDrop
 }
 
 // Run performs the operations whenever is called

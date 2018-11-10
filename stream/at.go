@@ -8,7 +8,7 @@ import (
 	"github.com/wesovilabs/koazee/errors"
 )
 
-const OperationAtIdentifier = ":at"
+const OpCodeAt = "at"
 
 type at struct {
 	items   interface{}
@@ -17,7 +17,7 @@ type at struct {
 }
 
 func (op *at) name() string {
-	return OperationAtIdentifier
+	return OpCodeAt
 }
 
 func (op *at) run() output {
@@ -32,15 +32,15 @@ func (op *at) run() output {
 
 func (op *at) validate() *errors.Error {
 	if op.items == nil {
-		return errors.ItemsNil(op.name(), "You can not take an element for a nil stream")
+		return errors.ItemsNil(op.name(), "It can not be taken an element from a nil stream")
 	}
 	itemsValue := reflect.ValueOf(op.items)
 	len := itemsValue.Len()
 	if len == 0 {
-		return errors.ItemsNil(op.name(), "You can not take an element for an empty stream")
+		return errors.ItemsNil(op.name(), "It can not be taken an element from an empty stream")
 	}
 	if op.index < 0 || len-1 < op.index {
-		return errors.InvalidStreamIndex(op.name(), "Invalid index %d; A valid index must be between 0 and %d", op.index, len-1)
+		return errors.InvalidIndex(op.name(), "The length of this stream is %d, so the index must be between 0 and %d", len, len-1)
 	}
 	return nil
 }

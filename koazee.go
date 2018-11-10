@@ -20,7 +20,8 @@ func StreamOf(data interface{}) stream.S {
 		s := adapter.toStream(data)
 		return s
 	default:
-		s := stream.Error(errors.InvalidType(":load", "Unsupported type! Only arrays are permitted"))
+		s := stream.Error(errors.InvalidType(":load",
+			"Unsupported type! Only arrays are permitted"))
 		return s
 	}
 }

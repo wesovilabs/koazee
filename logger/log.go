@@ -10,6 +10,8 @@ import (
 const prefix = "[koazee] "
 const timeFormat = "15:04:05.000000"
 
+var Enabled = false
+
 var log *l.Logger
 
 func init() {
@@ -17,5 +19,7 @@ func init() {
 }
 
 func DebugInfo(traceID string, format string, args ...interface{}) {
-	log.Printf(fmt.Sprintf("%v %s %v", time.Now().Format(timeFormat), traceID, fmt.Sprintf(format, args...)))
+	if Enabled {
+		log.Printf(fmt.Sprintf("%v %s %v", time.Now().Format(timeFormat), traceID, fmt.Sprintf(format, args...)))
+	}
 }

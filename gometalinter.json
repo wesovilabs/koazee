@@ -1,0 +1,51 @@
+{
+  "DisableAll": true,
+  "WarnUnmatchedDirective": true,
+  "Sort": [
+    "linter",
+    "severity",
+    "path",
+    "line"
+  ],
+  "Enable": [
+    "deadcode",
+    "unconvert",
+    "errcheck",
+    "vet",
+    "vetshadow",
+    "gocyclo",
+    "golint",
+    "gosimple",
+    "unused",
+    "unparam",
+    "nakedret",
+    "varcheck",
+    "structcheck",
+    "ineffassign",
+    "interfacer",
+    "unconvert",
+    "goconst",
+    "safesql",
+    "unparam",
+    "misspell",
+    "megacheck",
+    "test"
+  ],
+  "Linters": {
+    "vet": "go tool vet -composites=false :PATH:LINE:MESSAGE",
+    "nakedret": {
+      "Command": "nakedret",
+      "Pattern": "^(?P<path>.*?\\.go):(?P<line>\\d+)\\s*(?P<message>.*)$"
+    }
+  },
+  "Concurrent": 5,
+  "Deadline": "5m",
+  "Format": "{{.Path}}:{{.Line}}:{{if .Col}}{{.Col}}{{end}}:{{.Severity}}: {{.Message}} ({{.Linter}})",
+  "Exclude": [
+    "^samples/",
+    "^vendor/",
+    "^docs/"
+  ],
+  "Cyclo": 10,
+  "LineLength": 80
+}
