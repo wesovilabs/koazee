@@ -1,4 +1,4 @@
-baseURL = "http://wesovilabs.com/koazee/"
+baseURL = "/koazee/"
 languageCode = "en-us"
 publishDir = "../docs"
 title = "Koazee"

@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>FAQ on Koazee</title>
-    <link>/faq/</link>
+    <link>http://wesovilabs.com/koazee/faq/</link>
     <description>Recent content in FAQ on Koazee</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="/faq/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://wesovilabs.com/koazee/faq/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
