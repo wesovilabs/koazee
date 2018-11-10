@@ -3,221 +3,221 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://wesovilabs.com/koazee/blog/welcome/</loc>
+    <loc>/koazee/blog/welcome/</loc>
     <lastmod>2017-03-02T21:56:55+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/quick-start/</loc>
+    <loc>/koazee/docs/quick-start/</loc>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/custom-plugins/</loc>
+    <loc>/koazee/docs/custom-plugins/</loc>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/typography/</loc>
+    <loc>/koazee/docs/typography/</loc>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/blog/typography/</loc>
+    <loc>/koazee/blog/typography/</loc>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/blog/prototyping/</loc>
+    <loc>/koazee/blog/prototyping/</loc>
     <lastmod>2017-04-02T22:01:15+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/grid/</loc>
+    <loc>/koazee/docs/grid/</loc>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/tables/</loc>
+    <loc>/koazee/docs/tables/</loc>
     <lastmod>2017-04-10T16:40:43+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/forms/</loc>
+    <loc>/koazee/docs/forms/</loc>
     <lastmod>2017-04-10T16:40:50+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/buttons/</loc>
+    <loc>/koazee/docs/buttons/</loc>
     <lastmod>2017-04-10T16:41:16+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/labels/</loc>
+    <loc>/koazee/docs/labels/</loc>
     <lastmod>2017-04-10T16:40:43+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/blog/messages/</loc>
+    <loc>/koazee/blog/messages/</loc>
     <lastmod>2017-04-10T16:41:34+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/messages/</loc>
+    <loc>/koazee/docs/messages/</loc>
     <lastmod>2017-04-10T16:41:34+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/tabs/</loc>
+    <loc>/koazee/docs/tabs/</loc>
     <lastmod>2017-04-10T16:41:40+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/breadcrumbs/</loc>
+    <loc>/koazee/docs/breadcrumbs/</loc>
     <lastmod>2017-04-10T16:41:54+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/pagination/</loc>
+    <loc>/koazee/docs/pagination/</loc>
     <lastmod>2017-04-10T16:42:03+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/dropdown/</loc>
+    <loc>/koazee/docs/dropdown/</loc>
     <lastmod>2017-04-10T16:42:12+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/modal/</loc>
+    <loc>/koazee/docs/modal/</loc>
     <lastmod>2017-04-10T16:42:18+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/sticky/</loc>
+    <loc>/koazee/docs/sticky/</loc>
     <lastmod>2017-04-10T16:42:26+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/blog/collapse/</loc>
+    <loc>/koazee/blog/collapse/</loc>
     <lastmod>2017-04-10T16:42:50+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/collapse/</loc>
+    <loc>/koazee/docs/collapse/</loc>
     <lastmod>2017-04-10T16:42:50+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/offcanvas/</loc>
+    <loc>/koazee/docs/offcanvas/</loc>
     <lastmod>2017-04-10T16:42:43+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/toggleme/</loc>
+    <loc>/koazee/docs/toggleme/</loc>
     <lastmod>2017-04-10T16:42:59+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/animation/</loc>
+    <loc>/koazee/docs/animation/</loc>
     <lastmod>2017-04-10T16:43:08+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/colors/</loc>
+    <loc>/koazee/docs/colors/</loc>
     <lastmod>2017-04-10T16:43:14+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/sizing/</loc>
+    <loc>/koazee/docs/sizing/</loc>
     <lastmod>2017-04-10T16:43:21+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/mixins/</loc>
+    <loc>/koazee/docs/mixins/</loc>
     <lastmod>2017-04-10T16:43:36+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/utils/</loc>
+    <loc>/koazee/docs/utils/</loc>
     <lastmod>2017-04-10T16:43:30+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/blog/inline-style/</loc>
+    <loc>/koazee/blog/inline-style/</loc>
     <lastmod>2017-04-02T21:56:55+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/blog/</loc>
+    <loc>/koazee/blog/</loc>
     <lastmod>2017-03-02T21:56:55+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/categories/</loc>
+    <loc>/koazee/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/company/</loc>
+    <loc>/koazee/company/</loc>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/categories/design/</loc>
+    <loc>/koazee/categories/design/</loc>
     <lastmod>2017-04-02T22:01:15+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/</loc>
+    <loc>/koazee/docs/</loc>
     <lastmod>2017-04-10T16:40:43+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/tags/example/</loc>
+    <loc>/koazee/tags/example/</loc>
     <lastmod>2017-03-02T21:56:55+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/faq/</loc>
+    <loc>/koazee/faq/</loc>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/categories/general/</loc>
+    <loc>/koazee/categories/general/</loc>
     <lastmod>2017-03-02T21:56:55+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/tags/hugo/</loc>
+    <loc>/koazee/tags/hugo/</loc>
     <lastmod>2017-04-02T22:01:15+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/</loc>
+    <loc>/koazee/</loc>
     <lastmod>2017-03-02T21:56:55+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/tags/markdown/</loc>
+    <loc>/koazee/tags/markdown/</loc>
     <lastmod>2017-03-02T21:56:55+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/password-recovery/</loc>
+    <loc>/koazee/password-recovery/</loc>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/tags/prototype/</loc>
+    <loc>/koazee/tags/prototype/</loc>
     <lastmod>2017-04-02T22:01:15+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/account/</loc>
+    <loc>/koazee/account/</loc>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/tags/</loc>
+    <loc>/koazee/tags/</loc>
     <lastmod>2017-03-02T21:56:55+01:00</lastmod>
     <priority>0</priority>
   </url>
