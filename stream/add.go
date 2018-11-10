@@ -33,7 +33,7 @@ func (op *add) run(s *stream) *stream {
 
 func (op *add) validate(s *stream) *errors.Error {
 	if s.items == nil {
-		return errors.ItemsNil(op.name(), "An element can not be added in a nil stream")
+		return errors.EmptyStream(op.name(), "An element can not be added in a nil stream")
 	}
 	itemsType := reflect.TypeOf(s.items).Elem()
 	elementType := reflect.TypeOf(op.input)

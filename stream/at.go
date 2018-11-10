@@ -32,13 +32,13 @@ func (op *at) run() output {
 
 func (op *at) validate() *errors.Error {
 	if op.items == nil {
-		return errors.ItemsNil(op.name(), "It can not be taken an element "+
+		return errors.EmptyStream(op.name(), "It can not be taken an element "+
 			"from a nil stream")
 	}
 	itemsValue := reflect.ValueOf(op.items)
 	len := itemsValue.Len()
 	if len == 0 {
-		return errors.ItemsNil(op.name(), "It can not be taken an element "+
+		return errors.EmptyStream(op.name(), "It can not be taken an element "+
 			"from an empty stream")
 	}
 	if op.index < 0 || len-1 < op.index {

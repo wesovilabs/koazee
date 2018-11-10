@@ -38,7 +38,7 @@ func (op *drop) run(s *stream) *stream {
 
 func (op *drop) validate(s *stream) *errors.Error {
 	if s.items == nil {
-		return errors.ItemsNil(op.name(), "An element can not be dropped in a nil stream")
+		return errors.EmptyStream(op.name(), "An element can not be dropped in a nil stream")
 	}
 	itemsType := reflect.TypeOf(s.items).Elem()
 	elementType := reflect.TypeOf(op.input)

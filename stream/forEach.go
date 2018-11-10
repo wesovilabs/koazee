@@ -38,7 +38,7 @@ func (op *forEach) run(s *stream) *stream {
 
 func (op *forEach) validate(s *stream) *errors.Error {
 	if s.items == nil {
-		return errors.ItemsNil(op.name(), "A nil stream can not be used to perform ForEach operation")
+		return errors.EmptyStream(op.name(), "A nil stream can not be used to perform ForEach operation")
 	}
 	itemsType := reflect.TypeOf(s.items).Elem()
 	function := reflect.ValueOf(op.fn)

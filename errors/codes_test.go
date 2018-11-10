@@ -28,7 +28,7 @@ func TestInvalidStreamIndex(t *testing.T) {
 }
 
 func TestItemsNil(t *testing.T) {
-	err := errors.ItemsNil(stream.OpCodeAdd, "items is nil")
+	err := errors.EmptyStream(stream.OpCodeAdd, "items is nil")
 	assert.Equal(t, "err.items-nil", err.Code())
 	assert.Equal(t, "[add:err.items-nil] items is nil", err.Error())
 }

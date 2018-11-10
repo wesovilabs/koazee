@@ -40,7 +40,7 @@ func (op *filter) run(s *stream) *stream {
 
 func (op *filter) validate(s *stream) *errors.Error {
 	if s.items == nil {
-		return errors.ItemsNil(op.name(), "A nil stream can not be filtered")
+		return errors.EmptyStream(op.name(), "A nil stream can not be filtered")
 	}
 	itemsType := reflect.TypeOf(s.items)
 	function := reflect.ValueOf(op.fn)

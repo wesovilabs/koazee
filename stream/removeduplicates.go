@@ -37,7 +37,7 @@ func (op *removeDuplicates) run(s *stream) *stream {
 
 func (op *removeDuplicates) validate(s *stream) *errors.Error {
 	if s.items == nil {
-		return errors.ItemsNil(op.name(), "A nil stream can not be iterated")
+		return errors.EmptyStream(op.name(), "A nil stream can not be iterated")
 	}
 	return nil
 }

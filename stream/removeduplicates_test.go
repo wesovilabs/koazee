@@ -41,7 +41,7 @@ func TestStream_RemoveDuplicates_validation(t *testing.T) {
 
 	assert.Equal(
 		t,
-		errors.ItemsNil(stream.OpCodeRemoveDuplicates, "A nil stream can not be iterated"),
+		errors.EmptyStream(stream.OpCodeRemoveDuplicates, "A nil stream can not be iterated"),
 		koazee.Stream().RemoveDuplicates().Out().Err())
 
 }

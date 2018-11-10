@@ -44,7 +44,7 @@ func TestStream_Reduce_validation(t *testing.T) {
 
 	assert.Equal(
 		t,
-		errors.ItemsNil(stream.OpCodeReduce, "A nil stream can not be reduced"),
+		errors.EmptyStream(stream.OpCodeReduce, "A nil stream can not be reduced"),
 		koazee.Stream().Reduce(func() {}).Err())
 
 	assert.Equal(

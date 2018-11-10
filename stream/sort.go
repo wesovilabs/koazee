@@ -30,7 +30,7 @@ func (op *sort) run(s *stream) *stream {
 
 func (op *sort) validate(s *stream) *errors.Error {
 	if s.items == nil {
-		return errors.ItemsNil(op.name(), "A nil stream can not be sorted")
+		return errors.EmptyStream(op.name(), "A nil stream can not be sorted")
 	}
 	itemsType := reflect.TypeOf(s.items).Elem()
 

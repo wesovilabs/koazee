@@ -38,7 +38,7 @@ func (op *contains) run() (bool, *errors.Error) {
 
 func (op *contains) validate() *errors.Error {
 	if op.items == nil {
-		return errors.ItemsNil(op.name(), "It can not be checked if an element is in a nil stream")
+		return errors.EmptyStream(op.name(), "It can not be checked if an element is in a nil stream")
 	}
 	itemsType := reflect.TypeOf(op.items).Elem()
 	if itemsType.Kind() != reflect.Ptr && op.element == nil {

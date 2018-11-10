@@ -46,7 +46,7 @@ func TestStream_Sort_validation(t *testing.T) {
 
 	assert.Equal(
 		t,
-		errors.ItemsNil(stream.OpCodeSort, "A nil stream can not be sorted"),
+		errors.EmptyStream(stream.OpCodeSort, "A nil stream can not be sorted"),
 		koazee.Stream().Sort(func() {}).Out().Err())
 
 	assert.Equal(

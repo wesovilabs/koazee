@@ -61,7 +61,7 @@ func TestStream_Contains_validate(t *testing.T) {
 	)
 	assert.Equal(
 		t,
-		errors.ItemsNil(stream.OpCodeContains, "It can not be "+
+		errors.EmptyStream(stream.OpCodeContains, "It can not be "+
 			"checked if an element is in a nil stream"),
 		err,
 	)

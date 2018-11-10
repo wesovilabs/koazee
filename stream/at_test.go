@@ -28,12 +28,12 @@ func TestStream_At_validation(t *testing.T) {
 
 	assert.Equal(
 		t,
-		errors.ItemsNil(stream.OpCodeAt, "It can not be taken an element from a nil stream"),
+		errors.EmptyStream(stream.OpCodeAt, "It can not be taken an element from a nil stream"),
 		stream.New(nil).At(0).Err())
 
 	assert.Equal(
 		t,
-		errors.ItemsNil(stream.OpCodeAt, "It can not be taken an element from an empty stream"),
+		errors.EmptyStream(stream.OpCodeAt, "It can not be taken an element from an empty stream"),
 		stream.New([]int{}).At(0).Err())
 
 	// To verify how errors are propagated

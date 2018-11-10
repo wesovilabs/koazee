@@ -27,7 +27,7 @@ func TestStream_ForEach_validation(t *testing.T) {
 
 	assert.Equal(
 		t,
-		errors.ItemsNil(stream.OpCodeForEach, "A nil stream can not be used to perform ForEach operation"),
+		errors.EmptyStream(stream.OpCodeForEach, "A nil stream can not be used to perform ForEach operation"),
 		koazee.Stream().ForEach(func() {}).Out().Err())
 
 	assert.Equal(

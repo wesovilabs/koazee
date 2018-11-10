@@ -32,7 +32,7 @@ func TestStream_Drop_validation(t *testing.T) {
 
 	assert.Equal(
 		t,
-		errors.ItemsNil(stream.OpCodeDrop, "An element can not be "+
+		errors.EmptyStream(stream.OpCodeDrop, "An element can not be "+
 			"dropped in a nil stream"),
 		koazee.Stream().Drop(10).Out().Err())
 

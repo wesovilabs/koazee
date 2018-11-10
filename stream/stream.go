@@ -164,7 +164,7 @@ func (s *stream) run() *stream {
 	return s.run()
 }
 
-// New creates error stream with given input
+// New creates a stream with provided array
 func New(items interface{}) S {
 	return stream{
 		items: items,

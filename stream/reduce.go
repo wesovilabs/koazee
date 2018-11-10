@@ -41,7 +41,7 @@ func (op *reduce) run() output {
 
 func (op *reduce) validate() *errors.Error {
 	if op.items == nil {
-		return errors.ItemsNil(op.name(), "A nil stream can not be reduced")
+		return errors.EmptyStream(op.name(), "A nil stream can not be reduced")
 	}
 	itemsType := reflect.TypeOf(op.items).Elem()
 	function := reflect.ValueOf(op.fn)

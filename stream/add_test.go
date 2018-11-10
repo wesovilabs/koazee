@@ -39,7 +39,7 @@ func TestStream_Add_validation(t *testing.T) {
 		s.Out().Err())
 
 	s = koazee.Stream().Add(10)
-	assert.Equal(t, errors.ItemsNil(stream.OpCodeAdd,
+	assert.Equal(t, errors.EmptyStream(stream.OpCodeAdd,
 		"An element can not be added in a nil stream"), s.Out().Err())
 
 	s = koazee.Stream().Add(nil).With([]int{2, 3, 1})

@@ -45,7 +45,7 @@ func TestStream_Compose_validation(t *testing.T) {
 	s2 = koazee.Stream()
 	assert.Equal(
 		t,
-		errors.ItemsNil(stream.OpCodeOut, "It can not be outputted a nil stream"),
+		errors.EmptyStream(stream.OpCodeOut, "It can not be outputted a nil stream"),
 		koazee.Stream().Compose(s1, s2).Out().Err(),
 	)
 }

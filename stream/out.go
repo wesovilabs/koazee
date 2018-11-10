@@ -24,7 +24,7 @@ func (op *out) run() output {
 
 func (op *out) validate() *errors.Error {
 	if op.items == nil {
-		return errors.ItemsNil(op.name(), "It can not be outputted a nil stream")
+		return errors.EmptyStream(op.name(), "It can not be outputted a nil stream")
 	}
 	return nil
 }

@@ -20,7 +20,7 @@ func TestStream_Out_validation(t *testing.T) {
 
 	assert.Equal(
 		t,
-		errors.ItemsNil(stream.OpCodeOut, "It can not be outputted a nil stream"),
+		errors.EmptyStream(stream.OpCodeOut, "It can not be outputted a nil stream"),
 		stream.New(nil).Out().Err())
 
 	// To verify how errors are propagated

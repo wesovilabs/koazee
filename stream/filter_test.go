@@ -28,7 +28,7 @@ func TestStream_Filter_validation(t *testing.T) {
 
 	assert.Equal(
 		t,
-		errors.ItemsNil(stream.OpCodeFilter, "A nil stream can not be filtered"),
+		errors.EmptyStream(stream.OpCodeFilter, "A nil stream can not be filtered"),
 		koazee.Stream().Filter(func() {}).Out().Err())
 
 	assert.Equal(

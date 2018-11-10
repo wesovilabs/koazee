@@ -42,7 +42,7 @@ func (op *streamMap) run(s *stream) *stream {
 
 func (op *streamMap) validate(s *stream) *errors.Error {
 	if s.items == nil {
-		return errors.ItemsNil(op.name(), "A nil stream can not be iterated")
+		return errors.EmptyStream(op.name(), "A nil stream can not be iterated")
 	}
 	itemsType := reflect.TypeOf(s.items).Elem()
 	function := reflect.ValueOf(op.fn)

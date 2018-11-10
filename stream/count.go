@@ -30,7 +30,7 @@ func (op *count) run() (int, *errors.Error) {
 
 func (op *count) validate() *errors.Error {
 	if op.items == nil {
-		return errors.ItemsNil(op.name(), "Count of a nil stream is not permitted")
+		return errors.EmptyStream(op.name(), "Count of a nil stream is not permitted")
 	}
 	return nil
 }
