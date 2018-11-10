@@ -9,6 +9,9 @@ env:
 install:
 - make install
 
+before_script:
+- go install -mod vendor github.com/golangci/golangci-lint/cmd/golangci-lint
+
 script:
 - make deps
 - make install
