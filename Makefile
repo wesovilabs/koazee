@@ -5,7 +5,7 @@ clean:
 	rm -f coverage.txt
 	rm -rf vendor
 deps:
-	#${GO} mod vendor
+	${GO} mod vendor
 	${GO} mod download
 test:
 	${GO} test  -v ./...
