@@ -9,7 +9,6 @@ pkg
 
 #IDEs
 /.idea
-docs/_site
-docs/.sass-cache
+
 coverage.txt/themes/
 
