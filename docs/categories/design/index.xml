@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Design on Koazee</title>
-    <link>/koazee/categories/design/</link>
+    <link>http://wesovilabs.com/koazee/categories/design/</link>
     <description>Recent content in Design on Koazee</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 02 Apr 2017 22:01:15 +0100</lastBuildDate>
     
-	<atom:link href="/koazee/categories/design/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://wesovilabs.com/koazee/categories/design/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Prototyping with markdown</title>
-      <link>/koazee/blog/prototyping/</link>
+      <link>http://wesovilabs.com/koazee/blog/prototyping/</link>
       <pubDate>Sun, 02 Apr 2017 22:01:15 +0100</pubDate>
       
-      <guid>/koazee/blog/prototyping/</guid>
+      <guid>http://wesovilabs.com/koazee/blog/prototyping/</guid>
       <description>I have been working on a large set of documentation for a prototype that will eventually make it into a product. One issue with the publishing system at my company is that it makes doing prototypes, or really anything not within the rigidly and narrowly scoped model, difficult to set up. It takes a lot of work just to get to the point where you can begin writing.
 Since time was of the essence and writing is expensive, I decided to do the prototype outside of the publishing system.</description>
     </item>

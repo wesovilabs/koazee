@@ -7,8 +7,8 @@ description = "Lazy like a koala, smart like a chimpanzee"
 Paginate = 4
 [Params]
   RSSLink = "/index.xml"
-  author = "newpixcom" # add your company name
-  github = "" # add your github profile name
+  author = "Iván Corrales Solera"
+  github = "https://github.com/ivancorrales"
   twitter = "" # add your twitter profile
   email = "ivan.corrales.solera@gmail.com"
 
