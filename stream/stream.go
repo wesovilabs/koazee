@@ -9,7 +9,8 @@ import (
 
 // S is an interface that provides the operations over a stream
 type S interface {
-	// Add this operation is used to add a new element into the stream. The element will be added in the last position
+	// Add this operation is used to add a new element into the stream. The element will be added in
+	// the last position
 	Add(interface{}) S
 	// Drop this operation is used to drop an existing element in the stream
 	Drop(interface{}) S
@@ -19,7 +20,8 @@ type S interface {
 	Last() output
 	// Att this operation is used to obtain the element in the stream that is in the given position
 	At(int) output
-	// Reduce this operation is used to obtain a result after applying the provided function over all the items in the stream
+	// Reduce this operation is used to obtain a result after applying the provided function
+	// over all the items in the stream
 	Reduce(function interface{}) output
 	// Reduce this operation is used to check if an element is found in the stream
 	Contains(interface{}) (bool, *errors.Error)
@@ -49,9 +51,11 @@ type output struct {
 }
 
 // Val reurn the output of the stream
-func (o output) Val() interface{}   { return o.value }
+func (o output) Val() interface{} { return o.value }
+
 // Err reurn the error in the stream
 func (o output) Err() *errors.Error { return o.error }
+
 // Bool parses the output of the stream as a bool type
 func (o output) Bool() bool {
 	if reflect.TypeOf(o.value).Kind() == reflect.Bool {
@@ -59,6 +63,7 @@ func (o output) Bool() bool {
 	}
 	return false
 }
+
 // String parses the output of the stream as a string type
 func (o output) String() string {
 	if reflect.TypeOf(o.value).Kind() == reflect.String {
@@ -66,6 +71,7 @@ func (o output) String() string {
 	}
 	return ""
 }
+
 // Int parses the output of the stream as a int type
 func (o output) Int() int {
 	if reflect.TypeOf(o.value).Kind() == reflect.Int {
@@ -73,6 +79,7 @@ func (o output) Int() int {
 	}
 	return 0
 }
+
 // Int8 parses the output of the stream as a int8 type
 func (o output) Int8() int8 {
 	if reflect.TypeOf(o.value).Kind() == reflect.Int8 {
@@ -80,6 +87,7 @@ func (o output) Int8() int8 {
 	}
 	return 0
 }
+
 // Int16 parses the output of the stream as a int16 type
 func (o output) Int16() int16 {
 	if reflect.TypeOf(o.value).Kind() == reflect.Int16 {
@@ -87,6 +95,7 @@ func (o output) Int16() int16 {
 	}
 	return 0
 }
+
 // Int32 parses the output of the stream as a int32 type
 func (o output) Int32() int32 {
 	if reflect.TypeOf(o.value).Kind() == reflect.Int32 {
@@ -94,6 +103,7 @@ func (o output) Int32() int32 {
 	}
 	return 0
 }
+
 // Int64 parses the output of the stream as a int64 type
 func (o output) Int64() int64 {
 	if reflect.TypeOf(o.value).Kind() == reflect.Int64 {
@@ -101,6 +111,7 @@ func (o output) Int64() int64 {
 	}
 	return 0
 }
+
 // Uint parses the output of the stream as a Uint type
 func (o output) Uint() uint {
 	if reflect.TypeOf(o.value).Kind() == reflect.Uint {
@@ -108,6 +119,7 @@ func (o output) Uint() uint {
 	}
 	return 0
 }
+
 // Uint8 parses the output of the stream as a Uint type8
 func (o output) Uint8() uint8 {
 	if reflect.TypeOf(o.value).Kind() == reflect.Uint8 {
@@ -115,6 +127,7 @@ func (o output) Uint8() uint8 {
 	}
 	return 0
 }
+
 // Uint16 parses the output of the stream as a Uint type16
 func (o output) Uint16() uint16 {
 	if reflect.TypeOf(o.value).Kind() == reflect.Uint16 {
@@ -122,6 +135,7 @@ func (o output) Uint16() uint16 {
 	}
 	return 0
 }
+
 // Uint32 parses the output of the stream as a Uint type32
 func (o output) Uint32() uint32 {
 	if reflect.TypeOf(o.value).Kind() == reflect.Uint32 {
@@ -129,6 +143,7 @@ func (o output) Uint32() uint32 {
 	}
 	return 0
 }
+
 // Uint63 parses the output of the stream as a Uint type64
 func (o output) Uint64() uint64 {
 	if reflect.TypeOf(o.value).Kind() == reflect.Uint64 {
@@ -136,6 +151,7 @@ func (o output) Uint64() uint64 {
 	}
 	return 0
 }
+
 // Float32 parses the output of the stream as a Uint float32
 func (o output) Float32() float32 {
 	if reflect.TypeOf(o.value).Kind() == reflect.Float32 {
@@ -143,6 +159,7 @@ func (o output) Float32() float32 {
 	}
 	return 0.00
 }
+
 // Float64 parses the output of the stream as a Uint float64
 func (o output) Float64() float64 {
 	if reflect.TypeOf(o.value).Kind() == reflect.Float64 {

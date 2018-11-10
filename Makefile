@@ -12,8 +12,7 @@ test:
 test-coverage:
 	${GO} test -race -coverprofile=coverage.txt -covermode=atomic ./...
 fmt:
-	GO111MODULE=on ${GO} fmt .
-	goimports -w .
+	GO111MODULE=on ${GO} fmt ./...
 check: fmt
 	golangci-lint run
 lint:
