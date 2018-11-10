@@ -2,8 +2,9 @@
 package utils_test
 
 import (
-	"github.com/wesovilabs/koazee/utils"
 	"testing"
+
+	"github.com/wesovilabs/koazee/utils"
 
 	"github.com/stretchr/testify/assert"
 )
