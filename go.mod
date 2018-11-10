@@ -2,6 +2,7 @@ module github.com/wesovilabs/koazee
 
 require (
 	github.com/StackExchange/wmi v0.0.0-20180725035823-b12b22c5341f // indirect
+	github.com/divan/depscheck v0.0.0-20160406124124-bf02ca53aeea // indirect
 	github.com/fatih/color v1.7.0 // indirect
 	github.com/go-critic/checkers v0.0.0-20181110093900-7a44df8ff033 // indirect
 	github.com/go-lintpack/lintpack v0.0.0-20181109131355-4eb5c1922929 // indirect
@@ -11,8 +12,10 @@ require (
 	github.com/golangci/tools v0.0.0-20181110070903-2cefd77fef9b // indirect
 	github.com/golangci/unparam v0.0.0-20180902115109-7ad9dbcccc16 // indirect
 	github.com/mattn/go-isatty v0.0.4 // indirect
+	github.com/mattn/go-runewidth v0.0.3 // indirect
 	github.com/mitchellh/mapstructure v1.1.2 // indirect
 	github.com/nbutton23/zxcvbn-go v0.0.0-20180912185939-ae427f1e4c1d // indirect
+	github.com/olekukonko/tablewriter v0.0.1 // indirect
 	github.com/shirou/gopsutil v2.18.10+incompatible // indirect
 	github.com/sirupsen/logrus v1.2.0 // indirect
 	github.com/spf13/cast v1.3.0 // indirect

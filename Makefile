@@ -26,7 +26,7 @@ std-info: fmt
 	depscheck -stdlib -v .
 install:
 	${GO} get -u github.com/divan/depscheck
-	${GO} install -mod vendor github.com/golangci/golangci-lint/cmd/golangci-lint
+	${GO} install github.com/golangci/golangci-lint/cmd/golangci-lint
 site:
 	cd docs; \
 	bundle install; \
