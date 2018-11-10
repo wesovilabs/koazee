@@ -1,7 +1,6 @@
 package errors_test
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/wesovilabs/koazee/stream"
@@ -45,12 +44,9 @@ func TestError_Error(t *testing.T) {
 
 func TestError_Code(t *testing.T) {
 	err := errors.InvalidType(stream.OpCodeForEach, "This is so weird").
-		With("when", "today").
-		With("developed_on", "10/11/2019")
-	fmt.Println(err.Error())
+		With("when", "today")
 	assert.Equal(t, errors.ErrInvalidType.String(), err.Code())
 	assert.Equal(t, stream.OpCodeForEach, err.Operation())
 	assert.Equal(t, "[forEach:err.invalid-type] This is so weird\n  "+
-		"- when: today\n  "+
-		"- developed_on: 10/11/2019", err.Error())
+		"- when: today\n  ", err.Error())
 }
