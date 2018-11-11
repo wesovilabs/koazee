@@ -12,11 +12,35 @@
   </url>
   
   <url>
+    <loc>http://wesovilabs.com/koazee/docs/first/</loc>
+  </url>
+  
+  <url>
+    <loc>http://wesovilabs.com/koazee/docs/last/</loc>
+  </url>
+  
+  <url>
+    <loc>http://wesovilabs.com/koazee/docs/at/</loc>
+  </url>
+  
+  <url>
     <loc>http://wesovilabs.com/koazee/docs/add/</loc>
   </url>
   
   <url>
     <loc>http://wesovilabs.com/koazee/docs/drop/</loc>
+  </url>
+  
+  <url>
+    <loc>http://wesovilabs.com/koazee/docs/contains/</loc>
+  </url>
+  
+  <url>
+    <loc>http://wesovilabs.com/koazee/docs/count/</loc>
+  </url>
+  
+  <url>
+    <loc>http://wesovilabs.com/koazee/docs/filter/</loc>
   </url>
   
   <url>

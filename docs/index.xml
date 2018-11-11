@@ -32,14 +32,51 @@ Bear claw danish chocolate lollipop soufflé jelly. Apple pie chocolate cake jel
     </item>
     
     <item>
+      <title>stream.First</title>
+      <link>http://wesovilabs.com/koazee/docs/first/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/docs/first/</guid>
+      <description>Function signature func First() (out output)
+Arguments None
+Output    Name Type Description     output stream.output It contains both value and error   
+Errors    Type Message     err.items-nil It can not be taken an element from a nil stream   err.items-nil It can not be taken an element from an empty stream    Examples  Numbers   Pointers    ppackage mainimport (&amp;#34;fmt&amp;#34;&amp;#34;github.</description>
+    </item>
+    
+    <item>
+      <title>stream.Last</title>
+      <link>http://wesovilabs.com/koazee/docs/last/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/docs/last/</guid>
+      <description>Function signature func Last() (out output)
+Arguments None
+Output    Name Type Description     output stream.output It contains both value and error   
+Errors    Type Message     err.items-nil It can not be taken an element from a nil stream   err.items-nil It can not be taken an element from an empty stream    Examples  Numbers   Pointers    ppackage mainimport (&amp;#34;fmt&amp;#34;&amp;#34;github.</description>
+    </item>
+    
+    <item>
+      <title>stream.At</title>
+      <link>http://wesovilabs.com/koazee/docs/at/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/docs/at/</guid>
+      <description>Function signature func At(index int) (out output)
+Arguments    Name Type Description     index int Index in the stream, from 0-len(stream)-1   
+Output    Name Type Description     output stream.output It contains both value and error   
+Errors    Type Message     err.items-nil It can not be taken an element from a nil stream   err.</description>
+    </item>
+    
+    <item>
       <title>stream.Add</title>
       <link>http://wesovilabs.com/koazee/docs/add/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://wesovilabs.com/koazee/docs/add/</guid>
-      <description>Function signature This function receives an argument and return the Stream
-func Add(item interface{}) (stream S) Arguments    Name Type Description     item Same type of elements in the stream New item to be added into the stream   
-Output    Name Type Description     stream koazee.S It returns the stream modified by the current operation</description>
+      <description>Function signature func Add(item interface{}) (stream S)
+Arguments    Name Type Description     item Same type of elements in the stream New item to be added into the stream   
+Output    Name Type Description     stream koazee.S It returns the stream modified by the current operation   
+Errors    Type Message     err.</description>
     </item>
     
     <item>
@@ -49,6 +86,41 @@ Output    Name Type Description     stream koazee.S It returns the stream modifi
       
       <guid>http://wesovilabs.com/koazee/docs/drop/</guid>
       <description>Function signature func Drop(item interface{}) (stream S) Arguments    Name Type Description     item Same type of elements in the stream Element to be dropped from the stream   
+Output    Name Type Description     stream koazee.S It returns the stream modified by the current operation   
+Errors    Type Message     err.</description>
+    </item>
+    
+    <item>
+      <title>stream.Contains</title>
+      <link>http://wesovilabs.com/koazee/docs/contains/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/docs/contains/</guid>
+      <description>Function signature func Contains(item interface{}) (found bool,err *errors.Error)
+Arguments    Name Type Description     item Same type of elements in the stream Item to be searched in the stream   
+Output    Name Type Description     found bool Returns true if element is found and false if not   err *errors.Error Returns nil when the operation was fine and error when something didn&amp;rsquo;t work</description>
+    </item>
+    
+    <item>
+      <title>stream.Count</title>
+      <link>http://wesovilabs.com/koazee/docs/count/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/docs/count/</guid>
+      <description>Function signature func Count() (total int,err *errors.Error)
+Arguments None
+Output    Name Type Description     total int Number of elements in the stream   err *errors.Error Returns nil when the operation was fine and error when something didn&amp;rsquo;t work   
+Errors    Type Message     err.items-nil Count of a nil stream is not permitted  Examples  Numbers   Pointers    package mainimport (&amp;#34;fmt&amp;#34;&amp;#34;github.</description>
+    </item>
+    
+    <item>
+      <title>stream.Filter</title>
+      <link>http://wesovilabs.com/koazee/docs/filter/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/docs/filter/</guid>
+      <description>Function signature func Filter(fn interface{}) S
+Arguments    Name Type Description     fn func This function must receive an argument of type the same that the elements in the stream and the output must be bool   
 Output    Name Type Description     stream koazee.S It returns the stream modified by the current operation   
 Errors    Type Message     err.</description>
     </item>
