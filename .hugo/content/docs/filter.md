@@ -1,15 +1,15 @@
 +++
-title = "stream.Add"
-description = "Add a new element in the stream"
-weight = 13
+title = "stream.Filter"
+description = "Discard those elements in the stream that do not match with the given filter"
+weight = 17
 draft = false
 toc = true
-bref = "Add a new element into the stream."
+bref = "Discard those elements in the stream that do not match with the given filter"
 +++
 
 <h3 class="section-head" id="h-signature"><a href="#h-signature">Function signature</a></h3>
 {{< highlight golang >}}
-    func Add(item interface{}) (stream S)
+    func Filter(fn interface{}) S
 {{< /highlight >}}
 
 <h4>Arguments</h4>
@@ -23,9 +23,9 @@ bref = "Add a new element into the stream."
     </thead>
     <tbody>
       <tr>
-        <td>item</td>
-        <td>Same type of elements in the stream</td>
-        <td>New item to be added into the stream</td>
+        <td>fn</td>
+        <td>func</td>
+        <td>This function must receive an argument of type the same that the elements in the stream and the output must be bool</td>
       </tr>
     </tbody>
 </table>
@@ -59,15 +59,27 @@ bref = "Add a new element into the stream."
     <tbody>
       <tr>
         <td>err.items-nil</td>
-        <td>An element can not be added in a nil stream</td>
+        <td>A nil stream can not be filtered</td>
       </tr>
       <tr>
         <td>err.invalid-argument</td>
-        <td>A nil value can not be added in a stream of non-pointers values</td>
+        <td>The filter operation requires a function as argument</td>
       </tr>
       <tr>
         <td>err.invalid-argument</td>
-        <td>An element whose type is %s can not be added in a stream of type %s</td>
+        <td>The provided function must retrieve 1 argument</td>
+      </tr>      
+      <tr>
+        <td>err.invalid-argument</td>
+        <td>The provided function must return 1 value</td>
+      </tr>
+      <tr>
+        <td>err.invalid-argument</td>
+        <td>The type of the argument in the provided function must be %s</td>
+      </tr>
+      <tr>
+        <td>err.invalid-argument</td>
+        <td>The type of the output in the provided function must be bool</td>
       </tr>
     </tbody>
 </table>
@@ -94,17 +106,17 @@ import (
 var numbers = []int{1, 3, 5, 7, 9}
 
 func main() {
-	newList := koazee.Stream().
-		Add(10).
+	elements := koazee.Stream().
 		With(numbers).
-		Out().
-		Val().([]int)
-
-	for _, number := range newList {
-		fmt.Printf("%d\n", number)
+		Filter(func(val int) bool {
+			return val > 5
+		}).Out().Val().([]int)
+	for _, element := range elements {
+		fmt.Printf("Number %d elements is in the list\n", element)
 	}
-}
 
+
+}
 {{< /highlight >}}
 </div>
 <div id="struct_pointers">
@@ -149,15 +161,14 @@ var primates = []*primate{
 }
 
 func main() {
-	newList := koazee.StreamOf(primates).
-		Add(newPrimate("Pepe", 16, "Gibbon", male)).
-		Out().
-		Val().([]*primate)
-
-	for _, primate := range newList {
-		fmt.Printf("%s was invited to the party\n", primate.name)
+	filteredPrimates := koazee.StreamOf(primates).
+		Filter(func(primate *primate) bool {
+			return primate.age > 10 && primate.genre == female
+		}).Out().Val().([]*primate)
+	for _, primate := range filteredPrimates {
+		fmt.Printf("%s is a female and is %d years\n", primate.name, primate.age)
 	}
-}
 
+}
 {{< /highlight >}}
 </div>

@@ -38,12 +38,12 @@ var primates = []*primate{
 }
 
 func main() {
-	newList := koazee.StreamOf(primates).
-		Drop(newPrimate("Benjamin", 23, "Spider monkey", male)).
-		Out().
-		Val().([]*primate)
-
-	for _, primate := range newList {
-		fmt.Printf("%s was invited to the party\n", primate.name)
+	filteredPrimates := koazee.StreamOf(primates).
+		Filter(func(primate *primate) bool {
+			return primate.age > 10 && primate.genre == female
+		}).Out().Val().([]*primate)
+	for _, primate := range filteredPrimates {
+		fmt.Printf("%s is a female and is %d years\n", primate.name, primate.age)
 	}
+
 }

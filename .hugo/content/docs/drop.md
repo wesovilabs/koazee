@@ -1,7 +1,7 @@
 +++
 title = "stream.Drop"
 description = "Drop an element from the stream"
-weight = 11
+weight = 14
 draft = false
 toc = true
 bref = "Drop an element from the stream."
@@ -75,10 +75,10 @@ bref = "Drop an element from the stream."
 <h3 class="section-head" id="h-examples"><a href="#h-examples">Examples</a></h3>
 <nav class="tabs" data-component="tabs">
     <ul>
-      <li>
+      <li class="active">
         <a href="#numbers">Numbers</a>
       </li>
-      <li class="active">
+      <li>
         <a href="#struct_pointers">Pointers</a>
       </li>
     </ul>

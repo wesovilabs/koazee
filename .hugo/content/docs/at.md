@@ -1,15 +1,15 @@
 +++
-title = "stream.Add"
-description = "Add a new element in the stream"
-weight = 13
+title = "stream.At"
+description = "Returns the element in the stream in the given position"
+weight = 12
 draft = false
 toc = true
-bref = "Add a new element into the stream."
+bref = "Returns the element in the stream in the given position"
 +++
 
 <h3 class="section-head" id="h-signature"><a href="#h-signature">Function signature</a></h3>
 {{< highlight golang >}}
-    func Add(item interface{}) (stream S)
+    func At(index int) (out output)
 {{< /highlight >}}
 
 <h4>Arguments</h4>
@@ -23,9 +23,9 @@ bref = "Add a new element into the stream."
     </thead>
     <tbody>
       <tr>
-        <td>item</td>
-        <td>Same type of elements in the stream</td>
-        <td>New item to be added into the stream</td>
+        <td>index</td>
+        <td>int</td>
+        <td>Index in the stream, from 0-len(stream)-1</td>
       </tr>
     </tbody>
 </table>
@@ -41,9 +41,9 @@ bref = "Add a new element into the stream."
     </thead>
     <tbody>
       <tr>
-        <td>stream</td>
-        <td>koazee.S</td>
-        <td>It returns the stream modified by the current operation</td>
+        <td>output</td>
+        <td>stream.output</td>
+        <td>It contains both value and error</td>
       </tr>
     </tbody>
 </table>
@@ -59,15 +59,15 @@ bref = "Add a new element into the stream."
     <tbody>
       <tr>
         <td>err.items-nil</td>
-        <td>An element can not be added in a nil stream</td>
+        <td>It can not be taken an element from a nil stream</td>
       </tr>
       <tr>
-        <td>err.invalid-argument</td>
-        <td>A nil value can not be added in a stream of non-pointers values</td>
+        <td>err.items-nil</td>
+        <td>It can not be taken an element from an empty stream</td>
       </tr>
       <tr>
-        <td>err.invalid-argument</td>
-        <td>An element whose type is %s can not be added in a stream of type %s</td>
+        <td>err.invalid-index</td>
+        <td>he length of this stream is %d, so the index must be  between 0 and %d</td>
       </tr>
     </tbody>
 </table>
@@ -94,17 +94,12 @@ import (
 var numbers = []int{1, 3, 5, 7, 9}
 
 func main() {
-	newList := koazee.Stream().
-		Add(10).
+	out := koazee.Stream().
 		With(numbers).
-		Out().
-		Val().([]int)
+		At(2)
+	fmt.Printf("%d\n", out.Val())
 
-	for _, number := range newList {
-		fmt.Printf("%d\n", number)
-	}
 }
-
 {{< /highlight >}}
 </div>
 <div id="struct_pointers">
@@ -149,15 +144,11 @@ var primates = []*primate{
 }
 
 func main() {
-	newList := koazee.StreamOf(primates).
-		Add(newPrimate("Pepe", 16, "Gibbon", male)).
-		Out().
-		Val().([]*primate)
+	primate := koazee.StreamOf(primates).
+		At(3).Val().(*primate)
 
-	for _, primate := range newList {
-		fmt.Printf("%s was invited to the party\n", primate.name)
-	}
+	fmt.Printf("%s was invited to the party\n", primate.name)
+
 }
-
 {{< /highlight >}}
 </div>

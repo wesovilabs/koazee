@@ -1,15 +1,15 @@
 +++
-title = "stream.Add"
-description = "Add a new element in the stream"
-weight = 13
+title = "stream.Contains"
+description = "Check if the given element is found in the stream"
+weight = 15
 draft = false
 toc = true
-bref = "Add a new element into the stream."
+bref = "Check if the given element is found in the stream"
 +++
 
 <h3 class="section-head" id="h-signature"><a href="#h-signature">Function signature</a></h3>
 {{< highlight golang >}}
-    func Add(item interface{}) (stream S)
+    func Contains(item interface{}) (found bool,err *errors.Error)
 {{< /highlight >}}
 
 <h4>Arguments</h4>
@@ -25,7 +25,7 @@ bref = "Add a new element into the stream."
       <tr>
         <td>item</td>
         <td>Same type of elements in the stream</td>
-        <td>New item to be added into the stream</td>
+        <td>Item to be searched in the stream</td>
       </tr>
     </tbody>
 </table>
@@ -41,9 +41,14 @@ bref = "Add a new element into the stream."
     </thead>
     <tbody>
       <tr>
-        <td>stream</td>
-        <td>koazee.S</td>
-        <td>It returns the stream modified by the current operation</td>
+        <td>found</td>
+        <td>bool</td>
+        <td>Returns true if element is found and false if not</td>
+      </tr>
+      <tr>
+        <td>err</td>
+        <td>*errors.Error</td>
+        <td>Returns nil when the operation was fine and error when something didn't work</td>
       </tr>
     </tbody>
 </table>
@@ -59,15 +64,15 @@ bref = "Add a new element into the stream."
     <tbody>
       <tr>
         <td>err.items-nil</td>
-        <td>An element can not be added in a nil stream</td>
+        <td>It can not be checked if an element is in a nil stream</td>
+      </tr
+      <tr>
+        <td>err.invalid-argument</td>
+        <td>It can not be checked if an array of non-pointers contains a nil value</td>
       </tr>
       <tr>
         <td>err.invalid-argument</td>
-        <td>A nil value can not be added in a stream of non-pointers values</td>
-      </tr>
-      <tr>
-        <td>err.invalid-argument</td>
-        <td>An element whose type is %s can not be added in a stream of type %s</td>
+        <td>The stream contains elements of type %s and the passed argument has type %s</td>
       </tr>
     </tbody>
 </table>
@@ -94,17 +99,13 @@ import (
 var numbers = []int{1, 3, 5, 7, 9}
 
 func main() {
-	newList := koazee.Stream().
-		Add(10).
+	found, _ := koazee.Stream().
 		With(numbers).
-		Out().
-		Val().([]int)
-
-	for _, number := range newList {
-		fmt.Printf("%d\n", number)
+		Contains(5)
+	if found {
+		fmt.Println("The element was found!")
 	}
 }
-
 {{< /highlight >}}
 </div>
 <div id="struct_pointers">
@@ -149,15 +150,13 @@ var primates = []*primate{
 }
 
 func main() {
-	newList := koazee.StreamOf(primates).
-		Add(newPrimate("Pepe", 16, "Gibbon", male)).
-		Out().
-		Val().([]*primate)
-
-	for _, primate := range newList {
-		fmt.Printf("%s was invited to the party\n", primate.name)
+	searched:=newPrimate("Sarah", 7, "Gibbon", female)
+	found,_:=koazee.StreamOf(primates).
+		Contains(searched)
+	if found{
+		fmt.Printf("%s is in the list of monkeys invited to the party\n", searched.name)
 	}
-}
 
+}
 {{< /highlight >}}
 </div>
