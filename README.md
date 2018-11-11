@@ -11,8 +11,10 @@
 
 ## Lazy like a koala, smart like a chimpanzee
 
-Are you interested in collaborating in this project?
-Drop me an email at developer@wesovilabs.com
+Koazee documentation is hosted on [http://wesovilabs.com/koazee](http://wesovilabs.com/koazee)
+
+
+Any doubts? Or recommndation? Please, drop me an email at developer@wesovilabs.com
 
 
 
