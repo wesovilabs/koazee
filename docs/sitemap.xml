@@ -44,7 +44,31 @@
   </url>
   
   <url>
+    <loc>http://wesovilabs.com/koazee/docs/reduce/</loc>
+  </url>
+  
+  <url>
+    <loc>http://wesovilabs.com/koazee/docs/map/</loc>
+  </url>
+  
+  <url>
     <loc>http://wesovilabs.com/koazee/backup/custom-plugins/</loc>
+  </url>
+  
+  <url>
+    <loc>http://wesovilabs.com/koazee/docs/foreach/</loc>
+  </url>
+  
+  <url>
+    <loc>http://wesovilabs.com/koazee/docs/sort/</loc>
+  </url>
+  
+  <url>
+    <loc>http://wesovilabs.com/koazee/docs/removeduplicates/</loc>
+  </url>
+  
+  <url>
+    <loc>http://wesovilabs.com/koazee/docs/compose/</loc>
   </url>
   
   <url>

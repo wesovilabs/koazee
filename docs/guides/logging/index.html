@@ -6,10 +6,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Logging the operations </title>
+  <title> Logging with Koazee </title>
 
   
-  <meta name="description" content="Find out how to log what Koazee is doing"> 
+  <meta name="description" content="Learn to log what koazee is doing"> 
   
   
   
@@ -21,8 +21,8 @@
   <meta name="author" content="Iván Corrales Solera">
 
 
-  <meta property="og:title" content="Logging the operations" />
-<meta property="og:description" content="Find out how to log what Koazee is doing" />
+  <meta property="og:title" content="Logging with Koazee" />
+<meta property="og:description" content="Learn to log what koazee is doing" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://wesovilabs.com/koazee/guides/logging/" />
 
@@ -108,33 +108,221 @@
   </div>
  </header>
   <main>
+  <div id="main">
+    <div id="hero">
+      <h1> Logging with Koazee </h1>
+      <p class="hero-lead">
+           Learn to log what koazee is doing.
+      </p>
 
-<div id="hero" class="wrap">
-  <h1>Logging the operations</h1>
-    <p>Find out how to log what Koazee is doing</p>
+    </div> 
+    <div id="kube-component" class="content">
+    
+<nav id="contents">
+    <ol class="js-toc">
+    </ol>
+</nav>
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded",
+function(){
+tocbot.init({
+
+tocSelector: '.js-toc',
+
+contentSelector: '.content',
+
+headingSelector: 'h3'
+})
+}
+);
+</script>
+
+
+
+    <h3 class="section-head" id="h-whatis"><a href="#h-whatis">Enabling Koazee logging</a></h3>
+<p>
+Koazee provides support to log what it is happening in the stream. In the below
+example we will see how of easy is enable it. 
+
+Actually, we just need to set a global variable
+
+```golang
+logger.Enabled=true
+```
+</p>
+
+<h3 class="section-head" id="h-whatis"><a href="#h-whatis">Example</a></h3>
+
+<div id="logging">
+<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;github.com/wesovilabs/koazee&#34;</span>
+	<span class="s">&#34;github.com/wesovilabs/koazee/logger&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">var</span> <span class="nx">numbers</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">logger</span><span class="p">.</span><span class="nx">Enabled</span> <span class="p">=</span> <span class="kc">true</span>
+	<span class="nx">koazee</span><span class="p">.</span><span class="nx">Stream</span><span class="p">().</span>
+		<span class="nx">With</span><span class="p">(</span><span class="nx">numbers</span><span class="p">).</span>
+		<span class="nx">Filter</span><span class="p">(</span><span class="kd">func</span><span class="p">(</span><span class="nx">val</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nx">val</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
+		<span class="p">}).</span>
+		<span class="nx">Map</span><span class="p">(</span><span class="kd">func</span><span class="p">(</span><span class="nx">val</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nx">val</span> <span class="o">*</span> <span class="mi">2</span>
+		<span class="p">}).</span>
+		<span class="nx">RemoveDuplicates</span><span class="p">().</span>
+		<span class="nx">Reduce</span><span class="p">(</span><span class="kd">func</span><span class="p">(</span><span class="nx">acc</span><span class="p">,</span> <span class="nx">val</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nx">acc</span> <span class="o">+</span> <span class="nx">val</span>
+		<span class="p">})</span>
+<span class="p">}</span></code></pre></div>
+<p>
+If we run the above code could see in the stdout the below info:
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>koazee<span class="o">]</span> <span class="m">19</span>:11:45.668742 with  <span class="o">[</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">4</span> <span class="m">1</span><span class="o">]</span>
+<span class="o">[</span>koazee<span class="o">]</span> <span class="m">19</span>:11:45.669116 filter <span class="o">[</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">4</span> <span class="m">1</span><span class="o">]</span> -&gt; <span class="o">[</span><span class="m">2</span> <span class="m">4</span> <span class="m">4</span><span class="o">]</span>
+<span class="o">[</span>koazee<span class="o">]</span> <span class="m">19</span>:11:45.669141 map <span class="o">[</span><span class="m">2</span> <span class="m">4</span> <span class="m">4</span><span class="o">]</span> -&gt; <span class="o">[</span><span class="m">4</span> <span class="m">8</span> <span class="m">8</span><span class="o">]</span>
+<span class="o">[</span>koazee<span class="o">]</span> <span class="m">19</span>:11:45.669152 removeDuplicates <span class="o">[</span><span class="m">4</span> <span class="m">8</span> <span class="m">8</span><span class="o">]</span> -&gt; <span class="o">[</span><span class="m">4</span> <span class="m">8</span><span class="o">]</span>
+<span class="o">[</span>koazee<span class="o">]</span> <span class="m">19</span>:11:45.669168 reduce <span class="o">[</span><span class="m">4</span> <span class="m">8</span><span class="o">]</span> -&gt; <span class="m">12</span></code></pre></div>
+</p>
 </div>
-<ul id="posts">
 
- 
-  
-</ul>
+
+    
+     
+    <script>
+document.addEventListener("DOMContentLoaded",
+function(){
+    var animate = {
+        '#slide-up-btn': {
+            el: '#animation-box-slide-up',
+            to: 'slideUp',
+            back: 'slideDown'
+        },
+        '#slide-down-btn': {
+            el: '#animation-box-slide-down',
+            to: 'slideDown',
+            back: 'slideUp'
+        },
+        '#fade-in-btn': {
+            el: '#animation-box-fade-in',
+            to: 'fadeIn',
+            back: 'fadeOut'
+        },
+        '#fade-out-btn': {
+            el: '#animation-box-fade-out',
+            to: 'fadeOut',
+            back: 'fadeIn'
+        },
+        '#flip-in-btn': {
+            el: '#animation-box-flip-in',
+            to: 'flipIn',
+            back: 'flipOut'
+        },
+        '#flip-out-btn': {
+            el: '#animation-box-flip-out',
+            to: 'flipOut',
+            back: 'flipIn'
+        },
+        '#zoom-in-btn': {
+            el: '#animation-box-zoom-in',
+            to: 'zoomIn',
+            back: 'zoomOut'
+        },
+        '#zoom-out-btn': {
+            el: '#animation-box-zoom-out',
+            to: 'zoomOut',
+            back: 'zoomIn'
+        },
+        '#slide-in-right-btn': {
+            el: '#animation-box-slide-in-right',
+            to: 'slideInRight',
+            back: 'slideOutRight'
+        },
+        '#slide-in-left-btn': {
+            el: '#animation-box-slide-in-left',
+            to: 'slideInLeft',
+            back: 'slideOutLeft'
+        },
+        '#slide-in-down-btn': {
+            el: '#animation-box-slide-in-down',
+            to: 'slideInDown',
+            back: 'slideOutUp'
+        },
+        '#slide-out-right-btn': {
+            el: '#animation-box-slide-out-right',
+            to: 'slideOutRight',
+            back: 'slideInRight'
+        },
+        '#slide-out-left-btn': {
+            el: '#animation-box-slide-out-left',
+            to: 'slideOutLeft',
+            back: 'slideInLeft'
+        },
+        '#slide-out-up-btn': {
+            el: '#animation-box-slide-out-up',
+            to: 'slideOutUp',
+            back: 'slideInDown'
+        },
+    };
+
+    for (var key in animate)
+    {
+        $(key).attr('data-el', animate[key].el);
+        $(key).attr('data-to', animate[key].to);
+        $(key).attr('data-back', animate[key].back);
+
+        $(key).on('click', function(e)
+        {
+            e.preventDefault();
+            var $btn = $(e.target);
+            if ($btn.hasClass('demo-muted-link'))
+            {
+                return;
+            }
+
+            var $el = $($btn.attr('data-el'));
+            $btn.addClass('demo-muted-link');
+
+            $el.animation($btn.attr('data-to'));
+            setTimeout(function() {
+
+                $el.animation($btn.attr('data-back'));
+                $btn.removeClass('demo-muted-link');
+
+            }, 1500);
+
+        });
+    }
+
+
+    $('#rotate-btn').on('click', function(e)
+    {
+        e.preventDefault();
+        $('#animation-box-rotate').animation('rotate');
+    });
+
+    $('#shake-btn').on('click', function(e)
+    {
+        e.preventDefault();
+        $('#animation-box-shake').animation('shake');
+    });
+
+    $('#pulse-btn').on('click', function(e)
+    {
+        e.preventDefault();
+        $('#animation-box-pulse').animation('pulse');
+    });
+
+
+});
+</script>
+    
+    </div>
+    </div>
 </main>
-  <footer> 
-    <footer id="footer">
-    <nav>
-      <ul>
-        <li><span>koazee</span></li>
-        <li>
-          <a href="https://twitter.com/@wesovilabs">Give a shout-out on Twitter!</a>
-        </li>
-          <li>
-              <a href="https://github.com/ivancorrales">Follow me on Github</a>
-          </li>
-      </ul>
-    </nav>
-    <p>koazee&copy;2018 Licence MIT.</p>
-  </footer> 
-</footer>
+  <footer></footer>
 
 
   <script src="/koazee/js/kube.js" type="text/javascript">

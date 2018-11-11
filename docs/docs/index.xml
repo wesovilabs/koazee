@@ -104,5 +104,70 @@ Output    Name Type Description     stream koazee.S It returns the stream modifi
 Errors    Type Message     err.</description>
     </item>
     
+    <item>
+      <title>stream.Reduce</title>
+      <link>http://wesovilabs.com/koazee/docs/reduce/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/docs/reduce/</guid>
+      <description>Function signature func Reduce(fn interface{}) output
+Arguments    Name Type Description     fn func This function must receive two arguments, the first argument is an accumulator and the second a element of the same type that the elements in the stream. The output of this function will have the same type than the accumulator    Output    Name Type Description     output stream.</description>
+    </item>
+    
+    <item>
+      <title>stream.Map</title>
+      <link>http://wesovilabs.com/koazee/docs/map/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/docs/map/</guid>
+      <description>Function signature func Map(fn interface{}) output
+Arguments    Name Type Description     fn func This function must receive 1 arguments, that must have the same type that current elements in the stream. The output of this function will be the new type op elements in the stream    Output    Name Type Description     stream koazee.S It returns the stream modified by the current operation</description>
+    </item>
+    
+    <item>
+      <title>stream.ForEach</title>
+      <link>http://wesovilabs.com/koazee/docs/foreach/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/docs/foreach/</guid>
+      <description>Function signature func ForEach(fn interface{})
+Arguments    Name Type Description     item func This function must receive an argument of type the same that the elements in the stream and it doesn&amp;rsquo;t return any value    Output None
+Errors    Type Message     err.items-nil A nil stream can not be used to perform ForEach operation   err.invalid-argument The forEach operation requires a function as argument   err.</description>
+    </item>
+    
+    <item>
+      <title>stream.Sort</title>
+      <link>http://wesovilabs.com/koazee/docs/sort/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/docs/sort/</guid>
+      <description>Function signature func Sor(fn interface{})
+Arguments    Name Type Description     item func This function must receive two arguments with the same tup that the elements in the stream and must return an int (-1,0,1) taht will determine which of the two items must be ordered before the other    Output None
+Errors    Type Message     err.items-nil A nil stream can not be sorted   err.</description>
+    </item>
+    
+    <item>
+      <title>stream.RemoveDuplicates</title>
+      <link>http://wesovilabs.com/koazee/docs/removeduplicates/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/docs/removeduplicates/</guid>
+      <description>Function signature func RemoveDuplicates()
+Arguments None
+Output None
+Errors    Type Message     err.items-nil A nil stream can not be iterated  Examples  Numbers   Pointers    package mainimport (&amp;#34;fmt&amp;#34;&amp;#34;github.com/wesovilabs/koazee&amp;#34;)var numbers = []int{1, 1, 9, 3, 5, 7, 9}func main() {fmt.Println(koazee.Stream().With(numbers).RemoveDuplicates().Out().Val())}  package mainimport (&amp;#34;fmt&amp;#34;&amp;#34;github.com/wesovilabs/koazee&amp;#34;)type genre intconst (female genre = iotamale)type primate struct {name stringage intfamily stringgenre genre}func newPrimate(name string, age int, family string, genre genre) *primate {return &amp;amp;primate{name: name,age: age,family: family,genre: genre,}}var primates = []*primate{newPrimate(&amp;#34;John&amp;#34;, 15, &amp;#34;Capuchin&amp;#34;, male),newPrimate(&amp;#34;Laura&amp;#34;, 12, &amp;#34;Squirrel monkey&amp;#34;, female),newPrimate(&amp;#34;Benjamin&amp;#34;, 23, &amp;#34;Spider monkey&amp;#34;, male),newPrimate(&amp;#34;George&amp;#34;, 19, &amp;#34;Golden Lion Tamarin&amp;#34;, male),newPrimate(&amp;#34;Jane&amp;#34;, 33, &amp;#34;Orangutan&amp;#34;, female),newPrimate(&amp;#34;Sarah&amp;#34;, 7, &amp;#34;Gibbon&amp;#34;, female),newPrimate(&amp;#34;George&amp;#34;, 19, &amp;#34;Golden Lion Tamarin&amp;#34;, male),}func main() {primates := koazee.</description>
+    </item>
+    
+    <item>
+      <title>stream.Compose</title>
+      <link>http://wesovilabs.com/koazee/docs/compose/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/docs/compose/</guid>
+      <description>Function signature func Compose(streams []stream.S) (stream stream.S) 
+Arguments    Name Type Description     streams Array of Streams List of streams to be joined    Output    Name Type Description     strea, stream.S A new stream that will contain both the items and operations in all the the joined streams   
+Errors    Type Message     err.</description>
+    </item>
+    
   </channel>
 </rss>

@@ -11,12 +11,12 @@
     
     
     <item>
-      <title>Logging the operations</title>
+      <title>Logging with Koazee</title>
       <link>http://wesovilabs.com/koazee/guides/logging/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://wesovilabs.com/koazee/guides/logging/</guid>
-      <description></description>
+      <description>Enabling Koazee logging  Koazee provides support to log what it is happening in the stream. In the below example we will see how of easy is enable it. Actually, we just need to set a global variable ```golang logger.Enabled=true ``` Example package mainimport (&amp;#34;github.com/wesovilabs/koazee&amp;#34;&amp;#34;github.com/wesovilabs/koazee/logger&amp;#34;)var numbers = []int{1, 2, 3, 4, 4, 1}func main() {logger.Enabled = truekoazee.Stream().With(numbers).Filter(func(val int) bool {return val%2 == 0}).</description>
     </item>
     
   </channel>
