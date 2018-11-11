@@ -47,7 +47,7 @@ func (op *streamMap) validate(s *stream) *errors.Error {
 	itemsType := reflect.TypeOf(s.items).Elem()
 	function := reflect.ValueOf(op.fn)
 	if function.Type().Kind() != reflect.Func {
-		return errors.InvalidArgument(op.name(), "The filter operation requires a function as argument")
+		return errors.InvalidArgument(op.name(), "The map operation requires a function as argument")
 	}
 	if function.Type().NumIn() != 1 {
 		return errors.InvalidArgument(op.name(), "The provided function must retrieve 1 argument")

@@ -46,7 +46,7 @@ func (op *reduce) validate() *errors.Error {
 	itemsType := reflect.TypeOf(op.items).Elem()
 	function := reflect.ValueOf(op.fn)
 	if function.Type().Kind() != reflect.Func {
-		return errors.InvalidArgument(op.name(), "The filter operation requires a function as argument")
+		return errors.InvalidArgument(op.name(), "The reduce operation requires a function as argument")
 	}
 	if function.Type().NumIn() != 2 {
 		return errors.InvalidArgument(op.name(), "The provided function must retrieve 2 arguments")

@@ -31,6 +31,9 @@ func newPrimate(name string, age int, family string, genre genre) *primate {
 var primates = []*primate{
 	newPrimate("John", 15, "Capuchin", male),
 	newPrimate("Laura", 12, "Squirrel monkey", female),
+}
+
+var primates2 = []*primate{
 	newPrimate("Benjamin", 23, "Spider monkey", male),
 	newPrimate("George", 19, "Golden Lion Tamarin", male),
 	newPrimate("Jane", 33, "Orangutan", female),
@@ -38,12 +41,13 @@ var primates = []*primate{
 }
 
 func main() {
-	filteredPrimates := koazee.StreamOf(primates).
-		Filter(func(primate *primate) bool {
-			return primate.age > 10 && primate.genre == female
-		}).Out().Val().([]*primate)
-	for _, primate := range filteredPrimates {
-		fmt.Printf("%s is a female and is %d years\n", primate.name, primate.age)
-	}
-
+	stream1 := koazee.StreamOf(primates).Filter(func(primate *primate) bool {
+		return primate.genre == male
+	})
+	stream2 := koazee.StreamOf(primates2).Filter(func(primate *primate) bool {
+		return primate.genre == male
+	})
+	koazee.Stream().Compose(stream1, stream2).ForEach(func(primate *primate) {
+		fmt.Println("Hi there, this is %s", primate.name)
+	}).Out()
 }

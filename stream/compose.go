@@ -34,8 +34,8 @@ func (op *compose) run(s stream) stream {
 }
 
 func (op *compose) validate(streams []S) *errors.Error {
-	if len(streams) == 0 {
-		return errors.InvalidArgument(op.name(), "You need to provide streams to compose one")
+	if len(streams) < 2 {
+		return errors.InvalidArgument(op.name(), "To compose a new stream, 2 or more streams mut be passed as argument")
 	}
 	var lastType reflect.Type
 
