@@ -11,10 +11,66 @@
 
 ## Lazy like a koala, smart like a chimpanzee
 
-Koazee documentation is hosted on [http://wesovilabs.com/koazee](http://wesovilabs.com/koazee)
+Koazee full documentation is hosted on [http://wesovilabs.com/koazee](http://wesovilabs.com/koazee)
 
 
-Any doubts? Or recommndation? Please, drop me an email at developer@wesovilabs.com
+### What is Koazee?
+
+Koazee is a handy Golang library focused on helping developers and make their life easier by taking the hassle out of working with arrays.
+It takes an array and creates an stream. The stream can be easily manipulated by making use of the provided operations by Koazee. 
+
+### How does Koazee work?
+
+
+**Koazee is inspired in two of the most powerful, and well-known, techniques in Software development.**
+
+- **Lazy evaluation**: Don't do things unless they are need to be done!
+- **Functional programming**: Let's write clearer code more compressed and predictable
+
+
+### Samples
+
+If you like how look the code below, that means that you should be using Koazee in your projects.
+
+
+```golang
+package main
+
+import (
+	"fmt"
+	"github.com/wesovilabs/koazee"
+	"strings"
+)
+
+var lenLowerThan6 = func(val string) bool { return len(val) <= 6 }
+var concatStrings = func(acc, val string) string {
+	if len(acc) == 0 {
+		return val
+	}
+	return fmt.Sprintf("%s %s", acc, val)
+}
+var concatStringsWitDash = func(acc, val string) string {
+	if len(acc) == 0 {
+		return val
+	}
+	return fmt.Sprintf("%s-%s", acc, val)
+}
+var streamFlow = koazee.
+	Stream().
+	RemoveDuplicates().
+	Filter(lenLowerThan6).
+	Map(strings.ToUpper)
+
+func main() {
+	array := []string{"koazee", "telescope", "is", "fucking", "so", "great"}
+	fmt.Println(streamFlow.With(array).Reduce(concatStrings).String())
+	fmt.Println(streamFlow.With(array).Reduce(concatStringsWitDash).String())
+}
+```
+
+You can find more documentation and examples on [http://wesovilabs.com/koazee](http://wesovilabs.com/koazee)
+
+*If you like this project and you think I should provide more functionality to Koazee, please feel free to star the repository*
 
 
 
