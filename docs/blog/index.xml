@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on Koazee</title>
+    <link>http://wesovilabs.com/koazee/blog/</link>
+    <description>Recent content in Blogs on Koazee</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 02 Mar 2017 21:56:55 +0100</lastBuildDate>
+    
+	<atom:link href="http://wesovilabs.com/koazee/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Welcome to Kube</title>
+      <link>http://wesovilabs.com/koazee/blog/welcome/</link>
+      <pubDate>Thu, 02 Mar 2017 21:56:55 +0100</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/blog/welcome/</guid>
+      <description>Welcome to Kube – an open source documentation like theme for Hugo Hi there and welcome to kube - my two theme for the static site generator hugo. kube is open source and can be found on kube. This article is just a demo post and shows you the style of common used elements.
+Bear claw danish chocolate lollipop soufflé jelly. Apple pie chocolate cake jelly-o icing bonbon. Gingerbread pastry fruitcake muffin chocolate bar cheesecake.</description>
+    </item>
+    
+    <item>
+      <title>Quick Start</title>
+      <link>http://wesovilabs.com/koazee/blog/quick-start/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/blog/quick-start/</guid>
+      <description>Basic Template With Kube, you can set up your web framework and be on your way in under a minute. Just add this code to your web page for the basic template to take effect immediately.
+&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;title&amp;gt;Basic Template&amp;lt;/title&amp;gt; &amp;lt;meta charset=&#34;utf-8&#34;&amp;gt; &amp;lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1&#34;&amp;gt; &amp;lt;!-- Kube CSS --&amp;gt; &amp;lt;link rel=&#34;stylesheet&#34; href=&#34;assets/css/kube.css&#34;&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;h1&amp;gt;Hello, world!&amp;lt;/h1&amp;gt; &amp;lt;!-- Kube JS + jQuery are used for some functionality, but are not required for the basic setup --&amp;gt; &amp;lt;script src=&#34;</description>
+    </item>
+    
+    <item>
+      <title>Typography with kube</title>
+      <link>http://wesovilabs.com/koazee/blog/typography/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/blog/typography/</guid>
+      <description>Get Started Typography of Kube based on the 4px horizontal grid, it means that for the headers, paragraphs, quotes and any other texts chosen are a combination of line-height, that fit into the 4px grid and help set the horizontal rhythm of design by default.
+  4px grid for typography - the magic of the horizontal rhythm   With this feature, you can quickly and easily make a solid and harmonious-looking website and UI design.</description>
+    </item>
+    
+    <item>
+      <title>Prototyping with markdown</title>
+      <link>http://wesovilabs.com/koazee/blog/prototyping/</link>
+      <pubDate>Sun, 02 Apr 2017 22:01:15 +0100</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/blog/prototyping/</guid>
+      <description>I have been working on a large set of documentation for a prototype that will eventually make it into a product. One issue with the publishing system at my company is that it makes doing prototypes, or really anything not within the rigidly and narrowly scoped model, difficult to set up. It takes a lot of work just to get to the point where you can begin writing.
+Since time was of the essence and writing is expensive, I decided to do the prototype outside of the publishing system.</description>
+    </item>
+    
+    <item>
+      <title>Grid</title>
+      <link>http://wesovilabs.com/koazee/blog/grid/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/blog/grid/</guid>
+      <description>Columns Columns are building blocks for many websites. Here&#39;s how columns are formed in Kube, and here&#39;s how you can use them right away.
+1  11   2  10   3  9   4  8   5  7   6  6   7  5   8  4   9  3   10  2   11  1   12   &amp;lt;div class=&#34;</description>
+    </item>
+    
+    <item>
+      <title>Tables</title>
+      <link>http://wesovilabs.com/koazee/blog/tables/</link>
+      <pubDate>Mon, 10 Apr 2017 16:40:43 +0100</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/blog/tables/</guid>
+      <description>Base    First Name Last Name Points     Jill Smith 50   Eve Jackson 94     Total points 223    &amp;lt;table&amp;gt;&amp;hellip;&amp;lt;/table&amp;gt;  Bordered   First Name Last Name Points     Jill Smith 50   Eve Jackson 94     Total points 223    &amp;lt;table class=&amp;ldquo;bordered&amp;rdquo;&amp;gt;&amp;hellip;&amp;lt;/table&amp;gt;  Striped   First Name Last Name Points     Jill Smith 50   Eve Jackson 94     Total points 223    &amp;lt;table class=&amp;ldquo;striped&amp;rdquo;&amp;gt;&amp;hellip;&amp;lt;/table&amp;gt;  Unstyled   First Name Last Name Points     Jill Smith 50   Eve Jackson 94     Total points 223    &amp;lt;table class=&amp;ldquo;unstyled&amp;rdquo;&amp;gt;&amp;hellip;&amp;lt;/table&amp;gt;  Mixed   First Name Last Name Points     Jill Smith 50   Eve Jackson 94     Total points 223    &amp;lt;table class=&amp;ldquo;bordered striped&amp;rdquo;&amp;gt;&amp;hellip;&amp;lt;/table&amp;gt;  Width   First Name Last Name Points     Jill Smith 50   Eve Jackson 94    &amp;lt;table&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td class=&amp;ldquo;w40&amp;rdquo;&amp;gt;&amp;hellip;&amp;lt;/td&amp;gt; &amp;lt;td class=&amp;ldquo;w40&amp;rdquo;&amp;gt;&amp;hellip;&amp;lt;/td&amp;gt; &amp;lt;td class=&amp;ldquo;w20&amp;rdquo;&amp;gt;&amp;hellip;&amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;/table&amp;gt;</description>
+    </item>
+    
+    <item>
+      <title>Forms</title>
+      <link>http://wesovilabs.com/koazee/blog/forms/</link>
+      <pubDate>Mon, 10 Apr 2017 16:40:50 +0100</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/blog/forms/</guid>
+      <description>Base This is the most basic form with all the basic inputs.
+Email  Country  &amp;mdash;    Check me Radio me    Log in Cancel  
+&amp;lt;form method=&#34;post&#34; action=&#34;&#34; class=&#34;form&#34;&amp;gt; &amp;lt;div class=&#34;form-item&#34;&amp;gt; &amp;lt;label&amp;gt;Email&amp;lt;/label&amp;gt; &amp;lt;input type=&#34;email&#34; name=&#34;email&#34; class=&#34;w50&#34;&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&#34;form-item&#34;&amp;gt; &amp;lt;label&amp;gt;Country&amp;lt;/label&amp;gt; &amp;lt;select&amp;gt; &amp;lt;option value=&#34;&#34;&amp;gt;---&amp;lt;/option&amp;gt; &amp;lt;/select&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&#34;form-item&#34;&amp;gt; &amp;lt;label class=&#34;checkbox&#34;&amp;gt;&amp;lt;input type=&#34;checkbox&#34;&amp;gt; Check me&amp;lt;/label&amp;gt; &amp;lt;label class=&#34;checkbox&#34;&amp;gt;&amp;lt;input type=&#34;radio&#34;&amp;gt; Radio me&amp;lt;/label&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&#34;form-item&#34;&amp;gt; &amp;lt;textarea rows=&#34;6&#34;&amp;gt;&amp;lt;/textarea&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&#34;</description>
+    </item>
+    
+    <item>
+      <title>Labels</title>
+      <link>http://wesovilabs.com/koazee/blog/labels/</link>
+      <pubDate>Mon, 10 Apr 2017 16:40:43 +0100</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/blog/labels/</guid>
+      <description>Base Default &amp;nbsp; Success &amp;nbsp; Error &amp;nbsp; Warning &amp;nbsp; Focus &amp;nbsp; Black &amp;nbsp; Inverted  Outline Default &amp;nbsp; Success &amp;nbsp; Error &amp;nbsp; Warning &amp;nbsp; Focus &amp;nbsp; Black &amp;nbsp; Inverted  Upper Default &amp;nbsp; Success &amp;nbsp; Error &amp;nbsp; Warning &amp;nbsp; Focus &amp;nbsp; Black &amp;nbsp; Inverted  Tag Default &amp;nbsp; Success &amp;nbsp; Error &amp;nbsp; Warning &amp;nbsp; Focus &amp;nbsp; Black &amp;nbsp; Inverted  Badges Labels are ideal for use as badges with badge class.</description>
+    </item>
+    
+    <item>
+      <title>Messages</title>
+      <link>http://wesovilabs.com/koazee/blog/messages/</link>
+      <pubDate>Mon, 10 Apr 2017 16:41:34 +0100</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/blog/messages/</guid>
+      <description>Usage You have 2 modules waiting to installation. Install   &amp;lt;div class=&amp;ldquo;message&amp;rdquo; data-component=&amp;ldquo;message&amp;rdquo;&amp;gt; &amp;hellip; &amp;lt;span class=&amp;ldquo;close small&amp;rdquo;&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;  You have 2 modules waiting to installation. Install   &amp;lt;div class=&amp;ldquo;message error&amp;rdquo; data-component=&amp;ldquo;message&amp;rdquo;&amp;gt; &amp;hellip; &amp;lt;span class=&amp;ldquo;close small&amp;rdquo;&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;  You have 2 modules waiting to installation. Install   &amp;lt;div class=&amp;ldquo;message success&amp;rdquo; data-component=&amp;ldquo;message&amp;rdquo;&amp;gt; &amp;hellip; &amp;lt;span class=&amp;ldquo;close small&amp;rdquo;&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;  Warning!You have 2 modules waiting to installation. Install   &amp;lt;div class=&amp;ldquo;message warning&amp;rdquo; data-component=&amp;ldquo;message&amp;rdquo;&amp;gt; &amp;lt;h5&amp;gt;&amp;hellip;&amp;lt;/h5&amp;gt; &amp;hellip; &amp;lt;span class=&amp;ldquo;close small&amp;rdquo;&amp;gt;&amp;lt;/span&amp;gt; &amp;lt;/div&amp;gt;   You have 2 modules waiting to installation.</description>
+    </item>
+    
+    <item>
+      <title>Tabs</title>
+      <link>http://wesovilabs.com/koazee/blog/tabs/</link>
+      <pubDate>Mon, 10 Apr 2017 16:41:40 +0100</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/blog/tabs/</guid>
+      <description>Base Here&amp;rsquo;s an example of basic tabs setup. Tabs bar is an unordered list, and each tab in tabs bar is a list item. For each tab there&amp;rsquo;s a corresponding div, which contains the body of the tab (it can be any kind of HTML).
+ Home   Shop   Catalog   T-Shirts   Brand    Home Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</description>
+    </item>
+    
+    <item>
+      <title>Pagination</title>
+      <link>http://wesovilabs.com/koazee/blog/pagination/</link>
+      <pubDate>Mon, 10 Apr 2017 16:42:03 +0100</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/blog/pagination/</guid>
+      <description>Base  ←    1  2   3   4   5    →    &amp;lt;nav class=&amp;ldquo;pagination&amp;rdquo;&amp;gt; &amp;lt;ul&amp;gt; &amp;lt;li class=&amp;ldquo;prev&amp;rdquo;&amp;gt;&amp;lt;a href=&amp;rdquo;&amp;rdquo;&amp;gt;&amp;amp;larr;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt; &amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;&amp;lt;span&amp;gt;&amp;hellip;&amp;lt;/span&amp;gt;&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;&amp;lt;a href=&amp;rdquo;&amp;rdquo;&amp;gt;&amp;hellip;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;/li&amp;gt; &amp;lt;li class=&amp;ldquo;next&amp;rdquo;&amp;gt;&amp;lt;a href=&amp;rdquo;&amp;rdquo;&amp;gt;&amp;amp;rarr;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;/nav&amp;gt;   Centered  ←    1   2   3   4   5    →    &amp;lt;nav class=&amp;ldquo;pagination align-center&amp;rdquo;&amp;gt; &amp;lt;ul&amp;gt; &amp;lt;li class=&amp;ldquo;prev&amp;rdquo;&amp;gt;&amp;lt;a href=&amp;rdquo;&amp;rdquo;&amp;gt;&amp;amp;larr;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt; &amp;lt;ul&amp;gt; &amp;lt;li class=&amp;ldquo;active&amp;rdquo;&amp;gt;&amp;lt;a href=&amp;rdquo;#&amp;rdquo;&amp;gt;&amp;hellip;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;&amp;lt;a href=&amp;rdquo;&amp;rdquo;&amp;gt;&amp;hellip;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;/li&amp;gt; &amp;lt;li class=&amp;ldquo;next&amp;rdquo;&amp;gt;&amp;lt;a href=&amp;rdquo;&amp;rdquo;&amp;gt;&amp;amp;rarr;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;/nav&amp;gt;   Wide Here you can see an example where previous and next buttons are aligned to the left and to the right, with a link in the center of the page.</description>
+    </item>
+    
+    <item>
+      <title>Dropdown</title>
+      <link>http://wesovilabs.com/koazee/blog/dropdown/</link>
+      <pubDate>Mon, 10 Apr 2017 16:42:12 +0100</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/blog/dropdown/</guid>
+      <description>Demo Show Dropdown 
+   Item 1   Item 2  Item 3   Item 4   Item 5   Item 6    // Toggle &amp;lt;a href=&amp;rdquo;#&amp;rdquo; data-component=&amp;ldquo;dropdown&amp;rdquo; data-target=&amp;rdquo;#my-dropdown&amp;rdquo;&amp;gt;Show &amp;lt;span class=&amp;ldquo;caret down&amp;rdquo;&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/a&amp;gt;
+// Dropdown &amp;lt;div class=&amp;ldquo;dropdown hide&amp;rdquo; id=&amp;ldquo;my-dropdown&amp;rdquo;&amp;gt; &amp;lt;a href=&amp;rdquo;&amp;rdquo; class=&amp;ldquo;close show-sm&amp;rdquo;&amp;gt;&amp;lt;/a&amp;gt; &amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;&amp;lt;a href=&amp;rdquo;&amp;rdquo;&amp;gt;&amp;hellip;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;/div&amp;gt;   Show Dropdown 
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</description>
+    </item>
+    
+    <item>
+      <title>Modal</title>
+      <link>http://wesovilabs.com/koazee/blog/modal/</link>
+      <pubDate>Mon, 10 Apr 2017 16:42:18 +0100</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/blog/modal/</guid>
+      <description>Calling Here you add an actual call to the modal window. Clicking the &amp;ldquo;Open&amp;rdquo; button below will launch a modal with content of a #my-modal div. You can use buttons or links to open modals in Kube. Clicking anywhere outside of the modal or hitting ESC will close the window.
+Open
+// Call &amp;lt;button data-component=&amp;ldquo;modal&amp;rdquo; data-target=&amp;rdquo;#my-modal&amp;rdquo;&amp;gt;Open&amp;lt;/button&amp;gt;
+// Markup &amp;lt;div id=&amp;ldquo;my-modal&amp;rdquo; class=&amp;ldquo;modal-box hide&amp;rdquo;&amp;gt; &amp;lt;div class=&amp;ldquo;modal&amp;rdquo;&amp;gt; &amp;lt;span class=&amp;ldquo;close&amp;rdquo;&amp;gt;&amp;lt;/span&amp;gt; &amp;lt;div class=&amp;ldquo;modal-header&amp;rdquo;&amp;gt;Modal Header&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;ldquo;modal-body&amp;rdquo;&amp;gt;&amp;hellip;&amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt;   Open from url</description>
+    </item>
+    
+    <item>
+      <title>Sticky</title>
+      <link>http://wesovilabs.com/koazee/blog/sticky/</link>
+      <pubDate>Mon, 10 Apr 2017 16:42:26 +0100</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/blog/sticky/</guid>
+      <description>Demo Scroll down to fix the navigation.
+    Shop   News   Contact   Blog   Account     &amp;lt;div data-component=&amp;ldquo;sticky&amp;rdquo;&amp;gt;&amp;hellip;&amp;lt;/div&amp;gt;  Settings offset  Type: int Default: 0  Sets top offset in pixels when navigation is fixed.
+Callbacks fixed Using this callback, you can act upon menu becoming fixed at the top of the page.
+$(&amp;rsquo;#my-nav&amp;rsquo;).on(&amp;lsquo;fixed.sticky&amp;rsquo;, function() { // do something&amp;hellip; });  unfixed Whenever fixed position of the menu is released, you can do something with this callback.</description>
+    </item>
+    
+    <item>
+      <title>Collapse</title>
+      <link>http://wesovilabs.com/koazee/blog/collapse/</link>
+      <pubDate>Mon, 10 Apr 2017 16:42:50 +0100</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/blog/collapse/</guid>
+      <description>Base Item 1 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</description>
+    </item>
+    
+    <item>
+      <title>Offcanvas</title>
+      <link>http://wesovilabs.com/koazee/blog/offcanvas/</link>
+      <pubDate>Mon, 10 Apr 2017 16:42:43 +0100</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/blog/offcanvas/</guid>
+      <description>Demo This feature is very easy to set up. It is based on data-component set to offcanvas, data-target set to the menu layer (#offcanvas-right in example below) and a feature-specific data-direction which is required for right menu to be set to right.
+ Open Left Open Right 
+   Home   About   Showcase   Help   Contact         Home   About   Showcase   Help   Contact     // Left &amp;lt;a href=&amp;rdquo;#&amp;rdquo; data-component=&amp;ldquo;offcanvas&amp;rdquo; data-target=&amp;rdquo;#offcanvas-left&amp;rdquo;&amp;gt;Open Left&amp;lt;/a&amp;gt;</description>
+    </item>
+    
+    <item>
+      <title>Toggleme</title>
+      <link>http://wesovilabs.com/koazee/blog/toggleme/</link>
+      <pubDate>Mon, 10 Apr 2017 16:42:59 +0100</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/blog/toggleme/</guid>
+      <description>Demo Toggleme works on mobile devices as well as on desktops. To see Toggleme in action, just resize this window or open this page on a mobile device.
+Toggle      Shop   News   Contact   Blog   Account      &amp;lt;div class=&amp;ldquo;show-sm&amp;rdquo;&amp;gt; &amp;lt;a href=&amp;rdquo;#&amp;rdquo; data-component=&amp;ldquo;toggleme&amp;rdquo; data-target=&amp;rdquo;#navbar&amp;rdquo;&amp;gt;Toggle&amp;lt;/a&amp;gt; &amp;lt;/div&amp;gt;
+&amp;lt;nav id=&amp;ldquo;navbar&amp;rdquo; class=&amp;ldquo;hide-sm&amp;rdquo;&amp;gt; &amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;&amp;lt;a href=&amp;rdquo;#&amp;rdquo;&amp;gt;&amp;hellip;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;/nav&amp;gt;   Usage Show Me</description>
+    </item>
+    
+    <item>
+      <title>Sizing</title>
+      <link>http://wesovilabs.com/koazee/blog/sizing/</link>
+      <pubDate>Mon, 10 Apr 2017 16:43:21 +0100</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/blog/sizing/</guid>
+      <description>Width w5  w10  w15  w20  w25  w30  w35  w40  w45  w50  w55  w60  w65  w70  w75  w80  w85  w90  w95  w100  &amp;lt;div class=&amp;ldquo;w5&amp;rdquo;&amp;gt;w5&amp;lt;/div&amp;gt; &amp;hellip; &amp;lt;div class=&amp;ldquo;w100&amp;rdquo;&amp;gt;w100&amp;lt;/div&amp;gt;   100% width on small devices.
+w100-sm  &amp;lt;div class=&amp;ldquo;w50 w100-sm&amp;rdquo;&amp;gt;&amp;hellip;&amp;lt;/div&amp;gt;   Auto Width .w-auto
+.w-auto-sm  Max Width .max-w5 — .max-w100</description>
+    </item>
+    
+    <item>
+      <title>Mixins</title>
+      <link>http://wesovilabs.com/koazee/blog/mixins/</link>
+      <pubDate>Mon, 10 Apr 2017 16:43:36 +0100</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/blog/mixins/</guid>
+      <description>Get Started Kube has been designed to help you with web development, that&amp;rsquo;s why it&amp;rsquo;s so easy to use Kube when building websites. To move forward quickly and efficiently, just link kube.scss from Kube package: this file contains variables, mixins and everything you need to simplify daily routine tasks.
+For example, import kube.scss into your master.scss styles file, which you will later compile into master.css
+// master.scss @import &amp;ldquo;dist/scss/kube.scss&amp;rdquo;;  Now all Kube&amp;rsquo;s variables and mixins are readily available in master.</description>
+    </item>
+    
+    <item>
+      <title>Utils</title>
+      <link>http://wesovilabs.com/koazee/blog/utils/</link>
+      <pubDate>Mon, 10 Apr 2017 16:43:30 +0100</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/blog/utils/</guid>
+      <description>Group Combines float elements to group with a clearfix.
+This text is visibly floating left  This text looks like a case of right float   &amp;lt;div class=&amp;ldquo;group&amp;rdquo;&amp;gt; &amp;lt;div class=&amp;ldquo;float-left&amp;rdquo;&amp;gt;&amp;hellip;&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;ldquo;float-right&amp;rdquo;&amp;gt;&amp;hellip;&amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt;   Visibility Below is an invisible div with class invisible. You can&amp;rsquo;t see it, because it is invisible. You can&amp;rsquo;t see invisible things.
+invisible  But you can see this div because it has visible class.</description>
+    </item>
+    
+    <item>
+      <title>Inline 🐣Text Styles</title>
+      <link>http://wesovilabs.com/koazee/blog/inline-style/</link>
+      <pubDate>Sun, 02 Apr 2017 21:56:55 +0100</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/blog/inline-style/</guid>
+      <description>Chocolate tiramisu pastry a link cotton candy sesame snaps. Dessert cake chocolate bar a bold part sugar plum bonbon marshmallow lollipop toffee soufflé. Donut caramels chocolate bar. Oat cake cookie a marked part cheesecake donut. Jelly-o  $code marzipan cake. Bonbon sesame snaps chocolate an italic part oat cake pudding sweet roll caramels bonbon. Soufflé muffin 👻 gummies sugar plum dessert bonbon bear claw. Sweet ice cream jujubes. Marzipan sugar plum pastry chocolate ⌘+A bar fruitcake.</description>
+    </item>
+    
+  </channel>
+</rss>

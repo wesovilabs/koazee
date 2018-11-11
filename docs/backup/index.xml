@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Backups on Koazee</title>
+    <link>http://wesovilabs.com/koazee/backup/</link>
+    <description>Recent content in Backups on Koazee</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 10 Apr 2017 16:41:16 +0100</lastBuildDate>
+    
+	<atom:link href="http://wesovilabs.com/koazee/backup/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Custom Plugins</title>
+      <link>http://wesovilabs.com/koazee/backup/custom-plugins/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/backup/custom-plugins/</guid>
+      <description>Plugin Template Here&amp;rsquo;s what a generic plugin looks like. This template gives an overall idea of what you can do with plugins in Kube. Feel free to use this one as a boilerplate for your custom plugins.
+(function(Kube) { Kube.Myplugin = function(element, options) { this.namespace = &amp;lsquo;myplugin&amp;rsquo;;
+ &amp;lt;span class=&amp;quot;hljs-comment&amp;quot;&amp;gt;// default settings&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;hljs-keyword&amp;quot;&amp;gt;this&amp;lt;/span&amp;gt;.defaults = { mysetting: &amp;lt;span class=&amp;quot;hljs-literal&amp;quot;&amp;gt;true&amp;lt;/span&amp;gt; }; &amp;lt;span class=&amp;quot;hljs-comment&amp;quot;&amp;gt;// Parent Constructor&amp;lt;/span&amp;gt; Kube.apply(&amp;lt;span class=&amp;quot;hljs-keyword&amp;quot;&amp;gt;this&amp;lt;/span&amp;gt;, &amp;lt;span class=&amp;quot;hljs-built_in&amp;quot;&amp;gt;arguments&amp;lt;/span&amp;gt;); &amp;lt;span class=&amp;quot;hljs-comment&amp;quot;&amp;gt;// Initialization&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;hljs-keyword&amp;quot;&amp;gt;this&amp;lt;/span&amp;gt;.</description>
+    </item>
+    
+    <item>
+      <title>Typography</title>
+      <link>http://wesovilabs.com/koazee/backup/typography/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/backup/typography/</guid>
+      <description>Get Started Typography of Kube based on the 4px horizontal grid, it means that for the headers, paragraphs, quotes and any other texts chosen are a combination of line-height, that fit into the 4px grid and help set the horizontal rhythm of design by default.
+  4px grid for typography - the magic of the horizontal rhythm   With this feature, you can quickly and easily make a solid and harmonious-looking website and UI design.</description>
+    </item>
+    
+    <item>
+      <title>Buttons</title>
+      <link>http://wesovilabs.com/koazee/backup/buttons/</link>
+      <pubDate>Mon, 10 Apr 2017 16:41:16 +0100</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/backup/buttons/</guid>
+      <description>Primary Button Button &amp;lt;button class=&amp;ldquo;button&amp;rdquo;&amp;gt;Button&amp;lt;/button&amp;gt; &amp;lt;a href=&amp;rdquo;#&amp;rdquo; class=&amp;ldquo;button&amp;rdquo;&amp;gt;Button&amp;lt;/a&amp;gt;  Secondary Button Button &amp;lt;button class=&amp;ldquo;button secondary&amp;rdquo;&amp;gt;Button&amp;lt;/button&amp;gt; &amp;lt;a href=&amp;rdquo;#&amp;rdquo; class=&amp;ldquo;button secondary&amp;rdquo;&amp;gt;Button&amp;lt;/a&amp;gt;  Outline Outline class does exactly what it is supposed to do: styles a button with an outline with no fill color.
+Button Button &amp;lt;button class=&amp;ldquo;button outline&amp;rdquo;&amp;gt;Button&amp;lt;/button&amp;gt; &amp;lt;button class=&amp;ldquo;button secondary outline&amp;rdquo;&amp;gt;Button&amp;lt;/button&amp;gt;  Disabled Disabled buttons are automatically styles with muted colors, inactive and not clickable. As you can see, there&amp;rsquo;s no need to set disabled class for the button element, and disabled argument is enough.</description>
+    </item>
+    
+    <item>
+      <title>Messages</title>
+      <link>http://wesovilabs.com/koazee/backup/messages/</link>
+      <pubDate>Mon, 10 Apr 2017 16:41:34 +0100</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/backup/messages/</guid>
+      <description>Usage You have 2 modules waiting to installation. Install   &amp;lt;div class=&amp;ldquo;message&amp;rdquo; data-component=&amp;ldquo;message&amp;rdquo;&amp;gt; &amp;hellip; &amp;lt;span class=&amp;ldquo;close small&amp;rdquo;&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;  You have 2 modules waiting to installation. Install   &amp;lt;div class=&amp;ldquo;message error&amp;rdquo; data-component=&amp;ldquo;message&amp;rdquo;&amp;gt; &amp;hellip; &amp;lt;span class=&amp;ldquo;close small&amp;rdquo;&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;  You have 2 modules waiting to installation. Install   &amp;lt;div class=&amp;ldquo;message success&amp;rdquo; data-component=&amp;ldquo;message&amp;rdquo;&amp;gt; &amp;hellip; &amp;lt;span class=&amp;ldquo;close small&amp;rdquo;&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;  Warning!You have 2 modules waiting to installation. Install   &amp;lt;div class=&amp;ldquo;message warning&amp;rdquo; data-component=&amp;ldquo;message&amp;rdquo;&amp;gt; &amp;lt;h5&amp;gt;&amp;hellip;&amp;lt;/h5&amp;gt; &amp;hellip; &amp;lt;span class=&amp;ldquo;close small&amp;rdquo;&amp;gt;&amp;lt;/span&amp;gt; &amp;lt;/div&amp;gt;   You have 2 modules waiting to installation.</description>
+    </item>
+    
+    <item>
+      <title>Breadcrumbs</title>
+      <link>http://wesovilabs.com/koazee/backup/breadcrumbs/</link>
+      <pubDate>Mon, 10 Apr 2017 16:41:54 +0100</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/backup/breadcrumbs/</guid>
+      <description>Base   Home   Shop   Catalog   T-Shirts  Brand   &amp;lt;nav class=&amp;ldquo;breadcrumbs&amp;rdquo;&amp;gt; &amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;&amp;lt;a href=&amp;rdquo;&amp;rdquo;&amp;gt;&amp;hellip;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;&amp;lt;span&amp;gt;&amp;hellip;&amp;lt;/span&amp;gt;&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;/nav&amp;gt;   Centered   Home   Shop   Catalog   T-Shirts  Brand    &amp;lt;nav class=&amp;ldquo;breadcrumbs push-center&amp;rdquo;&amp;gt; &amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;&amp;lt;a href=&amp;rdquo;&amp;rdquo;&amp;gt;&amp;hellip;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt; &amp;lt;li class=&amp;ldquo;active&amp;rdquo;&amp;gt;&amp;lt;a href=&amp;rdquo;&amp;rdquo;&amp;gt;&amp;hellip;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;/nav&amp;gt;   Custom Separator   Home   Shop   Catalog   T-Shirts  Brand   // css #breadcrumbs-custom-separator li:after { content: &amp;lsquo;&amp;gt;&amp;lsquo;; }</description>
+    </item>
+    
+    <item>
+      <title>Collapse</title>
+      <link>http://wesovilabs.com/koazee/backup/collapse/</link>
+      <pubDate>Mon, 10 Apr 2017 16:42:50 +0100</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/backup/collapse/</guid>
+      <description>Base Item 1 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</description>
+    </item>
+    
+    <item>
+      <title>Animation</title>
+      <link>http://wesovilabs.com/koazee/backup/animation/</link>
+      <pubDate>Mon, 10 Apr 2017 16:43:08 +0100</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/backup/animation/</guid>
+      <description>Slide slideUp   slideDown   Slide Up Slide Down $(&amp;rsquo;#element&amp;rsquo;).animation(&amp;lsquo;slideUp&amp;rsquo;); $(&amp;rsquo;#element&amp;rsquo;).animation(&amp;lsquo;slideDown&amp;rsquo;);  Fade fadeIn   fadeOut   Fade In Fade Out $(&amp;rsquo;#element&amp;rsquo;).animation(&amp;lsquo;fadeIn&amp;rsquo;); $(&amp;rsquo;#element&amp;rsquo;).animation(&amp;lsquo;fadeOut&amp;rsquo;);  Flip flipIn   flipOut   Flip In Flip Out $(&amp;rsquo;#element&amp;rsquo;).animation(&amp;lsquo;flipIn&amp;rsquo;); $(&amp;rsquo;#element&amp;rsquo;).animation(&amp;lsquo;flipOut&amp;rsquo;);  Zoom zoomIn   zoomOut   Zoom In Zoom Out $(&amp;rsquo;#element&amp;rsquo;).animation(&amp;lsquo;zoomIn&amp;rsquo;); $(&amp;rsquo;#element&amp;rsquo;).animation(&amp;lsquo;zoomOut&amp;rsquo;);  Rotate rotate   Rotate $(&amp;rsquo;#element&amp;rsquo;).animation(&amp;lsquo;rotate&amp;rsquo;);  Shake shake   Shake $(&amp;rsquo;#element&amp;rsquo;).animation(&amp;lsquo;shake&amp;rsquo;);  Pulse pulse   Pulse $(&amp;rsquo;#element&amp;rsquo;).</description>
+    </item>
+    
+    <item>
+      <title>Colors</title>
+      <link>http://wesovilabs.com/koazee/backup/colors/</link>
+      <pubDate>Mon, 10 Apr 2017 16:43:14 +0100</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/backup/colors/</guid>
+      <description>Text Contrasting black color for headings and less intense dark gray for the text helps to improve readability.
+ Headings $color-headings
+  Text $color-text
+   Links Classic blue links and soft red for the hover state makes links visible and predictable.
+ Link $color-link
+  Hover $color-link-hover
+   Buttons Blue color for primary buttons for greater consistency with links. Black color for secondary buttons allows you build a variety of UI.</description>
+    </item>
+    
+  </channel>
+</rss>

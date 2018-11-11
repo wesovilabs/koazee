@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Documentation on Koazee</title>
+    <link>http://wesovilabs.com/koazee/docs/</link>
+    <description>Recent content in Documentation on Koazee</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://wesovilabs.com/koazee/docs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>stream.Add</title>
+      <link>http://wesovilabs.com/koazee/docs/add/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/docs/add/</guid>
+      <description>Function signature This function receives an argument and return the Stream
+func Add(item interface{}) (stream S) Arguments    Name Type Description     item Same type of elements in the stream New item to be added into the stream   
+Output    Name Type Description     stream koazee.S It returns the stream modified by the current operation</description>
+    </item>
+    
+    <item>
+      <title>stream.Drop</title>
+      <link>http://wesovilabs.com/koazee/docs/drop/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/docs/drop/</guid>
+      <description>Function signature func Drop(item interface{}) (stream S) Arguments    Name Type Description     item Same type of elements in the stream Element to be dropped from the stream   
+Output    Name Type Description     stream koazee.S It returns the stream modified by the current operation   
+Errors    Type Message     err.</description>
+    </item>
+    
+  </channel>
+</rss>
