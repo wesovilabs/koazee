@@ -7,7 +7,7 @@ bref="Welcome! We are excited that you want to know about Koazee. The Koazee Get
 toc = true
 script = 'animation'
 +++
-<h3 class="section-head" id="h-plugin"><a href="#h-plugin">What is Koazee?</a></h3>
+<h3 class="section-head" id="h-whatis"><a href="#h-whatis">What is Koazee?</a></h3>
 <p>
     Koazee is a handy Golang library focused on helping developers and make their life easier by taking the hassle out of working with arrays.
     It takes an array and creates an stream. The stream can be easily manipulated by making use of the provided operations by Koazee. 
@@ -31,7 +31,7 @@ script = 'animation'
     </ul>
 </p>   
 
-<h3 class="section-head" id="h-plugin"><a href="#h-plugin">How does Koazee work?</a></h3>
+<h3 class="section-head" id="h-howwork"><a href="#h-howwork">How does Koazee work?</a></h3>
 <p>
  Koazee takes advantage of reflection and simplify the way to deal with arrays. It provides us with a great and growing 
  set of powerful operations over arrays.
@@ -39,7 +39,7 @@ script = 'animation'
 <p>
     The full list of available operations can be found on <a href="/koazee/docs/">Koazee Documentation</a>
 </p>
-<h3 class="section-head" id="h-plugin"><a href="#h-plugin">Installing</a></h3>
+<h3 class="section-head" id="h-installing"><a href="#h-installing">Installing</a></h3>
 <p>
     Add Koazee to your project 
 </p>
@@ -75,7 +75,7 @@ script = 'animation'
 {{< /highlight >}}
 </div>
 
-<h3 class="section-head" id="h-plugin"><a href="#h-plugin">Usage</a></h3>
+<h3 class="section-head" id="h-usage"><a href="#h-usage">Usage</a></h3>
 <p>
 Once Koazee is added to the project you just need to import it 
 </p>
@@ -111,14 +111,13 @@ Once Koazee is added to the project you just need to import it
 <br/>
 <div>
     <blockquote>
-    As a friend of mine says: "Developoing is like write poetry", and the above code looks like that
+    As a friend of mine says: "Developoing is like writing poetry", and the above code looks like that
     </blocquote>
 </div>
-<h3 class="section-head" id="h-plugin"><a href="#h-plugin">Stream operations</a></h3>
+<h3 class="section-head" id="h-operations"><a href="#h-operations">Stream operations</a></h3>
 <div>
     The list of already implemented operations is below, <b>much more are comming soon!</b>
-</div>
-<div>
+
 <div class="example">
   <table>
     <thead>

@@ -25,6 +25,6 @@ Paginate = 4
     weight = -99
     url = "/docs/"
 [[menu.main]]
-    name = "Guides"
+    name = "Guides & Tutorials"
     weight = -98
-    url = "/blog/"
+    url = "/guides/"

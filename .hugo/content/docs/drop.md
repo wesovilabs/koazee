@@ -1,17 +1,16 @@
 +++
-title = "stream.Add"
-description = "Add a new element in the stream"
-weight = 10
+title = "stream.Drop"
+description = "Drop an element from the stream"
+weight = 11
 draft = false
 toc = true
-bref = "Add a new element into the stream."
+bref = "Drop an element from the stream."
 +++
 
 <h3 class="section-head" id="h-signature"><a href="#h-signature">Function signature</a></h3>
-<p>This function receives an argument and return the Stream</p>
 
 {{< highlight golang >}}
-    func Add(item interface{}) (stream S)
+    func Drop(item interface{}) (stream S)
 {{< /highlight >}}
 
 <h4>Arguments</h4>
@@ -27,7 +26,7 @@ bref = "Add a new element into the stream."
       <tr>
         <td>item</td>
         <td>Same type of elements in the stream</td>
-        <td>New item to be added into the stream</td>
+        <td>Element to be dropped from the stream</td>
       </tr>
     </tbody>
 </table>
@@ -61,15 +60,15 @@ bref = "Add a new element into the stream."
     <tbody>
       <tr>
         <td>err.items-nil</td>
-        <td>An element can not be added in a nil stream</td>
+        <td>An element can not be dropped from a nil stream</td>
       </tr>
       <tr>
         <td>err.invalid-argument</td>
-        <td>A nil value can not be added in a stream of non-pointers values</td>
+        <td>A nil value can not be dropped from a stream of non-pointers values</td>
       </tr>
       <tr>
         <td>err.invalid-argument</td>
-        <td>An element whose type is %s can not be added in a stream of type %s</td>
+        <td>An element whose type is %s can not be dropped from a stream of type %s</td>
       </tr>
     </tbody>
 </table>
@@ -127,7 +126,7 @@ var primates = []*primate{
 
 func main() {
 	newList := koazee.StreamOf(primates).
-		Add(newPrimate("Pepe", 16, "Gibbon", male)).
+		Drop(newPrimate("Benjamin", 23, "Spider monkey", male)).
 		Out().
 		Val().([]*primate)
 
@@ -135,7 +134,6 @@ func main() {
 		fmt.Printf("%s was invited to the party\n", primate.name)
 	}
 }
-
 {{< /highlight >}}
 </div>
 <div id="numbers">
@@ -151,7 +149,7 @@ var numbers = []int{1, 3, 5, 7, 9}
 
 func main() {
 	newList := koazee.Stream().
-		Add(10).
+		Drop(3).
 		With(numbers).
 		Out().
 		Val().([]int)
