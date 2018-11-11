@@ -4,23 +4,27 @@ publishDir = "../docs"
 title = "Koazee"
 theme = "kube"
 description = "Lazy like a koala, smart like a chimpanzee"
+pygmentsCodeFences=true
+pygmentsUseClasses=true
+pygmentsStyle = "monokai"
 Paginate = 4
 [Params]
   RSSLink = "/index.xml"
   author = "Iván Corrales Solera"
   github = "https://github.com/ivancorrales"
-  twitter = "" # add your twitter profile
+  twitter = "@wesovilabs"
   email = "ivan.corrales.solera@gmail.com"
 
 [[menu.main]]
-    name = "Docs"
+    name = "Getting started"
     weight = -100
+    url = "/getting-started/"
+
+[[menu.main]]
+    name = "Documentation"
+    weight = -99
     url = "/docs/"
 [[menu.main]]
-    name = "Blog"
-    weight = -100
+    name = "Guides"
+    weight = -98
     url = "/blog/"
-[[menu.main]]
-    name = "Faq"
-    weight = -100
-    url = "/faq/"
