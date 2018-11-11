@@ -48,6 +48,6 @@ func main() {
 		return primate.genre == male
 	})
 	koazee.Stream().Compose(stream1, stream2).ForEach(func(primate *primate) {
-		fmt.Println("Hi there, this is %s", primate.name)
+		fmt.Printf("Hi there, this is %s\n", primate.name)
 	}).Out()
 }

@@ -40,7 +40,7 @@ func TestStream_Map(t *testing.T) {
 func TestStream_Map_validation(t *testing.T) {
 	assert.Equal(
 		t,
-		errors.InvalidArgument(stream.OpCodeMap, "The filter operation requires a function as argument"),
+		errors.InvalidArgument(stream.OpCodeMap, "The map operation requires a function as argument"),
 		koazee.StreamOf([]string{"Freedom", "for", "the", "animals"}).Map(10).Out().Err())
 
 	assert.Equal(

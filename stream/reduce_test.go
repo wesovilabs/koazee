@@ -39,7 +39,7 @@ func TestStream_Reduce(t *testing.T) {
 func TestStream_Reduce_validation(t *testing.T) {
 	assert.Equal(
 		t,
-		errors.InvalidArgument(stream.OpCodeReduce, "The filter operation requires a function as argument"),
+		errors.InvalidArgument(stream.OpCodeReduce, "The reduce operation requires a function as argument"),
 		koazee.StreamOf([]string{"Freedom", "for", "the", "animals"}).Reduce(10).Err())
 
 	assert.Equal(

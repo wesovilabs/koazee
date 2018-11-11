@@ -22,7 +22,7 @@ func TestStream_ForEach(t *testing.T) {
 func TestStream_ForEach_validation(t *testing.T) {
 	assert.Equal(
 		t,
-		errors.InvalidArgument(stream.OpCodeForEach, "The filter operation requires a function as argument"),
+		errors.InvalidArgument(stream.OpCodeForEach, "The forEach operation requires a function as argument"),
 		koazee.StreamOf([]string{"Freedom", "for", "the", "animals"}).ForEach(10).Out().Err())
 
 	assert.Equal(
