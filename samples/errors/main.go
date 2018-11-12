@@ -17,17 +17,17 @@ var concatStrings = func(acc, val string) string {
 var streamFlow = koazee.
 	Stream().
 	RemoveDuplicates().
-	Filter(func(val string)string{
+	Filter(func(val string) string {
 		return "This should be an invalid operation!"
 	}).
 	Filter(lenLowerThan6).
 	Map(strings.ToUpper)
 
 func main() {
-	logger.Enabled=true
+	logger.Enabled = true
 	array := []string{"koazee", "telescope", "is", "created", "so", "great"}
-	out:=streamFlow.With(array).Out()
-	if out.Err()!=nil{
+	out := streamFlow.With(array).Out()
+	if out.Err() != nil {
 		fmt.Println(out.Err())
 		return
 	}

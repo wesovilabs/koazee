@@ -175,6 +175,7 @@ type lazyOp interface {
 
 type stream struct {
 	items      interface{}
+	itemsType  reflect.Type
 	err        *errors.Error
 	streams    []stream
 	operations []lazyOp
@@ -214,8 +215,10 @@ func (s *stream) run() *stream {
 
 // New creates a stream with the provided array of elements
 func New(items interface{}) S {
+	itemsType := reflect.TypeOf(items).Elem()
 	return stream{
-		items: items,
+		items:     items,
+		itemsType: itemsType,
 	}
 }
 

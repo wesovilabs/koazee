@@ -12,8 +12,9 @@ import (
 const OpCodeReduce = "reduce"
 
 type reduce struct {
-	items interface{}
-	fn    interface{}
+	items     interface{}
+	itemsType reflect.Type
+	fn        interface{}
 }
 
 func (op *reduce) name() string {
@@ -43,7 +44,6 @@ func (op *reduce) validate() *errors.Error {
 	if op.items == nil {
 		return errors.EmptyStream(op.name(), "A nil stream can not be reduced")
 	}
-	itemsType := reflect.TypeOf(op.items).Elem()
 	function := reflect.ValueOf(op.fn)
 	if function.Type().Kind() != reflect.Func {
 		return errors.InvalidArgument(op.name(), "The reduce operation requires a function as argument")
@@ -57,9 +57,9 @@ func (op *reduce) validate() *errors.Error {
 	fnIn1 := reflect.New(function.Type().In(0)).Elem()
 	fnIn2 := reflect.New(function.Type().In(1)).Elem()
 	fnOut := reflect.New(function.Type().Out(0)).Elem()
-	if fnIn2.Type() != itemsType {
+	if fnIn2.Type() != op.itemsType {
 		return errors.InvalidArgument(op.name(), "The type of the "+
-			"second argument in the provided function must be %s", itemsType.String())
+			"second argument in the provided function must be %s", op.itemsType.String())
 	}
 	if fnIn1.Type() != fnOut.Type() {
 		return errors.InvalidArgument(op.name(), "The type of the first argument and "+
@@ -74,5 +74,5 @@ func (s stream) Reduce(fn interface{}) output {
 	if current.err != nil {
 		return output{nil, current.err}
 	}
-	return (&reduce{current.items, fn}).run()
+	return (&reduce{current.items, current.itemsType, fn}).run()
 }
