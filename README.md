@@ -62,7 +62,7 @@ var streamFlow = koazee.
 	Map(strings.ToUpper)
 
 func main() {
-	array := []string{"koazee", "telescope", "is", "fucking", "so", "great"}
+	array := []string{"koazee", "telescope", "is", "created", "so", "great"}
 	fmt.Println(streamFlow.With(array).Reduce(concatStrings).String())
 	fmt.Println(streamFlow.With(array).Reduce(concatStringsWitDash).String())
 }
@@ -101,7 +101,7 @@ var streamFlow = koazee.
 
 func main() {
 	logger.Enabled=true
-	array := []string{"koazee", "telescope", "is", "fucking", "so", "great"}
+	array := []string{"koazee", "telescope", "is", "created", "so", "great"}
 	out:=streamFlow.With(array).Out()
 	if out.Err()!=nil{
 		fmt.Println(out.Err())
@@ -114,8 +114,8 @@ func main() {
 If we run the above code the output will be
 
 ```bash
-[koazee] 05:56:18.821227 with  [koazee telescope is fucking so great]
-[koazee] 05:56:18.821596 removeDuplicates [koazee telescope is fucking so great] -> [koazee telescope is fucking so great]
+[koazee] 05:56:18.821227 with  [koazee telescope is created so great]
+[koazee] 05:56:18.821596 removeDuplicates [koazee telescope is created so great] -> [koazee telescope is created so great]
 [filter:err.invalid-argument] The type of the output in the provided function must be bool
 ```
 

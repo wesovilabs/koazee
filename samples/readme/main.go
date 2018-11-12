@@ -26,7 +26,7 @@ var streamFlow = koazee.
 	Map(strings.ToUpper)
 
 func main() {
-	array := []string{"koazee", "telescope", "is", "fucking", "so", "great"}
+	array := []string{"koazee", "telescope", "is", "created", "so", "great"}
 	fmt.Println(streamFlow.With(array).Reduce(concatStrings).String())
 	fmt.Println(streamFlow.With(array).Reduce(concatStringsWitDash).String())
 }

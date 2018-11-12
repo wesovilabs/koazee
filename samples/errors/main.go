@@ -25,7 +25,7 @@ var streamFlow = koazee.
 
 func main() {
 	logger.Enabled=true
-	array := []string{"koazee", "telescope", "is", "fucking", "so", "great"}
+	array := []string{"koazee", "telescope", "is", "created", "so", "great"}
 	out:=streamFlow.With(array).Out()
 	if out.Err()!=nil{
 		fmt.Println(out.Err())
