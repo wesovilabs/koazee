@@ -73,7 +73,7 @@ func main() {
 
 You always can check if any oepration fail during the runtime
 
-```
+```golang
 package main
 
 import (
