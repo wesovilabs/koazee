@@ -68,6 +68,58 @@ func main() {
 }
 ```
 
+
+#### What's about error?
+
+You always can check if any oepration fail during the runtime
+
+```
+package main
+
+import (
+	"fmt"
+	"github.com/wesovilabs/koazee"
+	"github.com/wesovilabs/koazee/logger"
+	"strings"
+)
+
+var lenLowerThan6 = func(val string) bool { return len(val) <= 6 }
+var concatStrings = func(acc, val string) string {
+	if len(acc) == 0 {
+		return val
+	}
+	return fmt.Sprintf("%s %s", acc, val)
+}
+var streamFlow = koazee.
+	Stream().
+	RemoveDuplicates().
+	Filter(func(val string)string{
+		return "This should be an invalid operation!"
+	}).
+	Filter(lenLowerThan6).
+	Map(strings.ToUpper)
+
+func main() {
+	logger.Enabled=true
+	array := []string{"koazee", "telescope", "is", "fucking", "so", "great"}
+	out:=streamFlow.With(array).Out()
+	if out.Err()!=nil{
+		fmt.Println(out.Err())
+		return
+	}
+	fmt.Println(out.Val().([]int))
+}
+```
+
+If we run the above code the output will be
+
+```bash
+[koazee] 05:56:18.821227 with  [koazee telescope is fucking so great]
+[koazee] 05:56:18.821596 removeDuplicates [koazee telescope is fucking so great] -> [koazee telescope is fucking so great]
+[filter:err.invalid-argument] The type of the output in the provided function must be bool
+```
+
+
 You can find more documentation and examples on [http://wesovilabs.com/koazee](http://wesovilabs.com/koazee)
 
 *If you like this project and you think I should provide more functionality to Koazee, please feel free to star the repository*
