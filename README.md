@@ -17,7 +17,7 @@ Koazee full documentation is hosted on [http://wesovilabs.com/koazee](http://wes
 ### What is Koazee?
 
 Koazee is a handy Golang library focused on helping developers and make their life easier by taking the hassle out of working with arrays.
-It takes an array and creates an stream. The stream can be easily manipulated by making use of the provided operations by Koazee. 
+It takes an array and creates a stream. The stream can be easily manipulated by making use of the provided operations by Koazee.
 
 ### How does Koazee work?
 
@@ -71,7 +71,7 @@ func main() {
 
 #### How can I check an error in runtime?
 
-You always can check if any oepration fail during the runtime
+You always can check if any operation fail during the runtime
 
 ```golang
 package main
@@ -123,6 +123,3 @@ If we run the above code the output will be
 You can find more documentation and examples on [http://wesovilabs.com/koazee](http://wesovilabs.com/koazee)
 
 *If you like this project and you think I should provide more functionality to Koazee, please feel free to star the repository*
-
-
-
