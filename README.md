@@ -69,7 +69,7 @@ func main() {
 ```
 
 
-#### What's about error?
+#### How can I check an error in runtime?
 
 You always can check if any oepration fail during the runtime
 
