@@ -35,5 +35,5 @@ func (s stream) Out() output {
 	if current.err != nil {
 		return output{nil, current.err}
 	}
-	return (&out{current.items}).run()
+		return (&out{current.items}).run()
 }

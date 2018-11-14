@@ -24,9 +24,7 @@ func (op *compose) run(s stream) stream {
 		s.err = err
 		return s
 	}
-	if s.streams == nil {
-		s.streams = make([]stream, 0)
-	}
+	s.streams = make([]stream, 0)
 	for _, str := range op.streams {
 		s.streams = append(s.streams, str.(stream))
 	}

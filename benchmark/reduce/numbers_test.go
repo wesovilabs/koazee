@@ -6,28 +6,36 @@ import (
 	"testing"
 )
 
+var output int
 var numbers10 = utils.ArrayOfInt(0, 1, 10)
 var numbers100 = utils.ArrayOfInt(0, 10, 100)
 var numbers1000 = utils.ArrayOfInt(0, 100, 1000)
 var numbers10000 = utils.ArrayOfInt(0, 1000, 10000)
 
+/**
 func BenchmarkSum10(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		result := 0
 		for _, v := range numbers10 {
 			result += v
 		}
+		output = result
 	}
+
 }
 func BenchmarkSum10Koazee(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		koazee.
+		output2 := koazee.
 			StreamOf(numbers10).
 			Reduce(func(acc, val int) int { return acc + val }).
-			Int()
+			Val()
+		if output != output2 {
+			b.Fail()
+		}
 	}
 }
 
+**/
 func BenchmarkSum100(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		result := 0
@@ -45,6 +53,7 @@ func BenchmarkSum100Koazee(b *testing.B) {
 	}
 }
 
+/**
 func BenchmarkSum1000(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		result := 0
@@ -78,3 +87,4 @@ func BenchmarkSum10000Koazee(b *testing.B) {
 			Int()
 	}
 }
+**/
