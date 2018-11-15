@@ -170,7 +170,6 @@ func (o Output) Float64() float64 {
 }
 
 type lazyOp interface {
-	name() string
 	run(*Stream) *Stream
 }
 

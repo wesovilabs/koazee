@@ -9,59 +9,76 @@ import (
 // OpCodeMap identifier for operation map
 const OpCodeMap = "map"
 
+var mapCache = make(map[reflect.Type]*mapItem)
+var mapArgv = make([]reflect.Value, 1)
+
 type streamMap struct {
 	fn interface{}
 }
 
-func (op *streamMap) name() string {
-	return OpCodeMap
-}
-
-func (op *streamMap) run(s *Stream) *Stream {
-	if err := op.validate(s); err != nil {
+func (m *streamMap) run(s *Stream) *Stream {
+	mInfo, err := m.validateMap(s);
+	if err != nil {
 		s.err = err
 		return s
 	}
-	function := reflect.ValueOf(op.fn)
-	outputType := reflect.New(function.Type().Out(0)).Elem().Type()
-	newItems := reflect.MakeSlice(reflect.SliceOf(outputType), 0, 0)
+	newItems := mInfo.items
 	items := reflect.ValueOf(s.items)
-	for index := 0; index < items.Len(); index++ {
-		argv := make([]reflect.Value, 1)
-		if isPointer(items.Index(index)) {
-			argv[0] = reflect.ValueOf(reflect.ValueOf(items.Index(index).Interface()).Elem().Addr().Interface())
-		} else {
-			argv[0] = items.Index(index)
+	if mInfo.isPtr {
+		for index := 0; index < items.Len(); index++ {
+			mapArgv[0] = reflect.ValueOf(reflect.ValueOf(items.Index(index).Interface()).Elem().Addr().Interface())
+			result := mInfo.fnValue.Call(argv)
+			newItems = reflect.Append(newItems, result[0])
 		}
-		result := function.Call(argv)
-		newItems = reflect.Append(newItems, result[0])
+	} else {
+		for index := 0; index < items.Len(); index++ {
+			mapArgv[0] = items.Index(index)
+			result := mInfo.fnValue.Call(argv)
+			newItems = reflect.Append(newItems, result[0])
+		}
 	}
 	s.items = newItems.Interface()
 	return s
 }
 
-func (op *streamMap) validate(s *Stream) *errors.Error {
+func (m *streamMap) validateMap(s *Stream) (*mapItem, *errors.Error) {
+	item := &mapItem{}
+	fnType := reflect.TypeOf(m.fn)
+	if i, ok := mapCache[fnType]; ok {
+		return i, nil
+	}
 	if s.items == nil {
-		return errors.EmptyStream(op.name(), "A nil Stream can not be iterated")
+		return nil, errors.EmptyStream(OpCodeMap, "A nil Stream can not be iterated")
 	}
 	itemsType := reflect.TypeOf(s.items).Elem()
-	function := reflect.ValueOf(op.fn)
-	if function.Type().Kind() != reflect.Func {
-		return errors.InvalidArgument(op.name(), "The map operation requires a function as argument")
+	item.fnValue = reflect.ValueOf(m.fn)
+	if item.fnValue.Type().Kind() != reflect.Func {
+		return nil, errors.InvalidArgument(OpCodeMap, "The map operation requires a function as argument")
 	}
-	if function.Type().NumIn() != 1 {
-		return errors.InvalidArgument(op.name(), "The provided function must retrieve 1 argument")
+	if item.fnValue.Type().NumIn() != 1 {
+		return nil, errors.InvalidArgument(OpCodeMap, "The provided function must retrieve 1 argument")
 	}
-	if function.Type().NumOut() != 1 {
-		return errors.InvalidArgument(op.name(), "The provided function must return 1 value")
+	if item.fnValue.Type().NumOut() != 1 {
+		return nil, errors.InvalidArgument(OpCodeMap, "The provided function must return 1 value")
 	}
-	fnIn := reflect.New(function.Type().In(0)).Elem()
+	fnIn := reflect.New(item.fnValue.Type().In(0)).Elem()
 	if fnIn.Type() != itemsType {
-		return errors.InvalidArgument(op.name(),
+		return nil, errors.InvalidArgument(OpCodeMap,
 			"The type of the argument in the provided "+
 				"function must be %s", itemsType.String())
 	}
-	return nil
+	item.items = reflect.MakeSlice(reflect.SliceOf(item.outputType), 0, 0)
+	item.outputType = reflect.New(item.fnValue.Type().Out(0)).Elem().Type()
+	item.isPtr = isPointer(s.itemsValue.Index(0))
+	go func() { mapCache[fnType] = item }()
+	return item, nil
+}
+
+type mapItem struct {
+	fnValue    reflect.Value
+	outputType reflect.Type
+	isPtr      bool
+	items      reflect.Value
 }
 
 // Map performs a mutation over all the elements in the Stream and return a new Stream
