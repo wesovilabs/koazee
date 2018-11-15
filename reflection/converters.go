@@ -2,6 +2,26 @@ package reflection
 
 import "reflect"
 
+// Bool converts value to string
+func Bool(value reflect.Value) bool {
+	return value.Interface().(bool)
+}
+
+// String converts value to string
+func String(value reflect.Value) string {
+	return value.Interface().(string)
+}
+
+// String converts value to string
+func Float32(value reflect.Value) float32 {
+	return value.Interface().(float32)
+}
+
+// String converts value to string
+func Float64(value reflect.Value) float64 {
+	return value.Interface().(float64)
+}
+
 // Int converts value to int
 func Int(value reflect.Value) int {
 	return value.Interface().(int)
