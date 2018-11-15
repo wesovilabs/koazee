@@ -27,13 +27,13 @@ func (m *streamMap) run(s *Stream) *Stream {
 	if mInfo.isPtr {
 		for index := 0; index < items.Len(); index++ {
 			mapArgv[0] = reflect.ValueOf(reflect.ValueOf(items.Index(index).Interface()).Elem().Addr().Interface())
-			result := mInfo.fnValue.Call(argv)
+			result := mInfo.fnValue.Call(mapArgv)
 			newItems = reflect.Append(newItems, result[0])
 		}
 	} else {
 		for index := 0; index < items.Len(); index++ {
 			mapArgv[0] = items.Index(index)
-			result := mInfo.fnValue.Call(argv)
+			result := mInfo.fnValue.Call(mapArgv)
 			newItems = reflect.Append(newItems, result[0])
 		}
 	}
@@ -67,8 +67,8 @@ func (m *streamMap) validateMap(s *Stream) (*mapItem, *errors.Error) {
 			"The type of the argument in the provided "+
 				"function must be %s", itemsType.String())
 	}
-	item.items = reflect.MakeSlice(reflect.SliceOf(item.outputType), 0, 0)
 	item.outputType = reflect.New(item.fnValue.Type().Out(0)).Elem().Type()
+	item.items = reflect.MakeSlice(reflect.SliceOf(item.outputType), 0, 0)
 	item.isPtr = isPointer(s.itemsValue.Index(0))
 	go func() { mapCache[fnType] = item }()
 	return item, nil
