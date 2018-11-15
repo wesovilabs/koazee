@@ -1,6 +1,7 @@
 package stream
 
 import (
+	"fmt"
 	"reflect"
 
 	"github.com/wesovilabs/koazee/errors"
@@ -45,6 +46,7 @@ func (m *streamMap) validateMap(s *Stream) (*mapItem, *errors.Error) {
 	item := &mapItem{}
 	fnType := reflect.TypeOf(m.fn)
 	if i, ok := mapCache[fnType]; ok {
+		fmt.Println("cached")
 		return i, nil
 	}
 	if s.items == nil {
@@ -70,7 +72,7 @@ func (m *streamMap) validateMap(s *Stream) (*mapItem, *errors.Error) {
 	item.outputType = reflect.New(item.fnValue.Type().Out(0)).Elem().Type()
 	item.items = reflect.MakeSlice(reflect.SliceOf(item.outputType), 0, 0)
 	item.isPtr = isPointer(s.itemsValue.Index(0))
-	go func() { mapCache[fnType] = item }()
+	mapCache[fnType] = item
 	return item, nil
 }
 
