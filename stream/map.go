@@ -45,6 +45,7 @@ func (m *streamMap) run(s *Stream) *Stream {
 func (m *streamMap) validateMap(s *Stream) (*mapItem, *errors.Error) {
 	item := &mapItem{}
 	fnType := reflect.TypeOf(m.fn)
+	fmt.Println("---->")
 	fmt.Println(fnType)
 	if i, ok := mapCache[fnType]; ok {
 		fmt.Println("cached")
