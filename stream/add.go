@@ -19,7 +19,7 @@ func (op *add) name() string {
 }
 
 // Run performs the operations whenever is called
-func (op *add) run(s *stream) *stream {
+func (op *add) run(s *Stream) *Stream {
 	if err := op.validate(s); err != nil {
 		s.err = err
 		return s
@@ -31,23 +31,23 @@ func (op *add) run(s *stream) *stream {
 	return s
 }
 
-func (op *add) validate(s *stream) *errors.Error {
+func (op *add) validate(s *Stream) *errors.Error {
 	if s.items == nil {
-		return errors.EmptyStream(op.name(), "An element can not be added in a nil stream")
+		return errors.EmptyStream(op.name(), "An element can not be added in a nil Stream")
 	}
 	itemsType := reflect.TypeOf(s.items).Elem()
 	elementType := reflect.TypeOf(op.input)
 	if itemsType.Kind() != reflect.Ptr && op.input == nil {
-		return errors.InvalidArgument(op.name(), "A nil value can not be added in a stream of non-pointers values")
+		return errors.InvalidArgument(op.name(), "A nil value can not be added in a Stream of non-pointers values")
 	}
 	if elementType != itemsType {
 		return errors.InvalidArgument(op.name(),
-			"An element whose type is %s can not be added in a stream of type %s", elementType, itemsType)
+			"An element whose type is %s can not be added in a Stream of type %s", elementType, itemsType)
 	}
 	return nil
 }
 
-func (s stream) Add(input interface{}) S {
+func (s *Stream) Add(input interface{}) *Stream {
 	s.operations = append(s.operations, &add{input})
 	return s
 }

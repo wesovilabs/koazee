@@ -46,7 +46,7 @@ func TestStream_Sort_validation(t *testing.T) {
 
 	assert.Equal(
 		t,
-		errors.EmptyStream(stream.OpCodeSort, "A nil stream can not be sorted"),
+		errors.EmptyStream(stream.OpCodeSort, "A nil Stream can not be sorted"),
 		koazee.Stream().Sort(func() {}).Out().Err())
 
 	assert.Equal(
@@ -76,7 +76,7 @@ func TestStream_Sort_validation(t *testing.T) {
 
 	assert.Equal(
 		t,
-		errors.InvalidArgument(stream.OpCodeSort, "The type of the output in the provided function must be int"),
+		errors.InvalidArgument(stream.OpCodeSort, "The type of the Output in the provided function must be int"),
 		koazee.StreamOf([]int{2, 3, 2}).Sort(func(val int, val2 int) string { return "hi" }).Out().Err())
 
 }

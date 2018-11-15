@@ -25,7 +25,7 @@ func TestStream_Count_validate(t *testing.T) {
 	)
 	assert.Equal(
 		t,
-		errors.EmptyStream(stream.OpCodeCount, "Count of a nil stream is not permitted"),
+		errors.EmptyStream(stream.OpCodeCount, "Count of a nil Stream is not permitted"),
 		err,
 	)
 	_, err = stream.New([]int{}).Add("home").Count()

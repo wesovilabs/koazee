@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/wesovilabs/koazee"
 )
 
@@ -41,13 +40,7 @@ var primates2 = []*primate{
 }
 
 func main() {
-	stream1 := koazee.StreamOf(primates).Filter(func(primate *primate) bool {
+	koazee.StreamOf(primates).Filter(func(primate *primate) bool {
 		return primate.genre == male
-	})
-	stream2 := koazee.StreamOf(primates2).Filter(func(primate *primate) bool {
-		return primate.genre == male
-	})
-	koazee.Stream().Compose(stream1, stream2).ForEach(func(primate *primate) {
-		fmt.Printf("Hi there, this is %s\n", primate.name)
 	}).Out()
 }

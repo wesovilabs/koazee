@@ -38,7 +38,7 @@ func (op *contains) run() (bool, *errors.Error) {
 
 func (op *contains) validate() *errors.Error {
 	if op.items == nil {
-		return errors.EmptyStream(op.name(), "It can not be checked if an element is in a nil stream")
+		return errors.EmptyStream(op.name(), "It can not be checked if an element is in a nil Stream")
 	}
 	itemsType := reflect.TypeOf(op.items).Elem()
 	if itemsType.Kind() != reflect.Ptr && op.element == nil {
@@ -47,13 +47,13 @@ func (op *contains) validate() *errors.Error {
 	elementType := reflect.TypeOf(op.element)
 	if elementType != itemsType {
 		return errors.InvalidArgument(op.name(),
-			"The stream contains elements of type %s and the passed argument has type %s", itemsType, elementType)
+			"The Stream contains elements of type %s and the passed argument has type %s", itemsType, elementType)
 	}
 	return nil
 }
 
-// Contains check if the passed element is found in the stream
-func (s stream) Contains(element interface{}) (bool, *errors.Error) {
+// Contains check if the passed element is found in the Stream
+func (s *Stream) Contains(element interface{}) (bool, *errors.Error) {
 	current := s.run()
 	if current.err != nil {
 		return false, current.err

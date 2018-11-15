@@ -8,12 +8,12 @@ import (
 )
 
 // Stream Initialize an empty stream
-func Stream() stream.S {
+func Stream() *stream.Stream {
 	return stream.New(nil)
 }
 
 // StreamOf loads the data into the stream
-func StreamOf(data interface{}) stream.S {
+func StreamOf(data interface{}) *stream.Stream {
 	if reflect.TypeOf(data).Kind() == reflect.Slice {
 		return stream.New(data)
 	}

@@ -137,4 +137,5 @@ linters:
   disable:
     - gochecknoglobals
     - dupl
+    - goimports
   fast: false

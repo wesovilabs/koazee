@@ -20,12 +20,12 @@ func TestStream_Last_validation(t *testing.T) {
 
 	assert.Equal(
 		t,
-		errors.EmptyStream(stream.OpCodeLast, "It can not be taken an element from a nil stream"),
+		errors.EmptyStream(stream.OpCodeLast, "It can not be taken an element from a nil Stream"),
 		stream.New(nil).Last().Err())
 
 	assert.Equal(
 		t,
-		errors.EmptyStream(stream.OpCodeLast, "It can not be taken an element from an empty stream"),
+		errors.EmptyStream(stream.OpCodeLast, "It can not be taken an element from an empty Stream"),
 		stream.New([]int{}).Last().Err())
 
 	// To verify how errors are propagated

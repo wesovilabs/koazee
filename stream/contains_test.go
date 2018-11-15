@@ -35,7 +35,7 @@ func TestStream_Contains_validate(t *testing.T) {
 	assert.Equal(
 		t,
 		errors.InvalidArgument(stream.OpCodeContains,
-			"The stream contains elements of type string and the passed argument has type bool"),
+			"The Stream contains elements of type string and the passed argument has type bool"),
 		err,
 	)
 
@@ -62,7 +62,7 @@ func TestStream_Contains_validate(t *testing.T) {
 	assert.Equal(
 		t,
 		errors.EmptyStream(stream.OpCodeContains, "It can not be "+
-			"checked if an element is in a nil stream"),
+			"checked if an element is in a nil Stream"),
 		err,
 	)
 	_, err = stream.New([]int{}).Add("home").Contains("home")

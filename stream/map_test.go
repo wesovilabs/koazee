@@ -45,7 +45,7 @@ func TestStream_Map_validation(t *testing.T) {
 
 	assert.Equal(
 		t,
-		errors.EmptyStream(stream.OpCodeMap, "A nil stream can not be iterated"),
+		errors.EmptyStream(stream.OpCodeMap, "A nil Stream can not be iterated"),
 		koazee.Stream().Map(func() {}).Out().Err())
 
 	assert.Equal(

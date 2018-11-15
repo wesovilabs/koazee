@@ -44,7 +44,7 @@ func TestStream_Reduce_validation(t *testing.T) {
 
 	assert.Equal(
 		t,
-		errors.EmptyStream(stream.OpCodeReduce, "A nil stream can not be reduced"),
+		errors.EmptyStream(stream.OpCodeReduce, "A nil Stream can not be reduced"),
 		koazee.Stream().Reduce(func() {}).Err())
 
 	assert.Equal(
@@ -70,7 +70,7 @@ func TestStream_Reduce_validation(t *testing.T) {
 	assert.Equal(
 		t,
 		errors.InvalidArgument(stream.OpCodeReduce, "The type of the first argument "+
-			"and the output in the provided function must be the same"),
+			"and the Output in the provided function must be the same"),
 		koazee.StreamOf([]int{2, 3, 2}).Reduce(func(acc string, val int) bool { return false }).Err())
 
 	// To verify how errors are propagated

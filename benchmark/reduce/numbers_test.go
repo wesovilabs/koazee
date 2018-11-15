@@ -12,7 +12,6 @@ var numbers100 = utils.ArrayOfInt(0, 10, 100)
 var numbers1000 = utils.ArrayOfInt(0, 100, 1000)
 var numbers10000 = utils.ArrayOfInt(0, 1000, 10000)
 
-/**
 func BenchmarkSum10(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		result := 0
@@ -23,6 +22,7 @@ func BenchmarkSum10(b *testing.B) {
 	}
 
 }
+
 func BenchmarkSum10Koazee(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		output2 := koazee.
@@ -35,7 +35,7 @@ func BenchmarkSum10Koazee(b *testing.B) {
 	}
 }
 
-**/
+/**
 func BenchmarkSum100(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		result := 0
@@ -52,7 +52,7 @@ func BenchmarkSum100Koazee(b *testing.B) {
 			Int()
 	}
 }
-
+**/
 /**
 func BenchmarkSum1000(b *testing.B) {
 	for i := 0; i < b.N; i++ {

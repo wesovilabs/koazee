@@ -17,7 +17,7 @@ func (op *filter) name() string {
 	return OpCodeFilter
 }
 
-func (op *filter) run(s *stream) *stream {
+func (op *filter) run(s *Stream) *Stream {
 	if err := op.validate(s); err != nil {
 		s.err = err
 		return s
@@ -38,9 +38,9 @@ func (op *filter) run(s *stream) *stream {
 	return s
 }
 
-func (op *filter) validate(s *stream) *errors.Error {
+func (op *filter) validate(s *Stream) *errors.Error {
 	if s.items == nil {
-		return errors.EmptyStream(op.name(), "A nil stream can not be filtered")
+		return errors.EmptyStream(op.name(), "A nil Stream can not be filtered")
 	}
 	itemsType := reflect.TypeOf(s.items)
 	function := reflect.ValueOf(op.fn)
@@ -61,13 +61,13 @@ func (op *filter) validate(s *stream) *errors.Error {
 			itemsType.Elem().String())
 	}
 	if fnOut.Kind() != reflect.Bool {
-		return errors.InvalidArgument(op.name(), "The type of the output in the provided function must be bool")
+		return errors.InvalidArgument(op.name(), "The type of the Output in the provided function must be bool")
 	}
 	return nil
 }
 
-// Filter discard the elements in the stream that don't match with the provided filter
-func (s stream) Filter(fn interface{}) S {
+// Filter discard the elements in the Stream that don't match with the provided filter
+func (s *Stream) Filter(fn interface{}) *Stream {
 	s.operations = append(s.operations, &filter{fn})
 	return s
 }

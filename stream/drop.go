@@ -18,7 +18,7 @@ func (op *drop) name() string {
 }
 
 // Run performs the operations whenever is called
-func (op *drop) run(s *stream) *stream {
+func (op *drop) run(s *Stream) *Stream {
 	if err := op.validate(s); err != nil {
 		s.err = err
 		return s
@@ -36,23 +36,23 @@ func (op *drop) run(s *stream) *stream {
 	return s
 }
 
-func (op *drop) validate(s *stream) *errors.Error {
+func (op *drop) validate(s *Stream) *errors.Error {
 	if s.items == nil {
-		return errors.EmptyStream(op.name(), "An element can not be dropped in a nil stream")
+		return errors.EmptyStream(op.name(), "An element can not be dropped in a nil Stream")
 	}
 	itemsType := reflect.TypeOf(s.items).Elem()
 	elementType := reflect.TypeOf(op.input)
 	if itemsType.Kind() != reflect.Ptr && op.input == nil {
-		return errors.InvalidArgument(op.name(), "A nil value can not be dropped from a stream of non-pointers values")
+		return errors.InvalidArgument(op.name(), "A nil value can not be dropped from a Stream of non-pointers values")
 	}
 	if elementType != itemsType {
 		return errors.InvalidArgument(op.name(),
-			"An element whose type is %s can not be dropped from a stream of type %s", elementType, itemsType)
+			"An element whose type is %s can not be dropped from a Stream of type %s", elementType, itemsType)
 	}
 	return nil
 }
 
-func (s stream) Drop(input interface{}) S {
+func (s *Stream) Drop(input interface{}) *Stream {
 	s.operations = append(s.operations, &drop{input})
 	return s
 }

@@ -30,13 +30,13 @@ func (op *count) run() (int, *errors.Error) {
 
 func (op *count) validate() *errors.Error {
 	if op.items == nil {
-		return errors.EmptyStream(op.name(), "Count of a nil stream is not permitted")
+		return errors.EmptyStream(op.name(), "Count of a nil Stream is not permitted")
 	}
 	return nil
 }
 
-// Count function that returns the number of elements in the stream
-func (s stream) Count() (int, *errors.Error) {
+// Count function that returns the number of elements in the Stream
+func (s *Stream) Count() (int, *errors.Error) {
 	current := s.run()
 	if current.err != nil {
 		return 0, current.err

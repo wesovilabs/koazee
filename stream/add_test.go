@@ -28,22 +28,22 @@ func TestStream_Add_validation(t *testing.T) {
 		StreamOf([]string{"Freedom", "for", "the", "animals"}).
 		Add(10)
 	assert.Equal(t, errors.InvalidArgument(stream.OpCodeAdd,
-		"An element whose type is int can not be added in a stream "+
+		"An element whose type is int can not be added in a Stream "+
 			"of type string"), s.Out().Err())
 
 	s = koazee.
 		StreamOf([]string{"Freedom", "for", "the", "animals"}).
 		Add(func() int { return 1 })
 	assert.Equal(t, errors.InvalidArgument(stream.OpCodeAdd,
-		"An element whose type is func() int can not be added in a stream of type string"),
+		"An element whose type is func() int can not be added in a Stream of type string"),
 		s.Out().Err())
 
 	s = koazee.Stream().Add(10)
 	assert.Equal(t, errors.EmptyStream(stream.OpCodeAdd,
-		"An element can not be added in a nil stream"), s.Out().Err())
+		"An element can not be added in a nil Stream"), s.Out().Err())
 
 	s = koazee.Stream().Add(nil).With([]int{2, 3, 1})
 	assert.Equal(t, errors.InvalidArgument(stream.OpCodeAdd, ""+
-		"A nil value can not be added in a stream of non-pointers values"),
+		"A nil value can not be added in a Stream of non-pointers values"),
 		s.Out().Err())
 }

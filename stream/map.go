@@ -17,7 +17,7 @@ func (op *streamMap) name() string {
 	return OpCodeMap
 }
 
-func (op *streamMap) run(s *stream) *stream {
+func (op *streamMap) run(s *Stream) *Stream {
 	if err := op.validate(s); err != nil {
 		s.err = err
 		return s
@@ -40,9 +40,9 @@ func (op *streamMap) run(s *stream) *stream {
 	return s
 }
 
-func (op *streamMap) validate(s *stream) *errors.Error {
+func (op *streamMap) validate(s *Stream) *errors.Error {
 	if s.items == nil {
-		return errors.EmptyStream(op.name(), "A nil stream can not be iterated")
+		return errors.EmptyStream(op.name(), "A nil Stream can not be iterated")
 	}
 	itemsType := reflect.TypeOf(s.items).Elem()
 	function := reflect.ValueOf(op.fn)
@@ -64,8 +64,8 @@ func (op *streamMap) validate(s *stream) *errors.Error {
 	return nil
 }
 
-// Map performs a mutation over all the elements in the stream and return a new stream
-func (s stream) Map(fn interface{}) S {
+// Map performs a mutation over all the elements in the Stream and return a new Stream
+func (s *Stream) Map(fn interface{}) *Stream {
 	s.operations = append(s.operations, &streamMap{fn})
 	return s
 }

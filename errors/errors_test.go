@@ -16,8 +16,6 @@ func TestError_Error(t *testing.T) {
 	assert.Equal(t, "[add:unknown] argument", err.Error())
 	err = errors.New(stream.OpCodeAt, "unknown", "argument")
 	assert.Equal(t, "[at:unknown] argument", err.Error())
-	err = errors.New(stream.OpCodeCompose, "unknown", "argument")
-	assert.Equal(t, "[compose:unknown] argument", err.Error())
 	err = errors.New(stream.OpCodeContains, "unknown", "argument")
 	assert.Equal(t, "[contains:unknown] argument", err.Error())
 	err = errors.New(stream.OpCodeDrop, "unknown", "argument")

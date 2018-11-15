@@ -210,7 +210,7 @@ func TestOutput_Float64(t *testing.T) {
 func TestOutput_Err(t *testing.T) {
 	assert.Equal(
 		t,
-		errors.EmptyStream(stream.OpCodeFirst, "It can not be taken an element from a nil stream"),
+		errors.EmptyStream(stream.OpCodeFirst, "It can not be taken an element from a nil Stream"),
 		stream.New(nil).First().Err(),
 	)
 }

@@ -27,18 +27,18 @@ func TestStream_Drop_validation(t *testing.T) {
 	assert.Equal(
 		t,
 		errors.InvalidArgument(stream.OpCodeDrop, "An element whose type is int "+
-			"can not be dropped from a stream of type string"),
+			"can not be dropped from a Stream of type string"),
 		koazee.StreamOf([]string{"Freedom", "for", "the", "animals"}).Drop(10).Out().Err())
 
 	assert.Equal(
 		t,
 		errors.EmptyStream(stream.OpCodeDrop, "An element can not be "+
-			"dropped in a nil stream"),
+			"dropped in a nil Stream"),
 		koazee.Stream().Drop(10).Out().Err())
 
 	assert.Equal(
 		t,
 		errors.InvalidArgument(stream.OpCodeDrop,
-			"A nil value can not be dropped from a stream of non-pointers values"),
+			"A nil value can not be dropped from a Stream of non-pointers values"),
 		koazee.Stream().Drop(nil).With([]int{2, 3, 1}).Out().Err())
 }

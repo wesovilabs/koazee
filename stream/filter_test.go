@@ -28,7 +28,7 @@ func TestStream_Filter_validation(t *testing.T) {
 
 	assert.Equal(
 		t,
-		errors.EmptyStream(stream.OpCodeFilter, "A nil stream can not be filtered"),
+		errors.EmptyStream(stream.OpCodeFilter, "A nil Stream can not be filtered"),
 		koazee.Stream().Filter(func() {}).Out().Err())
 
 	assert.Equal(
@@ -48,7 +48,7 @@ func TestStream_Filter_validation(t *testing.T) {
 
 	assert.Equal(
 		t,
-		errors.InvalidArgument(stream.OpCodeFilter, "The type of the output in the provided function must be bool"),
+		errors.InvalidArgument(stream.OpCodeFilter, "The type of the Output in the provided function must be bool"),
 		koazee.StreamOf([]int{2, 3, 2}).Filter(func(val int) string { return "a" }).Out().Err())
 
 }
