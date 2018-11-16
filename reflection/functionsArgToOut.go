@@ -67,17 +67,18 @@ func StringToInt(itemsValue *reflect.Value, fn interface{}) interface{} {
 	}
 	return acc
 }
-var c = make(map[string]string)
 
 // StringToString function that iterates over function like this func(string int)string
 func StringToString(input []string, fn interface{}) []string {
-
+	//c := make(map[string]string) // need to think about it...
 	fn2 := fn.(func(string) string)
 	for i := 0; i < len(input); i++ {
+		/**
 		if val, ok := c[input[i]]; ok {
 			input[1] = val
 			continue
 		}
+		**/
 		input[1] = fn2(input[i])
 	}
 	return input
