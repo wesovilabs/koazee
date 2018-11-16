@@ -8,9 +8,9 @@ import (
 const opCode = "reduce"
 
 type Reduce struct {
-	itemsType  reflect.Type
-	itemsValue *reflect.Value
-	fn         interface{}
+	ItemsType  reflect.Type
+	ItemsValue *reflect.Value
+	Func       interface{}
 }
 
 func (r *Reduce) Run() (interface{}, *errors.Error) {
@@ -18,14 +18,14 @@ func (r *Reduce) Run() (interface{}, *errors.Error) {
 	if err != nil {
 		return nil, err
 	}
-	if result := dispatch(r.itemsValue, r.fn, info); result != nil {
+	if result := dispatch(r.ItemsValue, r.Func, info); result != nil {
 		return result, nil
 	}
 	var argv = make([]reflect.Value, 2)
 	acc := reflect.New(info.fnIn1Type).Elem()
-	for i := 0; i < r.itemsValue.Len(); i++ {
+	for i := 0; i < r.ItemsValue.Len(); i++ {
 		argv[0] = acc
-		argv[1] = r.itemsValue.Index(i)
+		argv[1] = r.ItemsValue.Index(i)
 		output := info.fnValue.Call(argv)
 		acc = output[0]
 	}
@@ -33,13 +33,13 @@ func (r *Reduce) Run() (interface{}, *errors.Error) {
 }
 
 func (r *Reduce) validate() (*reduceInfo, *errors.Error) {
-	fnType := reflect.TypeOf(r.fn)
+	fnType := reflect.TypeOf(r.Func)
 	if reduceInfo, ok := cache[fnType]; ok {
 		return reduceInfo, nil
 	}
 	info := &reduceInfo{}
-	info.fnValue = reflect.ValueOf(r.fn)
-	if r.itemsValue == nil {
+	info.fnValue = reflect.ValueOf(r.Func)
+	if r.ItemsValue == nil {
 		return nil, errors.EmptyStream(opCode, "A nil Stream can not be reduced")
 	}
 	if fnType.Kind() != reflect.Func {
@@ -52,9 +52,9 @@ func (r *Reduce) validate() (*reduceInfo, *errors.Error) {
 		return nil, errors.InvalidArgument(opCode, "The provided function must return 1 value")
 	}
 	fnIn2 := reflect.New(fnType.In(1)).Elem()
-	if fnIn2.Type() != r.itemsType {
+	if fnIn2.Type() != r.ItemsType {
 		return nil, errors.InvalidArgument(opCode, "The type of the "+
-			"second argument in the provided function must be %s", r.itemsType.String())
+			"second argument in the provided function must be %s", r.ItemsType.String())
 	}
 	info.fnIn1Type = fnType.In(0)
 	info.fnIn2Type = fnType.In(1)
