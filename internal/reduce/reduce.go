@@ -38,6 +38,7 @@ func (r *Reduce) validate() (*reduceInfo, *errors.Error) {
 		return reduceInfo, nil
 	}
 	info := &reduceInfo{}
+	info.fnType = fnType
 	info.fnValue = reflect.ValueOf(r.Func)
 	if r.ItemsValue == nil {
 		return nil, errors.EmptyStream(opCode, "A nil Stream can not be reduced")
