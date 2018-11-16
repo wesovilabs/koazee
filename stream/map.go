@@ -23,13 +23,11 @@ func (m *streamMap) run(s *Stream) *Stream {
 		s.err = err
 		return s
 	}
-	newItems := mInfo.items
-
 	if output := runPrimitiveMap(s.itemsValue, m.fn, s.itemsType, mInfo.outputType); output != nil {
 		s.items = output
 		return s
 	}
-
+	newItems := mInfo.items
 	if mInfo.isPtr {
 		for index := 0; index < s.itemsValue.Len(); index++ {
 			mapArgv[0] = reflect.ValueOf(reflect.ValueOf(s.itemsValue.Index(index).Interface()).Elem().Addr().Interface())
