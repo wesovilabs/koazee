@@ -23,16 +23,16 @@ func (m *streamMap) run(s *Stream) *Stream {
 		return s
 	}
 	newItems := mInfo.items
-	items := reflect.ValueOf(s.items)
+
 	if mInfo.isPtr {
-		for index := 0; index < items.Len(); index++ {
-			mapArgv[0] = reflect.ValueOf(reflect.ValueOf(items.Index(index).Interface()).Elem().Addr().Interface())
+		for index := 0; index < s.itemsValue.Len(); index++ {
+			mapArgv[0] = reflect.ValueOf(reflect.ValueOf(s.itemsValue.Index(index).Interface()).Elem().Addr().Interface())
 			result := mInfo.fnValue.Call(mapArgv)
 			newItems = reflect.Append(newItems, result[0])
 		}
 	} else {
-		for index := 0; index < items.Len(); index++ {
-			mapArgv[0] = items.Index(index)
+		for index := 0; index < s.itemsValue.Len(); index++ {
+			mapArgv[0] = s.itemsValue.Index(index)
 			result := mInfo.fnValue.Call(mapArgv)
 			newItems = reflect.Append(newItems, result[0])
 		}
