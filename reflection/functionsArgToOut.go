@@ -72,9 +72,8 @@ func StringToInt(itemsValue *reflect.Value, fn interface{}) interface{} {
 func StringToString(input []string, fn interface{}) []string {
 	fn2 := fn.(func(string) string)
 	for i := 0; i < len(input); i++ {
-		input[1] = fn2(input[i])
+		go func(){input[1] = fn2(input[i])}()
 	}
-
 	return input
 }
 
