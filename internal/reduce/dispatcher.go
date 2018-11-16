@@ -1,6 +1,7 @@
 package reduce
 
 import (
+	"fmt"
 	"reflect"
 )
 
@@ -18,6 +19,7 @@ func dispatch(items *reflect.Value, fn interface{}, info *reduceInfo) interface{
 		case reflect.Int:
 			return reduceStringToInt(items, fn.(func(int, string) int))
 		case reflect.String:
+			fmt.Printf("%#v",info)
 			return reduceStringToString(items, fn.(func(string, string) string))
 		}
 
