@@ -1,7 +1,6 @@
 package reduce
 
 import (
-	"fmt"
 	"reflect"
 )
 
