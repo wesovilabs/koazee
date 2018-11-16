@@ -2,7 +2,7 @@ package reduce
 
 import "reflect"
 
-var cache map[reflect.Type]*reduceInfo
+var cache = make(map[reflect.Type]*reduceInfo)
 
 type reduceInfo struct {
 	fnType    reflect.Type
