@@ -1,6 +1,7 @@
 package stream
 
 import (
+	"fmt"
 	"reflect"
 
 	"github.com/wesovilabs/koazee/errors"
@@ -26,7 +27,7 @@ func (m *streamMap) run(s *Stream) *Stream {
 	newItems := mInfo.items
 
 	if output := runPrimitiveMap(s.itemsValue, m.fn, s.itemsType, mInfo.outputType); output != nil {
-
+		fmt.Println(output)
 	}
 
 	if mInfo.isPtr {
