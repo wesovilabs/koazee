@@ -4,7 +4,7 @@ import "reflect"
 
 type cacheType map[reflect.Type]map[reflect.Type]*reduceInfo
 
-var cache cacheType
+var cache cacheType = cacheType{}
 
 func (c *cacheType) add(itemsType, funcType reflect.Type, item *reduceInfo) {
 	if _, ok := cache[itemsType]; !ok {
