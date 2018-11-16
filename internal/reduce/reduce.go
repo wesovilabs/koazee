@@ -13,6 +13,8 @@ type Reduce struct {
 	Func       interface{}
 }
 
+var argv = make([]reflect.Value, 2)
+
 func (r *Reduce) Run() (interface{}, *errors.Error) {
 	info, err := r.validate()
 	if err != nil {
@@ -21,7 +23,6 @@ func (r *Reduce) Run() (interface{}, *errors.Error) {
 	if result := dispatch(r.ItemsValue, r.Func, info); result != nil {
 		return result, nil
 	}
-	var argv = make([]reflect.Value, 2)
 	acc := reflect.New(info.fnIn1Type).Elem()
 	for i := 0; i < r.ItemsValue.Len(); i++ {
 		argv[0] = acc
