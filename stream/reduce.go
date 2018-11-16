@@ -10,6 +10,6 @@ func (s *Stream) Reduce(fn interface{}) Output {
 	if current.err != nil {
 		return Output{nil, current.err}
 	}
-	value, err := reduce.Reduce{s.itemsType, s.itemsValue, fn}.Run()
+	value, err := (&reduce.Reduce{s.itemsType, s.itemsValue, fn}).Run()
 	return Output{value, err}
 }
