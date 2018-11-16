@@ -20,8 +20,7 @@ func dispatch(items *reflect.Value, fn interface{}, info *reduceInfo) interface{
 		case reflect.String:
 			return reduceStringToString(items, fn.(func(string, string) string))
 		}
-	default:
-		return nil
 
 	}
+	return nil
 }
