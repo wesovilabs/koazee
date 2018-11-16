@@ -5,7 +5,7 @@ import (
 )
 
 func dispatch(items *reflect.Value, fn interface{}, info *reduceInfo) interface{} {
-	switch info.fnIn1Type.Kind() {
+	switch info.fnIn2Type.Kind() {
 	case reflect.Int:
 		items := items.Interface().([]int)
 		switch info.fnIn2Type.Kind() {
