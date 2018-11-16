@@ -25,6 +25,10 @@ func (m *streamMap) run(s *Stream) *Stream {
 	}
 	newItems := mInfo.items
 
+	if output := runPrimitiveMap(s.itemsValue, m.fn, s.itemsType, mInfo.outputType); output != nil {
+
+	}
+
 	if mInfo.isPtr {
 		for index := 0; index < s.itemsValue.Len(); index++ {
 			mapArgv[0] = reflect.ValueOf(reflect.ValueOf(s.itemsValue.Index(index).Interface()).Elem().Addr().Interface())
@@ -88,58 +92,58 @@ func (s *Stream) Map(fn interface{}) *Stream {
 	return s
 }
 
-func runPrimitiveMap(itemsValue *reflect.Value, fn interface{}, fnIn, fnOut *reflect.Value) *Output {
+func runPrimitiveMap(itemsValue *reflect.Value, fn interface{}, fnIn, fnOut reflect.Type) interface{} {
 	if fnIn.Kind() == reflect.Int {
 		switch fnOut.Kind() {
 		case reflect.Int:
-			return &Output{IntToInt(itemsValue, fn), nil}
+			return IntToInt(itemsValue, fn)
 		case reflect.String:
-			return &Output{IntToString(itemsValue, fn), nil}
+			return IntToString(itemsValue, fn)
 		case reflect.Bool:
-			return &Output{IntToBool(itemsValue, fn), nil}
+			return IntToBool(itemsValue, fn)
 		case reflect.Float32:
-			return &Output{IntToFloat32(itemsValue, fn), nil}
+			return IntToFloat32(itemsValue, fn)
 		case reflect.Float64:
-			return &Output{IntToFloat64(itemsValue, fn), nil}
+			return IntToFloat64(itemsValue, fn)
 		}
 	} else if fnIn.Kind() == reflect.String {
 		switch fnOut.Kind() {
 		case reflect.Int:
-			return &Output{StringToInt(itemsValue, fn), nil}
+			return StringToInt(itemsValue, fn)
 		case reflect.String:
-			return &Output{StringToString(itemsValue.Interface().([]string), fn), nil}
+			return StringToString(itemsValue.Interface().([]string), fn)
 		case reflect.Bool:
-			return &Output{StringToBool(itemsValue, fn), nil}
+			return StringToBool(itemsValue, fn)
 		case reflect.Float32:
-			return &Output{StringToFloat32(itemsValue, fn), nil}
+			return StringToFloat32(itemsValue, fn)
 		case reflect.Float64:
-			return &Output{StringToFloat64(itemsValue, fn), nil}
+			return StringToFloat64(itemsValue, fn)
 		}
 	} else if fnIn.Kind() == reflect.Bool {
 		switch fnOut.Kind() {
 		case reflect.Int:
-			return &Output{BoolToInt(itemsValue, fn), nil}
+			return BoolToInt(itemsValue, fn)
 		case reflect.String:
-			return &Output{BoolToString(itemsValue, fn), nil}
+			return BoolToString(itemsValue, fn)
 		case reflect.Bool:
-			return &Output{BoolToBool(itemsValue, fn), nil}
+			return BoolToBool(itemsValue, fn)
 		case reflect.Float32:
-			return &Output{BoolToFloat32(itemsValue, fn), nil}
+			return BoolToFloat32(itemsValue, fn)
 		case reflect.Float64:
-			return &Output{BoolToFloat64(itemsValue, fn), nil}
+			return BoolToFloat64(itemsValue, fn)
 		}
 	} else if fnIn.Kind() == reflect.Float32 {
 		switch fnOut.Kind() {
 		case reflect.Int:
-			return &Output{Float32ToInt(itemsValue, fn), nil}
+			return Float32ToInt(itemsValue, fn)
 		case reflect.String:
-			return &Output{Float32ToString(itemsValue, fn), nil}
+			return Float32ToString(itemsValue, fn)
 		case reflect.Bool:
-			return &Output{Float32ToBool(itemsValue, fn), nil}
+			return Float32ToBool(itemsValue, fn)
 		case reflect.Float32:
-			return &Output{Float32ToFloat32(itemsValue, fn), nil}
+			return Float32ToFloat32(itemsValue, fn)
 		case reflect.Float64:
-			return &Output{Float32ToFloat64(itemsValue, fn), nil}
+			return Float32ToFloat64(itemsValue, fn)
 		}
 	}
 	return nil
