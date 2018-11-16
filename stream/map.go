@@ -4,6 +4,7 @@ import (
 	"reflect"
 
 	"github.com/wesovilabs/koazee/errors"
+	. "github.com/wesovilabs/koazee/reflection"
 )
 
 // OpCodeMap identifier for operation map
@@ -85,4 +86,61 @@ type mapItem struct {
 func (s *Stream) Map(fn interface{}) *Stream {
 	s.operations = append(s.operations, &streamMap{fn})
 	return s
+}
+
+func runPrimitiveMap(itemsValue *reflect.Value, fn interface{}, fnIn, fnOut *reflect.Value) *Output {
+	if fnIn.Kind() == reflect.Int {
+		switch fnOut.Kind() {
+		case reflect.Int:
+			return &Output{IntToInt(itemsValue, fn), nil}
+		case reflect.String:
+			return &Output{IntToString(itemsValue, fn), nil}
+		case reflect.Bool:
+			return &Output{IntToBool(itemsValue, fn), nil}
+		case reflect.Float32:
+			return &Output{IntToFloat32(itemsValue, fn), nil}
+		case reflect.Float64:
+			return &Output{IntToFloat64(itemsValue, fn), nil}
+		}
+	} else if fnIn.Kind() == reflect.String {
+		switch fnOut.Kind() {
+		case reflect.Int:
+			return &Output{StringToInt(itemsValue, fn), nil}
+		case reflect.String:
+			return &Output{StringToString(itemsValue.Interface().([]string), fn), nil}
+		case reflect.Bool:
+			return &Output{StringToBool(itemsValue, fn), nil}
+		case reflect.Float32:
+			return &Output{StringToFloat32(itemsValue, fn), nil}
+		case reflect.Float64:
+			return &Output{StringToFloat64(itemsValue, fn), nil}
+		}
+	} else if fnIn.Kind() == reflect.Bool {
+		switch fnOut.Kind() {
+		case reflect.Int:
+			return &Output{BoolToInt(itemsValue, fn), nil}
+		case reflect.String:
+			return &Output{BoolToString(itemsValue, fn), nil}
+		case reflect.Bool:
+			return &Output{BoolToBool(itemsValue, fn), nil}
+		case reflect.Float32:
+			return &Output{BoolToFloat32(itemsValue, fn), nil}
+		case reflect.Float64:
+			return &Output{BoolToFloat64(itemsValue, fn), nil}
+		}
+	} else if fnIn.Kind() == reflect.Float32 {
+		switch fnOut.Kind() {
+		case reflect.Int:
+			return &Output{Float32ToInt(itemsValue, fn), nil}
+		case reflect.String:
+			return &Output{Float32ToString(itemsValue, fn), nil}
+		case reflect.Bool:
+			return &Output{Float32ToBool(itemsValue, fn), nil}
+		case reflect.Float32:
+			return &Output{Float32ToFloat32(itemsValue, fn), nil}
+		case reflect.Float64:
+			return &Output{Float32ToFloat64(itemsValue, fn), nil}
+		}
+	}
+	return nil
 }
