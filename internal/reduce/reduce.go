@@ -34,7 +34,7 @@ func (r *Reduce) Run() (interface{}, *errors.Error) {
 
 func (r *Reduce) validate() (*reduceInfo, *errors.Error) {
 	fnType := reflect.TypeOf(r.Func)
-	if reduceInfo, ok := cache[fnType]; ok {
+	if reduceInfo := cache.get(r.ItemsType, fnType); reduceInfo != nil {
 		return reduceInfo, nil
 	}
 	info := &reduceInfo{}
@@ -63,8 +63,6 @@ func (r *Reduce) validate() (*reduceInfo, *errors.Error) {
 		return nil, errors.InvalidArgument(opCode, "The type of the first argument and "+
 			"the Output in the provided function must be the same")
 	}
-	cache[fnType] = info
+	cache.add(r.ItemsType, fnType, info)
 	return info, nil
 }
-
-
