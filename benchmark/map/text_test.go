@@ -23,6 +23,37 @@ func BenchmarkString10UppercaseKoazee(b *testing.B) {
 	}
 	mapOutput = result
 }
+func BenchmarkString100UppercaseKoazee(b *testing.B) {
+	var result *stream.Output
+	for i := 0; i < b.N; i++ {
+		result = koazee.
+			StreamOf(strings100).
+			Map(strings.ToUpper).
+			Out()
+	}
+	mapOutput = result
+}
+func BenchmarkString1000UppercaseKoazee(b *testing.B) {
+	var result *stream.Output
+	for i := 0; i < b.N; i++ {
+		result = koazee.
+			StreamOf(strings1000).
+			Map(strings.ToUpper).
+			Out()
+	}
+	mapOutput = result
+}
+func BenchmarkString10000UppercaseKoazee(b *testing.B) {
+	var result *stream.Output
+	for i := 0; i < b.N; i++ {
+		result = koazee.
+			StreamOf(strings10000).
+			Map(strings.ToUpper).
+			Out()
+	}
+	mapOutput = result
+}
+
 func BenchmarkString10LenKoazee(b *testing.B) {
 	var result *stream.Output
 	for i := 0; i < b.N; i++ {

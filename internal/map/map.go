@@ -5,7 +5,7 @@ import (
 	"reflect"
 )
 
-const opCode = "map"
+const OpCode = "map"
 
 type Map struct {
 	ItemsType  reflect.Type
@@ -21,7 +21,7 @@ func (m *Map) Run() (interface{}, *errors.Error) {
 	if found, result := dispatch(m.ItemsValue, m.Func, mInfo); found {
 		return result, nil
 	}
-	newItems := mInfo.items
+	newItems := reflect.MakeSlice(reflect.SliceOf(mInfo.fnOutputType), 0, 0)
 	var argv = make([]reflect.Value, 1)
 	if mInfo.isPtr {
 		for index := 0; index < m.ItemsValue.Len(); index++ {
@@ -47,21 +47,21 @@ func (m *Map) validate() (*mapInfo, *errors.Error) {
 		return val, nil
 	}
 	if m.ItemsValue == nil {
-		return nil, errors.EmptyStream(opCode, "A nil Stream can not be iterated")
+		return nil, errors.EmptyStream(OpCode, "A nil Stream can not be iterated")
 	}
 	item.fnValue = reflect.ValueOf(m.Func)
 	if item.fnValue.Type().Kind() != reflect.Func {
-		return nil, errors.InvalidArgument(opCode, "The map operation requires a function as argument")
+		return nil, errors.InvalidArgument(OpCode, "The map operation requires a function as argument")
 	}
 	if item.fnValue.Type().NumIn() != 1 {
-		return nil, errors.InvalidArgument(opCode, "The provided function must retrieve 1 argument")
+		return nil, errors.InvalidArgument(OpCode, "The provided function must retrieve 1 argument")
 	}
 	if item.fnValue.Type().NumOut() != 1 {
-		return nil, errors.InvalidArgument(opCode, "The provided function must return 1 value")
+		return nil, errors.InvalidArgument(OpCode, "The provided function must return 1 value")
 	}
 	fnIn := reflect.New(item.fnValue.Type().In(0)).Elem()
 	if fnIn.Type() != m.ItemsType {
-		return nil, errors.InvalidArgument(opCode,
+		return nil, errors.InvalidArgument(OpCode,
 			"The type of the argument in the provided "+
 				"function must be %s", m.ItemsType.String())
 	}

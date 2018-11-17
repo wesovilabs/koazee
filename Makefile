@@ -17,13 +17,13 @@ check: fmt
 	golangci-lint run
 lint:
 	golint
+benchmark: fmt
+	${GO} test -bench Benchmark.+ -run -Benchmark.+ -v ./benchmark/...
 info: fmt
 	depscheck -totalonly -tests .
 	golocc
 std-info: fmt
 	depscheck -stdlib -v .
-benchmark: fmt
-	${GO} test -bench Benchmark.+ -run -Benchmark.+ -v ./benchmark
 install:
 	${GO} get -u github.com/divan/depscheck
 	${GO} install github.com/golangci/golangci-lint/cmd/golangci-lint
