@@ -18,7 +18,7 @@ func (m *Map) Run() (interface{}, *errors.Error) {
 	if err != nil {
 		return nil, err
 	}
-	if found, result := dispatch(m.ItemsValue, m.Func); found {
+	if found, result := dispatch(m.ItemsValue, m.Func, mInfo); found {
 		return result, nil
 	}
 	newItems := mInfo.items
