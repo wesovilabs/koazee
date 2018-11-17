@@ -1,6 +1,7 @@
 package _map
 
 import (
+	"fmt"
 	"github.com/wesovilabs/koazee/errors"
 	"reflect"
 )
@@ -21,6 +22,7 @@ func (m *Map) Run() (interface{}, *errors.Error) {
 	if found, result := dispatch(m.ItemsValue, m.Func, mInfo); found {
 		return result, nil
 	}
+	fmt.Println("no generad....")
 	newItems := mInfo.items
 	var argv = make([]reflect.Value, 1)
 	if mInfo.isPtr {
