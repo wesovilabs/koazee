@@ -3,6 +3,8 @@ package errors_test
 import (
 	"testing"
 
+	mapInternal "github.com/wesovilabs/koazee/internal/maps"
+	reduceInternal "github.com/wesovilabs/koazee/internal/reduce"
 	"github.com/wesovilabs/koazee/stream"
 
 	"github.com/stretchr/testify/assert"
@@ -26,11 +28,11 @@ func TestError_Error(t *testing.T) {
 	assert.Equal(t, "[forEach:unknown] argument", err.Error())
 	err = errors.New(stream.OpCodeLast, "unknown", "argument")
 	assert.Equal(t, "[last:unknown] argument", err.Error())
-	err = errors.New(stream.OpCodeMap, "unknown", "argument")
+	err = errors.New(mapInternal.OpCode, "unknown", "argument")
 	assert.Equal(t, "[map:unknown] argument", err.Error())
 	err = errors.New(stream.OpCodeOut, "unknown", "argument")
 	assert.Equal(t, "[out:unknown] argument", err.Error())
-	err = errors.New(stream.OpCodeReduce, "unknown", "argument")
+	err = errors.New(reduceInternal.OpCode, "unknown", "argument")
 	assert.Equal(t, "[reduce:unknown] argument", err.Error())
 	err = errors.New(stream.OpCodeRemoveDuplicates, "unknown", "argument")
 	assert.Equal(t, "[removeDuplicates:unknown] argument", err.Error())

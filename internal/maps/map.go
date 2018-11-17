@@ -1,4 +1,4 @@
-package _map
+package maps
 
 import (
 	"github.com/wesovilabs/koazee/errors"

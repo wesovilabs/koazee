@@ -1,4 +1,4 @@
-package _map
+package maps
 
 import "reflect"
 
@@ -27,5 +27,4 @@ type mapInfo struct {
 	fnInputType  reflect.Type
 	fnOutputType reflect.Type
 	isPtr        bool
-	items        reflect.Value
 }

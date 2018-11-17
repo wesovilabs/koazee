@@ -1,7 +1,7 @@
 package stream
 
 import (
-	Map_ "github.com/wesovilabs/koazee/internal/map"
+	Map_ "github.com/wesovilabs/koazee/internal/maps"
 )
 
 type streamMap struct {
@@ -9,7 +9,7 @@ type streamMap struct {
 }
 
 func (m *streamMap) run(s *Stream) *Stream {
-	value, err := (&Map_.Map{s.itemsType, s.itemsValue, m.fn}).Run()
+	value, err := (&Map_.Map{ItemsType: s.itemsType, ItemsValue: s.itemsValue, Func: m.fn}).Run()
 	if err != nil {
 		s.err = err
 		return s

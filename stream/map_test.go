@@ -7,7 +7,7 @@ import (
 	"github.com/wesovilabs/koazee"
 	"github.com/wesovilabs/koazee/errors"
 
-	mapInternal "github.com/wesovilabs/koazee/internal/map"
+	mapInternal "github.com/wesovilabs/koazee/internal/maps"
 	"github.com/wesovilabs/koazee/stream"
 
 	"github.com/stretchr/testify/assert"

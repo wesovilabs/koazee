@@ -2,7 +2,7 @@ package reduce
 
 import "reflect"
 
-type dispatchFunction func(items *reflect.Value, fn interface{}, info *reduceInfo) interface{}
+type dispatchFunction func(items *reflect.Value, fn interface{}) interface{}
 
 var dispatcher = map[string]map[string]dispatchFunction{
 	"string": {
@@ -852,13 +852,13 @@ func dispatch(items *reflect.Value, function interface{}, info *reduceInfo) (boo
 	input := info.fnIn2Type.String()
 	if inputVal, ok := dispatcher[input]; ok {
 		if outputVal, ok := inputVal[output]; ok {
-			return true, outputVal(items, function, info)
+			return true, outputVal(items, function)
 		}
 	}
 	return false, nil
 }
 
-func reduceStringToString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceStringToString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]string)
 	fn := function.(func(string, string) string)
 	acc := ""
@@ -868,7 +868,7 @@ func reduceStringToString(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceStringToPtrString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceStringToPtrString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]string)
 	fn := function.(func(*string, string) *string)
 	acc := ""
@@ -879,7 +879,7 @@ func reduceStringToPtrString(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrStringToPtrString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrStringToPtrString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*string)
 	fn := function.(func(*string, *string) *string)
 	acc := ""
@@ -890,7 +890,7 @@ func reducePtrStringToPtrString(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrStringToString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrStringToString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*string)
 	fn := function.(func(string, *string) string)
 	acc := ""
@@ -900,7 +900,7 @@ func reducePtrStringToString(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceStringToBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceStringToBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]string)
 	fn := function.(func(bool, string) bool)
 	acc := false
@@ -910,7 +910,7 @@ func reduceStringToBool(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceStringToPtrBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceStringToPtrBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]string)
 	fn := function.(func(*bool, string) *bool)
 	acc := false
@@ -921,7 +921,7 @@ func reduceStringToPtrBool(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrStringToPtrBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrStringToPtrBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*string)
 	fn := function.(func(*bool, *string) *bool)
 	acc := false
@@ -932,7 +932,7 @@ func reducePtrStringToPtrBool(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrStringToBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrStringToBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*string)
 	fn := function.(func(bool, *string) bool)
 	acc := false
@@ -942,7 +942,7 @@ func reducePtrStringToBool(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceStringToInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceStringToInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]string)
 	fn := function.(func(int, string) int)
 	acc := 0
@@ -952,7 +952,7 @@ func reduceStringToInt(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceStringToPtrInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceStringToPtrInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]string)
 	fn := function.(func(*int, string) *int)
 	acc := 0
@@ -963,7 +963,7 @@ func reduceStringToPtrInt(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrStringToPtrInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrStringToPtrInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*string)
 	fn := function.(func(*int, *string) *int)
 	acc := 0
@@ -974,7 +974,7 @@ func reducePtrStringToPtrInt(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrStringToInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrStringToInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*string)
 	fn := function.(func(int, *string) int)
 	acc := 0
@@ -984,7 +984,7 @@ func reducePtrStringToInt(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceStringToInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceStringToInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]string)
 	fn := function.(func(int8, string) int8)
 	acc := int8(0)
@@ -994,7 +994,7 @@ func reduceStringToInt8(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceStringToPtrInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceStringToPtrInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]string)
 	fn := function.(func(*int8, string) *int8)
 	acc := int8(0)
@@ -1005,7 +1005,7 @@ func reduceStringToPtrInt8(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrStringToPtrInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrStringToPtrInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*string)
 	fn := function.(func(*int8, *string) *int8)
 	acc := int8(0)
@@ -1016,7 +1016,7 @@ func reducePtrStringToPtrInt8(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrStringToInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrStringToInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*string)
 	fn := function.(func(int8, *string) int8)
 	acc := int8(0)
@@ -1026,7 +1026,7 @@ func reducePtrStringToInt8(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceStringToInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceStringToInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]string)
 	fn := function.(func(int16, string) int16)
 	acc := int16(0)
@@ -1036,7 +1036,7 @@ func reduceStringToInt16(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceStringToPtrInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceStringToPtrInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]string)
 	fn := function.(func(*int16, string) *int16)
 	acc := int16(0)
@@ -1047,7 +1047,7 @@ func reduceStringToPtrInt16(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrStringToPtrInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrStringToPtrInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*string)
 	fn := function.(func(*int16, *string) *int16)
 	acc := int16(0)
@@ -1058,7 +1058,7 @@ func reducePtrStringToPtrInt16(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrStringToInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrStringToInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*string)
 	fn := function.(func(int16, *string) int16)
 	acc := int16(0)
@@ -1068,7 +1068,7 @@ func reducePtrStringToInt16(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceStringToInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceStringToInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]string)
 	fn := function.(func(int32, string) int32)
 	acc := int32(0)
@@ -1078,7 +1078,7 @@ func reduceStringToInt32(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceStringToPtrInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceStringToPtrInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]string)
 	fn := function.(func(*int32, string) *int32)
 	acc := int32(0)
@@ -1089,7 +1089,7 @@ func reduceStringToPtrInt32(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrStringToPtrInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrStringToPtrInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*string)
 	fn := function.(func(*int32, *string) *int32)
 	acc := int32(0)
@@ -1100,7 +1100,7 @@ func reducePtrStringToPtrInt32(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrStringToInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrStringToInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*string)
 	fn := function.(func(int32, *string) int32)
 	acc := int32(0)
@@ -1110,7 +1110,7 @@ func reducePtrStringToInt32(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceStringToInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceStringToInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]string)
 	fn := function.(func(int64, string) int64)
 	acc := int64(0)
@@ -1120,7 +1120,7 @@ func reduceStringToInt64(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceStringToPtrInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceStringToPtrInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]string)
 	fn := function.(func(*int64, string) *int64)
 	acc := int64(0)
@@ -1131,7 +1131,7 @@ func reduceStringToPtrInt64(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrStringToPtrInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrStringToPtrInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*string)
 	fn := function.(func(*int64, *string) *int64)
 	acc := int64(0)
@@ -1142,7 +1142,7 @@ func reducePtrStringToPtrInt64(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrStringToInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrStringToInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*string)
 	fn := function.(func(int64, *string) int64)
 	acc := int64(0)
@@ -1152,7 +1152,7 @@ func reducePtrStringToInt64(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceStringToUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceStringToUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]string)
 	fn := function.(func(uint, string) uint)
 	acc := uint(0)
@@ -1162,7 +1162,7 @@ func reduceStringToUint(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceStringToPtrUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceStringToPtrUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]string)
 	fn := function.(func(*uint, string) *uint)
 	acc := uint(0)
@@ -1173,7 +1173,7 @@ func reduceStringToPtrUint(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrStringToPtrUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrStringToPtrUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*string)
 	fn := function.(func(*uint, *string) *uint)
 	acc := uint(0)
@@ -1184,7 +1184,7 @@ func reducePtrStringToPtrUint(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrStringToUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrStringToUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*string)
 	fn := function.(func(uint, *string) uint)
 	acc := uint(0)
@@ -1194,7 +1194,7 @@ func reducePtrStringToUint(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceStringToUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceStringToUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]string)
 	fn := function.(func(uint8, string) uint8)
 	acc := uint8(0)
@@ -1204,7 +1204,7 @@ func reduceStringToUint8(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceStringToPtrUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceStringToPtrUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]string)
 	fn := function.(func(*uint8, string) *uint8)
 	acc := uint8(0)
@@ -1215,7 +1215,7 @@ func reduceStringToPtrUint8(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrStringToPtrUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrStringToPtrUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*string)
 	fn := function.(func(*uint8, *string) *uint8)
 	acc := uint8(0)
@@ -1226,7 +1226,7 @@ func reducePtrStringToPtrUint8(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrStringToUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrStringToUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*string)
 	fn := function.(func(uint8, *string) uint8)
 	acc := uint8(0)
@@ -1236,7 +1236,7 @@ func reducePtrStringToUint8(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceStringToUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceStringToUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]string)
 	fn := function.(func(uint16, string) uint16)
 	acc := uint16(0)
@@ -1246,7 +1246,7 @@ func reduceStringToUint16(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceStringToPtrUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceStringToPtrUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]string)
 	fn := function.(func(*uint16, string) *uint16)
 	acc := uint16(0)
@@ -1257,7 +1257,7 @@ func reduceStringToPtrUint16(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrStringToPtrUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrStringToPtrUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*string)
 	fn := function.(func(*uint16, *string) *uint16)
 	acc := uint16(0)
@@ -1268,7 +1268,7 @@ func reducePtrStringToPtrUint16(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrStringToUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrStringToUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*string)
 	fn := function.(func(uint16, *string) uint16)
 	acc := uint16(0)
@@ -1278,7 +1278,7 @@ func reducePtrStringToUint16(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceStringToUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceStringToUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]string)
 	fn := function.(func(uint32, string) uint32)
 	acc := uint32(0)
@@ -1288,7 +1288,7 @@ func reduceStringToUint32(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceStringToPtrUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceStringToPtrUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]string)
 	fn := function.(func(*uint32, string) *uint32)
 	acc := uint32(0)
@@ -1299,7 +1299,7 @@ func reduceStringToPtrUint32(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrStringToPtrUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrStringToPtrUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*string)
 	fn := function.(func(*uint32, *string) *uint32)
 	acc := uint32(0)
@@ -1310,7 +1310,7 @@ func reducePtrStringToPtrUint32(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrStringToUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrStringToUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*string)
 	fn := function.(func(uint32, *string) uint32)
 	acc := uint32(0)
@@ -1320,7 +1320,7 @@ func reducePtrStringToUint32(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceStringToUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceStringToUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]string)
 	fn := function.(func(uint64, string) uint64)
 	acc := uint64(0)
@@ -1330,7 +1330,7 @@ func reduceStringToUint64(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceStringToPtrUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceStringToPtrUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]string)
 	fn := function.(func(*uint64, string) *uint64)
 	acc := uint64(0)
@@ -1341,7 +1341,7 @@ func reduceStringToPtrUint64(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrStringToPtrUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrStringToPtrUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*string)
 	fn := function.(func(*uint64, *string) *uint64)
 	acc := uint64(0)
@@ -1352,7 +1352,7 @@ func reducePtrStringToPtrUint64(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrStringToUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrStringToUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*string)
 	fn := function.(func(uint64, *string) uint64)
 	acc := uint64(0)
@@ -1362,7 +1362,7 @@ func reducePtrStringToUint64(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceStringToFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceStringToFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]string)
 	fn := function.(func(float32, string) float32)
 	acc := float32(0)
@@ -1372,7 +1372,7 @@ func reduceStringToFloat32(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceStringToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceStringToPtrFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]string)
 	fn := function.(func(*float32, string) *float32)
 	acc := float32(0)
@@ -1383,7 +1383,7 @@ func reduceStringToPtrFloat32(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrStringToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrStringToPtrFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*string)
 	fn := function.(func(*float32, *string) *float32)
 	acc := float32(0)
@@ -1394,7 +1394,7 @@ func reducePtrStringToPtrFloat32(itemsValue *reflect.Value, function interface{}
 	return accPtr
 }
 
-func reducePtrStringToFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrStringToFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*string)
 	fn := function.(func(float32, *string) float32)
 	acc := float32(0)
@@ -1404,7 +1404,7 @@ func reducePtrStringToFloat32(itemsValue *reflect.Value, function interface{}, i
 	return acc
 }
 
-func reduceStringToFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceStringToFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]string)
 	fn := function.(func(float64, string) float64)
 	acc := float64(0)
@@ -1414,7 +1414,7 @@ func reduceStringToFloat64(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceStringToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceStringToPtrFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]string)
 	fn := function.(func(*float64, string) *float64)
 	acc := float64(0)
@@ -1425,7 +1425,7 @@ func reduceStringToPtrFloat64(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrStringToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrStringToPtrFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*string)
 	fn := function.(func(*float64, *string) *float64)
 	acc := float64(0)
@@ -1436,7 +1436,7 @@ func reducePtrStringToPtrFloat64(itemsValue *reflect.Value, function interface{}
 	return accPtr
 }
 
-func reducePtrStringToFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrStringToFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*string)
 	fn := function.(func(float64, *string) float64)
 	acc := float64(0)
@@ -1446,7 +1446,7 @@ func reducePtrStringToFloat64(itemsValue *reflect.Value, function interface{}, i
 	return acc
 }
 
-func reduceBoolToString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceBoolToString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]bool)
 	fn := function.(func(string, bool) string)
 	acc := ""
@@ -1456,7 +1456,7 @@ func reduceBoolToString(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceBoolToPtrString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceBoolToPtrString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]bool)
 	fn := function.(func(*string, bool) *string)
 	acc := ""
@@ -1467,7 +1467,7 @@ func reduceBoolToPtrString(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrBoolToPtrString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrBoolToPtrString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*bool)
 	fn := function.(func(*string, *bool) *string)
 	acc := ""
@@ -1478,7 +1478,7 @@ func reducePtrBoolToPtrString(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrBoolToString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrBoolToString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*bool)
 	fn := function.(func(string, *bool) string)
 	acc := ""
@@ -1488,7 +1488,7 @@ func reducePtrBoolToString(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceBoolToBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceBoolToBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]bool)
 	fn := function.(func(bool, bool) bool)
 	acc := false
@@ -1498,7 +1498,7 @@ func reduceBoolToBool(itemsValue *reflect.Value, function interface{}, info *red
 	return acc
 }
 
-func reduceBoolToPtrBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceBoolToPtrBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]bool)
 	fn := function.(func(*bool, bool) *bool)
 	acc := false
@@ -1509,7 +1509,7 @@ func reduceBoolToPtrBool(itemsValue *reflect.Value, function interface{}, info *
 	return accPtr
 }
 
-func reducePtrBoolToPtrBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrBoolToPtrBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*bool)
 	fn := function.(func(*bool, *bool) *bool)
 	acc := false
@@ -1520,7 +1520,7 @@ func reducePtrBoolToPtrBool(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrBoolToBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrBoolToBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*bool)
 	fn := function.(func(bool, *bool) bool)
 	acc := false
@@ -1530,7 +1530,7 @@ func reducePtrBoolToBool(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceBoolToInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceBoolToInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]bool)
 	fn := function.(func(int, bool) int)
 	acc := 0
@@ -1540,7 +1540,7 @@ func reduceBoolToInt(itemsValue *reflect.Value, function interface{}, info *redu
 	return acc
 }
 
-func reduceBoolToPtrInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceBoolToPtrInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]bool)
 	fn := function.(func(*int, bool) *int)
 	acc := 0
@@ -1551,7 +1551,7 @@ func reduceBoolToPtrInt(itemsValue *reflect.Value, function interface{}, info *r
 	return accPtr
 }
 
-func reducePtrBoolToPtrInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrBoolToPtrInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*bool)
 	fn := function.(func(*int, *bool) *int)
 	acc := 0
@@ -1562,7 +1562,7 @@ func reducePtrBoolToPtrInt(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrBoolToInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrBoolToInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*bool)
 	fn := function.(func(int, *bool) int)
 	acc := 0
@@ -1572,7 +1572,7 @@ func reducePtrBoolToInt(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceBoolToInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceBoolToInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]bool)
 	fn := function.(func(int8, bool) int8)
 	acc := int8(0)
@@ -1582,7 +1582,7 @@ func reduceBoolToInt8(itemsValue *reflect.Value, function interface{}, info *red
 	return acc
 }
 
-func reduceBoolToPtrInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceBoolToPtrInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]bool)
 	fn := function.(func(*int8, bool) *int8)
 	acc := int8(0)
@@ -1593,7 +1593,7 @@ func reduceBoolToPtrInt8(itemsValue *reflect.Value, function interface{}, info *
 	return accPtr
 }
 
-func reducePtrBoolToPtrInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrBoolToPtrInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*bool)
 	fn := function.(func(*int8, *bool) *int8)
 	acc := int8(0)
@@ -1604,7 +1604,7 @@ func reducePtrBoolToPtrInt8(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrBoolToInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrBoolToInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*bool)
 	fn := function.(func(int8, *bool) int8)
 	acc := int8(0)
@@ -1614,7 +1614,7 @@ func reducePtrBoolToInt8(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceBoolToInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceBoolToInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]bool)
 	fn := function.(func(int16, bool) int16)
 	acc := int16(0)
@@ -1624,7 +1624,7 @@ func reduceBoolToInt16(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceBoolToPtrInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceBoolToPtrInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]bool)
 	fn := function.(func(*int16, bool) *int16)
 	acc := int16(0)
@@ -1635,7 +1635,7 @@ func reduceBoolToPtrInt16(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrBoolToPtrInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrBoolToPtrInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*bool)
 	fn := function.(func(*int16, *bool) *int16)
 	acc := int16(0)
@@ -1646,7 +1646,7 @@ func reducePtrBoolToPtrInt16(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrBoolToInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrBoolToInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*bool)
 	fn := function.(func(int16, *bool) int16)
 	acc := int16(0)
@@ -1656,7 +1656,7 @@ func reducePtrBoolToInt16(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceBoolToInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceBoolToInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]bool)
 	fn := function.(func(int32, bool) int32)
 	acc := int32(0)
@@ -1666,7 +1666,7 @@ func reduceBoolToInt32(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceBoolToPtrInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceBoolToPtrInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]bool)
 	fn := function.(func(*int32, bool) *int32)
 	acc := int32(0)
@@ -1677,7 +1677,7 @@ func reduceBoolToPtrInt32(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrBoolToPtrInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrBoolToPtrInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*bool)
 	fn := function.(func(*int32, *bool) *int32)
 	acc := int32(0)
@@ -1688,7 +1688,7 @@ func reducePtrBoolToPtrInt32(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrBoolToInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrBoolToInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*bool)
 	fn := function.(func(int32, *bool) int32)
 	acc := int32(0)
@@ -1698,7 +1698,7 @@ func reducePtrBoolToInt32(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceBoolToInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceBoolToInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]bool)
 	fn := function.(func(int64, bool) int64)
 	acc := int64(0)
@@ -1708,7 +1708,7 @@ func reduceBoolToInt64(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceBoolToPtrInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceBoolToPtrInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]bool)
 	fn := function.(func(*int64, bool) *int64)
 	acc := int64(0)
@@ -1719,7 +1719,7 @@ func reduceBoolToPtrInt64(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrBoolToPtrInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrBoolToPtrInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*bool)
 	fn := function.(func(*int64, *bool) *int64)
 	acc := int64(0)
@@ -1730,7 +1730,7 @@ func reducePtrBoolToPtrInt64(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrBoolToInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrBoolToInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*bool)
 	fn := function.(func(int64, *bool) int64)
 	acc := int64(0)
@@ -1740,7 +1740,7 @@ func reducePtrBoolToInt64(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceBoolToUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceBoolToUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]bool)
 	fn := function.(func(uint, bool) uint)
 	acc := uint(0)
@@ -1750,7 +1750,7 @@ func reduceBoolToUint(itemsValue *reflect.Value, function interface{}, info *red
 	return acc
 }
 
-func reduceBoolToPtrUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceBoolToPtrUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]bool)
 	fn := function.(func(*uint, bool) *uint)
 	acc := uint(0)
@@ -1761,7 +1761,7 @@ func reduceBoolToPtrUint(itemsValue *reflect.Value, function interface{}, info *
 	return accPtr
 }
 
-func reducePtrBoolToPtrUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrBoolToPtrUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*bool)
 	fn := function.(func(*uint, *bool) *uint)
 	acc := uint(0)
@@ -1772,7 +1772,7 @@ func reducePtrBoolToPtrUint(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrBoolToUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrBoolToUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*bool)
 	fn := function.(func(uint, *bool) uint)
 	acc := uint(0)
@@ -1782,7 +1782,7 @@ func reducePtrBoolToUint(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceBoolToUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceBoolToUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]bool)
 	fn := function.(func(uint8, bool) uint8)
 	acc := uint8(0)
@@ -1792,7 +1792,7 @@ func reduceBoolToUint8(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceBoolToPtrUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceBoolToPtrUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]bool)
 	fn := function.(func(*uint8, bool) *uint8)
 	acc := uint8(0)
@@ -1803,7 +1803,7 @@ func reduceBoolToPtrUint8(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrBoolToPtrUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrBoolToPtrUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*bool)
 	fn := function.(func(*uint8, *bool) *uint8)
 	acc := uint8(0)
@@ -1814,7 +1814,7 @@ func reducePtrBoolToPtrUint8(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrBoolToUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrBoolToUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*bool)
 	fn := function.(func(uint8, *bool) uint8)
 	acc := uint8(0)
@@ -1824,7 +1824,7 @@ func reducePtrBoolToUint8(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceBoolToUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceBoolToUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]bool)
 	fn := function.(func(uint16, bool) uint16)
 	acc := uint16(0)
@@ -1834,7 +1834,7 @@ func reduceBoolToUint16(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceBoolToPtrUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceBoolToPtrUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]bool)
 	fn := function.(func(*uint16, bool) *uint16)
 	acc := uint16(0)
@@ -1845,7 +1845,7 @@ func reduceBoolToPtrUint16(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrBoolToPtrUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrBoolToPtrUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*bool)
 	fn := function.(func(*uint16, *bool) *uint16)
 	acc := uint16(0)
@@ -1856,7 +1856,7 @@ func reducePtrBoolToPtrUint16(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrBoolToUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrBoolToUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*bool)
 	fn := function.(func(uint16, *bool) uint16)
 	acc := uint16(0)
@@ -1866,7 +1866,7 @@ func reducePtrBoolToUint16(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceBoolToUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceBoolToUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]bool)
 	fn := function.(func(uint32, bool) uint32)
 	acc := uint32(0)
@@ -1876,7 +1876,7 @@ func reduceBoolToUint32(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceBoolToPtrUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceBoolToPtrUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]bool)
 	fn := function.(func(*uint32, bool) *uint32)
 	acc := uint32(0)
@@ -1887,7 +1887,7 @@ func reduceBoolToPtrUint32(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrBoolToPtrUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrBoolToPtrUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*bool)
 	fn := function.(func(*uint32, *bool) *uint32)
 	acc := uint32(0)
@@ -1898,7 +1898,7 @@ func reducePtrBoolToPtrUint32(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrBoolToUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrBoolToUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*bool)
 	fn := function.(func(uint32, *bool) uint32)
 	acc := uint32(0)
@@ -1908,7 +1908,7 @@ func reducePtrBoolToUint32(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceBoolToUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceBoolToUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]bool)
 	fn := function.(func(uint64, bool) uint64)
 	acc := uint64(0)
@@ -1918,7 +1918,7 @@ func reduceBoolToUint64(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceBoolToPtrUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceBoolToPtrUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]bool)
 	fn := function.(func(*uint64, bool) *uint64)
 	acc := uint64(0)
@@ -1929,7 +1929,7 @@ func reduceBoolToPtrUint64(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrBoolToPtrUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrBoolToPtrUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*bool)
 	fn := function.(func(*uint64, *bool) *uint64)
 	acc := uint64(0)
@@ -1940,7 +1940,7 @@ func reducePtrBoolToPtrUint64(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrBoolToUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrBoolToUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*bool)
 	fn := function.(func(uint64, *bool) uint64)
 	acc := uint64(0)
@@ -1950,7 +1950,7 @@ func reducePtrBoolToUint64(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceBoolToFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceBoolToFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]bool)
 	fn := function.(func(float32, bool) float32)
 	acc := float32(0)
@@ -1960,7 +1960,7 @@ func reduceBoolToFloat32(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceBoolToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceBoolToPtrFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]bool)
 	fn := function.(func(*float32, bool) *float32)
 	acc := float32(0)
@@ -1971,7 +1971,7 @@ func reduceBoolToPtrFloat32(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrBoolToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrBoolToPtrFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*bool)
 	fn := function.(func(*float32, *bool) *float32)
 	acc := float32(0)
@@ -1982,7 +1982,7 @@ func reducePtrBoolToPtrFloat32(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrBoolToFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrBoolToFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*bool)
 	fn := function.(func(float32, *bool) float32)
 	acc := float32(0)
@@ -1992,7 +1992,7 @@ func reducePtrBoolToFloat32(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceBoolToFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceBoolToFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]bool)
 	fn := function.(func(float64, bool) float64)
 	acc := float64(0)
@@ -2002,7 +2002,7 @@ func reduceBoolToFloat64(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceBoolToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceBoolToPtrFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]bool)
 	fn := function.(func(*float64, bool) *float64)
 	acc := float64(0)
@@ -2013,7 +2013,7 @@ func reduceBoolToPtrFloat64(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrBoolToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrBoolToPtrFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*bool)
 	fn := function.(func(*float64, *bool) *float64)
 	acc := float64(0)
@@ -2024,7 +2024,7 @@ func reducePtrBoolToPtrFloat64(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrBoolToFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrBoolToFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*bool)
 	fn := function.(func(float64, *bool) float64)
 	acc := float64(0)
@@ -2034,7 +2034,7 @@ func reducePtrBoolToFloat64(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceIntToString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceIntToString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int)
 	fn := function.(func(string, int) string)
 	acc := ""
@@ -2044,7 +2044,7 @@ func reduceIntToString(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceIntToPtrString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceIntToPtrString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int)
 	fn := function.(func(*string, int) *string)
 	acc := ""
@@ -2055,7 +2055,7 @@ func reduceIntToPtrString(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrIntToPtrString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrIntToPtrString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int)
 	fn := function.(func(*string, *int) *string)
 	acc := ""
@@ -2066,7 +2066,7 @@ func reducePtrIntToPtrString(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrIntToString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrIntToString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int)
 	fn := function.(func(string, *int) string)
 	acc := ""
@@ -2076,7 +2076,7 @@ func reducePtrIntToString(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceIntToBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceIntToBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int)
 	fn := function.(func(bool, int) bool)
 	acc := false
@@ -2086,7 +2086,7 @@ func reduceIntToBool(itemsValue *reflect.Value, function interface{}, info *redu
 	return acc
 }
 
-func reduceIntToPtrBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceIntToPtrBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int)
 	fn := function.(func(*bool, int) *bool)
 	acc := false
@@ -2097,7 +2097,7 @@ func reduceIntToPtrBool(itemsValue *reflect.Value, function interface{}, info *r
 	return accPtr
 }
 
-func reducePtrIntToPtrBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrIntToPtrBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int)
 	fn := function.(func(*bool, *int) *bool)
 	acc := false
@@ -2108,7 +2108,7 @@ func reducePtrIntToPtrBool(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrIntToBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrIntToBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int)
 	fn := function.(func(bool, *int) bool)
 	acc := false
@@ -2118,7 +2118,7 @@ func reducePtrIntToBool(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceIntToInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceIntToInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int)
 	fn := function.(func(int, int) int)
 	acc := 0
@@ -2128,7 +2128,7 @@ func reduceIntToInt(itemsValue *reflect.Value, function interface{}, info *reduc
 	return acc
 }
 
-func reduceIntToPtrInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceIntToPtrInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int)
 	fn := function.(func(*int, int) *int)
 	acc := 0
@@ -2139,7 +2139,7 @@ func reduceIntToPtrInt(itemsValue *reflect.Value, function interface{}, info *re
 	return accPtr
 }
 
-func reducePtrIntToPtrInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrIntToPtrInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int)
 	fn := function.(func(*int, *int) *int)
 	acc := 0
@@ -2150,7 +2150,7 @@ func reducePtrIntToPtrInt(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrIntToInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrIntToInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int)
 	fn := function.(func(int, *int) int)
 	acc := 0
@@ -2160,7 +2160,7 @@ func reducePtrIntToInt(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceIntToInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceIntToInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int)
 	fn := function.(func(int8, int) int8)
 	acc := int8(0)
@@ -2170,7 +2170,7 @@ func reduceIntToInt8(itemsValue *reflect.Value, function interface{}, info *redu
 	return acc
 }
 
-func reduceIntToPtrInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceIntToPtrInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int)
 	fn := function.(func(*int8, int) *int8)
 	acc := int8(0)
@@ -2181,7 +2181,7 @@ func reduceIntToPtrInt8(itemsValue *reflect.Value, function interface{}, info *r
 	return accPtr
 }
 
-func reducePtrIntToPtrInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrIntToPtrInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int)
 	fn := function.(func(*int8, *int) *int8)
 	acc := int8(0)
@@ -2192,7 +2192,7 @@ func reducePtrIntToPtrInt8(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrIntToInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrIntToInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int)
 	fn := function.(func(int8, *int) int8)
 	acc := int8(0)
@@ -2202,7 +2202,7 @@ func reducePtrIntToInt8(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceIntToInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceIntToInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int)
 	fn := function.(func(int16, int) int16)
 	acc := int16(0)
@@ -2212,7 +2212,7 @@ func reduceIntToInt16(itemsValue *reflect.Value, function interface{}, info *red
 	return acc
 }
 
-func reduceIntToPtrInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceIntToPtrInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int)
 	fn := function.(func(*int16, int) *int16)
 	acc := int16(0)
@@ -2223,7 +2223,7 @@ func reduceIntToPtrInt16(itemsValue *reflect.Value, function interface{}, info *
 	return accPtr
 }
 
-func reducePtrIntToPtrInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrIntToPtrInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int)
 	fn := function.(func(*int16, *int) *int16)
 	acc := int16(0)
@@ -2234,7 +2234,7 @@ func reducePtrIntToPtrInt16(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrIntToInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrIntToInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int)
 	fn := function.(func(int16, *int) int16)
 	acc := int16(0)
@@ -2244,7 +2244,7 @@ func reducePtrIntToInt16(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceIntToInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceIntToInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int)
 	fn := function.(func(int32, int) int32)
 	acc := int32(0)
@@ -2254,7 +2254,7 @@ func reduceIntToInt32(itemsValue *reflect.Value, function interface{}, info *red
 	return acc
 }
 
-func reduceIntToPtrInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceIntToPtrInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int)
 	fn := function.(func(*int32, int) *int32)
 	acc := int32(0)
@@ -2265,7 +2265,7 @@ func reduceIntToPtrInt32(itemsValue *reflect.Value, function interface{}, info *
 	return accPtr
 }
 
-func reducePtrIntToPtrInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrIntToPtrInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int)
 	fn := function.(func(*int32, *int) *int32)
 	acc := int32(0)
@@ -2276,7 +2276,7 @@ func reducePtrIntToPtrInt32(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrIntToInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrIntToInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int)
 	fn := function.(func(int32, *int) int32)
 	acc := int32(0)
@@ -2286,7 +2286,7 @@ func reducePtrIntToInt32(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceIntToInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceIntToInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int)
 	fn := function.(func(int64, int) int64)
 	acc := int64(0)
@@ -2296,7 +2296,7 @@ func reduceIntToInt64(itemsValue *reflect.Value, function interface{}, info *red
 	return acc
 }
 
-func reduceIntToPtrInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceIntToPtrInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int)
 	fn := function.(func(*int64, int) *int64)
 	acc := int64(0)
@@ -2307,7 +2307,7 @@ func reduceIntToPtrInt64(itemsValue *reflect.Value, function interface{}, info *
 	return accPtr
 }
 
-func reducePtrIntToPtrInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrIntToPtrInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int)
 	fn := function.(func(*int64, *int) *int64)
 	acc := int64(0)
@@ -2318,7 +2318,7 @@ func reducePtrIntToPtrInt64(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrIntToInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrIntToInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int)
 	fn := function.(func(int64, *int) int64)
 	acc := int64(0)
@@ -2328,7 +2328,7 @@ func reducePtrIntToInt64(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceIntToUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceIntToUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int)
 	fn := function.(func(uint, int) uint)
 	acc := uint(0)
@@ -2338,7 +2338,7 @@ func reduceIntToUint(itemsValue *reflect.Value, function interface{}, info *redu
 	return acc
 }
 
-func reduceIntToPtrUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceIntToPtrUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int)
 	fn := function.(func(*uint, int) *uint)
 	acc := uint(0)
@@ -2349,7 +2349,7 @@ func reduceIntToPtrUint(itemsValue *reflect.Value, function interface{}, info *r
 	return accPtr
 }
 
-func reducePtrIntToPtrUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrIntToPtrUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int)
 	fn := function.(func(*uint, *int) *uint)
 	acc := uint(0)
@@ -2360,7 +2360,7 @@ func reducePtrIntToPtrUint(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrIntToUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrIntToUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int)
 	fn := function.(func(uint, *int) uint)
 	acc := uint(0)
@@ -2370,7 +2370,7 @@ func reducePtrIntToUint(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceIntToUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceIntToUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int)
 	fn := function.(func(uint8, int) uint8)
 	acc := uint8(0)
@@ -2380,7 +2380,7 @@ func reduceIntToUint8(itemsValue *reflect.Value, function interface{}, info *red
 	return acc
 }
 
-func reduceIntToPtrUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceIntToPtrUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int)
 	fn := function.(func(*uint8, int) *uint8)
 	acc := uint8(0)
@@ -2391,7 +2391,7 @@ func reduceIntToPtrUint8(itemsValue *reflect.Value, function interface{}, info *
 	return accPtr
 }
 
-func reducePtrIntToPtrUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrIntToPtrUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int)
 	fn := function.(func(*uint8, *int) *uint8)
 	acc := uint8(0)
@@ -2402,7 +2402,7 @@ func reducePtrIntToPtrUint8(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrIntToUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrIntToUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int)
 	fn := function.(func(uint8, *int) uint8)
 	acc := uint8(0)
@@ -2412,7 +2412,7 @@ func reducePtrIntToUint8(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceIntToUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceIntToUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int)
 	fn := function.(func(uint16, int) uint16)
 	acc := uint16(0)
@@ -2422,7 +2422,7 @@ func reduceIntToUint16(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceIntToPtrUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceIntToPtrUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int)
 	fn := function.(func(*uint16, int) *uint16)
 	acc := uint16(0)
@@ -2433,7 +2433,7 @@ func reduceIntToPtrUint16(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrIntToPtrUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrIntToPtrUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int)
 	fn := function.(func(*uint16, *int) *uint16)
 	acc := uint16(0)
@@ -2444,7 +2444,7 @@ func reducePtrIntToPtrUint16(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrIntToUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrIntToUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int)
 	fn := function.(func(uint16, *int) uint16)
 	acc := uint16(0)
@@ -2454,7 +2454,7 @@ func reducePtrIntToUint16(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceIntToUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceIntToUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int)
 	fn := function.(func(uint32, int) uint32)
 	acc := uint32(0)
@@ -2464,7 +2464,7 @@ func reduceIntToUint32(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceIntToPtrUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceIntToPtrUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int)
 	fn := function.(func(*uint32, int) *uint32)
 	acc := uint32(0)
@@ -2475,7 +2475,7 @@ func reduceIntToPtrUint32(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrIntToPtrUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrIntToPtrUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int)
 	fn := function.(func(*uint32, *int) *uint32)
 	acc := uint32(0)
@@ -2486,7 +2486,7 @@ func reducePtrIntToPtrUint32(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrIntToUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrIntToUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int)
 	fn := function.(func(uint32, *int) uint32)
 	acc := uint32(0)
@@ -2496,7 +2496,7 @@ func reducePtrIntToUint32(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceIntToUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceIntToUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int)
 	fn := function.(func(uint64, int) uint64)
 	acc := uint64(0)
@@ -2506,7 +2506,7 @@ func reduceIntToUint64(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceIntToPtrUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceIntToPtrUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int)
 	fn := function.(func(*uint64, int) *uint64)
 	acc := uint64(0)
@@ -2517,7 +2517,7 @@ func reduceIntToPtrUint64(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrIntToPtrUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrIntToPtrUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int)
 	fn := function.(func(*uint64, *int) *uint64)
 	acc := uint64(0)
@@ -2528,7 +2528,7 @@ func reducePtrIntToPtrUint64(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrIntToUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrIntToUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int)
 	fn := function.(func(uint64, *int) uint64)
 	acc := uint64(0)
@@ -2538,7 +2538,7 @@ func reducePtrIntToUint64(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceIntToFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceIntToFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int)
 	fn := function.(func(float32, int) float32)
 	acc := float32(0)
@@ -2548,7 +2548,7 @@ func reduceIntToFloat32(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceIntToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceIntToPtrFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int)
 	fn := function.(func(*float32, int) *float32)
 	acc := float32(0)
@@ -2559,7 +2559,7 @@ func reduceIntToPtrFloat32(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrIntToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrIntToPtrFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int)
 	fn := function.(func(*float32, *int) *float32)
 	acc := float32(0)
@@ -2570,7 +2570,7 @@ func reducePtrIntToPtrFloat32(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrIntToFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrIntToFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int)
 	fn := function.(func(float32, *int) float32)
 	acc := float32(0)
@@ -2580,7 +2580,7 @@ func reducePtrIntToFloat32(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceIntToFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceIntToFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int)
 	fn := function.(func(float64, int) float64)
 	acc := float64(0)
@@ -2590,7 +2590,7 @@ func reduceIntToFloat64(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceIntToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceIntToPtrFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int)
 	fn := function.(func(*float64, int) *float64)
 	acc := float64(0)
@@ -2601,7 +2601,7 @@ func reduceIntToPtrFloat64(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrIntToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrIntToPtrFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int)
 	fn := function.(func(*float64, *int) *float64)
 	acc := float64(0)
@@ -2612,7 +2612,7 @@ func reducePtrIntToPtrFloat64(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrIntToFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrIntToFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int)
 	fn := function.(func(float64, *int) float64)
 	acc := float64(0)
@@ -2622,7 +2622,7 @@ func reducePtrIntToFloat64(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceInt8ToString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt8ToString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int8)
 	fn := function.(func(string, int8) string)
 	acc := ""
@@ -2632,7 +2632,7 @@ func reduceInt8ToString(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceInt8ToPtrString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt8ToPtrString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int8)
 	fn := function.(func(*string, int8) *string)
 	acc := ""
@@ -2643,7 +2643,7 @@ func reduceInt8ToPtrString(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrInt8ToPtrString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt8ToPtrString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int8)
 	fn := function.(func(*string, *int8) *string)
 	acc := ""
@@ -2654,7 +2654,7 @@ func reducePtrInt8ToPtrString(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrInt8ToString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt8ToString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int8)
 	fn := function.(func(string, *int8) string)
 	acc := ""
@@ -2664,7 +2664,7 @@ func reducePtrInt8ToString(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceInt8ToBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt8ToBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int8)
 	fn := function.(func(bool, int8) bool)
 	acc := false
@@ -2674,7 +2674,7 @@ func reduceInt8ToBool(itemsValue *reflect.Value, function interface{}, info *red
 	return acc
 }
 
-func reduceInt8ToPtrBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt8ToPtrBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int8)
 	fn := function.(func(*bool, int8) *bool)
 	acc := false
@@ -2685,7 +2685,7 @@ func reduceInt8ToPtrBool(itemsValue *reflect.Value, function interface{}, info *
 	return accPtr
 }
 
-func reducePtrInt8ToPtrBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt8ToPtrBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int8)
 	fn := function.(func(*bool, *int8) *bool)
 	acc := false
@@ -2696,7 +2696,7 @@ func reducePtrInt8ToPtrBool(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrInt8ToBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt8ToBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int8)
 	fn := function.(func(bool, *int8) bool)
 	acc := false
@@ -2706,7 +2706,7 @@ func reducePtrInt8ToBool(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceInt8ToInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt8ToInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int8)
 	fn := function.(func(int, int8) int)
 	acc := 0
@@ -2716,7 +2716,7 @@ func reduceInt8ToInt(itemsValue *reflect.Value, function interface{}, info *redu
 	return acc
 }
 
-func reduceInt8ToPtrInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt8ToPtrInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int8)
 	fn := function.(func(*int, int8) *int)
 	acc := 0
@@ -2727,7 +2727,7 @@ func reduceInt8ToPtrInt(itemsValue *reflect.Value, function interface{}, info *r
 	return accPtr
 }
 
-func reducePtrInt8ToPtrInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt8ToPtrInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int8)
 	fn := function.(func(*int, *int8) *int)
 	acc := 0
@@ -2738,7 +2738,7 @@ func reducePtrInt8ToPtrInt(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrInt8ToInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt8ToInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int8)
 	fn := function.(func(int, *int8) int)
 	acc := 0
@@ -2748,7 +2748,7 @@ func reducePtrInt8ToInt(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceInt8ToInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt8ToInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int8)
 	fn := function.(func(int8, int8) int8)
 	acc := int8(0)
@@ -2758,7 +2758,7 @@ func reduceInt8ToInt8(itemsValue *reflect.Value, function interface{}, info *red
 	return acc
 }
 
-func reduceInt8ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt8ToPtrInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int8)
 	fn := function.(func(*int8, int8) *int8)
 	acc := int8(0)
@@ -2769,7 +2769,7 @@ func reduceInt8ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *
 	return accPtr
 }
 
-func reducePtrInt8ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt8ToPtrInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int8)
 	fn := function.(func(*int8, *int8) *int8)
 	acc := int8(0)
@@ -2780,7 +2780,7 @@ func reducePtrInt8ToPtrInt8(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrInt8ToInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt8ToInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int8)
 	fn := function.(func(int8, *int8) int8)
 	acc := int8(0)
@@ -2790,7 +2790,7 @@ func reducePtrInt8ToInt8(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceInt8ToInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt8ToInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int8)
 	fn := function.(func(int16, int8) int16)
 	acc := int16(0)
@@ -2800,7 +2800,7 @@ func reduceInt8ToInt16(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceInt8ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt8ToPtrInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int8)
 	fn := function.(func(*int16, int8) *int16)
 	acc := int16(0)
@@ -2811,7 +2811,7 @@ func reduceInt8ToPtrInt16(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrInt8ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt8ToPtrInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int8)
 	fn := function.(func(*int16, *int8) *int16)
 	acc := int16(0)
@@ -2822,7 +2822,7 @@ func reducePtrInt8ToPtrInt16(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrInt8ToInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt8ToInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int8)
 	fn := function.(func(int16, *int8) int16)
 	acc := int16(0)
@@ -2832,7 +2832,7 @@ func reducePtrInt8ToInt16(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceInt8ToInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt8ToInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int8)
 	fn := function.(func(int32, int8) int32)
 	acc := int32(0)
@@ -2842,7 +2842,7 @@ func reduceInt8ToInt32(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceInt8ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt8ToPtrInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int8)
 	fn := function.(func(*int32, int8) *int32)
 	acc := int32(0)
@@ -2853,7 +2853,7 @@ func reduceInt8ToPtrInt32(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrInt8ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt8ToPtrInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int8)
 	fn := function.(func(*int32, *int8) *int32)
 	acc := int32(0)
@@ -2864,7 +2864,7 @@ func reducePtrInt8ToPtrInt32(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrInt8ToInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt8ToInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int8)
 	fn := function.(func(int32, *int8) int32)
 	acc := int32(0)
@@ -2874,7 +2874,7 @@ func reducePtrInt8ToInt32(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceInt8ToInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt8ToInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int8)
 	fn := function.(func(int64, int8) int64)
 	acc := int64(0)
@@ -2884,7 +2884,7 @@ func reduceInt8ToInt64(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceInt8ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt8ToPtrInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int8)
 	fn := function.(func(*int64, int8) *int64)
 	acc := int64(0)
@@ -2895,7 +2895,7 @@ func reduceInt8ToPtrInt64(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrInt8ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt8ToPtrInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int8)
 	fn := function.(func(*int64, *int8) *int64)
 	acc := int64(0)
@@ -2906,7 +2906,7 @@ func reducePtrInt8ToPtrInt64(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrInt8ToInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt8ToInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int8)
 	fn := function.(func(int64, *int8) int64)
 	acc := int64(0)
@@ -2916,7 +2916,7 @@ func reducePtrInt8ToInt64(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceInt8ToUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt8ToUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int8)
 	fn := function.(func(uint, int8) uint)
 	acc := uint(0)
@@ -2926,7 +2926,7 @@ func reduceInt8ToUint(itemsValue *reflect.Value, function interface{}, info *red
 	return acc
 }
 
-func reduceInt8ToPtrUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt8ToPtrUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int8)
 	fn := function.(func(*uint, int8) *uint)
 	acc := uint(0)
@@ -2937,7 +2937,7 @@ func reduceInt8ToPtrUint(itemsValue *reflect.Value, function interface{}, info *
 	return accPtr
 }
 
-func reducePtrInt8ToPtrUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt8ToPtrUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int8)
 	fn := function.(func(*uint, *int8) *uint)
 	acc := uint(0)
@@ -2948,7 +2948,7 @@ func reducePtrInt8ToPtrUint(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrInt8ToUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt8ToUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int8)
 	fn := function.(func(uint, *int8) uint)
 	acc := uint(0)
@@ -2958,7 +2958,7 @@ func reducePtrInt8ToUint(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceInt8ToUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt8ToUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int8)
 	fn := function.(func(uint8, int8) uint8)
 	acc := uint8(0)
@@ -2968,7 +2968,7 @@ func reduceInt8ToUint8(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceInt8ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt8ToPtrUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int8)
 	fn := function.(func(*uint8, int8) *uint8)
 	acc := uint8(0)
@@ -2979,7 +2979,7 @@ func reduceInt8ToPtrUint8(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrInt8ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt8ToPtrUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int8)
 	fn := function.(func(*uint8, *int8) *uint8)
 	acc := uint8(0)
@@ -2990,7 +2990,7 @@ func reducePtrInt8ToPtrUint8(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrInt8ToUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt8ToUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int8)
 	fn := function.(func(uint8, *int8) uint8)
 	acc := uint8(0)
@@ -3000,7 +3000,7 @@ func reducePtrInt8ToUint8(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceInt8ToUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt8ToUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int8)
 	fn := function.(func(uint16, int8) uint16)
 	acc := uint16(0)
@@ -3010,7 +3010,7 @@ func reduceInt8ToUint16(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceInt8ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt8ToPtrUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int8)
 	fn := function.(func(*uint16, int8) *uint16)
 	acc := uint16(0)
@@ -3021,7 +3021,7 @@ func reduceInt8ToPtrUint16(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrInt8ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt8ToPtrUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int8)
 	fn := function.(func(*uint16, *int8) *uint16)
 	acc := uint16(0)
@@ -3032,7 +3032,7 @@ func reducePtrInt8ToPtrUint16(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrInt8ToUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt8ToUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int8)
 	fn := function.(func(uint16, *int8) uint16)
 	acc := uint16(0)
@@ -3042,7 +3042,7 @@ func reducePtrInt8ToUint16(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceInt8ToUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt8ToUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int8)
 	fn := function.(func(uint32, int8) uint32)
 	acc := uint32(0)
@@ -3052,7 +3052,7 @@ func reduceInt8ToUint32(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceInt8ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt8ToPtrUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int8)
 	fn := function.(func(*uint32, int8) *uint32)
 	acc := uint32(0)
@@ -3063,7 +3063,7 @@ func reduceInt8ToPtrUint32(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrInt8ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt8ToPtrUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int8)
 	fn := function.(func(*uint32, *int8) *uint32)
 	acc := uint32(0)
@@ -3074,7 +3074,7 @@ func reducePtrInt8ToPtrUint32(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrInt8ToUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt8ToUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int8)
 	fn := function.(func(uint32, *int8) uint32)
 	acc := uint32(0)
@@ -3084,7 +3084,7 @@ func reducePtrInt8ToUint32(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceInt8ToUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt8ToUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int8)
 	fn := function.(func(uint64, int8) uint64)
 	acc := uint64(0)
@@ -3094,7 +3094,7 @@ func reduceInt8ToUint64(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceInt8ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt8ToPtrUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int8)
 	fn := function.(func(*uint64, int8) *uint64)
 	acc := uint64(0)
@@ -3105,7 +3105,7 @@ func reduceInt8ToPtrUint64(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrInt8ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt8ToPtrUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int8)
 	fn := function.(func(*uint64, *int8) *uint64)
 	acc := uint64(0)
@@ -3116,7 +3116,7 @@ func reducePtrInt8ToPtrUint64(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrInt8ToUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt8ToUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int8)
 	fn := function.(func(uint64, *int8) uint64)
 	acc := uint64(0)
@@ -3126,7 +3126,7 @@ func reducePtrInt8ToUint64(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceInt8ToFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt8ToFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int8)
 	fn := function.(func(float32, int8) float32)
 	acc := float32(0)
@@ -3136,7 +3136,7 @@ func reduceInt8ToFloat32(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceInt8ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt8ToPtrFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int8)
 	fn := function.(func(*float32, int8) *float32)
 	acc := float32(0)
@@ -3147,7 +3147,7 @@ func reduceInt8ToPtrFloat32(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrInt8ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt8ToPtrFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int8)
 	fn := function.(func(*float32, *int8) *float32)
 	acc := float32(0)
@@ -3158,7 +3158,7 @@ func reducePtrInt8ToPtrFloat32(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrInt8ToFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt8ToFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int8)
 	fn := function.(func(float32, *int8) float32)
 	acc := float32(0)
@@ -3168,7 +3168,7 @@ func reducePtrInt8ToFloat32(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceInt8ToFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt8ToFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int8)
 	fn := function.(func(float64, int8) float64)
 	acc := float64(0)
@@ -3178,7 +3178,7 @@ func reduceInt8ToFloat64(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceInt8ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt8ToPtrFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int8)
 	fn := function.(func(*float64, int8) *float64)
 	acc := float64(0)
@@ -3189,7 +3189,7 @@ func reduceInt8ToPtrFloat64(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrInt8ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt8ToPtrFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int8)
 	fn := function.(func(*float64, *int8) *float64)
 	acc := float64(0)
@@ -3200,7 +3200,7 @@ func reducePtrInt8ToPtrFloat64(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrInt8ToFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt8ToFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int8)
 	fn := function.(func(float64, *int8) float64)
 	acc := float64(0)
@@ -3210,7 +3210,7 @@ func reducePtrInt8ToFloat64(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceInt16ToString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt16ToString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int16)
 	fn := function.(func(string, int16) string)
 	acc := ""
@@ -3220,7 +3220,7 @@ func reduceInt16ToString(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceInt16ToPtrString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt16ToPtrString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int16)
 	fn := function.(func(*string, int16) *string)
 	acc := ""
@@ -3231,7 +3231,7 @@ func reduceInt16ToPtrString(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrInt16ToPtrString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt16ToPtrString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int16)
 	fn := function.(func(*string, *int16) *string)
 	acc := ""
@@ -3242,7 +3242,7 @@ func reducePtrInt16ToPtrString(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrInt16ToString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt16ToString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int16)
 	fn := function.(func(string, *int16) string)
 	acc := ""
@@ -3252,7 +3252,7 @@ func reducePtrInt16ToString(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceInt16ToBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt16ToBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int16)
 	fn := function.(func(bool, int16) bool)
 	acc := false
@@ -3262,7 +3262,7 @@ func reduceInt16ToBool(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceInt16ToPtrBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt16ToPtrBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int16)
 	fn := function.(func(*bool, int16) *bool)
 	acc := false
@@ -3273,7 +3273,7 @@ func reduceInt16ToPtrBool(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrInt16ToPtrBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt16ToPtrBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int16)
 	fn := function.(func(*bool, *int16) *bool)
 	acc := false
@@ -3284,7 +3284,7 @@ func reducePtrInt16ToPtrBool(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrInt16ToBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt16ToBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int16)
 	fn := function.(func(bool, *int16) bool)
 	acc := false
@@ -3294,7 +3294,7 @@ func reducePtrInt16ToBool(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceInt16ToInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt16ToInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int16)
 	fn := function.(func(int, int16) int)
 	acc := 0
@@ -3304,7 +3304,7 @@ func reduceInt16ToInt(itemsValue *reflect.Value, function interface{}, info *red
 	return acc
 }
 
-func reduceInt16ToPtrInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt16ToPtrInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int16)
 	fn := function.(func(*int, int16) *int)
 	acc := 0
@@ -3315,7 +3315,7 @@ func reduceInt16ToPtrInt(itemsValue *reflect.Value, function interface{}, info *
 	return accPtr
 }
 
-func reducePtrInt16ToPtrInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt16ToPtrInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int16)
 	fn := function.(func(*int, *int16) *int)
 	acc := 0
@@ -3326,7 +3326,7 @@ func reducePtrInt16ToPtrInt(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrInt16ToInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt16ToInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int16)
 	fn := function.(func(int, *int16) int)
 	acc := 0
@@ -3336,7 +3336,7 @@ func reducePtrInt16ToInt(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceInt16ToInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt16ToInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int16)
 	fn := function.(func(int8, int16) int8)
 	acc := int8(0)
@@ -3346,7 +3346,7 @@ func reduceInt16ToInt8(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceInt16ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt16ToPtrInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int16)
 	fn := function.(func(*int8, int16) *int8)
 	acc := int8(0)
@@ -3357,7 +3357,7 @@ func reduceInt16ToPtrInt8(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrInt16ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt16ToPtrInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int16)
 	fn := function.(func(*int8, *int16) *int8)
 	acc := int8(0)
@@ -3368,7 +3368,7 @@ func reducePtrInt16ToPtrInt8(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrInt16ToInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt16ToInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int16)
 	fn := function.(func(int8, *int16) int8)
 	acc := int8(0)
@@ -3378,7 +3378,7 @@ func reducePtrInt16ToInt8(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceInt16ToInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt16ToInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int16)
 	fn := function.(func(int16, int16) int16)
 	acc := int16(0)
@@ -3388,7 +3388,7 @@ func reduceInt16ToInt16(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceInt16ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt16ToPtrInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int16)
 	fn := function.(func(*int16, int16) *int16)
 	acc := int16(0)
@@ -3399,7 +3399,7 @@ func reduceInt16ToPtrInt16(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrInt16ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt16ToPtrInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int16)
 	fn := function.(func(*int16, *int16) *int16)
 	acc := int16(0)
@@ -3410,7 +3410,7 @@ func reducePtrInt16ToPtrInt16(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrInt16ToInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt16ToInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int16)
 	fn := function.(func(int16, *int16) int16)
 	acc := int16(0)
@@ -3420,7 +3420,7 @@ func reducePtrInt16ToInt16(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceInt16ToInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt16ToInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int16)
 	fn := function.(func(int32, int16) int32)
 	acc := int32(0)
@@ -3430,7 +3430,7 @@ func reduceInt16ToInt32(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceInt16ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt16ToPtrInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int16)
 	fn := function.(func(*int32, int16) *int32)
 	acc := int32(0)
@@ -3441,7 +3441,7 @@ func reduceInt16ToPtrInt32(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrInt16ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt16ToPtrInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int16)
 	fn := function.(func(*int32, *int16) *int32)
 	acc := int32(0)
@@ -3452,7 +3452,7 @@ func reducePtrInt16ToPtrInt32(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrInt16ToInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt16ToInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int16)
 	fn := function.(func(int32, *int16) int32)
 	acc := int32(0)
@@ -3462,7 +3462,7 @@ func reducePtrInt16ToInt32(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceInt16ToInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt16ToInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int16)
 	fn := function.(func(int64, int16) int64)
 	acc := int64(0)
@@ -3472,7 +3472,7 @@ func reduceInt16ToInt64(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceInt16ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt16ToPtrInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int16)
 	fn := function.(func(*int64, int16) *int64)
 	acc := int64(0)
@@ -3483,7 +3483,7 @@ func reduceInt16ToPtrInt64(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrInt16ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt16ToPtrInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int16)
 	fn := function.(func(*int64, *int16) *int64)
 	acc := int64(0)
@@ -3494,7 +3494,7 @@ func reducePtrInt16ToPtrInt64(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrInt16ToInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt16ToInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int16)
 	fn := function.(func(int64, *int16) int64)
 	acc := int64(0)
@@ -3504,7 +3504,7 @@ func reducePtrInt16ToInt64(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceInt16ToUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt16ToUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int16)
 	fn := function.(func(uint, int16) uint)
 	acc := uint(0)
@@ -3514,7 +3514,7 @@ func reduceInt16ToUint(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceInt16ToPtrUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt16ToPtrUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int16)
 	fn := function.(func(*uint, int16) *uint)
 	acc := uint(0)
@@ -3525,7 +3525,7 @@ func reduceInt16ToPtrUint(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrInt16ToPtrUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt16ToPtrUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int16)
 	fn := function.(func(*uint, *int16) *uint)
 	acc := uint(0)
@@ -3536,7 +3536,7 @@ func reducePtrInt16ToPtrUint(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrInt16ToUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt16ToUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int16)
 	fn := function.(func(uint, *int16) uint)
 	acc := uint(0)
@@ -3546,7 +3546,7 @@ func reducePtrInt16ToUint(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceInt16ToUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt16ToUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int16)
 	fn := function.(func(uint8, int16) uint8)
 	acc := uint8(0)
@@ -3556,7 +3556,7 @@ func reduceInt16ToUint8(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceInt16ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt16ToPtrUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int16)
 	fn := function.(func(*uint8, int16) *uint8)
 	acc := uint8(0)
@@ -3567,7 +3567,7 @@ func reduceInt16ToPtrUint8(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrInt16ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt16ToPtrUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int16)
 	fn := function.(func(*uint8, *int16) *uint8)
 	acc := uint8(0)
@@ -3578,7 +3578,7 @@ func reducePtrInt16ToPtrUint8(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrInt16ToUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt16ToUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int16)
 	fn := function.(func(uint8, *int16) uint8)
 	acc := uint8(0)
@@ -3588,7 +3588,7 @@ func reducePtrInt16ToUint8(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceInt16ToUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt16ToUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int16)
 	fn := function.(func(uint16, int16) uint16)
 	acc := uint16(0)
@@ -3598,7 +3598,7 @@ func reduceInt16ToUint16(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceInt16ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt16ToPtrUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int16)
 	fn := function.(func(*uint16, int16) *uint16)
 	acc := uint16(0)
@@ -3609,7 +3609,7 @@ func reduceInt16ToPtrUint16(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrInt16ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt16ToPtrUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int16)
 	fn := function.(func(*uint16, *int16) *uint16)
 	acc := uint16(0)
@@ -3620,7 +3620,7 @@ func reducePtrInt16ToPtrUint16(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrInt16ToUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt16ToUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int16)
 	fn := function.(func(uint16, *int16) uint16)
 	acc := uint16(0)
@@ -3630,7 +3630,7 @@ func reducePtrInt16ToUint16(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceInt16ToUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt16ToUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int16)
 	fn := function.(func(uint32, int16) uint32)
 	acc := uint32(0)
@@ -3640,7 +3640,7 @@ func reduceInt16ToUint32(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceInt16ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt16ToPtrUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int16)
 	fn := function.(func(*uint32, int16) *uint32)
 	acc := uint32(0)
@@ -3651,7 +3651,7 @@ func reduceInt16ToPtrUint32(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrInt16ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt16ToPtrUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int16)
 	fn := function.(func(*uint32, *int16) *uint32)
 	acc := uint32(0)
@@ -3662,7 +3662,7 @@ func reducePtrInt16ToPtrUint32(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrInt16ToUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt16ToUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int16)
 	fn := function.(func(uint32, *int16) uint32)
 	acc := uint32(0)
@@ -3672,7 +3672,7 @@ func reducePtrInt16ToUint32(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceInt16ToUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt16ToUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int16)
 	fn := function.(func(uint64, int16) uint64)
 	acc := uint64(0)
@@ -3682,7 +3682,7 @@ func reduceInt16ToUint64(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceInt16ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt16ToPtrUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int16)
 	fn := function.(func(*uint64, int16) *uint64)
 	acc := uint64(0)
@@ -3693,7 +3693,7 @@ func reduceInt16ToPtrUint64(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrInt16ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt16ToPtrUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int16)
 	fn := function.(func(*uint64, *int16) *uint64)
 	acc := uint64(0)
@@ -3704,7 +3704,7 @@ func reducePtrInt16ToPtrUint64(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrInt16ToUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt16ToUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int16)
 	fn := function.(func(uint64, *int16) uint64)
 	acc := uint64(0)
@@ -3714,7 +3714,7 @@ func reducePtrInt16ToUint64(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceInt16ToFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt16ToFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int16)
 	fn := function.(func(float32, int16) float32)
 	acc := float32(0)
@@ -3724,7 +3724,7 @@ func reduceInt16ToFloat32(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceInt16ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt16ToPtrFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int16)
 	fn := function.(func(*float32, int16) *float32)
 	acc := float32(0)
@@ -3735,7 +3735,7 @@ func reduceInt16ToPtrFloat32(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrInt16ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt16ToPtrFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int16)
 	fn := function.(func(*float32, *int16) *float32)
 	acc := float32(0)
@@ -3746,7 +3746,7 @@ func reducePtrInt16ToPtrFloat32(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrInt16ToFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt16ToFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int16)
 	fn := function.(func(float32, *int16) float32)
 	acc := float32(0)
@@ -3756,7 +3756,7 @@ func reducePtrInt16ToFloat32(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceInt16ToFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt16ToFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int16)
 	fn := function.(func(float64, int16) float64)
 	acc := float64(0)
@@ -3766,7 +3766,7 @@ func reduceInt16ToFloat64(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceInt16ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt16ToPtrFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int16)
 	fn := function.(func(*float64, int16) *float64)
 	acc := float64(0)
@@ -3777,7 +3777,7 @@ func reduceInt16ToPtrFloat64(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrInt16ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt16ToPtrFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int16)
 	fn := function.(func(*float64, *int16) *float64)
 	acc := float64(0)
@@ -3788,7 +3788,7 @@ func reducePtrInt16ToPtrFloat64(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrInt16ToFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt16ToFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int16)
 	fn := function.(func(float64, *int16) float64)
 	acc := float64(0)
@@ -3798,7 +3798,7 @@ func reducePtrInt16ToFloat64(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceInt32ToString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt32ToString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int32)
 	fn := function.(func(string, int32) string)
 	acc := ""
@@ -3808,7 +3808,7 @@ func reduceInt32ToString(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceInt32ToPtrString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt32ToPtrString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int32)
 	fn := function.(func(*string, int32) *string)
 	acc := ""
@@ -3819,7 +3819,7 @@ func reduceInt32ToPtrString(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrInt32ToPtrString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt32ToPtrString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int32)
 	fn := function.(func(*string, *int32) *string)
 	acc := ""
@@ -3830,7 +3830,7 @@ func reducePtrInt32ToPtrString(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrInt32ToString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt32ToString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int32)
 	fn := function.(func(string, *int32) string)
 	acc := ""
@@ -3840,7 +3840,7 @@ func reducePtrInt32ToString(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceInt32ToBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt32ToBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int32)
 	fn := function.(func(bool, int32) bool)
 	acc := false
@@ -3850,7 +3850,7 @@ func reduceInt32ToBool(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceInt32ToPtrBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt32ToPtrBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int32)
 	fn := function.(func(*bool, int32) *bool)
 	acc := false
@@ -3861,7 +3861,7 @@ func reduceInt32ToPtrBool(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrInt32ToPtrBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt32ToPtrBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int32)
 	fn := function.(func(*bool, *int32) *bool)
 	acc := false
@@ -3872,7 +3872,7 @@ func reducePtrInt32ToPtrBool(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrInt32ToBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt32ToBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int32)
 	fn := function.(func(bool, *int32) bool)
 	acc := false
@@ -3882,7 +3882,7 @@ func reducePtrInt32ToBool(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceInt32ToInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt32ToInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int32)
 	fn := function.(func(int, int32) int)
 	acc := 0
@@ -3892,7 +3892,7 @@ func reduceInt32ToInt(itemsValue *reflect.Value, function interface{}, info *red
 	return acc
 }
 
-func reduceInt32ToPtrInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt32ToPtrInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int32)
 	fn := function.(func(*int, int32) *int)
 	acc := 0
@@ -3903,7 +3903,7 @@ func reduceInt32ToPtrInt(itemsValue *reflect.Value, function interface{}, info *
 	return accPtr
 }
 
-func reducePtrInt32ToPtrInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt32ToPtrInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int32)
 	fn := function.(func(*int, *int32) *int)
 	acc := 0
@@ -3914,7 +3914,7 @@ func reducePtrInt32ToPtrInt(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrInt32ToInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt32ToInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int32)
 	fn := function.(func(int, *int32) int)
 	acc := 0
@@ -3924,7 +3924,7 @@ func reducePtrInt32ToInt(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceInt32ToInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt32ToInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int32)
 	fn := function.(func(int8, int32) int8)
 	acc := int8(0)
@@ -3934,7 +3934,7 @@ func reduceInt32ToInt8(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceInt32ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt32ToPtrInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int32)
 	fn := function.(func(*int8, int32) *int8)
 	acc := int8(0)
@@ -3945,7 +3945,7 @@ func reduceInt32ToPtrInt8(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrInt32ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt32ToPtrInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int32)
 	fn := function.(func(*int8, *int32) *int8)
 	acc := int8(0)
@@ -3956,7 +3956,7 @@ func reducePtrInt32ToPtrInt8(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrInt32ToInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt32ToInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int32)
 	fn := function.(func(int8, *int32) int8)
 	acc := int8(0)
@@ -3966,7 +3966,7 @@ func reducePtrInt32ToInt8(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceInt32ToInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt32ToInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int32)
 	fn := function.(func(int16, int32) int16)
 	acc := int16(0)
@@ -3976,7 +3976,7 @@ func reduceInt32ToInt16(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceInt32ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt32ToPtrInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int32)
 	fn := function.(func(*int16, int32) *int16)
 	acc := int16(0)
@@ -3987,7 +3987,7 @@ func reduceInt32ToPtrInt16(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrInt32ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt32ToPtrInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int32)
 	fn := function.(func(*int16, *int32) *int16)
 	acc := int16(0)
@@ -3998,7 +3998,7 @@ func reducePtrInt32ToPtrInt16(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrInt32ToInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt32ToInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int32)
 	fn := function.(func(int16, *int32) int16)
 	acc := int16(0)
@@ -4008,7 +4008,7 @@ func reducePtrInt32ToInt16(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceInt32ToInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt32ToInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int32)
 	fn := function.(func(int32, int32) int32)
 	acc := int32(0)
@@ -4018,7 +4018,7 @@ func reduceInt32ToInt32(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceInt32ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt32ToPtrInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int32)
 	fn := function.(func(*int32, int32) *int32)
 	acc := int32(0)
@@ -4029,7 +4029,7 @@ func reduceInt32ToPtrInt32(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrInt32ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt32ToPtrInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int32)
 	fn := function.(func(*int32, *int32) *int32)
 	acc := int32(0)
@@ -4040,7 +4040,7 @@ func reducePtrInt32ToPtrInt32(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrInt32ToInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt32ToInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int32)
 	fn := function.(func(int32, *int32) int32)
 	acc := int32(0)
@@ -4050,7 +4050,7 @@ func reducePtrInt32ToInt32(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceInt32ToInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt32ToInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int32)
 	fn := function.(func(int64, int32) int64)
 	acc := int64(0)
@@ -4060,7 +4060,7 @@ func reduceInt32ToInt64(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceInt32ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt32ToPtrInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int32)
 	fn := function.(func(*int64, int32) *int64)
 	acc := int64(0)
@@ -4071,7 +4071,7 @@ func reduceInt32ToPtrInt64(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrInt32ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt32ToPtrInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int32)
 	fn := function.(func(*int64, *int32) *int64)
 	acc := int64(0)
@@ -4082,7 +4082,7 @@ func reducePtrInt32ToPtrInt64(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrInt32ToInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt32ToInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int32)
 	fn := function.(func(int64, *int32) int64)
 	acc := int64(0)
@@ -4092,7 +4092,7 @@ func reducePtrInt32ToInt64(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceInt32ToUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt32ToUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int32)
 	fn := function.(func(uint, int32) uint)
 	acc := uint(0)
@@ -4102,7 +4102,7 @@ func reduceInt32ToUint(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceInt32ToPtrUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt32ToPtrUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int32)
 	fn := function.(func(*uint, int32) *uint)
 	acc := uint(0)
@@ -4113,7 +4113,7 @@ func reduceInt32ToPtrUint(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrInt32ToPtrUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt32ToPtrUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int32)
 	fn := function.(func(*uint, *int32) *uint)
 	acc := uint(0)
@@ -4124,7 +4124,7 @@ func reducePtrInt32ToPtrUint(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrInt32ToUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt32ToUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int32)
 	fn := function.(func(uint, *int32) uint)
 	acc := uint(0)
@@ -4134,7 +4134,7 @@ func reducePtrInt32ToUint(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceInt32ToUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt32ToUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int32)
 	fn := function.(func(uint8, int32) uint8)
 	acc := uint8(0)
@@ -4144,7 +4144,7 @@ func reduceInt32ToUint8(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceInt32ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt32ToPtrUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int32)
 	fn := function.(func(*uint8, int32) *uint8)
 	acc := uint8(0)
@@ -4155,7 +4155,7 @@ func reduceInt32ToPtrUint8(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrInt32ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt32ToPtrUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int32)
 	fn := function.(func(*uint8, *int32) *uint8)
 	acc := uint8(0)
@@ -4166,7 +4166,7 @@ func reducePtrInt32ToPtrUint8(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrInt32ToUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt32ToUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int32)
 	fn := function.(func(uint8, *int32) uint8)
 	acc := uint8(0)
@@ -4176,7 +4176,7 @@ func reducePtrInt32ToUint8(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceInt32ToUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt32ToUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int32)
 	fn := function.(func(uint16, int32) uint16)
 	acc := uint16(0)
@@ -4186,7 +4186,7 @@ func reduceInt32ToUint16(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceInt32ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt32ToPtrUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int32)
 	fn := function.(func(*uint16, int32) *uint16)
 	acc := uint16(0)
@@ -4197,7 +4197,7 @@ func reduceInt32ToPtrUint16(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrInt32ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt32ToPtrUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int32)
 	fn := function.(func(*uint16, *int32) *uint16)
 	acc := uint16(0)
@@ -4208,7 +4208,7 @@ func reducePtrInt32ToPtrUint16(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrInt32ToUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt32ToUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int32)
 	fn := function.(func(uint16, *int32) uint16)
 	acc := uint16(0)
@@ -4218,7 +4218,7 @@ func reducePtrInt32ToUint16(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceInt32ToUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt32ToUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int32)
 	fn := function.(func(uint32, int32) uint32)
 	acc := uint32(0)
@@ -4228,7 +4228,7 @@ func reduceInt32ToUint32(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceInt32ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt32ToPtrUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int32)
 	fn := function.(func(*uint32, int32) *uint32)
 	acc := uint32(0)
@@ -4239,7 +4239,7 @@ func reduceInt32ToPtrUint32(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrInt32ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt32ToPtrUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int32)
 	fn := function.(func(*uint32, *int32) *uint32)
 	acc := uint32(0)
@@ -4250,7 +4250,7 @@ func reducePtrInt32ToPtrUint32(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrInt32ToUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt32ToUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int32)
 	fn := function.(func(uint32, *int32) uint32)
 	acc := uint32(0)
@@ -4260,7 +4260,7 @@ func reducePtrInt32ToUint32(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceInt32ToUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt32ToUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int32)
 	fn := function.(func(uint64, int32) uint64)
 	acc := uint64(0)
@@ -4270,7 +4270,7 @@ func reduceInt32ToUint64(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceInt32ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt32ToPtrUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int32)
 	fn := function.(func(*uint64, int32) *uint64)
 	acc := uint64(0)
@@ -4281,7 +4281,7 @@ func reduceInt32ToPtrUint64(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrInt32ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt32ToPtrUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int32)
 	fn := function.(func(*uint64, *int32) *uint64)
 	acc := uint64(0)
@@ -4292,7 +4292,7 @@ func reducePtrInt32ToPtrUint64(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrInt32ToUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt32ToUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int32)
 	fn := function.(func(uint64, *int32) uint64)
 	acc := uint64(0)
@@ -4302,7 +4302,7 @@ func reducePtrInt32ToUint64(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceInt32ToFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt32ToFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int32)
 	fn := function.(func(float32, int32) float32)
 	acc := float32(0)
@@ -4312,7 +4312,7 @@ func reduceInt32ToFloat32(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceInt32ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt32ToPtrFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int32)
 	fn := function.(func(*float32, int32) *float32)
 	acc := float32(0)
@@ -4323,7 +4323,7 @@ func reduceInt32ToPtrFloat32(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrInt32ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt32ToPtrFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int32)
 	fn := function.(func(*float32, *int32) *float32)
 	acc := float32(0)
@@ -4334,7 +4334,7 @@ func reducePtrInt32ToPtrFloat32(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrInt32ToFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt32ToFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int32)
 	fn := function.(func(float32, *int32) float32)
 	acc := float32(0)
@@ -4344,7 +4344,7 @@ func reducePtrInt32ToFloat32(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceInt32ToFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt32ToFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int32)
 	fn := function.(func(float64, int32) float64)
 	acc := float64(0)
@@ -4354,7 +4354,7 @@ func reduceInt32ToFloat64(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceInt32ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt32ToPtrFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int32)
 	fn := function.(func(*float64, int32) *float64)
 	acc := float64(0)
@@ -4365,7 +4365,7 @@ func reduceInt32ToPtrFloat64(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrInt32ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt32ToPtrFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int32)
 	fn := function.(func(*float64, *int32) *float64)
 	acc := float64(0)
@@ -4376,7 +4376,7 @@ func reducePtrInt32ToPtrFloat64(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrInt32ToFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt32ToFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int32)
 	fn := function.(func(float64, *int32) float64)
 	acc := float64(0)
@@ -4386,7 +4386,7 @@ func reducePtrInt32ToFloat64(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceInt64ToString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt64ToString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int64)
 	fn := function.(func(string, int64) string)
 	acc := ""
@@ -4396,7 +4396,7 @@ func reduceInt64ToString(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceInt64ToPtrString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt64ToPtrString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int64)
 	fn := function.(func(*string, int64) *string)
 	acc := ""
@@ -4407,7 +4407,7 @@ func reduceInt64ToPtrString(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrInt64ToPtrString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt64ToPtrString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int64)
 	fn := function.(func(*string, *int64) *string)
 	acc := ""
@@ -4418,7 +4418,7 @@ func reducePtrInt64ToPtrString(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrInt64ToString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt64ToString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int64)
 	fn := function.(func(string, *int64) string)
 	acc := ""
@@ -4428,7 +4428,7 @@ func reducePtrInt64ToString(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceInt64ToBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt64ToBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int64)
 	fn := function.(func(bool, int64) bool)
 	acc := false
@@ -4438,7 +4438,7 @@ func reduceInt64ToBool(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceInt64ToPtrBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt64ToPtrBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int64)
 	fn := function.(func(*bool, int64) *bool)
 	acc := false
@@ -4449,7 +4449,7 @@ func reduceInt64ToPtrBool(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrInt64ToPtrBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt64ToPtrBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int64)
 	fn := function.(func(*bool, *int64) *bool)
 	acc := false
@@ -4460,7 +4460,7 @@ func reducePtrInt64ToPtrBool(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrInt64ToBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt64ToBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int64)
 	fn := function.(func(bool, *int64) bool)
 	acc := false
@@ -4470,7 +4470,7 @@ func reducePtrInt64ToBool(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceInt64ToInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt64ToInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int64)
 	fn := function.(func(int, int64) int)
 	acc := 0
@@ -4480,7 +4480,7 @@ func reduceInt64ToInt(itemsValue *reflect.Value, function interface{}, info *red
 	return acc
 }
 
-func reduceInt64ToPtrInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt64ToPtrInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int64)
 	fn := function.(func(*int, int64) *int)
 	acc := 0
@@ -4491,7 +4491,7 @@ func reduceInt64ToPtrInt(itemsValue *reflect.Value, function interface{}, info *
 	return accPtr
 }
 
-func reducePtrInt64ToPtrInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt64ToPtrInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int64)
 	fn := function.(func(*int, *int64) *int)
 	acc := 0
@@ -4502,7 +4502,7 @@ func reducePtrInt64ToPtrInt(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrInt64ToInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt64ToInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int64)
 	fn := function.(func(int, *int64) int)
 	acc := 0
@@ -4512,7 +4512,7 @@ func reducePtrInt64ToInt(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceInt64ToInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt64ToInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int64)
 	fn := function.(func(int8, int64) int8)
 	acc := int8(0)
@@ -4522,7 +4522,7 @@ func reduceInt64ToInt8(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceInt64ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt64ToPtrInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int64)
 	fn := function.(func(*int8, int64) *int8)
 	acc := int8(0)
@@ -4533,7 +4533,7 @@ func reduceInt64ToPtrInt8(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrInt64ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt64ToPtrInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int64)
 	fn := function.(func(*int8, *int64) *int8)
 	acc := int8(0)
@@ -4544,7 +4544,7 @@ func reducePtrInt64ToPtrInt8(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrInt64ToInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt64ToInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int64)
 	fn := function.(func(int8, *int64) int8)
 	acc := int8(0)
@@ -4554,7 +4554,7 @@ func reducePtrInt64ToInt8(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceInt64ToInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt64ToInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int64)
 	fn := function.(func(int16, int64) int16)
 	acc := int16(0)
@@ -4564,7 +4564,7 @@ func reduceInt64ToInt16(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceInt64ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt64ToPtrInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int64)
 	fn := function.(func(*int16, int64) *int16)
 	acc := int16(0)
@@ -4575,7 +4575,7 @@ func reduceInt64ToPtrInt16(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrInt64ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt64ToPtrInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int64)
 	fn := function.(func(*int16, *int64) *int16)
 	acc := int16(0)
@@ -4586,7 +4586,7 @@ func reducePtrInt64ToPtrInt16(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrInt64ToInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt64ToInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int64)
 	fn := function.(func(int16, *int64) int16)
 	acc := int16(0)
@@ -4596,7 +4596,7 @@ func reducePtrInt64ToInt16(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceInt64ToInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt64ToInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int64)
 	fn := function.(func(int32, int64) int32)
 	acc := int32(0)
@@ -4606,7 +4606,7 @@ func reduceInt64ToInt32(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceInt64ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt64ToPtrInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int64)
 	fn := function.(func(*int32, int64) *int32)
 	acc := int32(0)
@@ -4617,7 +4617,7 @@ func reduceInt64ToPtrInt32(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrInt64ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt64ToPtrInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int64)
 	fn := function.(func(*int32, *int64) *int32)
 	acc := int32(0)
@@ -4628,7 +4628,7 @@ func reducePtrInt64ToPtrInt32(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrInt64ToInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt64ToInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int64)
 	fn := function.(func(int32, *int64) int32)
 	acc := int32(0)
@@ -4638,7 +4638,7 @@ func reducePtrInt64ToInt32(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceInt64ToInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt64ToInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int64)
 	fn := function.(func(int64, int64) int64)
 	acc := int64(0)
@@ -4648,7 +4648,7 @@ func reduceInt64ToInt64(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceInt64ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt64ToPtrInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int64)
 	fn := function.(func(*int64, int64) *int64)
 	acc := int64(0)
@@ -4659,7 +4659,7 @@ func reduceInt64ToPtrInt64(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrInt64ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt64ToPtrInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int64)
 	fn := function.(func(*int64, *int64) *int64)
 	acc := int64(0)
@@ -4670,7 +4670,7 @@ func reducePtrInt64ToPtrInt64(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrInt64ToInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt64ToInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int64)
 	fn := function.(func(int64, *int64) int64)
 	acc := int64(0)
@@ -4680,7 +4680,7 @@ func reducePtrInt64ToInt64(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceInt64ToUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt64ToUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int64)
 	fn := function.(func(uint, int64) uint)
 	acc := uint(0)
@@ -4690,7 +4690,7 @@ func reduceInt64ToUint(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceInt64ToPtrUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt64ToPtrUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int64)
 	fn := function.(func(*uint, int64) *uint)
 	acc := uint(0)
@@ -4701,7 +4701,7 @@ func reduceInt64ToPtrUint(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrInt64ToPtrUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt64ToPtrUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int64)
 	fn := function.(func(*uint, *int64) *uint)
 	acc := uint(0)
@@ -4712,7 +4712,7 @@ func reducePtrInt64ToPtrUint(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrInt64ToUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt64ToUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int64)
 	fn := function.(func(uint, *int64) uint)
 	acc := uint(0)
@@ -4722,7 +4722,7 @@ func reducePtrInt64ToUint(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceInt64ToUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt64ToUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int64)
 	fn := function.(func(uint8, int64) uint8)
 	acc := uint8(0)
@@ -4732,7 +4732,7 @@ func reduceInt64ToUint8(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceInt64ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt64ToPtrUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int64)
 	fn := function.(func(*uint8, int64) *uint8)
 	acc := uint8(0)
@@ -4743,7 +4743,7 @@ func reduceInt64ToPtrUint8(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrInt64ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt64ToPtrUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int64)
 	fn := function.(func(*uint8, *int64) *uint8)
 	acc := uint8(0)
@@ -4754,7 +4754,7 @@ func reducePtrInt64ToPtrUint8(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrInt64ToUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt64ToUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int64)
 	fn := function.(func(uint8, *int64) uint8)
 	acc := uint8(0)
@@ -4764,7 +4764,7 @@ func reducePtrInt64ToUint8(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceInt64ToUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt64ToUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int64)
 	fn := function.(func(uint16, int64) uint16)
 	acc := uint16(0)
@@ -4774,7 +4774,7 @@ func reduceInt64ToUint16(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceInt64ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt64ToPtrUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int64)
 	fn := function.(func(*uint16, int64) *uint16)
 	acc := uint16(0)
@@ -4785,7 +4785,7 @@ func reduceInt64ToPtrUint16(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrInt64ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt64ToPtrUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int64)
 	fn := function.(func(*uint16, *int64) *uint16)
 	acc := uint16(0)
@@ -4796,7 +4796,7 @@ func reducePtrInt64ToPtrUint16(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrInt64ToUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt64ToUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int64)
 	fn := function.(func(uint16, *int64) uint16)
 	acc := uint16(0)
@@ -4806,7 +4806,7 @@ func reducePtrInt64ToUint16(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceInt64ToUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt64ToUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int64)
 	fn := function.(func(uint32, int64) uint32)
 	acc := uint32(0)
@@ -4816,7 +4816,7 @@ func reduceInt64ToUint32(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceInt64ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt64ToPtrUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int64)
 	fn := function.(func(*uint32, int64) *uint32)
 	acc := uint32(0)
@@ -4827,7 +4827,7 @@ func reduceInt64ToPtrUint32(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrInt64ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt64ToPtrUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int64)
 	fn := function.(func(*uint32, *int64) *uint32)
 	acc := uint32(0)
@@ -4838,7 +4838,7 @@ func reducePtrInt64ToPtrUint32(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrInt64ToUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt64ToUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int64)
 	fn := function.(func(uint32, *int64) uint32)
 	acc := uint32(0)
@@ -4848,7 +4848,7 @@ func reducePtrInt64ToUint32(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceInt64ToUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt64ToUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int64)
 	fn := function.(func(uint64, int64) uint64)
 	acc := uint64(0)
@@ -4858,7 +4858,7 @@ func reduceInt64ToUint64(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceInt64ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt64ToPtrUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int64)
 	fn := function.(func(*uint64, int64) *uint64)
 	acc := uint64(0)
@@ -4869,7 +4869,7 @@ func reduceInt64ToPtrUint64(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrInt64ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt64ToPtrUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int64)
 	fn := function.(func(*uint64, *int64) *uint64)
 	acc := uint64(0)
@@ -4880,7 +4880,7 @@ func reducePtrInt64ToPtrUint64(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrInt64ToUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt64ToUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int64)
 	fn := function.(func(uint64, *int64) uint64)
 	acc := uint64(0)
@@ -4890,7 +4890,7 @@ func reducePtrInt64ToUint64(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceInt64ToFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt64ToFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int64)
 	fn := function.(func(float32, int64) float32)
 	acc := float32(0)
@@ -4900,7 +4900,7 @@ func reduceInt64ToFloat32(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceInt64ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt64ToPtrFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int64)
 	fn := function.(func(*float32, int64) *float32)
 	acc := float32(0)
@@ -4911,7 +4911,7 @@ func reduceInt64ToPtrFloat32(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrInt64ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt64ToPtrFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int64)
 	fn := function.(func(*float32, *int64) *float32)
 	acc := float32(0)
@@ -4922,7 +4922,7 @@ func reducePtrInt64ToPtrFloat32(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrInt64ToFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt64ToFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int64)
 	fn := function.(func(float32, *int64) float32)
 	acc := float32(0)
@@ -4932,7 +4932,7 @@ func reducePtrInt64ToFloat32(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceInt64ToFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt64ToFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int64)
 	fn := function.(func(float64, int64) float64)
 	acc := float64(0)
@@ -4942,7 +4942,7 @@ func reduceInt64ToFloat64(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceInt64ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceInt64ToPtrFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]int64)
 	fn := function.(func(*float64, int64) *float64)
 	acc := float64(0)
@@ -4953,7 +4953,7 @@ func reduceInt64ToPtrFloat64(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrInt64ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt64ToPtrFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int64)
 	fn := function.(func(*float64, *int64) *float64)
 	acc := float64(0)
@@ -4964,7 +4964,7 @@ func reducePtrInt64ToPtrFloat64(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrInt64ToFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrInt64ToFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*int64)
 	fn := function.(func(float64, *int64) float64)
 	acc := float64(0)
@@ -4974,7 +4974,7 @@ func reducePtrInt64ToFloat64(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceUintToString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUintToString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint)
 	fn := function.(func(string, uint) string)
 	acc := ""
@@ -4984,7 +4984,7 @@ func reduceUintToString(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceUintToPtrString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUintToPtrString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint)
 	fn := function.(func(*string, uint) *string)
 	acc := ""
@@ -4995,7 +4995,7 @@ func reduceUintToPtrString(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrUintToPtrString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUintToPtrString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint)
 	fn := function.(func(*string, *uint) *string)
 	acc := ""
@@ -5006,7 +5006,7 @@ func reducePtrUintToPtrString(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrUintToString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUintToString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint)
 	fn := function.(func(string, *uint) string)
 	acc := ""
@@ -5016,7 +5016,7 @@ func reducePtrUintToString(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceUintToBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUintToBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint)
 	fn := function.(func(bool, uint) bool)
 	acc := false
@@ -5026,7 +5026,7 @@ func reduceUintToBool(itemsValue *reflect.Value, function interface{}, info *red
 	return acc
 }
 
-func reduceUintToPtrBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUintToPtrBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint)
 	fn := function.(func(*bool, uint) *bool)
 	acc := false
@@ -5037,7 +5037,7 @@ func reduceUintToPtrBool(itemsValue *reflect.Value, function interface{}, info *
 	return accPtr
 }
 
-func reducePtrUintToPtrBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUintToPtrBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint)
 	fn := function.(func(*bool, *uint) *bool)
 	acc := false
@@ -5048,7 +5048,7 @@ func reducePtrUintToPtrBool(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrUintToBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUintToBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint)
 	fn := function.(func(bool, *uint) bool)
 	acc := false
@@ -5058,7 +5058,7 @@ func reducePtrUintToBool(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceUintToInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUintToInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint)
 	fn := function.(func(int, uint) int)
 	acc := 0
@@ -5068,7 +5068,7 @@ func reduceUintToInt(itemsValue *reflect.Value, function interface{}, info *redu
 	return acc
 }
 
-func reduceUintToPtrInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUintToPtrInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint)
 	fn := function.(func(*int, uint) *int)
 	acc := 0
@@ -5079,7 +5079,7 @@ func reduceUintToPtrInt(itemsValue *reflect.Value, function interface{}, info *r
 	return accPtr
 }
 
-func reducePtrUintToPtrInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUintToPtrInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint)
 	fn := function.(func(*int, *uint) *int)
 	acc := 0
@@ -5090,7 +5090,7 @@ func reducePtrUintToPtrInt(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrUintToInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUintToInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint)
 	fn := function.(func(int, *uint) int)
 	acc := 0
@@ -5100,7 +5100,7 @@ func reducePtrUintToInt(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceUintToInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUintToInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint)
 	fn := function.(func(int8, uint) int8)
 	acc := int8(0)
@@ -5110,7 +5110,7 @@ func reduceUintToInt8(itemsValue *reflect.Value, function interface{}, info *red
 	return acc
 }
 
-func reduceUintToPtrInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUintToPtrInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint)
 	fn := function.(func(*int8, uint) *int8)
 	acc := int8(0)
@@ -5121,7 +5121,7 @@ func reduceUintToPtrInt8(itemsValue *reflect.Value, function interface{}, info *
 	return accPtr
 }
 
-func reducePtrUintToPtrInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUintToPtrInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint)
 	fn := function.(func(*int8, *uint) *int8)
 	acc := int8(0)
@@ -5132,7 +5132,7 @@ func reducePtrUintToPtrInt8(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrUintToInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUintToInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint)
 	fn := function.(func(int8, *uint) int8)
 	acc := int8(0)
@@ -5142,7 +5142,7 @@ func reducePtrUintToInt8(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceUintToInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUintToInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint)
 	fn := function.(func(int16, uint) int16)
 	acc := int16(0)
@@ -5152,7 +5152,7 @@ func reduceUintToInt16(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceUintToPtrInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUintToPtrInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint)
 	fn := function.(func(*int16, uint) *int16)
 	acc := int16(0)
@@ -5163,7 +5163,7 @@ func reduceUintToPtrInt16(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrUintToPtrInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUintToPtrInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint)
 	fn := function.(func(*int16, *uint) *int16)
 	acc := int16(0)
@@ -5174,7 +5174,7 @@ func reducePtrUintToPtrInt16(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrUintToInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUintToInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint)
 	fn := function.(func(int16, *uint) int16)
 	acc := int16(0)
@@ -5184,7 +5184,7 @@ func reducePtrUintToInt16(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceUintToInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUintToInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint)
 	fn := function.(func(int32, uint) int32)
 	acc := int32(0)
@@ -5194,7 +5194,7 @@ func reduceUintToInt32(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceUintToPtrInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUintToPtrInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint)
 	fn := function.(func(*int32, uint) *int32)
 	acc := int32(0)
@@ -5205,7 +5205,7 @@ func reduceUintToPtrInt32(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrUintToPtrInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUintToPtrInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint)
 	fn := function.(func(*int32, *uint) *int32)
 	acc := int32(0)
@@ -5216,7 +5216,7 @@ func reducePtrUintToPtrInt32(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrUintToInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUintToInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint)
 	fn := function.(func(int32, *uint) int32)
 	acc := int32(0)
@@ -5226,7 +5226,7 @@ func reducePtrUintToInt32(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceUintToInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUintToInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint)
 	fn := function.(func(int64, uint) int64)
 	acc := int64(0)
@@ -5236,7 +5236,7 @@ func reduceUintToInt64(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceUintToPtrInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUintToPtrInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint)
 	fn := function.(func(*int64, uint) *int64)
 	acc := int64(0)
@@ -5247,7 +5247,7 @@ func reduceUintToPtrInt64(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrUintToPtrInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUintToPtrInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint)
 	fn := function.(func(*int64, *uint) *int64)
 	acc := int64(0)
@@ -5258,7 +5258,7 @@ func reducePtrUintToPtrInt64(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrUintToInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUintToInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint)
 	fn := function.(func(int64, *uint) int64)
 	acc := int64(0)
@@ -5268,7 +5268,7 @@ func reducePtrUintToInt64(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceUintToUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUintToUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint)
 	fn := function.(func(uint, uint) uint)
 	acc := uint(0)
@@ -5278,7 +5278,7 @@ func reduceUintToUint(itemsValue *reflect.Value, function interface{}, info *red
 	return acc
 }
 
-func reduceUintToPtrUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUintToPtrUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint)
 	fn := function.(func(*uint, uint) *uint)
 	acc := uint(0)
@@ -5289,7 +5289,7 @@ func reduceUintToPtrUint(itemsValue *reflect.Value, function interface{}, info *
 	return accPtr
 }
 
-func reducePtrUintToPtrUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUintToPtrUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint)
 	fn := function.(func(*uint, *uint) *uint)
 	acc := uint(0)
@@ -5300,7 +5300,7 @@ func reducePtrUintToPtrUint(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrUintToUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUintToUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint)
 	fn := function.(func(uint, *uint) uint)
 	acc := uint(0)
@@ -5310,7 +5310,7 @@ func reducePtrUintToUint(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceUintToUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUintToUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint)
 	fn := function.(func(uint8, uint) uint8)
 	acc := uint8(0)
@@ -5320,7 +5320,7 @@ func reduceUintToUint8(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceUintToPtrUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUintToPtrUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint)
 	fn := function.(func(*uint8, uint) *uint8)
 	acc := uint8(0)
@@ -5331,7 +5331,7 @@ func reduceUintToPtrUint8(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrUintToPtrUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUintToPtrUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint)
 	fn := function.(func(*uint8, *uint) *uint8)
 	acc := uint8(0)
@@ -5342,7 +5342,7 @@ func reducePtrUintToPtrUint8(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrUintToUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUintToUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint)
 	fn := function.(func(uint8, *uint) uint8)
 	acc := uint8(0)
@@ -5352,7 +5352,7 @@ func reducePtrUintToUint8(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceUintToUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUintToUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint)
 	fn := function.(func(uint16, uint) uint16)
 	acc := uint16(0)
@@ -5362,7 +5362,7 @@ func reduceUintToUint16(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceUintToPtrUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUintToPtrUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint)
 	fn := function.(func(*uint16, uint) *uint16)
 	acc := uint16(0)
@@ -5373,7 +5373,7 @@ func reduceUintToPtrUint16(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrUintToPtrUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUintToPtrUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint)
 	fn := function.(func(*uint16, *uint) *uint16)
 	acc := uint16(0)
@@ -5384,7 +5384,7 @@ func reducePtrUintToPtrUint16(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrUintToUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUintToUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint)
 	fn := function.(func(uint16, *uint) uint16)
 	acc := uint16(0)
@@ -5394,7 +5394,7 @@ func reducePtrUintToUint16(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceUintToUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUintToUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint)
 	fn := function.(func(uint32, uint) uint32)
 	acc := uint32(0)
@@ -5404,7 +5404,7 @@ func reduceUintToUint32(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceUintToPtrUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUintToPtrUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint)
 	fn := function.(func(*uint32, uint) *uint32)
 	acc := uint32(0)
@@ -5415,7 +5415,7 @@ func reduceUintToPtrUint32(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrUintToPtrUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUintToPtrUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint)
 	fn := function.(func(*uint32, *uint) *uint32)
 	acc := uint32(0)
@@ -5426,7 +5426,7 @@ func reducePtrUintToPtrUint32(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrUintToUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUintToUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint)
 	fn := function.(func(uint32, *uint) uint32)
 	acc := uint32(0)
@@ -5436,7 +5436,7 @@ func reducePtrUintToUint32(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceUintToUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUintToUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint)
 	fn := function.(func(uint64, uint) uint64)
 	acc := uint64(0)
@@ -5446,7 +5446,7 @@ func reduceUintToUint64(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceUintToPtrUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUintToPtrUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint)
 	fn := function.(func(*uint64, uint) *uint64)
 	acc := uint64(0)
@@ -5457,7 +5457,7 @@ func reduceUintToPtrUint64(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrUintToPtrUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUintToPtrUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint)
 	fn := function.(func(*uint64, *uint) *uint64)
 	acc := uint64(0)
@@ -5468,7 +5468,7 @@ func reducePtrUintToPtrUint64(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrUintToUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUintToUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint)
 	fn := function.(func(uint64, *uint) uint64)
 	acc := uint64(0)
@@ -5478,7 +5478,7 @@ func reducePtrUintToUint64(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceUintToFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUintToFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint)
 	fn := function.(func(float32, uint) float32)
 	acc := float32(0)
@@ -5488,7 +5488,7 @@ func reduceUintToFloat32(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceUintToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUintToPtrFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint)
 	fn := function.(func(*float32, uint) *float32)
 	acc := float32(0)
@@ -5499,7 +5499,7 @@ func reduceUintToPtrFloat32(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrUintToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUintToPtrFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint)
 	fn := function.(func(*float32, *uint) *float32)
 	acc := float32(0)
@@ -5510,7 +5510,7 @@ func reducePtrUintToPtrFloat32(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrUintToFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUintToFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint)
 	fn := function.(func(float32, *uint) float32)
 	acc := float32(0)
@@ -5520,7 +5520,7 @@ func reducePtrUintToFloat32(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceUintToFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUintToFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint)
 	fn := function.(func(float64, uint) float64)
 	acc := float64(0)
@@ -5530,7 +5530,7 @@ func reduceUintToFloat64(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceUintToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUintToPtrFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint)
 	fn := function.(func(*float64, uint) *float64)
 	acc := float64(0)
@@ -5541,7 +5541,7 @@ func reduceUintToPtrFloat64(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrUintToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUintToPtrFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint)
 	fn := function.(func(*float64, *uint) *float64)
 	acc := float64(0)
@@ -5552,7 +5552,7 @@ func reducePtrUintToPtrFloat64(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrUintToFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUintToFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint)
 	fn := function.(func(float64, *uint) float64)
 	acc := float64(0)
@@ -5562,7 +5562,7 @@ func reducePtrUintToFloat64(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceUint8ToString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint8ToString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint8)
 	fn := function.(func(string, uint8) string)
 	acc := ""
@@ -5572,7 +5572,7 @@ func reduceUint8ToString(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceUint8ToPtrString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint8ToPtrString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint8)
 	fn := function.(func(*string, uint8) *string)
 	acc := ""
@@ -5583,7 +5583,7 @@ func reduceUint8ToPtrString(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrUint8ToPtrString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint8ToPtrString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint8)
 	fn := function.(func(*string, *uint8) *string)
 	acc := ""
@@ -5594,7 +5594,7 @@ func reducePtrUint8ToPtrString(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrUint8ToString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint8ToString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint8)
 	fn := function.(func(string, *uint8) string)
 	acc := ""
@@ -5604,7 +5604,7 @@ func reducePtrUint8ToString(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceUint8ToBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint8ToBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint8)
 	fn := function.(func(bool, uint8) bool)
 	acc := false
@@ -5614,7 +5614,7 @@ func reduceUint8ToBool(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceUint8ToPtrBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint8ToPtrBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint8)
 	fn := function.(func(*bool, uint8) *bool)
 	acc := false
@@ -5625,7 +5625,7 @@ func reduceUint8ToPtrBool(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrUint8ToPtrBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint8ToPtrBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint8)
 	fn := function.(func(*bool, *uint8) *bool)
 	acc := false
@@ -5636,7 +5636,7 @@ func reducePtrUint8ToPtrBool(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrUint8ToBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint8ToBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint8)
 	fn := function.(func(bool, *uint8) bool)
 	acc := false
@@ -5646,7 +5646,7 @@ func reducePtrUint8ToBool(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceUint8ToInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint8ToInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint8)
 	fn := function.(func(int, uint8) int)
 	acc := 0
@@ -5656,7 +5656,7 @@ func reduceUint8ToInt(itemsValue *reflect.Value, function interface{}, info *red
 	return acc
 }
 
-func reduceUint8ToPtrInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint8ToPtrInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint8)
 	fn := function.(func(*int, uint8) *int)
 	acc := 0
@@ -5667,7 +5667,7 @@ func reduceUint8ToPtrInt(itemsValue *reflect.Value, function interface{}, info *
 	return accPtr
 }
 
-func reducePtrUint8ToPtrInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint8ToPtrInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint8)
 	fn := function.(func(*int, *uint8) *int)
 	acc := 0
@@ -5678,7 +5678,7 @@ func reducePtrUint8ToPtrInt(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrUint8ToInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint8ToInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint8)
 	fn := function.(func(int, *uint8) int)
 	acc := 0
@@ -5688,7 +5688,7 @@ func reducePtrUint8ToInt(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceUint8ToInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint8ToInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint8)
 	fn := function.(func(int8, uint8) int8)
 	acc := int8(0)
@@ -5698,7 +5698,7 @@ func reduceUint8ToInt8(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceUint8ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint8ToPtrInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint8)
 	fn := function.(func(*int8, uint8) *int8)
 	acc := int8(0)
@@ -5709,7 +5709,7 @@ func reduceUint8ToPtrInt8(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrUint8ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint8ToPtrInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint8)
 	fn := function.(func(*int8, *uint8) *int8)
 	acc := int8(0)
@@ -5720,7 +5720,7 @@ func reducePtrUint8ToPtrInt8(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrUint8ToInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint8ToInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint8)
 	fn := function.(func(int8, *uint8) int8)
 	acc := int8(0)
@@ -5730,7 +5730,7 @@ func reducePtrUint8ToInt8(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceUint8ToInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint8ToInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint8)
 	fn := function.(func(int16, uint8) int16)
 	acc := int16(0)
@@ -5740,7 +5740,7 @@ func reduceUint8ToInt16(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceUint8ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint8ToPtrInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint8)
 	fn := function.(func(*int16, uint8) *int16)
 	acc := int16(0)
@@ -5751,7 +5751,7 @@ func reduceUint8ToPtrInt16(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrUint8ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint8ToPtrInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint8)
 	fn := function.(func(*int16, *uint8) *int16)
 	acc := int16(0)
@@ -5762,7 +5762,7 @@ func reducePtrUint8ToPtrInt16(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrUint8ToInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint8ToInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint8)
 	fn := function.(func(int16, *uint8) int16)
 	acc := int16(0)
@@ -5772,7 +5772,7 @@ func reducePtrUint8ToInt16(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceUint8ToInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint8ToInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint8)
 	fn := function.(func(int32, uint8) int32)
 	acc := int32(0)
@@ -5782,7 +5782,7 @@ func reduceUint8ToInt32(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceUint8ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint8ToPtrInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint8)
 	fn := function.(func(*int32, uint8) *int32)
 	acc := int32(0)
@@ -5793,7 +5793,7 @@ func reduceUint8ToPtrInt32(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrUint8ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint8ToPtrInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint8)
 	fn := function.(func(*int32, *uint8) *int32)
 	acc := int32(0)
@@ -5804,7 +5804,7 @@ func reducePtrUint8ToPtrInt32(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrUint8ToInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint8ToInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint8)
 	fn := function.(func(int32, *uint8) int32)
 	acc := int32(0)
@@ -5814,7 +5814,7 @@ func reducePtrUint8ToInt32(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceUint8ToInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint8ToInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint8)
 	fn := function.(func(int64, uint8) int64)
 	acc := int64(0)
@@ -5824,7 +5824,7 @@ func reduceUint8ToInt64(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceUint8ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint8ToPtrInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint8)
 	fn := function.(func(*int64, uint8) *int64)
 	acc := int64(0)
@@ -5835,7 +5835,7 @@ func reduceUint8ToPtrInt64(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrUint8ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint8ToPtrInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint8)
 	fn := function.(func(*int64, *uint8) *int64)
 	acc := int64(0)
@@ -5846,7 +5846,7 @@ func reducePtrUint8ToPtrInt64(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrUint8ToInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint8ToInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint8)
 	fn := function.(func(int64, *uint8) int64)
 	acc := int64(0)
@@ -5856,7 +5856,7 @@ func reducePtrUint8ToInt64(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceUint8ToUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint8ToUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint8)
 	fn := function.(func(uint, uint8) uint)
 	acc := uint(0)
@@ -5866,7 +5866,7 @@ func reduceUint8ToUint(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceUint8ToPtrUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint8ToPtrUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint8)
 	fn := function.(func(*uint, uint8) *uint)
 	acc := uint(0)
@@ -5877,7 +5877,7 @@ func reduceUint8ToPtrUint(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrUint8ToPtrUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint8ToPtrUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint8)
 	fn := function.(func(*uint, *uint8) *uint)
 	acc := uint(0)
@@ -5888,7 +5888,7 @@ func reducePtrUint8ToPtrUint(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrUint8ToUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint8ToUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint8)
 	fn := function.(func(uint, *uint8) uint)
 	acc := uint(0)
@@ -5898,7 +5898,7 @@ func reducePtrUint8ToUint(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceUint8ToUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint8ToUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint8)
 	fn := function.(func(uint8, uint8) uint8)
 	acc := uint8(0)
@@ -5908,7 +5908,7 @@ func reduceUint8ToUint8(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceUint8ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint8ToPtrUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint8)
 	fn := function.(func(*uint8, uint8) *uint8)
 	acc := uint8(0)
@@ -5919,7 +5919,7 @@ func reduceUint8ToPtrUint8(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrUint8ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint8ToPtrUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint8)
 	fn := function.(func(*uint8, *uint8) *uint8)
 	acc := uint8(0)
@@ -5930,7 +5930,7 @@ func reducePtrUint8ToPtrUint8(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrUint8ToUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint8ToUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint8)
 	fn := function.(func(uint8, *uint8) uint8)
 	acc := uint8(0)
@@ -5940,7 +5940,7 @@ func reducePtrUint8ToUint8(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceUint8ToUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint8ToUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint8)
 	fn := function.(func(uint16, uint8) uint16)
 	acc := uint16(0)
@@ -5950,7 +5950,7 @@ func reduceUint8ToUint16(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceUint8ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint8ToPtrUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint8)
 	fn := function.(func(*uint16, uint8) *uint16)
 	acc := uint16(0)
@@ -5961,7 +5961,7 @@ func reduceUint8ToPtrUint16(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrUint8ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint8ToPtrUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint8)
 	fn := function.(func(*uint16, *uint8) *uint16)
 	acc := uint16(0)
@@ -5972,7 +5972,7 @@ func reducePtrUint8ToPtrUint16(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrUint8ToUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint8ToUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint8)
 	fn := function.(func(uint16, *uint8) uint16)
 	acc := uint16(0)
@@ -5982,7 +5982,7 @@ func reducePtrUint8ToUint16(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceUint8ToUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint8ToUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint8)
 	fn := function.(func(uint32, uint8) uint32)
 	acc := uint32(0)
@@ -5992,7 +5992,7 @@ func reduceUint8ToUint32(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceUint8ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint8ToPtrUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint8)
 	fn := function.(func(*uint32, uint8) *uint32)
 	acc := uint32(0)
@@ -6003,7 +6003,7 @@ func reduceUint8ToPtrUint32(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrUint8ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint8ToPtrUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint8)
 	fn := function.(func(*uint32, *uint8) *uint32)
 	acc := uint32(0)
@@ -6014,7 +6014,7 @@ func reducePtrUint8ToPtrUint32(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrUint8ToUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint8ToUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint8)
 	fn := function.(func(uint32, *uint8) uint32)
 	acc := uint32(0)
@@ -6024,7 +6024,7 @@ func reducePtrUint8ToUint32(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceUint8ToUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint8ToUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint8)
 	fn := function.(func(uint64, uint8) uint64)
 	acc := uint64(0)
@@ -6034,7 +6034,7 @@ func reduceUint8ToUint64(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceUint8ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint8ToPtrUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint8)
 	fn := function.(func(*uint64, uint8) *uint64)
 	acc := uint64(0)
@@ -6045,7 +6045,7 @@ func reduceUint8ToPtrUint64(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrUint8ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint8ToPtrUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint8)
 	fn := function.(func(*uint64, *uint8) *uint64)
 	acc := uint64(0)
@@ -6056,7 +6056,7 @@ func reducePtrUint8ToPtrUint64(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrUint8ToUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint8ToUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint8)
 	fn := function.(func(uint64, *uint8) uint64)
 	acc := uint64(0)
@@ -6066,7 +6066,7 @@ func reducePtrUint8ToUint64(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceUint8ToFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint8ToFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint8)
 	fn := function.(func(float32, uint8) float32)
 	acc := float32(0)
@@ -6076,7 +6076,7 @@ func reduceUint8ToFloat32(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceUint8ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint8ToPtrFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint8)
 	fn := function.(func(*float32, uint8) *float32)
 	acc := float32(0)
@@ -6087,7 +6087,7 @@ func reduceUint8ToPtrFloat32(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrUint8ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint8ToPtrFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint8)
 	fn := function.(func(*float32, *uint8) *float32)
 	acc := float32(0)
@@ -6098,7 +6098,7 @@ func reducePtrUint8ToPtrFloat32(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrUint8ToFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint8ToFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint8)
 	fn := function.(func(float32, *uint8) float32)
 	acc := float32(0)
@@ -6108,7 +6108,7 @@ func reducePtrUint8ToFloat32(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceUint8ToFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint8ToFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint8)
 	fn := function.(func(float64, uint8) float64)
 	acc := float64(0)
@@ -6118,7 +6118,7 @@ func reduceUint8ToFloat64(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceUint8ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint8ToPtrFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint8)
 	fn := function.(func(*float64, uint8) *float64)
 	acc := float64(0)
@@ -6129,7 +6129,7 @@ func reduceUint8ToPtrFloat64(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrUint8ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint8ToPtrFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint8)
 	fn := function.(func(*float64, *uint8) *float64)
 	acc := float64(0)
@@ -6140,7 +6140,7 @@ func reducePtrUint8ToPtrFloat64(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrUint8ToFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint8ToFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint8)
 	fn := function.(func(float64, *uint8) float64)
 	acc := float64(0)
@@ -6150,7 +6150,7 @@ func reducePtrUint8ToFloat64(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceUint16ToString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint16ToString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint16)
 	fn := function.(func(string, uint16) string)
 	acc := ""
@@ -6160,7 +6160,7 @@ func reduceUint16ToString(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceUint16ToPtrString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint16ToPtrString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint16)
 	fn := function.(func(*string, uint16) *string)
 	acc := ""
@@ -6171,7 +6171,7 @@ func reduceUint16ToPtrString(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrUint16ToPtrString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint16ToPtrString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint16)
 	fn := function.(func(*string, *uint16) *string)
 	acc := ""
@@ -6182,7 +6182,7 @@ func reducePtrUint16ToPtrString(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrUint16ToString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint16ToString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint16)
 	fn := function.(func(string, *uint16) string)
 	acc := ""
@@ -6192,7 +6192,7 @@ func reducePtrUint16ToString(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceUint16ToBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint16ToBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint16)
 	fn := function.(func(bool, uint16) bool)
 	acc := false
@@ -6202,7 +6202,7 @@ func reduceUint16ToBool(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceUint16ToPtrBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint16ToPtrBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint16)
 	fn := function.(func(*bool, uint16) *bool)
 	acc := false
@@ -6213,7 +6213,7 @@ func reduceUint16ToPtrBool(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrUint16ToPtrBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint16ToPtrBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint16)
 	fn := function.(func(*bool, *uint16) *bool)
 	acc := false
@@ -6224,7 +6224,7 @@ func reducePtrUint16ToPtrBool(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrUint16ToBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint16ToBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint16)
 	fn := function.(func(bool, *uint16) bool)
 	acc := false
@@ -6234,7 +6234,7 @@ func reducePtrUint16ToBool(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceUint16ToInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint16ToInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint16)
 	fn := function.(func(int, uint16) int)
 	acc := 0
@@ -6244,7 +6244,7 @@ func reduceUint16ToInt(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceUint16ToPtrInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint16ToPtrInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint16)
 	fn := function.(func(*int, uint16) *int)
 	acc := 0
@@ -6255,7 +6255,7 @@ func reduceUint16ToPtrInt(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrUint16ToPtrInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint16ToPtrInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint16)
 	fn := function.(func(*int, *uint16) *int)
 	acc := 0
@@ -6266,7 +6266,7 @@ func reducePtrUint16ToPtrInt(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrUint16ToInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint16ToInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint16)
 	fn := function.(func(int, *uint16) int)
 	acc := 0
@@ -6276,7 +6276,7 @@ func reducePtrUint16ToInt(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceUint16ToInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint16ToInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint16)
 	fn := function.(func(int8, uint16) int8)
 	acc := int8(0)
@@ -6286,7 +6286,7 @@ func reduceUint16ToInt8(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceUint16ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint16ToPtrInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint16)
 	fn := function.(func(*int8, uint16) *int8)
 	acc := int8(0)
@@ -6297,7 +6297,7 @@ func reduceUint16ToPtrInt8(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrUint16ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint16ToPtrInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint16)
 	fn := function.(func(*int8, *uint16) *int8)
 	acc := int8(0)
@@ -6308,7 +6308,7 @@ func reducePtrUint16ToPtrInt8(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrUint16ToInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint16ToInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint16)
 	fn := function.(func(int8, *uint16) int8)
 	acc := int8(0)
@@ -6318,7 +6318,7 @@ func reducePtrUint16ToInt8(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceUint16ToInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint16ToInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint16)
 	fn := function.(func(int16, uint16) int16)
 	acc := int16(0)
@@ -6328,7 +6328,7 @@ func reduceUint16ToInt16(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceUint16ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint16ToPtrInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint16)
 	fn := function.(func(*int16, uint16) *int16)
 	acc := int16(0)
@@ -6339,7 +6339,7 @@ func reduceUint16ToPtrInt16(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrUint16ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint16ToPtrInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint16)
 	fn := function.(func(*int16, *uint16) *int16)
 	acc := int16(0)
@@ -6350,7 +6350,7 @@ func reducePtrUint16ToPtrInt16(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrUint16ToInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint16ToInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint16)
 	fn := function.(func(int16, *uint16) int16)
 	acc := int16(0)
@@ -6360,7 +6360,7 @@ func reducePtrUint16ToInt16(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceUint16ToInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint16ToInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint16)
 	fn := function.(func(int32, uint16) int32)
 	acc := int32(0)
@@ -6370,7 +6370,7 @@ func reduceUint16ToInt32(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceUint16ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint16ToPtrInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint16)
 	fn := function.(func(*int32, uint16) *int32)
 	acc := int32(0)
@@ -6381,7 +6381,7 @@ func reduceUint16ToPtrInt32(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrUint16ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint16ToPtrInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint16)
 	fn := function.(func(*int32, *uint16) *int32)
 	acc := int32(0)
@@ -6392,7 +6392,7 @@ func reducePtrUint16ToPtrInt32(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrUint16ToInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint16ToInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint16)
 	fn := function.(func(int32, *uint16) int32)
 	acc := int32(0)
@@ -6402,7 +6402,7 @@ func reducePtrUint16ToInt32(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceUint16ToInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint16ToInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint16)
 	fn := function.(func(int64, uint16) int64)
 	acc := int64(0)
@@ -6412,7 +6412,7 @@ func reduceUint16ToInt64(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceUint16ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint16ToPtrInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint16)
 	fn := function.(func(*int64, uint16) *int64)
 	acc := int64(0)
@@ -6423,7 +6423,7 @@ func reduceUint16ToPtrInt64(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrUint16ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint16ToPtrInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint16)
 	fn := function.(func(*int64, *uint16) *int64)
 	acc := int64(0)
@@ -6434,7 +6434,7 @@ func reducePtrUint16ToPtrInt64(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrUint16ToInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint16ToInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint16)
 	fn := function.(func(int64, *uint16) int64)
 	acc := int64(0)
@@ -6444,7 +6444,7 @@ func reducePtrUint16ToInt64(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceUint16ToUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint16ToUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint16)
 	fn := function.(func(uint, uint16) uint)
 	acc := uint(0)
@@ -6454,7 +6454,7 @@ func reduceUint16ToUint(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceUint16ToPtrUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint16ToPtrUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint16)
 	fn := function.(func(*uint, uint16) *uint)
 	acc := uint(0)
@@ -6465,7 +6465,7 @@ func reduceUint16ToPtrUint(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrUint16ToPtrUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint16ToPtrUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint16)
 	fn := function.(func(*uint, *uint16) *uint)
 	acc := uint(0)
@@ -6476,7 +6476,7 @@ func reducePtrUint16ToPtrUint(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrUint16ToUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint16ToUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint16)
 	fn := function.(func(uint, *uint16) uint)
 	acc := uint(0)
@@ -6486,7 +6486,7 @@ func reducePtrUint16ToUint(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceUint16ToUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint16ToUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint16)
 	fn := function.(func(uint8, uint16) uint8)
 	acc := uint8(0)
@@ -6496,7 +6496,7 @@ func reduceUint16ToUint8(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceUint16ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint16ToPtrUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint16)
 	fn := function.(func(*uint8, uint16) *uint8)
 	acc := uint8(0)
@@ -6507,7 +6507,7 @@ func reduceUint16ToPtrUint8(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrUint16ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint16ToPtrUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint16)
 	fn := function.(func(*uint8, *uint16) *uint8)
 	acc := uint8(0)
@@ -6518,7 +6518,7 @@ func reducePtrUint16ToPtrUint8(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrUint16ToUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint16ToUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint16)
 	fn := function.(func(uint8, *uint16) uint8)
 	acc := uint8(0)
@@ -6528,7 +6528,7 @@ func reducePtrUint16ToUint8(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceUint16ToUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint16ToUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint16)
 	fn := function.(func(uint16, uint16) uint16)
 	acc := uint16(0)
@@ -6538,7 +6538,7 @@ func reduceUint16ToUint16(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceUint16ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint16ToPtrUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint16)
 	fn := function.(func(*uint16, uint16) *uint16)
 	acc := uint16(0)
@@ -6549,7 +6549,7 @@ func reduceUint16ToPtrUint16(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrUint16ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint16ToPtrUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint16)
 	fn := function.(func(*uint16, *uint16) *uint16)
 	acc := uint16(0)
@@ -6560,7 +6560,7 @@ func reducePtrUint16ToPtrUint16(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrUint16ToUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint16ToUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint16)
 	fn := function.(func(uint16, *uint16) uint16)
 	acc := uint16(0)
@@ -6570,7 +6570,7 @@ func reducePtrUint16ToUint16(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceUint16ToUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint16ToUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint16)
 	fn := function.(func(uint32, uint16) uint32)
 	acc := uint32(0)
@@ -6580,7 +6580,7 @@ func reduceUint16ToUint32(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceUint16ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint16ToPtrUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint16)
 	fn := function.(func(*uint32, uint16) *uint32)
 	acc := uint32(0)
@@ -6591,7 +6591,7 @@ func reduceUint16ToPtrUint32(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrUint16ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint16ToPtrUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint16)
 	fn := function.(func(*uint32, *uint16) *uint32)
 	acc := uint32(0)
@@ -6602,7 +6602,7 @@ func reducePtrUint16ToPtrUint32(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrUint16ToUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint16ToUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint16)
 	fn := function.(func(uint32, *uint16) uint32)
 	acc := uint32(0)
@@ -6612,7 +6612,7 @@ func reducePtrUint16ToUint32(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceUint16ToUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint16ToUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint16)
 	fn := function.(func(uint64, uint16) uint64)
 	acc := uint64(0)
@@ -6622,7 +6622,7 @@ func reduceUint16ToUint64(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceUint16ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint16ToPtrUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint16)
 	fn := function.(func(*uint64, uint16) *uint64)
 	acc := uint64(0)
@@ -6633,7 +6633,7 @@ func reduceUint16ToPtrUint64(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrUint16ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint16ToPtrUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint16)
 	fn := function.(func(*uint64, *uint16) *uint64)
 	acc := uint64(0)
@@ -6644,7 +6644,7 @@ func reducePtrUint16ToPtrUint64(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrUint16ToUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint16ToUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint16)
 	fn := function.(func(uint64, *uint16) uint64)
 	acc := uint64(0)
@@ -6654,7 +6654,7 @@ func reducePtrUint16ToUint64(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceUint16ToFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint16ToFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint16)
 	fn := function.(func(float32, uint16) float32)
 	acc := float32(0)
@@ -6664,7 +6664,7 @@ func reduceUint16ToFloat32(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceUint16ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint16ToPtrFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint16)
 	fn := function.(func(*float32, uint16) *float32)
 	acc := float32(0)
@@ -6675,7 +6675,7 @@ func reduceUint16ToPtrFloat32(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrUint16ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint16ToPtrFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint16)
 	fn := function.(func(*float32, *uint16) *float32)
 	acc := float32(0)
@@ -6686,7 +6686,7 @@ func reducePtrUint16ToPtrFloat32(itemsValue *reflect.Value, function interface{}
 	return accPtr
 }
 
-func reducePtrUint16ToFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint16ToFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint16)
 	fn := function.(func(float32, *uint16) float32)
 	acc := float32(0)
@@ -6696,7 +6696,7 @@ func reducePtrUint16ToFloat32(itemsValue *reflect.Value, function interface{}, i
 	return acc
 }
 
-func reduceUint16ToFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint16ToFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint16)
 	fn := function.(func(float64, uint16) float64)
 	acc := float64(0)
@@ -6706,7 +6706,7 @@ func reduceUint16ToFloat64(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceUint16ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint16ToPtrFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint16)
 	fn := function.(func(*float64, uint16) *float64)
 	acc := float64(0)
@@ -6717,7 +6717,7 @@ func reduceUint16ToPtrFloat64(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrUint16ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint16ToPtrFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint16)
 	fn := function.(func(*float64, *uint16) *float64)
 	acc := float64(0)
@@ -6728,7 +6728,7 @@ func reducePtrUint16ToPtrFloat64(itemsValue *reflect.Value, function interface{}
 	return accPtr
 }
 
-func reducePtrUint16ToFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint16ToFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint16)
 	fn := function.(func(float64, *uint16) float64)
 	acc := float64(0)
@@ -6738,7 +6738,7 @@ func reducePtrUint16ToFloat64(itemsValue *reflect.Value, function interface{}, i
 	return acc
 }
 
-func reduceUint32ToString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint32ToString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint32)
 	fn := function.(func(string, uint32) string)
 	acc := ""
@@ -6748,7 +6748,7 @@ func reduceUint32ToString(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceUint32ToPtrString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint32ToPtrString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint32)
 	fn := function.(func(*string, uint32) *string)
 	acc := ""
@@ -6759,7 +6759,7 @@ func reduceUint32ToPtrString(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrUint32ToPtrString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint32ToPtrString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint32)
 	fn := function.(func(*string, *uint32) *string)
 	acc := ""
@@ -6770,7 +6770,7 @@ func reducePtrUint32ToPtrString(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrUint32ToString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint32ToString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint32)
 	fn := function.(func(string, *uint32) string)
 	acc := ""
@@ -6780,7 +6780,7 @@ func reducePtrUint32ToString(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceUint32ToBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint32ToBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint32)
 	fn := function.(func(bool, uint32) bool)
 	acc := false
@@ -6790,7 +6790,7 @@ func reduceUint32ToBool(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceUint32ToPtrBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint32ToPtrBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint32)
 	fn := function.(func(*bool, uint32) *bool)
 	acc := false
@@ -6801,7 +6801,7 @@ func reduceUint32ToPtrBool(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrUint32ToPtrBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint32ToPtrBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint32)
 	fn := function.(func(*bool, *uint32) *bool)
 	acc := false
@@ -6812,7 +6812,7 @@ func reducePtrUint32ToPtrBool(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrUint32ToBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint32ToBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint32)
 	fn := function.(func(bool, *uint32) bool)
 	acc := false
@@ -6822,7 +6822,7 @@ func reducePtrUint32ToBool(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceUint32ToInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint32ToInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint32)
 	fn := function.(func(int, uint32) int)
 	acc := 0
@@ -6832,7 +6832,7 @@ func reduceUint32ToInt(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceUint32ToPtrInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint32ToPtrInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint32)
 	fn := function.(func(*int, uint32) *int)
 	acc := 0
@@ -6843,7 +6843,7 @@ func reduceUint32ToPtrInt(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrUint32ToPtrInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint32ToPtrInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint32)
 	fn := function.(func(*int, *uint32) *int)
 	acc := 0
@@ -6854,7 +6854,7 @@ func reducePtrUint32ToPtrInt(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrUint32ToInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint32ToInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint32)
 	fn := function.(func(int, *uint32) int)
 	acc := 0
@@ -6864,7 +6864,7 @@ func reducePtrUint32ToInt(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceUint32ToInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint32ToInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint32)
 	fn := function.(func(int8, uint32) int8)
 	acc := int8(0)
@@ -6874,7 +6874,7 @@ func reduceUint32ToInt8(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceUint32ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint32ToPtrInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint32)
 	fn := function.(func(*int8, uint32) *int8)
 	acc := int8(0)
@@ -6885,7 +6885,7 @@ func reduceUint32ToPtrInt8(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrUint32ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint32ToPtrInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint32)
 	fn := function.(func(*int8, *uint32) *int8)
 	acc := int8(0)
@@ -6896,7 +6896,7 @@ func reducePtrUint32ToPtrInt8(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrUint32ToInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint32ToInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint32)
 	fn := function.(func(int8, *uint32) int8)
 	acc := int8(0)
@@ -6906,7 +6906,7 @@ func reducePtrUint32ToInt8(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceUint32ToInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint32ToInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint32)
 	fn := function.(func(int16, uint32) int16)
 	acc := int16(0)
@@ -6916,7 +6916,7 @@ func reduceUint32ToInt16(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceUint32ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint32ToPtrInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint32)
 	fn := function.(func(*int16, uint32) *int16)
 	acc := int16(0)
@@ -6927,7 +6927,7 @@ func reduceUint32ToPtrInt16(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrUint32ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint32ToPtrInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint32)
 	fn := function.(func(*int16, *uint32) *int16)
 	acc := int16(0)
@@ -6938,7 +6938,7 @@ func reducePtrUint32ToPtrInt16(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrUint32ToInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint32ToInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint32)
 	fn := function.(func(int16, *uint32) int16)
 	acc := int16(0)
@@ -6948,7 +6948,7 @@ func reducePtrUint32ToInt16(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceUint32ToInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint32ToInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint32)
 	fn := function.(func(int32, uint32) int32)
 	acc := int32(0)
@@ -6958,7 +6958,7 @@ func reduceUint32ToInt32(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceUint32ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint32ToPtrInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint32)
 	fn := function.(func(*int32, uint32) *int32)
 	acc := int32(0)
@@ -6969,7 +6969,7 @@ func reduceUint32ToPtrInt32(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrUint32ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint32ToPtrInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint32)
 	fn := function.(func(*int32, *uint32) *int32)
 	acc := int32(0)
@@ -6980,7 +6980,7 @@ func reducePtrUint32ToPtrInt32(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrUint32ToInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint32ToInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint32)
 	fn := function.(func(int32, *uint32) int32)
 	acc := int32(0)
@@ -6990,7 +6990,7 @@ func reducePtrUint32ToInt32(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceUint32ToInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint32ToInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint32)
 	fn := function.(func(int64, uint32) int64)
 	acc := int64(0)
@@ -7000,7 +7000,7 @@ func reduceUint32ToInt64(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceUint32ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint32ToPtrInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint32)
 	fn := function.(func(*int64, uint32) *int64)
 	acc := int64(0)
@@ -7011,7 +7011,7 @@ func reduceUint32ToPtrInt64(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrUint32ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint32ToPtrInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint32)
 	fn := function.(func(*int64, *uint32) *int64)
 	acc := int64(0)
@@ -7022,7 +7022,7 @@ func reducePtrUint32ToPtrInt64(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrUint32ToInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint32ToInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint32)
 	fn := function.(func(int64, *uint32) int64)
 	acc := int64(0)
@@ -7032,7 +7032,7 @@ func reducePtrUint32ToInt64(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceUint32ToUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint32ToUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint32)
 	fn := function.(func(uint, uint32) uint)
 	acc := uint(0)
@@ -7042,7 +7042,7 @@ func reduceUint32ToUint(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceUint32ToPtrUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint32ToPtrUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint32)
 	fn := function.(func(*uint, uint32) *uint)
 	acc := uint(0)
@@ -7053,7 +7053,7 @@ func reduceUint32ToPtrUint(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrUint32ToPtrUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint32ToPtrUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint32)
 	fn := function.(func(*uint, *uint32) *uint)
 	acc := uint(0)
@@ -7064,7 +7064,7 @@ func reducePtrUint32ToPtrUint(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrUint32ToUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint32ToUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint32)
 	fn := function.(func(uint, *uint32) uint)
 	acc := uint(0)
@@ -7074,7 +7074,7 @@ func reducePtrUint32ToUint(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceUint32ToUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint32ToUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint32)
 	fn := function.(func(uint8, uint32) uint8)
 	acc := uint8(0)
@@ -7084,7 +7084,7 @@ func reduceUint32ToUint8(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceUint32ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint32ToPtrUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint32)
 	fn := function.(func(*uint8, uint32) *uint8)
 	acc := uint8(0)
@@ -7095,7 +7095,7 @@ func reduceUint32ToPtrUint8(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrUint32ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint32ToPtrUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint32)
 	fn := function.(func(*uint8, *uint32) *uint8)
 	acc := uint8(0)
@@ -7106,7 +7106,7 @@ func reducePtrUint32ToPtrUint8(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrUint32ToUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint32ToUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint32)
 	fn := function.(func(uint8, *uint32) uint8)
 	acc := uint8(0)
@@ -7116,7 +7116,7 @@ func reducePtrUint32ToUint8(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceUint32ToUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint32ToUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint32)
 	fn := function.(func(uint16, uint32) uint16)
 	acc := uint16(0)
@@ -7126,7 +7126,7 @@ func reduceUint32ToUint16(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceUint32ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint32ToPtrUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint32)
 	fn := function.(func(*uint16, uint32) *uint16)
 	acc := uint16(0)
@@ -7137,7 +7137,7 @@ func reduceUint32ToPtrUint16(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrUint32ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint32ToPtrUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint32)
 	fn := function.(func(*uint16, *uint32) *uint16)
 	acc := uint16(0)
@@ -7148,7 +7148,7 @@ func reducePtrUint32ToPtrUint16(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrUint32ToUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint32ToUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint32)
 	fn := function.(func(uint16, *uint32) uint16)
 	acc := uint16(0)
@@ -7158,7 +7158,7 @@ func reducePtrUint32ToUint16(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceUint32ToUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint32ToUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint32)
 	fn := function.(func(uint32, uint32) uint32)
 	acc := uint32(0)
@@ -7168,7 +7168,7 @@ func reduceUint32ToUint32(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceUint32ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint32ToPtrUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint32)
 	fn := function.(func(*uint32, uint32) *uint32)
 	acc := uint32(0)
@@ -7179,7 +7179,7 @@ func reduceUint32ToPtrUint32(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrUint32ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint32ToPtrUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint32)
 	fn := function.(func(*uint32, *uint32) *uint32)
 	acc := uint32(0)
@@ -7190,7 +7190,7 @@ func reducePtrUint32ToPtrUint32(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrUint32ToUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint32ToUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint32)
 	fn := function.(func(uint32, *uint32) uint32)
 	acc := uint32(0)
@@ -7200,7 +7200,7 @@ func reducePtrUint32ToUint32(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceUint32ToUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint32ToUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint32)
 	fn := function.(func(uint64, uint32) uint64)
 	acc := uint64(0)
@@ -7210,7 +7210,7 @@ func reduceUint32ToUint64(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceUint32ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint32ToPtrUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint32)
 	fn := function.(func(*uint64, uint32) *uint64)
 	acc := uint64(0)
@@ -7221,7 +7221,7 @@ func reduceUint32ToPtrUint64(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrUint32ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint32ToPtrUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint32)
 	fn := function.(func(*uint64, *uint32) *uint64)
 	acc := uint64(0)
@@ -7232,7 +7232,7 @@ func reducePtrUint32ToPtrUint64(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrUint32ToUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint32ToUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint32)
 	fn := function.(func(uint64, *uint32) uint64)
 	acc := uint64(0)
@@ -7242,7 +7242,7 @@ func reducePtrUint32ToUint64(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceUint32ToFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint32ToFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint32)
 	fn := function.(func(float32, uint32) float32)
 	acc := float32(0)
@@ -7252,7 +7252,7 @@ func reduceUint32ToFloat32(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceUint32ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint32ToPtrFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint32)
 	fn := function.(func(*float32, uint32) *float32)
 	acc := float32(0)
@@ -7263,7 +7263,7 @@ func reduceUint32ToPtrFloat32(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrUint32ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint32ToPtrFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint32)
 	fn := function.(func(*float32, *uint32) *float32)
 	acc := float32(0)
@@ -7274,7 +7274,7 @@ func reducePtrUint32ToPtrFloat32(itemsValue *reflect.Value, function interface{}
 	return accPtr
 }
 
-func reducePtrUint32ToFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint32ToFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint32)
 	fn := function.(func(float32, *uint32) float32)
 	acc := float32(0)
@@ -7284,7 +7284,7 @@ func reducePtrUint32ToFloat32(itemsValue *reflect.Value, function interface{}, i
 	return acc
 }
 
-func reduceUint32ToFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint32ToFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint32)
 	fn := function.(func(float64, uint32) float64)
 	acc := float64(0)
@@ -7294,7 +7294,7 @@ func reduceUint32ToFloat64(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceUint32ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint32ToPtrFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint32)
 	fn := function.(func(*float64, uint32) *float64)
 	acc := float64(0)
@@ -7305,7 +7305,7 @@ func reduceUint32ToPtrFloat64(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrUint32ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint32ToPtrFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint32)
 	fn := function.(func(*float64, *uint32) *float64)
 	acc := float64(0)
@@ -7316,7 +7316,7 @@ func reducePtrUint32ToPtrFloat64(itemsValue *reflect.Value, function interface{}
 	return accPtr
 }
 
-func reducePtrUint32ToFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint32ToFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint32)
 	fn := function.(func(float64, *uint32) float64)
 	acc := float64(0)
@@ -7326,7 +7326,7 @@ func reducePtrUint32ToFloat64(itemsValue *reflect.Value, function interface{}, i
 	return acc
 }
 
-func reduceUint64ToString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint64ToString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint64)
 	fn := function.(func(string, uint64) string)
 	acc := ""
@@ -7336,7 +7336,7 @@ func reduceUint64ToString(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceUint64ToPtrString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint64ToPtrString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint64)
 	fn := function.(func(*string, uint64) *string)
 	acc := ""
@@ -7347,7 +7347,7 @@ func reduceUint64ToPtrString(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrUint64ToPtrString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint64ToPtrString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint64)
 	fn := function.(func(*string, *uint64) *string)
 	acc := ""
@@ -7358,7 +7358,7 @@ func reducePtrUint64ToPtrString(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrUint64ToString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint64ToString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint64)
 	fn := function.(func(string, *uint64) string)
 	acc := ""
@@ -7368,7 +7368,7 @@ func reducePtrUint64ToString(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceUint64ToBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint64ToBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint64)
 	fn := function.(func(bool, uint64) bool)
 	acc := false
@@ -7378,7 +7378,7 @@ func reduceUint64ToBool(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceUint64ToPtrBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint64ToPtrBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint64)
 	fn := function.(func(*bool, uint64) *bool)
 	acc := false
@@ -7389,7 +7389,7 @@ func reduceUint64ToPtrBool(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrUint64ToPtrBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint64ToPtrBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint64)
 	fn := function.(func(*bool, *uint64) *bool)
 	acc := false
@@ -7400,7 +7400,7 @@ func reducePtrUint64ToPtrBool(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrUint64ToBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint64ToBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint64)
 	fn := function.(func(bool, *uint64) bool)
 	acc := false
@@ -7410,7 +7410,7 @@ func reducePtrUint64ToBool(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceUint64ToInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint64ToInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint64)
 	fn := function.(func(int, uint64) int)
 	acc := 0
@@ -7420,7 +7420,7 @@ func reduceUint64ToInt(itemsValue *reflect.Value, function interface{}, info *re
 	return acc
 }
 
-func reduceUint64ToPtrInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint64ToPtrInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint64)
 	fn := function.(func(*int, uint64) *int)
 	acc := 0
@@ -7431,7 +7431,7 @@ func reduceUint64ToPtrInt(itemsValue *reflect.Value, function interface{}, info 
 	return accPtr
 }
 
-func reducePtrUint64ToPtrInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint64ToPtrInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint64)
 	fn := function.(func(*int, *uint64) *int)
 	acc := 0
@@ -7442,7 +7442,7 @@ func reducePtrUint64ToPtrInt(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrUint64ToInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint64ToInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint64)
 	fn := function.(func(int, *uint64) int)
 	acc := 0
@@ -7452,7 +7452,7 @@ func reducePtrUint64ToInt(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceUint64ToInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint64ToInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint64)
 	fn := function.(func(int8, uint64) int8)
 	acc := int8(0)
@@ -7462,7 +7462,7 @@ func reduceUint64ToInt8(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceUint64ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint64ToPtrInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint64)
 	fn := function.(func(*int8, uint64) *int8)
 	acc := int8(0)
@@ -7473,7 +7473,7 @@ func reduceUint64ToPtrInt8(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrUint64ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint64ToPtrInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint64)
 	fn := function.(func(*int8, *uint64) *int8)
 	acc := int8(0)
@@ -7484,7 +7484,7 @@ func reducePtrUint64ToPtrInt8(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrUint64ToInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint64ToInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint64)
 	fn := function.(func(int8, *uint64) int8)
 	acc := int8(0)
@@ -7494,7 +7494,7 @@ func reducePtrUint64ToInt8(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceUint64ToInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint64ToInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint64)
 	fn := function.(func(int16, uint64) int16)
 	acc := int16(0)
@@ -7504,7 +7504,7 @@ func reduceUint64ToInt16(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceUint64ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint64ToPtrInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint64)
 	fn := function.(func(*int16, uint64) *int16)
 	acc := int16(0)
@@ -7515,7 +7515,7 @@ func reduceUint64ToPtrInt16(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrUint64ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint64ToPtrInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint64)
 	fn := function.(func(*int16, *uint64) *int16)
 	acc := int16(0)
@@ -7526,7 +7526,7 @@ func reducePtrUint64ToPtrInt16(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrUint64ToInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint64ToInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint64)
 	fn := function.(func(int16, *uint64) int16)
 	acc := int16(0)
@@ -7536,7 +7536,7 @@ func reducePtrUint64ToInt16(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceUint64ToInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint64ToInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint64)
 	fn := function.(func(int32, uint64) int32)
 	acc := int32(0)
@@ -7546,7 +7546,7 @@ func reduceUint64ToInt32(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceUint64ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint64ToPtrInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint64)
 	fn := function.(func(*int32, uint64) *int32)
 	acc := int32(0)
@@ -7557,7 +7557,7 @@ func reduceUint64ToPtrInt32(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrUint64ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint64ToPtrInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint64)
 	fn := function.(func(*int32, *uint64) *int32)
 	acc := int32(0)
@@ -7568,7 +7568,7 @@ func reducePtrUint64ToPtrInt32(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrUint64ToInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint64ToInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint64)
 	fn := function.(func(int32, *uint64) int32)
 	acc := int32(0)
@@ -7578,7 +7578,7 @@ func reducePtrUint64ToInt32(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceUint64ToInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint64ToInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint64)
 	fn := function.(func(int64, uint64) int64)
 	acc := int64(0)
@@ -7588,7 +7588,7 @@ func reduceUint64ToInt64(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceUint64ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint64ToPtrInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint64)
 	fn := function.(func(*int64, uint64) *int64)
 	acc := int64(0)
@@ -7599,7 +7599,7 @@ func reduceUint64ToPtrInt64(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrUint64ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint64ToPtrInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint64)
 	fn := function.(func(*int64, *uint64) *int64)
 	acc := int64(0)
@@ -7610,7 +7610,7 @@ func reducePtrUint64ToPtrInt64(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrUint64ToInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint64ToInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint64)
 	fn := function.(func(int64, *uint64) int64)
 	acc := int64(0)
@@ -7620,7 +7620,7 @@ func reducePtrUint64ToInt64(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceUint64ToUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint64ToUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint64)
 	fn := function.(func(uint, uint64) uint)
 	acc := uint(0)
@@ -7630,7 +7630,7 @@ func reduceUint64ToUint(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceUint64ToPtrUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint64ToPtrUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint64)
 	fn := function.(func(*uint, uint64) *uint)
 	acc := uint(0)
@@ -7641,7 +7641,7 @@ func reduceUint64ToPtrUint(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrUint64ToPtrUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint64ToPtrUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint64)
 	fn := function.(func(*uint, *uint64) *uint)
 	acc := uint(0)
@@ -7652,7 +7652,7 @@ func reducePtrUint64ToPtrUint(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrUint64ToUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint64ToUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint64)
 	fn := function.(func(uint, *uint64) uint)
 	acc := uint(0)
@@ -7662,7 +7662,7 @@ func reducePtrUint64ToUint(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceUint64ToUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint64ToUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint64)
 	fn := function.(func(uint8, uint64) uint8)
 	acc := uint8(0)
@@ -7672,7 +7672,7 @@ func reduceUint64ToUint8(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceUint64ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint64ToPtrUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint64)
 	fn := function.(func(*uint8, uint64) *uint8)
 	acc := uint8(0)
@@ -7683,7 +7683,7 @@ func reduceUint64ToPtrUint8(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrUint64ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint64ToPtrUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint64)
 	fn := function.(func(*uint8, *uint64) *uint8)
 	acc := uint8(0)
@@ -7694,7 +7694,7 @@ func reducePtrUint64ToPtrUint8(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrUint64ToUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint64ToUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint64)
 	fn := function.(func(uint8, *uint64) uint8)
 	acc := uint8(0)
@@ -7704,7 +7704,7 @@ func reducePtrUint64ToUint8(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceUint64ToUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint64ToUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint64)
 	fn := function.(func(uint16, uint64) uint16)
 	acc := uint16(0)
@@ -7714,7 +7714,7 @@ func reduceUint64ToUint16(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceUint64ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint64ToPtrUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint64)
 	fn := function.(func(*uint16, uint64) *uint16)
 	acc := uint16(0)
@@ -7725,7 +7725,7 @@ func reduceUint64ToPtrUint16(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrUint64ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint64ToPtrUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint64)
 	fn := function.(func(*uint16, *uint64) *uint16)
 	acc := uint16(0)
@@ -7736,7 +7736,7 @@ func reducePtrUint64ToPtrUint16(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrUint64ToUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint64ToUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint64)
 	fn := function.(func(uint16, *uint64) uint16)
 	acc := uint16(0)
@@ -7746,7 +7746,7 @@ func reducePtrUint64ToUint16(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceUint64ToUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint64ToUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint64)
 	fn := function.(func(uint32, uint64) uint32)
 	acc := uint32(0)
@@ -7756,7 +7756,7 @@ func reduceUint64ToUint32(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceUint64ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint64ToPtrUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint64)
 	fn := function.(func(*uint32, uint64) *uint32)
 	acc := uint32(0)
@@ -7767,7 +7767,7 @@ func reduceUint64ToPtrUint32(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrUint64ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint64ToPtrUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint64)
 	fn := function.(func(*uint32, *uint64) *uint32)
 	acc := uint32(0)
@@ -7778,7 +7778,7 @@ func reducePtrUint64ToPtrUint32(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrUint64ToUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint64ToUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint64)
 	fn := function.(func(uint32, *uint64) uint32)
 	acc := uint32(0)
@@ -7788,7 +7788,7 @@ func reducePtrUint64ToUint32(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceUint64ToUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint64ToUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint64)
 	fn := function.(func(uint64, uint64) uint64)
 	acc := uint64(0)
@@ -7798,7 +7798,7 @@ func reduceUint64ToUint64(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceUint64ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint64ToPtrUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint64)
 	fn := function.(func(*uint64, uint64) *uint64)
 	acc := uint64(0)
@@ -7809,7 +7809,7 @@ func reduceUint64ToPtrUint64(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrUint64ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint64ToPtrUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint64)
 	fn := function.(func(*uint64, *uint64) *uint64)
 	acc := uint64(0)
@@ -7820,7 +7820,7 @@ func reducePtrUint64ToPtrUint64(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrUint64ToUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint64ToUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint64)
 	fn := function.(func(uint64, *uint64) uint64)
 	acc := uint64(0)
@@ -7830,7 +7830,7 @@ func reducePtrUint64ToUint64(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceUint64ToFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint64ToFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint64)
 	fn := function.(func(float32, uint64) float32)
 	acc := float32(0)
@@ -7840,7 +7840,7 @@ func reduceUint64ToFloat32(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceUint64ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint64ToPtrFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint64)
 	fn := function.(func(*float32, uint64) *float32)
 	acc := float32(0)
@@ -7851,7 +7851,7 @@ func reduceUint64ToPtrFloat32(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrUint64ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint64ToPtrFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint64)
 	fn := function.(func(*float32, *uint64) *float32)
 	acc := float32(0)
@@ -7862,7 +7862,7 @@ func reducePtrUint64ToPtrFloat32(itemsValue *reflect.Value, function interface{}
 	return accPtr
 }
 
-func reducePtrUint64ToFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint64ToFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint64)
 	fn := function.(func(float32, *uint64) float32)
 	acc := float32(0)
@@ -7872,7 +7872,7 @@ func reducePtrUint64ToFloat32(itemsValue *reflect.Value, function interface{}, i
 	return acc
 }
 
-func reduceUint64ToFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint64ToFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint64)
 	fn := function.(func(float64, uint64) float64)
 	acc := float64(0)
@@ -7882,7 +7882,7 @@ func reduceUint64ToFloat64(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceUint64ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceUint64ToPtrFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]uint64)
 	fn := function.(func(*float64, uint64) *float64)
 	acc := float64(0)
@@ -7893,7 +7893,7 @@ func reduceUint64ToPtrFloat64(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrUint64ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint64ToPtrFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint64)
 	fn := function.(func(*float64, *uint64) *float64)
 	acc := float64(0)
@@ -7904,7 +7904,7 @@ func reducePtrUint64ToPtrFloat64(itemsValue *reflect.Value, function interface{}
 	return accPtr
 }
 
-func reducePtrUint64ToFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrUint64ToFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*uint64)
 	fn := function.(func(float64, *uint64) float64)
 	acc := float64(0)
@@ -7914,7 +7914,7 @@ func reducePtrUint64ToFloat64(itemsValue *reflect.Value, function interface{}, i
 	return acc
 }
 
-func reduceFloat32ToString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat32ToString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float32)
 	fn := function.(func(string, float32) string)
 	acc := ""
@@ -7924,7 +7924,7 @@ func reduceFloat32ToString(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceFloat32ToPtrString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat32ToPtrString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float32)
 	fn := function.(func(*string, float32) *string)
 	acc := ""
@@ -7935,7 +7935,7 @@ func reduceFloat32ToPtrString(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrFloat32ToPtrString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat32ToPtrString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float32)
 	fn := function.(func(*string, *float32) *string)
 	acc := ""
@@ -7946,7 +7946,7 @@ func reducePtrFloat32ToPtrString(itemsValue *reflect.Value, function interface{}
 	return accPtr
 }
 
-func reducePtrFloat32ToString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat32ToString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float32)
 	fn := function.(func(string, *float32) string)
 	acc := ""
@@ -7956,7 +7956,7 @@ func reducePtrFloat32ToString(itemsValue *reflect.Value, function interface{}, i
 	return acc
 }
 
-func reduceFloat32ToBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat32ToBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float32)
 	fn := function.(func(bool, float32) bool)
 	acc := false
@@ -7966,7 +7966,7 @@ func reduceFloat32ToBool(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceFloat32ToPtrBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat32ToPtrBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float32)
 	fn := function.(func(*bool, float32) *bool)
 	acc := false
@@ -7977,7 +7977,7 @@ func reduceFloat32ToPtrBool(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrFloat32ToPtrBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat32ToPtrBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float32)
 	fn := function.(func(*bool, *float32) *bool)
 	acc := false
@@ -7988,7 +7988,7 @@ func reducePtrFloat32ToPtrBool(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrFloat32ToBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat32ToBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float32)
 	fn := function.(func(bool, *float32) bool)
 	acc := false
@@ -7998,7 +7998,7 @@ func reducePtrFloat32ToBool(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceFloat32ToInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat32ToInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float32)
 	fn := function.(func(int, float32) int)
 	acc := 0
@@ -8008,7 +8008,7 @@ func reduceFloat32ToInt(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceFloat32ToPtrInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat32ToPtrInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float32)
 	fn := function.(func(*int, float32) *int)
 	acc := 0
@@ -8019,7 +8019,7 @@ func reduceFloat32ToPtrInt(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrFloat32ToPtrInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat32ToPtrInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float32)
 	fn := function.(func(*int, *float32) *int)
 	acc := 0
@@ -8030,7 +8030,7 @@ func reducePtrFloat32ToPtrInt(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrFloat32ToInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat32ToInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float32)
 	fn := function.(func(int, *float32) int)
 	acc := 0
@@ -8040,7 +8040,7 @@ func reducePtrFloat32ToInt(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceFloat32ToInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat32ToInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float32)
 	fn := function.(func(int8, float32) int8)
 	acc := int8(0)
@@ -8050,7 +8050,7 @@ func reduceFloat32ToInt8(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceFloat32ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat32ToPtrInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float32)
 	fn := function.(func(*int8, float32) *int8)
 	acc := int8(0)
@@ -8061,7 +8061,7 @@ func reduceFloat32ToPtrInt8(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrFloat32ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat32ToPtrInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float32)
 	fn := function.(func(*int8, *float32) *int8)
 	acc := int8(0)
@@ -8072,7 +8072,7 @@ func reducePtrFloat32ToPtrInt8(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrFloat32ToInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat32ToInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float32)
 	fn := function.(func(int8, *float32) int8)
 	acc := int8(0)
@@ -8082,7 +8082,7 @@ func reducePtrFloat32ToInt8(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceFloat32ToInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat32ToInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float32)
 	fn := function.(func(int16, float32) int16)
 	acc := int16(0)
@@ -8092,7 +8092,7 @@ func reduceFloat32ToInt16(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceFloat32ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat32ToPtrInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float32)
 	fn := function.(func(*int16, float32) *int16)
 	acc := int16(0)
@@ -8103,7 +8103,7 @@ func reduceFloat32ToPtrInt16(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrFloat32ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat32ToPtrInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float32)
 	fn := function.(func(*int16, *float32) *int16)
 	acc := int16(0)
@@ -8114,7 +8114,7 @@ func reducePtrFloat32ToPtrInt16(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrFloat32ToInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat32ToInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float32)
 	fn := function.(func(int16, *float32) int16)
 	acc := int16(0)
@@ -8124,7 +8124,7 @@ func reducePtrFloat32ToInt16(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceFloat32ToInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat32ToInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float32)
 	fn := function.(func(int32, float32) int32)
 	acc := int32(0)
@@ -8134,7 +8134,7 @@ func reduceFloat32ToInt32(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceFloat32ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat32ToPtrInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float32)
 	fn := function.(func(*int32, float32) *int32)
 	acc := int32(0)
@@ -8145,7 +8145,7 @@ func reduceFloat32ToPtrInt32(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrFloat32ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat32ToPtrInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float32)
 	fn := function.(func(*int32, *float32) *int32)
 	acc := int32(0)
@@ -8156,7 +8156,7 @@ func reducePtrFloat32ToPtrInt32(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrFloat32ToInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat32ToInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float32)
 	fn := function.(func(int32, *float32) int32)
 	acc := int32(0)
@@ -8166,7 +8166,7 @@ func reducePtrFloat32ToInt32(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceFloat32ToInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat32ToInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float32)
 	fn := function.(func(int64, float32) int64)
 	acc := int64(0)
@@ -8176,7 +8176,7 @@ func reduceFloat32ToInt64(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceFloat32ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat32ToPtrInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float32)
 	fn := function.(func(*int64, float32) *int64)
 	acc := int64(0)
@@ -8187,7 +8187,7 @@ func reduceFloat32ToPtrInt64(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrFloat32ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat32ToPtrInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float32)
 	fn := function.(func(*int64, *float32) *int64)
 	acc := int64(0)
@@ -8198,7 +8198,7 @@ func reducePtrFloat32ToPtrInt64(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrFloat32ToInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat32ToInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float32)
 	fn := function.(func(int64, *float32) int64)
 	acc := int64(0)
@@ -8208,7 +8208,7 @@ func reducePtrFloat32ToInt64(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceFloat32ToUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat32ToUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float32)
 	fn := function.(func(uint, float32) uint)
 	acc := uint(0)
@@ -8218,7 +8218,7 @@ func reduceFloat32ToUint(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceFloat32ToPtrUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat32ToPtrUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float32)
 	fn := function.(func(*uint, float32) *uint)
 	acc := uint(0)
@@ -8229,7 +8229,7 @@ func reduceFloat32ToPtrUint(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrFloat32ToPtrUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat32ToPtrUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float32)
 	fn := function.(func(*uint, *float32) *uint)
 	acc := uint(0)
@@ -8240,7 +8240,7 @@ func reducePtrFloat32ToPtrUint(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrFloat32ToUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat32ToUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float32)
 	fn := function.(func(uint, *float32) uint)
 	acc := uint(0)
@@ -8250,7 +8250,7 @@ func reducePtrFloat32ToUint(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceFloat32ToUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat32ToUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float32)
 	fn := function.(func(uint8, float32) uint8)
 	acc := uint8(0)
@@ -8260,7 +8260,7 @@ func reduceFloat32ToUint8(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceFloat32ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat32ToPtrUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float32)
 	fn := function.(func(*uint8, float32) *uint8)
 	acc := uint8(0)
@@ -8271,7 +8271,7 @@ func reduceFloat32ToPtrUint8(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrFloat32ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat32ToPtrUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float32)
 	fn := function.(func(*uint8, *float32) *uint8)
 	acc := uint8(0)
@@ -8282,7 +8282,7 @@ func reducePtrFloat32ToPtrUint8(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrFloat32ToUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat32ToUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float32)
 	fn := function.(func(uint8, *float32) uint8)
 	acc := uint8(0)
@@ -8292,7 +8292,7 @@ func reducePtrFloat32ToUint8(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceFloat32ToUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat32ToUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float32)
 	fn := function.(func(uint16, float32) uint16)
 	acc := uint16(0)
@@ -8302,7 +8302,7 @@ func reduceFloat32ToUint16(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceFloat32ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat32ToPtrUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float32)
 	fn := function.(func(*uint16, float32) *uint16)
 	acc := uint16(0)
@@ -8313,7 +8313,7 @@ func reduceFloat32ToPtrUint16(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrFloat32ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat32ToPtrUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float32)
 	fn := function.(func(*uint16, *float32) *uint16)
 	acc := uint16(0)
@@ -8324,7 +8324,7 @@ func reducePtrFloat32ToPtrUint16(itemsValue *reflect.Value, function interface{}
 	return accPtr
 }
 
-func reducePtrFloat32ToUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat32ToUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float32)
 	fn := function.(func(uint16, *float32) uint16)
 	acc := uint16(0)
@@ -8334,7 +8334,7 @@ func reducePtrFloat32ToUint16(itemsValue *reflect.Value, function interface{}, i
 	return acc
 }
 
-func reduceFloat32ToUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat32ToUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float32)
 	fn := function.(func(uint32, float32) uint32)
 	acc := uint32(0)
@@ -8344,7 +8344,7 @@ func reduceFloat32ToUint32(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceFloat32ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat32ToPtrUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float32)
 	fn := function.(func(*uint32, float32) *uint32)
 	acc := uint32(0)
@@ -8355,7 +8355,7 @@ func reduceFloat32ToPtrUint32(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrFloat32ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat32ToPtrUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float32)
 	fn := function.(func(*uint32, *float32) *uint32)
 	acc := uint32(0)
@@ -8366,7 +8366,7 @@ func reducePtrFloat32ToPtrUint32(itemsValue *reflect.Value, function interface{}
 	return accPtr
 }
 
-func reducePtrFloat32ToUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat32ToUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float32)
 	fn := function.(func(uint32, *float32) uint32)
 	acc := uint32(0)
@@ -8376,7 +8376,7 @@ func reducePtrFloat32ToUint32(itemsValue *reflect.Value, function interface{}, i
 	return acc
 }
 
-func reduceFloat32ToUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat32ToUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float32)
 	fn := function.(func(uint64, float32) uint64)
 	acc := uint64(0)
@@ -8386,7 +8386,7 @@ func reduceFloat32ToUint64(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceFloat32ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat32ToPtrUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float32)
 	fn := function.(func(*uint64, float32) *uint64)
 	acc := uint64(0)
@@ -8397,7 +8397,7 @@ func reduceFloat32ToPtrUint64(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrFloat32ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat32ToPtrUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float32)
 	fn := function.(func(*uint64, *float32) *uint64)
 	acc := uint64(0)
@@ -8408,7 +8408,7 @@ func reducePtrFloat32ToPtrUint64(itemsValue *reflect.Value, function interface{}
 	return accPtr
 }
 
-func reducePtrFloat32ToUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat32ToUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float32)
 	fn := function.(func(uint64, *float32) uint64)
 	acc := uint64(0)
@@ -8418,7 +8418,7 @@ func reducePtrFloat32ToUint64(itemsValue *reflect.Value, function interface{}, i
 	return acc
 }
 
-func reduceFloat32ToFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat32ToFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float32)
 	fn := function.(func(float32, float32) float32)
 	acc := float32(0)
@@ -8428,7 +8428,7 @@ func reduceFloat32ToFloat32(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceFloat32ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat32ToPtrFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float32)
 	fn := function.(func(*float32, float32) *float32)
 	acc := float32(0)
@@ -8439,7 +8439,7 @@ func reduceFloat32ToPtrFloat32(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrFloat32ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat32ToPtrFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float32)
 	fn := function.(func(*float32, *float32) *float32)
 	acc := float32(0)
@@ -8450,7 +8450,7 @@ func reducePtrFloat32ToPtrFloat32(itemsValue *reflect.Value, function interface{
 	return accPtr
 }
 
-func reducePtrFloat32ToFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat32ToFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float32)
 	fn := function.(func(float32, *float32) float32)
 	acc := float32(0)
@@ -8460,7 +8460,7 @@ func reducePtrFloat32ToFloat32(itemsValue *reflect.Value, function interface{}, 
 	return acc
 }
 
-func reduceFloat32ToFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat32ToFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float32)
 	fn := function.(func(float64, float32) float64)
 	acc := float64(0)
@@ -8470,7 +8470,7 @@ func reduceFloat32ToFloat64(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceFloat32ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat32ToPtrFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float32)
 	fn := function.(func(*float64, float32) *float64)
 	acc := float64(0)
@@ -8481,7 +8481,7 @@ func reduceFloat32ToPtrFloat64(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrFloat32ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat32ToPtrFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float32)
 	fn := function.(func(*float64, *float32) *float64)
 	acc := float64(0)
@@ -8492,7 +8492,7 @@ func reducePtrFloat32ToPtrFloat64(itemsValue *reflect.Value, function interface{
 	return accPtr
 }
 
-func reducePtrFloat32ToFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat32ToFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float32)
 	fn := function.(func(float64, *float32) float64)
 	acc := float64(0)
@@ -8502,7 +8502,7 @@ func reducePtrFloat32ToFloat64(itemsValue *reflect.Value, function interface{}, 
 	return acc
 }
 
-func reduceFloat64ToString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat64ToString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float64)
 	fn := function.(func(string, float64) string)
 	acc := ""
@@ -8512,7 +8512,7 @@ func reduceFloat64ToString(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceFloat64ToPtrString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat64ToPtrString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float64)
 	fn := function.(func(*string, float64) *string)
 	acc := ""
@@ -8523,7 +8523,7 @@ func reduceFloat64ToPtrString(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrFloat64ToPtrString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat64ToPtrString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float64)
 	fn := function.(func(*string, *float64) *string)
 	acc := ""
@@ -8534,7 +8534,7 @@ func reducePtrFloat64ToPtrString(itemsValue *reflect.Value, function interface{}
 	return accPtr
 }
 
-func reducePtrFloat64ToString(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat64ToString(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float64)
 	fn := function.(func(string, *float64) string)
 	acc := ""
@@ -8544,7 +8544,7 @@ func reducePtrFloat64ToString(itemsValue *reflect.Value, function interface{}, i
 	return acc
 }
 
-func reduceFloat64ToBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat64ToBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float64)
 	fn := function.(func(bool, float64) bool)
 	acc := false
@@ -8554,7 +8554,7 @@ func reduceFloat64ToBool(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceFloat64ToPtrBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat64ToPtrBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float64)
 	fn := function.(func(*bool, float64) *bool)
 	acc := false
@@ -8565,7 +8565,7 @@ func reduceFloat64ToPtrBool(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrFloat64ToPtrBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat64ToPtrBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float64)
 	fn := function.(func(*bool, *float64) *bool)
 	acc := false
@@ -8576,7 +8576,7 @@ func reducePtrFloat64ToPtrBool(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrFloat64ToBool(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat64ToBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float64)
 	fn := function.(func(bool, *float64) bool)
 	acc := false
@@ -8586,7 +8586,7 @@ func reducePtrFloat64ToBool(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceFloat64ToInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat64ToInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float64)
 	fn := function.(func(int, float64) int)
 	acc := 0
@@ -8596,7 +8596,7 @@ func reduceFloat64ToInt(itemsValue *reflect.Value, function interface{}, info *r
 	return acc
 }
 
-func reduceFloat64ToPtrInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat64ToPtrInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float64)
 	fn := function.(func(*int, float64) *int)
 	acc := 0
@@ -8607,7 +8607,7 @@ func reduceFloat64ToPtrInt(itemsValue *reflect.Value, function interface{}, info
 	return accPtr
 }
 
-func reducePtrFloat64ToPtrInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat64ToPtrInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float64)
 	fn := function.(func(*int, *float64) *int)
 	acc := 0
@@ -8618,7 +8618,7 @@ func reducePtrFloat64ToPtrInt(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrFloat64ToInt(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat64ToInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float64)
 	fn := function.(func(int, *float64) int)
 	acc := 0
@@ -8628,7 +8628,7 @@ func reducePtrFloat64ToInt(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceFloat64ToInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat64ToInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float64)
 	fn := function.(func(int8, float64) int8)
 	acc := int8(0)
@@ -8638,7 +8638,7 @@ func reduceFloat64ToInt8(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceFloat64ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat64ToPtrInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float64)
 	fn := function.(func(*int8, float64) *int8)
 	acc := int8(0)
@@ -8649,7 +8649,7 @@ func reduceFloat64ToPtrInt8(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrFloat64ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat64ToPtrInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float64)
 	fn := function.(func(*int8, *float64) *int8)
 	acc := int8(0)
@@ -8660,7 +8660,7 @@ func reducePtrFloat64ToPtrInt8(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrFloat64ToInt8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat64ToInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float64)
 	fn := function.(func(int8, *float64) int8)
 	acc := int8(0)
@@ -8670,7 +8670,7 @@ func reducePtrFloat64ToInt8(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceFloat64ToInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat64ToInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float64)
 	fn := function.(func(int16, float64) int16)
 	acc := int16(0)
@@ -8680,7 +8680,7 @@ func reduceFloat64ToInt16(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceFloat64ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat64ToPtrInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float64)
 	fn := function.(func(*int16, float64) *int16)
 	acc := int16(0)
@@ -8691,7 +8691,7 @@ func reduceFloat64ToPtrInt16(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrFloat64ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat64ToPtrInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float64)
 	fn := function.(func(*int16, *float64) *int16)
 	acc := int16(0)
@@ -8702,7 +8702,7 @@ func reducePtrFloat64ToPtrInt16(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrFloat64ToInt16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat64ToInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float64)
 	fn := function.(func(int16, *float64) int16)
 	acc := int16(0)
@@ -8712,7 +8712,7 @@ func reducePtrFloat64ToInt16(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceFloat64ToInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat64ToInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float64)
 	fn := function.(func(int32, float64) int32)
 	acc := int32(0)
@@ -8722,7 +8722,7 @@ func reduceFloat64ToInt32(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceFloat64ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat64ToPtrInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float64)
 	fn := function.(func(*int32, float64) *int32)
 	acc := int32(0)
@@ -8733,7 +8733,7 @@ func reduceFloat64ToPtrInt32(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrFloat64ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat64ToPtrInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float64)
 	fn := function.(func(*int32, *float64) *int32)
 	acc := int32(0)
@@ -8744,7 +8744,7 @@ func reducePtrFloat64ToPtrInt32(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrFloat64ToInt32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat64ToInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float64)
 	fn := function.(func(int32, *float64) int32)
 	acc := int32(0)
@@ -8754,7 +8754,7 @@ func reducePtrFloat64ToInt32(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceFloat64ToInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat64ToInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float64)
 	fn := function.(func(int64, float64) int64)
 	acc := int64(0)
@@ -8764,7 +8764,7 @@ func reduceFloat64ToInt64(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceFloat64ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat64ToPtrInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float64)
 	fn := function.(func(*int64, float64) *int64)
 	acc := int64(0)
@@ -8775,7 +8775,7 @@ func reduceFloat64ToPtrInt64(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrFloat64ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat64ToPtrInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float64)
 	fn := function.(func(*int64, *float64) *int64)
 	acc := int64(0)
@@ -8786,7 +8786,7 @@ func reducePtrFloat64ToPtrInt64(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrFloat64ToInt64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat64ToInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float64)
 	fn := function.(func(int64, *float64) int64)
 	acc := int64(0)
@@ -8796,7 +8796,7 @@ func reducePtrFloat64ToInt64(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceFloat64ToUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat64ToUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float64)
 	fn := function.(func(uint, float64) uint)
 	acc := uint(0)
@@ -8806,7 +8806,7 @@ func reduceFloat64ToUint(itemsValue *reflect.Value, function interface{}, info *
 	return acc
 }
 
-func reduceFloat64ToPtrUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat64ToPtrUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float64)
 	fn := function.(func(*uint, float64) *uint)
 	acc := uint(0)
@@ -8817,7 +8817,7 @@ func reduceFloat64ToPtrUint(itemsValue *reflect.Value, function interface{}, inf
 	return accPtr
 }
 
-func reducePtrFloat64ToPtrUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat64ToPtrUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float64)
 	fn := function.(func(*uint, *float64) *uint)
 	acc := uint(0)
@@ -8828,7 +8828,7 @@ func reducePtrFloat64ToPtrUint(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrFloat64ToUint(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat64ToUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float64)
 	fn := function.(func(uint, *float64) uint)
 	acc := uint(0)
@@ -8838,7 +8838,7 @@ func reducePtrFloat64ToUint(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceFloat64ToUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat64ToUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float64)
 	fn := function.(func(uint8, float64) uint8)
 	acc := uint8(0)
@@ -8848,7 +8848,7 @@ func reduceFloat64ToUint8(itemsValue *reflect.Value, function interface{}, info 
 	return acc
 }
 
-func reduceFloat64ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat64ToPtrUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float64)
 	fn := function.(func(*uint8, float64) *uint8)
 	acc := uint8(0)
@@ -8859,7 +8859,7 @@ func reduceFloat64ToPtrUint8(itemsValue *reflect.Value, function interface{}, in
 	return accPtr
 }
 
-func reducePtrFloat64ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat64ToPtrUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float64)
 	fn := function.(func(*uint8, *float64) *uint8)
 	acc := uint8(0)
@@ -8870,7 +8870,7 @@ func reducePtrFloat64ToPtrUint8(itemsValue *reflect.Value, function interface{},
 	return accPtr
 }
 
-func reducePtrFloat64ToUint8(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat64ToUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float64)
 	fn := function.(func(uint8, *float64) uint8)
 	acc := uint8(0)
@@ -8880,7 +8880,7 @@ func reducePtrFloat64ToUint8(itemsValue *reflect.Value, function interface{}, in
 	return acc
 }
 
-func reduceFloat64ToUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat64ToUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float64)
 	fn := function.(func(uint16, float64) uint16)
 	acc := uint16(0)
@@ -8890,7 +8890,7 @@ func reduceFloat64ToUint16(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceFloat64ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat64ToPtrUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float64)
 	fn := function.(func(*uint16, float64) *uint16)
 	acc := uint16(0)
@@ -8901,7 +8901,7 @@ func reduceFloat64ToPtrUint16(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrFloat64ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat64ToPtrUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float64)
 	fn := function.(func(*uint16, *float64) *uint16)
 	acc := uint16(0)
@@ -8912,7 +8912,7 @@ func reducePtrFloat64ToPtrUint16(itemsValue *reflect.Value, function interface{}
 	return accPtr
 }
 
-func reducePtrFloat64ToUint16(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat64ToUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float64)
 	fn := function.(func(uint16, *float64) uint16)
 	acc := uint16(0)
@@ -8922,7 +8922,7 @@ func reducePtrFloat64ToUint16(itemsValue *reflect.Value, function interface{}, i
 	return acc
 }
 
-func reduceFloat64ToUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat64ToUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float64)
 	fn := function.(func(uint32, float64) uint32)
 	acc := uint32(0)
@@ -8932,7 +8932,7 @@ func reduceFloat64ToUint32(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceFloat64ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat64ToPtrUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float64)
 	fn := function.(func(*uint32, float64) *uint32)
 	acc := uint32(0)
@@ -8943,7 +8943,7 @@ func reduceFloat64ToPtrUint32(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrFloat64ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat64ToPtrUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float64)
 	fn := function.(func(*uint32, *float64) *uint32)
 	acc := uint32(0)
@@ -8954,7 +8954,7 @@ func reducePtrFloat64ToPtrUint32(itemsValue *reflect.Value, function interface{}
 	return accPtr
 }
 
-func reducePtrFloat64ToUint32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat64ToUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float64)
 	fn := function.(func(uint32, *float64) uint32)
 	acc := uint32(0)
@@ -8964,7 +8964,7 @@ func reducePtrFloat64ToUint32(itemsValue *reflect.Value, function interface{}, i
 	return acc
 }
 
-func reduceFloat64ToUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat64ToUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float64)
 	fn := function.(func(uint64, float64) uint64)
 	acc := uint64(0)
@@ -8974,7 +8974,7 @@ func reduceFloat64ToUint64(itemsValue *reflect.Value, function interface{}, info
 	return acc
 }
 
-func reduceFloat64ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat64ToPtrUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float64)
 	fn := function.(func(*uint64, float64) *uint64)
 	acc := uint64(0)
@@ -8985,7 +8985,7 @@ func reduceFloat64ToPtrUint64(itemsValue *reflect.Value, function interface{}, i
 	return accPtr
 }
 
-func reducePtrFloat64ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat64ToPtrUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float64)
 	fn := function.(func(*uint64, *float64) *uint64)
 	acc := uint64(0)
@@ -8996,7 +8996,7 @@ func reducePtrFloat64ToPtrUint64(itemsValue *reflect.Value, function interface{}
 	return accPtr
 }
 
-func reducePtrFloat64ToUint64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat64ToUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float64)
 	fn := function.(func(uint64, *float64) uint64)
 	acc := uint64(0)
@@ -9006,7 +9006,7 @@ func reducePtrFloat64ToUint64(itemsValue *reflect.Value, function interface{}, i
 	return acc
 }
 
-func reduceFloat64ToFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat64ToFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float64)
 	fn := function.(func(float32, float64) float32)
 	acc := float32(0)
@@ -9016,7 +9016,7 @@ func reduceFloat64ToFloat32(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceFloat64ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat64ToPtrFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float64)
 	fn := function.(func(*float32, float64) *float32)
 	acc := float32(0)
@@ -9027,7 +9027,7 @@ func reduceFloat64ToPtrFloat32(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrFloat64ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat64ToPtrFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float64)
 	fn := function.(func(*float32, *float64) *float32)
 	acc := float32(0)
@@ -9038,7 +9038,7 @@ func reducePtrFloat64ToPtrFloat32(itemsValue *reflect.Value, function interface{
 	return accPtr
 }
 
-func reducePtrFloat64ToFloat32(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat64ToFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float64)
 	fn := function.(func(float32, *float64) float32)
 	acc := float32(0)
@@ -9048,7 +9048,7 @@ func reducePtrFloat64ToFloat32(itemsValue *reflect.Value, function interface{}, 
 	return acc
 }
 
-func reduceFloat64ToFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat64ToFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float64)
 	fn := function.(func(float64, float64) float64)
 	acc := float64(0)
@@ -9058,7 +9058,7 @@ func reduceFloat64ToFloat64(itemsValue *reflect.Value, function interface{}, inf
 	return acc
 }
 
-func reduceFloat64ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reduceFloat64ToPtrFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]float64)
 	fn := function.(func(*float64, float64) *float64)
 	acc := float64(0)
@@ -9069,7 +9069,7 @@ func reduceFloat64ToPtrFloat64(itemsValue *reflect.Value, function interface{}, 
 	return accPtr
 }
 
-func reducePtrFloat64ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat64ToPtrFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float64)
 	fn := function.(func(*float64, *float64) *float64)
 	acc := float64(0)
@@ -9080,7 +9080,7 @@ func reducePtrFloat64ToPtrFloat64(itemsValue *reflect.Value, function interface{
 	return accPtr
 }
 
-func reducePtrFloat64ToFloat64(itemsValue *reflect.Value, function interface{}, info *reduceInfo) interface{} {
+func reducePtrFloat64ToFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
 	items := itemsValue.Interface().([]*float64)
 	fn := function.(func(float64, *float64) float64)
 	acc := float64(0)
