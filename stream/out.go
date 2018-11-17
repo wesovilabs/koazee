@@ -1,6 +1,7 @@
 package stream
 
 import (
+	"fmt"
 	"github.com/wesovilabs/koazee/errors"
 )
 
@@ -35,5 +36,6 @@ func (s *Stream) Out() Output {
 	if current.err != nil {
 		return Output{nil, current.err}
 	}
+	fmt.Println(current.items)
 	return (&out{current.items}).run()
 }
