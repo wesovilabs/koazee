@@ -22,7 +22,6 @@ func (m *Map) Run() (interface{}, *errors.Error) {
 	if found, result := dispatch(m.ItemsValue, m.Func, mInfo); found {
 		return result, nil
 	}
-	fmt.Println("no generad....")
 	newItems := mInfo.items
 	var argv = make([]reflect.Value, 1)
 	if mInfo.isPtr {
@@ -48,7 +47,7 @@ func (m *Map) validate() (*mapInfo, *errors.Error) {
 	if val := cache.get(m.ItemsType, fnType); val != nil {
 		return val, nil
 	}
-
+	fmt.Println("no generad....")
 	if m.ItemsValue == nil {
 		return nil, errors.EmptyStream(opCode, "A nil Stream can not be iterated")
 	}
