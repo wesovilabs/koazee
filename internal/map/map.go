@@ -66,7 +66,7 @@ func (m *Map) validate() (*mapInfo, *errors.Error) {
 				"function must be %s", m.ItemsType.String())
 	}
 	item.fnOutputType = reflect.New(item.fnValue.Type().Out(0)).Elem().Type()
-	// item.items = reflect.MakeSlice(reflect.SliceOf(item.fnOutputType), 0, 0)
+	item.output = reflect.MakeSlice(reflect.SliceOf(item.fnOutputType), 0, 0)
 	item.isPtr = m.ItemsValue.Index(0).Kind() == reflect.Ptr
 	cache.add(m.ItemsType, fnType, item)
 	return item, nil

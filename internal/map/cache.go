@@ -23,9 +23,10 @@ func (c *cacheType) get(itemsType, funcType reflect.Type) *mapInfo {
 }
 
 type mapInfo struct {
-	fnValue     reflect.Value
-	fnInputType reflect.Type
+	fnValue      reflect.Value
+	fnInputType  reflect.Type
 	fnOutputType reflect.Type
-	isPtr       bool
-	items       reflect.Value
+	isPtr        bool
+	items        reflect.Value
+	output       reflect.Value
 }
