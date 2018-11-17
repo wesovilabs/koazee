@@ -949,7 +949,7 @@ func mapStringToInt(itemsValue *reflect.Value, function interface{}, info *mapIn
 	output := info.output.Interface().([]int)
 	fn := function.(func(string) int)
 	for i := 0; i < len(input); i++ {
-		output = append(output,fn(input[i]))
+		go func(){output = append(output,fn(input[i]))}()
 	}
 	return output
 }
