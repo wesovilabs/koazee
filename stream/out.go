@@ -15,11 +15,11 @@ func (op *out) name() string {
 	return OpCodeOut
 }
 
-func (op *out) run() Output {
+func (op *out) run() *Output {
 	if err := op.validate(); err != nil {
-		return Output{nil, err}
+		return &Output{nil, err}
 	}
-	return Output{op.items, nil}
+	return &Output{op.items, nil}
 }
 
 func (op *out) validate() *errors.Error {
@@ -30,11 +30,10 @@ func (op *out) validate() *errors.Error {
 }
 
 // At returns the element in the Stream in the given position
-func (s *Stream) Out() Output {
+func (s *Stream) Out() *Output {
 	current := s.run()
 	if current.err != nil {
-		return Output{nil, current.err}
+		return &Output{nil, current.err}
 	}
-	
 	return (&out{current.items}).run()
 }
