@@ -1,6 +1,7 @@
 package stream
 
 import (
+	"fmt"
 	Map_ "github.com/wesovilabs/koazee/internal/map"
 )
 
@@ -14,6 +15,7 @@ func (m *streamMap) run(s *Stream) *Stream {
 		s.err = err
 		return s
 	}
+	fmt.Println(value)
 	s.items = value
 	return s
 }

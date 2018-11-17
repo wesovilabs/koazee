@@ -1,7 +1,6 @@
 package _map
 
 import (
-	"fmt"
 	"github.com/wesovilabs/koazee/errors"
 	"reflect"
 )
@@ -47,7 +46,6 @@ func (m *Map) validate() (*mapInfo, *errors.Error) {
 	if val := cache.get(m.ItemsType, fnType); val != nil {
 		return val, nil
 	}
-	fmt.Println("no generad....")
 	if m.ItemsValue == nil {
 		return nil, errors.EmptyStream(opCode, "A nil Stream can not be iterated")
 	}
