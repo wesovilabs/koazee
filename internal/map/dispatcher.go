@@ -862,7 +862,7 @@ func dispatch(items *reflect.Value, function interface{}, info *mapInfo) (bool,i
 
 func mapStringToString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]string)
-	output := info.output.Interface()([]string)
+	output := info.output.Interface().([]string)
 	fn := function.(func(string) string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -872,7 +872,7 @@ func mapStringToString(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapStringToPtrString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]string)
-	output := info.output.Interface()([]*string)
+	output := info.output.Interface().([]*string)
 	fn := function.(func(string) *string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -883,7 +883,7 @@ func mapStringToPtrString(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrStringToString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*string)
-	output := info.output.Interface()([]string)
+	output := info.output.Interface().([]string)
 	fn := function.(func(*string) string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -894,7 +894,7 @@ func mapPtrStringToString(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrStringToPtrString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*string)
-	output := info.output.Interface()([]*string)
+	output := info.output.Interface().([]*string)
 	fn := function.(func(*string) *string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -904,7 +904,7 @@ func mapPtrStringToPtrString(itemsValue *reflect.Value, function interface{}, in
 
 func mapStringToBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]string)
-	output := info.output.Interface()([]bool)
+	output := info.output.Interface().([]bool)
 	fn := function.(func(string) bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -914,7 +914,7 @@ func mapStringToBool(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapStringToPtrBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]string)
-	output := info.output.Interface()([]*bool)
+	output := info.output.Interface().([]*bool)
 	fn := function.(func(string) *bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -925,7 +925,7 @@ func mapStringToPtrBool(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrStringToBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*string)
-	output := info.output.Interface()([]bool)
+	output := info.output.Interface().([]bool)
 	fn := function.(func(*string) bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -936,7 +936,7 @@ func mapPtrStringToBool(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrStringToPtrBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*string)
-	output := info.output.Interface()([]*bool)
+	output := info.output.Interface().([]*bool)
 	fn := function.(func(*string) *bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -946,7 +946,7 @@ func mapPtrStringToPtrBool(itemsValue *reflect.Value, function interface{}, info
 
 func mapStringToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]string)
-	output := info.output.Interface()([]int)
+	output := info.output.Interface().([]int)
 	fn := function.(func(string) int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -956,7 +956,7 @@ func mapStringToInt(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapStringToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]string)
-	output := info.output.Interface()([]*int)
+	output := info.output.Interface().([]*int)
 	fn := function.(func(string) *int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -967,7 +967,7 @@ func mapStringToPtrInt(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrStringToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*string)
-	output := info.output.Interface()([]int)
+	output := info.output.Interface().([]int)
 	fn := function.(func(*string) int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -978,7 +978,7 @@ func mapPtrStringToInt(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrStringToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*string)
-	output := info.output.Interface()([]*int)
+	output := info.output.Interface().([]*int)
 	fn := function.(func(*string) *int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -988,7 +988,7 @@ func mapPtrStringToPtrInt(itemsValue *reflect.Value, function interface{}, info 
 
 func mapStringToInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]string)
-	output := info.output.Interface()([]int8)
+	output := info.output.Interface().([]int8)
 	fn := function.(func(string) int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -998,7 +998,7 @@ func mapStringToInt8(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapStringToPtrInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]string)
-	output := info.output.Interface()([]*int8)
+	output := info.output.Interface().([]*int8)
 	fn := function.(func(string) *int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1009,7 +1009,7 @@ func mapStringToPtrInt8(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrStringToInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*string)
-	output := info.output.Interface()([]int8)
+	output := info.output.Interface().([]int8)
 	fn := function.(func(*string) int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1020,7 +1020,7 @@ func mapPtrStringToInt8(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrStringToPtrInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*string)
-	output := info.output.Interface()([]*int8)
+	output := info.output.Interface().([]*int8)
 	fn := function.(func(*string) *int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1030,7 +1030,7 @@ func mapPtrStringToPtrInt8(itemsValue *reflect.Value, function interface{}, info
 
 func mapStringToInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]string)
-	output := info.output.Interface()([]int16)
+	output := info.output.Interface().([]int16)
 	fn := function.(func(string) int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1040,7 +1040,7 @@ func mapStringToInt16(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapStringToPtrInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]string)
-	output := info.output.Interface()([]*int16)
+	output := info.output.Interface().([]*int16)
 	fn := function.(func(string) *int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1051,7 +1051,7 @@ func mapStringToPtrInt16(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrStringToInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*string)
-	output := info.output.Interface()([]int16)
+	output := info.output.Interface().([]int16)
 	fn := function.(func(*string) int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1062,7 +1062,7 @@ func mapPtrStringToInt16(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrStringToPtrInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*string)
-	output := info.output.Interface()([]*int16)
+	output := info.output.Interface().([]*int16)
 	fn := function.(func(*string) *int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1072,7 +1072,7 @@ func mapPtrStringToPtrInt16(itemsValue *reflect.Value, function interface{}, inf
 
 func mapStringToInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]string)
-	output := info.output.Interface()([]int32)
+	output := info.output.Interface().([]int32)
 	fn := function.(func(string) int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1082,7 +1082,7 @@ func mapStringToInt32(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapStringToPtrInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]string)
-	output := info.output.Interface()([]*int32)
+	output := info.output.Interface().([]*int32)
 	fn := function.(func(string) *int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1093,7 +1093,7 @@ func mapStringToPtrInt32(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrStringToInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*string)
-	output := info.output.Interface()([]int32)
+	output := info.output.Interface().([]int32)
 	fn := function.(func(*string) int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1104,7 +1104,7 @@ func mapPtrStringToInt32(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrStringToPtrInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*string)
-	output := info.output.Interface()([]*int32)
+	output := info.output.Interface().([]*int32)
 	fn := function.(func(*string) *int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1114,7 +1114,7 @@ func mapPtrStringToPtrInt32(itemsValue *reflect.Value, function interface{}, inf
 
 func mapStringToInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]string)
-	output := info.output.Interface()([]int64)
+	output := info.output.Interface().([]int64)
 	fn := function.(func(string) int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1124,7 +1124,7 @@ func mapStringToInt64(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapStringToPtrInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]string)
-	output := info.output.Interface()([]*int64)
+	output := info.output.Interface().([]*int64)
 	fn := function.(func(string) *int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1135,7 +1135,7 @@ func mapStringToPtrInt64(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrStringToInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*string)
-	output := info.output.Interface()([]int64)
+	output := info.output.Interface().([]int64)
 	fn := function.(func(*string) int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1146,7 +1146,7 @@ func mapPtrStringToInt64(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrStringToPtrInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*string)
-	output := info.output.Interface()([]*int64)
+	output := info.output.Interface().([]*int64)
 	fn := function.(func(*string) *int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1156,7 +1156,7 @@ func mapPtrStringToPtrInt64(itemsValue *reflect.Value, function interface{}, inf
 
 func mapStringToUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]string)
-	output := info.output.Interface()([]uint)
+	output := info.output.Interface().([]uint)
 	fn := function.(func(string) uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1166,7 +1166,7 @@ func mapStringToUint(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapStringToPtrUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]string)
-	output := info.output.Interface()([]*uint)
+	output := info.output.Interface().([]*uint)
 	fn := function.(func(string) *uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1177,7 +1177,7 @@ func mapStringToPtrUint(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrStringToUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*string)
-	output := info.output.Interface()([]uint)
+	output := info.output.Interface().([]uint)
 	fn := function.(func(*string) uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1188,7 +1188,7 @@ func mapPtrStringToUint(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrStringToPtrUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*string)
-	output := info.output.Interface()([]*uint)
+	output := info.output.Interface().([]*uint)
 	fn := function.(func(*string) *uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1198,7 +1198,7 @@ func mapPtrStringToPtrUint(itemsValue *reflect.Value, function interface{}, info
 
 func mapStringToUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]string)
-	output := info.output.Interface()([]uint8)
+	output := info.output.Interface().([]uint8)
 	fn := function.(func(string) uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1208,7 +1208,7 @@ func mapStringToUint8(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapStringToPtrUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]string)
-	output := info.output.Interface()([]*uint8)
+	output := info.output.Interface().([]*uint8)
 	fn := function.(func(string) *uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1219,7 +1219,7 @@ func mapStringToPtrUint8(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrStringToUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*string)
-	output := info.output.Interface()([]uint8)
+	output := info.output.Interface().([]uint8)
 	fn := function.(func(*string) uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1230,7 +1230,7 @@ func mapPtrStringToUint8(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrStringToPtrUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*string)
-	output := info.output.Interface()([]*uint8)
+	output := info.output.Interface().([]*uint8)
 	fn := function.(func(*string) *uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1240,7 +1240,7 @@ func mapPtrStringToPtrUint8(itemsValue *reflect.Value, function interface{}, inf
 
 func mapStringToUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]string)
-	output := info.output.Interface()([]uint16)
+	output := info.output.Interface().([]uint16)
 	fn := function.(func(string) uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1250,7 +1250,7 @@ func mapStringToUint16(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapStringToPtrUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]string)
-	output := info.output.Interface()([]*uint16)
+	output := info.output.Interface().([]*uint16)
 	fn := function.(func(string) *uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1261,7 +1261,7 @@ func mapStringToPtrUint16(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrStringToUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*string)
-	output := info.output.Interface()([]uint16)
+	output := info.output.Interface().([]uint16)
 	fn := function.(func(*string) uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1272,7 +1272,7 @@ func mapPtrStringToUint16(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrStringToPtrUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*string)
-	output := info.output.Interface()([]*uint16)
+	output := info.output.Interface().([]*uint16)
 	fn := function.(func(*string) *uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1282,7 +1282,7 @@ func mapPtrStringToPtrUint16(itemsValue *reflect.Value, function interface{}, in
 
 func mapStringToUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]string)
-	output := info.output.Interface()([]uint32)
+	output := info.output.Interface().([]uint32)
 	fn := function.(func(string) uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1292,7 +1292,7 @@ func mapStringToUint32(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapStringToPtrUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]string)
-	output := info.output.Interface()([]*uint32)
+	output := info.output.Interface().([]*uint32)
 	fn := function.(func(string) *uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1303,7 +1303,7 @@ func mapStringToPtrUint32(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrStringToUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*string)
-	output := info.output.Interface()([]uint32)
+	output := info.output.Interface().([]uint32)
 	fn := function.(func(*string) uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1314,7 +1314,7 @@ func mapPtrStringToUint32(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrStringToPtrUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*string)
-	output := info.output.Interface()([]*uint32)
+	output := info.output.Interface().([]*uint32)
 	fn := function.(func(*string) *uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1324,7 +1324,7 @@ func mapPtrStringToPtrUint32(itemsValue *reflect.Value, function interface{}, in
 
 func mapStringToUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]string)
-	output := info.output.Interface()([]uint64)
+	output := info.output.Interface().([]uint64)
 	fn := function.(func(string) uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1334,7 +1334,7 @@ func mapStringToUint64(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapStringToPtrUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]string)
-	output := info.output.Interface()([]*uint64)
+	output := info.output.Interface().([]*uint64)
 	fn := function.(func(string) *uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1345,7 +1345,7 @@ func mapStringToPtrUint64(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrStringToUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*string)
-	output := info.output.Interface()([]uint64)
+	output := info.output.Interface().([]uint64)
 	fn := function.(func(*string) uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1356,7 +1356,7 @@ func mapPtrStringToUint64(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrStringToPtrUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*string)
-	output := info.output.Interface()([]*uint64)
+	output := info.output.Interface().([]*uint64)
 	fn := function.(func(*string) *uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1366,7 +1366,7 @@ func mapPtrStringToPtrUint64(itemsValue *reflect.Value, function interface{}, in
 
 func mapStringToFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]string)
-	output := info.output.Interface()([]float32)
+	output := info.output.Interface().([]float32)
 	fn := function.(func(string) float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1376,7 +1376,7 @@ func mapStringToFloat32(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapStringToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]string)
-	output := info.output.Interface()([]*float32)
+	output := info.output.Interface().([]*float32)
 	fn := function.(func(string) *float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1387,7 +1387,7 @@ func mapStringToPtrFloat32(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrStringToFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*string)
-	output := info.output.Interface()([]float32)
+	output := info.output.Interface().([]float32)
 	fn := function.(func(*string) float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1398,7 +1398,7 @@ func mapPtrStringToFloat32(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrStringToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*string)
-	output := info.output.Interface()([]*float32)
+	output := info.output.Interface().([]*float32)
 	fn := function.(func(*string) *float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1408,7 +1408,7 @@ func mapPtrStringToPtrFloat32(itemsValue *reflect.Value, function interface{}, i
 
 func mapStringToFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]string)
-	output := info.output.Interface()([]float64)
+	output := info.output.Interface().([]float64)
 	fn := function.(func(string) float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1418,7 +1418,7 @@ func mapStringToFloat64(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapStringToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]string)
-	output := info.output.Interface()([]*float64)
+	output := info.output.Interface().([]*float64)
 	fn := function.(func(string) *float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1429,7 +1429,7 @@ func mapStringToPtrFloat64(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrStringToFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*string)
-	output := info.output.Interface()([]float64)
+	output := info.output.Interface().([]float64)
 	fn := function.(func(*string) float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1440,7 +1440,7 @@ func mapPtrStringToFloat64(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrStringToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*string)
-	output := info.output.Interface()([]*float64)
+	output := info.output.Interface().([]*float64)
 	fn := function.(func(*string) *float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1450,7 +1450,7 @@ func mapPtrStringToPtrFloat64(itemsValue *reflect.Value, function interface{}, i
 
 func mapBoolToString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]bool)
-	output := info.output.Interface()([]string)
+	output := info.output.Interface().([]string)
 	fn := function.(func(bool) string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1460,7 +1460,7 @@ func mapBoolToString(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapBoolToPtrString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]bool)
-	output := info.output.Interface()([]*string)
+	output := info.output.Interface().([]*string)
 	fn := function.(func(bool) *string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1471,7 +1471,7 @@ func mapBoolToPtrString(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrBoolToString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*bool)
-	output := info.output.Interface()([]string)
+	output := info.output.Interface().([]string)
 	fn := function.(func(*bool) string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1482,7 +1482,7 @@ func mapPtrBoolToString(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrBoolToPtrString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*bool)
-	output := info.output.Interface()([]*string)
+	output := info.output.Interface().([]*string)
 	fn := function.(func(*bool) *string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1492,7 +1492,7 @@ func mapPtrBoolToPtrString(itemsValue *reflect.Value, function interface{}, info
 
 func mapBoolToBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]bool)
-	output := info.output.Interface()([]bool)
+	output := info.output.Interface().([]bool)
 	fn := function.(func(bool) bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1502,7 +1502,7 @@ func mapBoolToBool(itemsValue *reflect.Value, function interface{}, info *mapInf
 
 func mapBoolToPtrBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]bool)
-	output := info.output.Interface()([]*bool)
+	output := info.output.Interface().([]*bool)
 	fn := function.(func(bool) *bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1513,7 +1513,7 @@ func mapBoolToPtrBool(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrBoolToBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*bool)
-	output := info.output.Interface()([]bool)
+	output := info.output.Interface().([]bool)
 	fn := function.(func(*bool) bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1524,7 +1524,7 @@ func mapPtrBoolToBool(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrBoolToPtrBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*bool)
-	output := info.output.Interface()([]*bool)
+	output := info.output.Interface().([]*bool)
 	fn := function.(func(*bool) *bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1534,7 +1534,7 @@ func mapPtrBoolToPtrBool(itemsValue *reflect.Value, function interface{}, info *
 
 func mapBoolToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]bool)
-	output := info.output.Interface()([]int)
+	output := info.output.Interface().([]int)
 	fn := function.(func(bool) int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1544,7 +1544,7 @@ func mapBoolToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo
 
 func mapBoolToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]bool)
-	output := info.output.Interface()([]*int)
+	output := info.output.Interface().([]*int)
 	fn := function.(func(bool) *int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1555,7 +1555,7 @@ func mapBoolToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapPtrBoolToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*bool)
-	output := info.output.Interface()([]int)
+	output := info.output.Interface().([]int)
 	fn := function.(func(*bool) int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1566,7 +1566,7 @@ func mapPtrBoolToInt(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapPtrBoolToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*bool)
-	output := info.output.Interface()([]*int)
+	output := info.output.Interface().([]*int)
 	fn := function.(func(*bool) *int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1576,7 +1576,7 @@ func mapPtrBoolToPtrInt(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapBoolToInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]bool)
-	output := info.output.Interface()([]int8)
+	output := info.output.Interface().([]int8)
 	fn := function.(func(bool) int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1586,7 +1586,7 @@ func mapBoolToInt8(itemsValue *reflect.Value, function interface{}, info *mapInf
 
 func mapBoolToPtrInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]bool)
-	output := info.output.Interface()([]*int8)
+	output := info.output.Interface().([]*int8)
 	fn := function.(func(bool) *int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1597,7 +1597,7 @@ func mapBoolToPtrInt8(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrBoolToInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*bool)
-	output := info.output.Interface()([]int8)
+	output := info.output.Interface().([]int8)
 	fn := function.(func(*bool) int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1608,7 +1608,7 @@ func mapPtrBoolToInt8(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrBoolToPtrInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*bool)
-	output := info.output.Interface()([]*int8)
+	output := info.output.Interface().([]*int8)
 	fn := function.(func(*bool) *int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1618,7 +1618,7 @@ func mapPtrBoolToPtrInt8(itemsValue *reflect.Value, function interface{}, info *
 
 func mapBoolToInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]bool)
-	output := info.output.Interface()([]int16)
+	output := info.output.Interface().([]int16)
 	fn := function.(func(bool) int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1628,7 +1628,7 @@ func mapBoolToInt16(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapBoolToPtrInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]bool)
-	output := info.output.Interface()([]*int16)
+	output := info.output.Interface().([]*int16)
 	fn := function.(func(bool) *int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1639,7 +1639,7 @@ func mapBoolToPtrInt16(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrBoolToInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*bool)
-	output := info.output.Interface()([]int16)
+	output := info.output.Interface().([]int16)
 	fn := function.(func(*bool) int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1650,7 +1650,7 @@ func mapPtrBoolToInt16(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrBoolToPtrInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*bool)
-	output := info.output.Interface()([]*int16)
+	output := info.output.Interface().([]*int16)
 	fn := function.(func(*bool) *int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1660,7 +1660,7 @@ func mapPtrBoolToPtrInt16(itemsValue *reflect.Value, function interface{}, info 
 
 func mapBoolToInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]bool)
-	output := info.output.Interface()([]int32)
+	output := info.output.Interface().([]int32)
 	fn := function.(func(bool) int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1670,7 +1670,7 @@ func mapBoolToInt32(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapBoolToPtrInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]bool)
-	output := info.output.Interface()([]*int32)
+	output := info.output.Interface().([]*int32)
 	fn := function.(func(bool) *int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1681,7 +1681,7 @@ func mapBoolToPtrInt32(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrBoolToInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*bool)
-	output := info.output.Interface()([]int32)
+	output := info.output.Interface().([]int32)
 	fn := function.(func(*bool) int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1692,7 +1692,7 @@ func mapPtrBoolToInt32(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrBoolToPtrInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*bool)
-	output := info.output.Interface()([]*int32)
+	output := info.output.Interface().([]*int32)
 	fn := function.(func(*bool) *int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1702,7 +1702,7 @@ func mapPtrBoolToPtrInt32(itemsValue *reflect.Value, function interface{}, info 
 
 func mapBoolToInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]bool)
-	output := info.output.Interface()([]int64)
+	output := info.output.Interface().([]int64)
 	fn := function.(func(bool) int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1712,7 +1712,7 @@ func mapBoolToInt64(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapBoolToPtrInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]bool)
-	output := info.output.Interface()([]*int64)
+	output := info.output.Interface().([]*int64)
 	fn := function.(func(bool) *int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1723,7 +1723,7 @@ func mapBoolToPtrInt64(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrBoolToInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*bool)
-	output := info.output.Interface()([]int64)
+	output := info.output.Interface().([]int64)
 	fn := function.(func(*bool) int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1734,7 +1734,7 @@ func mapPtrBoolToInt64(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrBoolToPtrInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*bool)
-	output := info.output.Interface()([]*int64)
+	output := info.output.Interface().([]*int64)
 	fn := function.(func(*bool) *int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1744,7 +1744,7 @@ func mapPtrBoolToPtrInt64(itemsValue *reflect.Value, function interface{}, info 
 
 func mapBoolToUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]bool)
-	output := info.output.Interface()([]uint)
+	output := info.output.Interface().([]uint)
 	fn := function.(func(bool) uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1754,7 +1754,7 @@ func mapBoolToUint(itemsValue *reflect.Value, function interface{}, info *mapInf
 
 func mapBoolToPtrUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]bool)
-	output := info.output.Interface()([]*uint)
+	output := info.output.Interface().([]*uint)
 	fn := function.(func(bool) *uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1765,7 +1765,7 @@ func mapBoolToPtrUint(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrBoolToUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*bool)
-	output := info.output.Interface()([]uint)
+	output := info.output.Interface().([]uint)
 	fn := function.(func(*bool) uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1776,7 +1776,7 @@ func mapPtrBoolToUint(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrBoolToPtrUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*bool)
-	output := info.output.Interface()([]*uint)
+	output := info.output.Interface().([]*uint)
 	fn := function.(func(*bool) *uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1786,7 +1786,7 @@ func mapPtrBoolToPtrUint(itemsValue *reflect.Value, function interface{}, info *
 
 func mapBoolToUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]bool)
-	output := info.output.Interface()([]uint8)
+	output := info.output.Interface().([]uint8)
 	fn := function.(func(bool) uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1796,7 +1796,7 @@ func mapBoolToUint8(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapBoolToPtrUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]bool)
-	output := info.output.Interface()([]*uint8)
+	output := info.output.Interface().([]*uint8)
 	fn := function.(func(bool) *uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1807,7 +1807,7 @@ func mapBoolToPtrUint8(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrBoolToUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*bool)
-	output := info.output.Interface()([]uint8)
+	output := info.output.Interface().([]uint8)
 	fn := function.(func(*bool) uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1818,7 +1818,7 @@ func mapPtrBoolToUint8(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrBoolToPtrUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*bool)
-	output := info.output.Interface()([]*uint8)
+	output := info.output.Interface().([]*uint8)
 	fn := function.(func(*bool) *uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1828,7 +1828,7 @@ func mapPtrBoolToPtrUint8(itemsValue *reflect.Value, function interface{}, info 
 
 func mapBoolToUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]bool)
-	output := info.output.Interface()([]uint16)
+	output := info.output.Interface().([]uint16)
 	fn := function.(func(bool) uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1838,7 +1838,7 @@ func mapBoolToUint16(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapBoolToPtrUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]bool)
-	output := info.output.Interface()([]*uint16)
+	output := info.output.Interface().([]*uint16)
 	fn := function.(func(bool) *uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1849,7 +1849,7 @@ func mapBoolToPtrUint16(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrBoolToUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*bool)
-	output := info.output.Interface()([]uint16)
+	output := info.output.Interface().([]uint16)
 	fn := function.(func(*bool) uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1860,7 +1860,7 @@ func mapPtrBoolToUint16(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrBoolToPtrUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*bool)
-	output := info.output.Interface()([]*uint16)
+	output := info.output.Interface().([]*uint16)
 	fn := function.(func(*bool) *uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1870,7 +1870,7 @@ func mapPtrBoolToPtrUint16(itemsValue *reflect.Value, function interface{}, info
 
 func mapBoolToUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]bool)
-	output := info.output.Interface()([]uint32)
+	output := info.output.Interface().([]uint32)
 	fn := function.(func(bool) uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1880,7 +1880,7 @@ func mapBoolToUint32(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapBoolToPtrUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]bool)
-	output := info.output.Interface()([]*uint32)
+	output := info.output.Interface().([]*uint32)
 	fn := function.(func(bool) *uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1891,7 +1891,7 @@ func mapBoolToPtrUint32(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrBoolToUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*bool)
-	output := info.output.Interface()([]uint32)
+	output := info.output.Interface().([]uint32)
 	fn := function.(func(*bool) uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1902,7 +1902,7 @@ func mapPtrBoolToUint32(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrBoolToPtrUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*bool)
-	output := info.output.Interface()([]*uint32)
+	output := info.output.Interface().([]*uint32)
 	fn := function.(func(*bool) *uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1912,7 +1912,7 @@ func mapPtrBoolToPtrUint32(itemsValue *reflect.Value, function interface{}, info
 
 func mapBoolToUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]bool)
-	output := info.output.Interface()([]uint64)
+	output := info.output.Interface().([]uint64)
 	fn := function.(func(bool) uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1922,7 +1922,7 @@ func mapBoolToUint64(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapBoolToPtrUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]bool)
-	output := info.output.Interface()([]*uint64)
+	output := info.output.Interface().([]*uint64)
 	fn := function.(func(bool) *uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1933,7 +1933,7 @@ func mapBoolToPtrUint64(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrBoolToUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*bool)
-	output := info.output.Interface()([]uint64)
+	output := info.output.Interface().([]uint64)
 	fn := function.(func(*bool) uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1944,7 +1944,7 @@ func mapPtrBoolToUint64(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrBoolToPtrUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*bool)
-	output := info.output.Interface()([]*uint64)
+	output := info.output.Interface().([]*uint64)
 	fn := function.(func(*bool) *uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1954,7 +1954,7 @@ func mapPtrBoolToPtrUint64(itemsValue *reflect.Value, function interface{}, info
 
 func mapBoolToFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]bool)
-	output := info.output.Interface()([]float32)
+	output := info.output.Interface().([]float32)
 	fn := function.(func(bool) float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1964,7 +1964,7 @@ func mapBoolToFloat32(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapBoolToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]bool)
-	output := info.output.Interface()([]*float32)
+	output := info.output.Interface().([]*float32)
 	fn := function.(func(bool) *float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1975,7 +1975,7 @@ func mapBoolToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrBoolToFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*bool)
-	output := info.output.Interface()([]float32)
+	output := info.output.Interface().([]float32)
 	fn := function.(func(*bool) float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1986,7 +1986,7 @@ func mapPtrBoolToFloat32(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrBoolToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*bool)
-	output := info.output.Interface()([]*float32)
+	output := info.output.Interface().([]*float32)
 	fn := function.(func(*bool) *float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -1996,7 +1996,7 @@ func mapPtrBoolToPtrFloat32(itemsValue *reflect.Value, function interface{}, inf
 
 func mapBoolToFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]bool)
-	output := info.output.Interface()([]float64)
+	output := info.output.Interface().([]float64)
 	fn := function.(func(bool) float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2006,7 +2006,7 @@ func mapBoolToFloat64(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapBoolToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]bool)
-	output := info.output.Interface()([]*float64)
+	output := info.output.Interface().([]*float64)
 	fn := function.(func(bool) *float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2017,7 +2017,7 @@ func mapBoolToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrBoolToFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*bool)
-	output := info.output.Interface()([]float64)
+	output := info.output.Interface().([]float64)
 	fn := function.(func(*bool) float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2028,7 +2028,7 @@ func mapPtrBoolToFloat64(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrBoolToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*bool)
-	output := info.output.Interface()([]*float64)
+	output := info.output.Interface().([]*float64)
 	fn := function.(func(*bool) *float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2038,7 +2038,7 @@ func mapPtrBoolToPtrFloat64(itemsValue *reflect.Value, function interface{}, inf
 
 func mapIntToString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int)
-	output := info.output.Interface()([]string)
+	output := info.output.Interface().([]string)
 	fn := function.(func(int) string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2048,7 +2048,7 @@ func mapIntToString(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapIntToPtrString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int)
-	output := info.output.Interface()([]*string)
+	output := info.output.Interface().([]*string)
 	fn := function.(func(int) *string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2059,7 +2059,7 @@ func mapIntToPtrString(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrIntToString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int)
-	output := info.output.Interface()([]string)
+	output := info.output.Interface().([]string)
 	fn := function.(func(*int) string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2070,7 +2070,7 @@ func mapPtrIntToString(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrIntToPtrString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int)
-	output := info.output.Interface()([]*string)
+	output := info.output.Interface().([]*string)
 	fn := function.(func(*int) *string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2080,7 +2080,7 @@ func mapPtrIntToPtrString(itemsValue *reflect.Value, function interface{}, info 
 
 func mapIntToBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int)
-	output := info.output.Interface()([]bool)
+	output := info.output.Interface().([]bool)
 	fn := function.(func(int) bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2090,7 +2090,7 @@ func mapIntToBool(itemsValue *reflect.Value, function interface{}, info *mapInfo
 
 func mapIntToPtrBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int)
-	output := info.output.Interface()([]*bool)
+	output := info.output.Interface().([]*bool)
 	fn := function.(func(int) *bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2101,7 +2101,7 @@ func mapIntToPtrBool(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapPtrIntToBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int)
-	output := info.output.Interface()([]bool)
+	output := info.output.Interface().([]bool)
 	fn := function.(func(*int) bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2112,7 +2112,7 @@ func mapPtrIntToBool(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapPtrIntToPtrBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int)
-	output := info.output.Interface()([]*bool)
+	output := info.output.Interface().([]*bool)
 	fn := function.(func(*int) *bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2122,7 +2122,7 @@ func mapPtrIntToPtrBool(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapIntToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int)
-	output := info.output.Interface()([]int)
+	output := info.output.Interface().([]int)
 	fn := function.(func(int) int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2132,7 +2132,7 @@ func mapIntToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo)
 
 func mapIntToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int)
-	output := info.output.Interface()([]*int)
+	output := info.output.Interface().([]*int)
 	fn := function.(func(int) *int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2143,7 +2143,7 @@ func mapIntToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapPtrIntToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int)
-	output := info.output.Interface()([]int)
+	output := info.output.Interface().([]int)
 	fn := function.(func(*int) int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2154,7 +2154,7 @@ func mapPtrIntToInt(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapPtrIntToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int)
-	output := info.output.Interface()([]*int)
+	output := info.output.Interface().([]*int)
 	fn := function.(func(*int) *int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2164,7 +2164,7 @@ func mapPtrIntToPtrInt(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapIntToInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int)
-	output := info.output.Interface()([]int8)
+	output := info.output.Interface().([]int8)
 	fn := function.(func(int) int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2174,7 +2174,7 @@ func mapIntToInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo
 
 func mapIntToPtrInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int)
-	output := info.output.Interface()([]*int8)
+	output := info.output.Interface().([]*int8)
 	fn := function.(func(int) *int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2185,7 +2185,7 @@ func mapIntToPtrInt8(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapPtrIntToInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int)
-	output := info.output.Interface()([]int8)
+	output := info.output.Interface().([]int8)
 	fn := function.(func(*int) int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2196,7 +2196,7 @@ func mapPtrIntToInt8(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapPtrIntToPtrInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int)
-	output := info.output.Interface()([]*int8)
+	output := info.output.Interface().([]*int8)
 	fn := function.(func(*int) *int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2206,7 +2206,7 @@ func mapPtrIntToPtrInt8(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapIntToInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int)
-	output := info.output.Interface()([]int16)
+	output := info.output.Interface().([]int16)
 	fn := function.(func(int) int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2216,7 +2216,7 @@ func mapIntToInt16(itemsValue *reflect.Value, function interface{}, info *mapInf
 
 func mapIntToPtrInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int)
-	output := info.output.Interface()([]*int16)
+	output := info.output.Interface().([]*int16)
 	fn := function.(func(int) *int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2227,7 +2227,7 @@ func mapIntToPtrInt16(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrIntToInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int)
-	output := info.output.Interface()([]int16)
+	output := info.output.Interface().([]int16)
 	fn := function.(func(*int) int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2238,7 +2238,7 @@ func mapPtrIntToInt16(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrIntToPtrInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int)
-	output := info.output.Interface()([]*int16)
+	output := info.output.Interface().([]*int16)
 	fn := function.(func(*int) *int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2248,7 +2248,7 @@ func mapPtrIntToPtrInt16(itemsValue *reflect.Value, function interface{}, info *
 
 func mapIntToInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int)
-	output := info.output.Interface()([]int32)
+	output := info.output.Interface().([]int32)
 	fn := function.(func(int) int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2258,7 +2258,7 @@ func mapIntToInt32(itemsValue *reflect.Value, function interface{}, info *mapInf
 
 func mapIntToPtrInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int)
-	output := info.output.Interface()([]*int32)
+	output := info.output.Interface().([]*int32)
 	fn := function.(func(int) *int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2269,7 +2269,7 @@ func mapIntToPtrInt32(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrIntToInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int)
-	output := info.output.Interface()([]int32)
+	output := info.output.Interface().([]int32)
 	fn := function.(func(*int) int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2280,7 +2280,7 @@ func mapPtrIntToInt32(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrIntToPtrInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int)
-	output := info.output.Interface()([]*int32)
+	output := info.output.Interface().([]*int32)
 	fn := function.(func(*int) *int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2290,7 +2290,7 @@ func mapPtrIntToPtrInt32(itemsValue *reflect.Value, function interface{}, info *
 
 func mapIntToInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int)
-	output := info.output.Interface()([]int64)
+	output := info.output.Interface().([]int64)
 	fn := function.(func(int) int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2300,7 +2300,7 @@ func mapIntToInt64(itemsValue *reflect.Value, function interface{}, info *mapInf
 
 func mapIntToPtrInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int)
-	output := info.output.Interface()([]*int64)
+	output := info.output.Interface().([]*int64)
 	fn := function.(func(int) *int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2311,7 +2311,7 @@ func mapIntToPtrInt64(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrIntToInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int)
-	output := info.output.Interface()([]int64)
+	output := info.output.Interface().([]int64)
 	fn := function.(func(*int) int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2322,7 +2322,7 @@ func mapPtrIntToInt64(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrIntToPtrInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int)
-	output := info.output.Interface()([]*int64)
+	output := info.output.Interface().([]*int64)
 	fn := function.(func(*int) *int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2332,7 +2332,7 @@ func mapPtrIntToPtrInt64(itemsValue *reflect.Value, function interface{}, info *
 
 func mapIntToUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int)
-	output := info.output.Interface()([]uint)
+	output := info.output.Interface().([]uint)
 	fn := function.(func(int) uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2342,7 +2342,7 @@ func mapIntToUint(itemsValue *reflect.Value, function interface{}, info *mapInfo
 
 func mapIntToPtrUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int)
-	output := info.output.Interface()([]*uint)
+	output := info.output.Interface().([]*uint)
 	fn := function.(func(int) *uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2353,7 +2353,7 @@ func mapIntToPtrUint(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapPtrIntToUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int)
-	output := info.output.Interface()([]uint)
+	output := info.output.Interface().([]uint)
 	fn := function.(func(*int) uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2364,7 +2364,7 @@ func mapPtrIntToUint(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapPtrIntToPtrUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int)
-	output := info.output.Interface()([]*uint)
+	output := info.output.Interface().([]*uint)
 	fn := function.(func(*int) *uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2374,7 +2374,7 @@ func mapPtrIntToPtrUint(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapIntToUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int)
-	output := info.output.Interface()([]uint8)
+	output := info.output.Interface().([]uint8)
 	fn := function.(func(int) uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2384,7 +2384,7 @@ func mapIntToUint8(itemsValue *reflect.Value, function interface{}, info *mapInf
 
 func mapIntToPtrUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int)
-	output := info.output.Interface()([]*uint8)
+	output := info.output.Interface().([]*uint8)
 	fn := function.(func(int) *uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2395,7 +2395,7 @@ func mapIntToPtrUint8(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrIntToUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int)
-	output := info.output.Interface()([]uint8)
+	output := info.output.Interface().([]uint8)
 	fn := function.(func(*int) uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2406,7 +2406,7 @@ func mapPtrIntToUint8(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrIntToPtrUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int)
-	output := info.output.Interface()([]*uint8)
+	output := info.output.Interface().([]*uint8)
 	fn := function.(func(*int) *uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2416,7 +2416,7 @@ func mapPtrIntToPtrUint8(itemsValue *reflect.Value, function interface{}, info *
 
 func mapIntToUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int)
-	output := info.output.Interface()([]uint16)
+	output := info.output.Interface().([]uint16)
 	fn := function.(func(int) uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2426,7 +2426,7 @@ func mapIntToUint16(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapIntToPtrUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int)
-	output := info.output.Interface()([]*uint16)
+	output := info.output.Interface().([]*uint16)
 	fn := function.(func(int) *uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2437,7 +2437,7 @@ func mapIntToPtrUint16(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrIntToUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int)
-	output := info.output.Interface()([]uint16)
+	output := info.output.Interface().([]uint16)
 	fn := function.(func(*int) uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2448,7 +2448,7 @@ func mapPtrIntToUint16(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrIntToPtrUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int)
-	output := info.output.Interface()([]*uint16)
+	output := info.output.Interface().([]*uint16)
 	fn := function.(func(*int) *uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2458,7 +2458,7 @@ func mapPtrIntToPtrUint16(itemsValue *reflect.Value, function interface{}, info 
 
 func mapIntToUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int)
-	output := info.output.Interface()([]uint32)
+	output := info.output.Interface().([]uint32)
 	fn := function.(func(int) uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2468,7 +2468,7 @@ func mapIntToUint32(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapIntToPtrUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int)
-	output := info.output.Interface()([]*uint32)
+	output := info.output.Interface().([]*uint32)
 	fn := function.(func(int) *uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2479,7 +2479,7 @@ func mapIntToPtrUint32(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrIntToUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int)
-	output := info.output.Interface()([]uint32)
+	output := info.output.Interface().([]uint32)
 	fn := function.(func(*int) uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2490,7 +2490,7 @@ func mapPtrIntToUint32(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrIntToPtrUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int)
-	output := info.output.Interface()([]*uint32)
+	output := info.output.Interface().([]*uint32)
 	fn := function.(func(*int) *uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2500,7 +2500,7 @@ func mapPtrIntToPtrUint32(itemsValue *reflect.Value, function interface{}, info 
 
 func mapIntToUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int)
-	output := info.output.Interface()([]uint64)
+	output := info.output.Interface().([]uint64)
 	fn := function.(func(int) uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2510,7 +2510,7 @@ func mapIntToUint64(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapIntToPtrUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int)
-	output := info.output.Interface()([]*uint64)
+	output := info.output.Interface().([]*uint64)
 	fn := function.(func(int) *uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2521,7 +2521,7 @@ func mapIntToPtrUint64(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrIntToUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int)
-	output := info.output.Interface()([]uint64)
+	output := info.output.Interface().([]uint64)
 	fn := function.(func(*int) uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2532,7 +2532,7 @@ func mapPtrIntToUint64(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrIntToPtrUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int)
-	output := info.output.Interface()([]*uint64)
+	output := info.output.Interface().([]*uint64)
 	fn := function.(func(*int) *uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2542,7 +2542,7 @@ func mapPtrIntToPtrUint64(itemsValue *reflect.Value, function interface{}, info 
 
 func mapIntToFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int)
-	output := info.output.Interface()([]float32)
+	output := info.output.Interface().([]float32)
 	fn := function.(func(int) float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2552,7 +2552,7 @@ func mapIntToFloat32(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapIntToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int)
-	output := info.output.Interface()([]*float32)
+	output := info.output.Interface().([]*float32)
 	fn := function.(func(int) *float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2563,7 +2563,7 @@ func mapIntToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrIntToFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int)
-	output := info.output.Interface()([]float32)
+	output := info.output.Interface().([]float32)
 	fn := function.(func(*int) float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2574,7 +2574,7 @@ func mapPtrIntToFloat32(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrIntToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int)
-	output := info.output.Interface()([]*float32)
+	output := info.output.Interface().([]*float32)
 	fn := function.(func(*int) *float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2584,7 +2584,7 @@ func mapPtrIntToPtrFloat32(itemsValue *reflect.Value, function interface{}, info
 
 func mapIntToFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int)
-	output := info.output.Interface()([]float64)
+	output := info.output.Interface().([]float64)
 	fn := function.(func(int) float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2594,7 +2594,7 @@ func mapIntToFloat64(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapIntToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int)
-	output := info.output.Interface()([]*float64)
+	output := info.output.Interface().([]*float64)
 	fn := function.(func(int) *float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2605,7 +2605,7 @@ func mapIntToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrIntToFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int)
-	output := info.output.Interface()([]float64)
+	output := info.output.Interface().([]float64)
 	fn := function.(func(*int) float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2616,7 +2616,7 @@ func mapPtrIntToFloat64(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrIntToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int)
-	output := info.output.Interface()([]*float64)
+	output := info.output.Interface().([]*float64)
 	fn := function.(func(*int) *float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2626,7 +2626,7 @@ func mapPtrIntToPtrFloat64(itemsValue *reflect.Value, function interface{}, info
 
 func mapInt8ToString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int8)
-	output := info.output.Interface()([]string)
+	output := info.output.Interface().([]string)
 	fn := function.(func(int8) string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2636,7 +2636,7 @@ func mapInt8ToString(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapInt8ToPtrString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int8)
-	output := info.output.Interface()([]*string)
+	output := info.output.Interface().([]*string)
 	fn := function.(func(int8) *string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2647,7 +2647,7 @@ func mapInt8ToPtrString(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt8ToString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int8)
-	output := info.output.Interface()([]string)
+	output := info.output.Interface().([]string)
 	fn := function.(func(*int8) string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2658,7 +2658,7 @@ func mapPtrInt8ToString(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt8ToPtrString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int8)
-	output := info.output.Interface()([]*string)
+	output := info.output.Interface().([]*string)
 	fn := function.(func(*int8) *string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2668,7 +2668,7 @@ func mapPtrInt8ToPtrString(itemsValue *reflect.Value, function interface{}, info
 
 func mapInt8ToBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int8)
-	output := info.output.Interface()([]bool)
+	output := info.output.Interface().([]bool)
 	fn := function.(func(int8) bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2678,7 +2678,7 @@ func mapInt8ToBool(itemsValue *reflect.Value, function interface{}, info *mapInf
 
 func mapInt8ToPtrBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int8)
-	output := info.output.Interface()([]*bool)
+	output := info.output.Interface().([]*bool)
 	fn := function.(func(int8) *bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2689,7 +2689,7 @@ func mapInt8ToPtrBool(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrInt8ToBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int8)
-	output := info.output.Interface()([]bool)
+	output := info.output.Interface().([]bool)
 	fn := function.(func(*int8) bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2700,7 +2700,7 @@ func mapPtrInt8ToBool(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrInt8ToPtrBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int8)
-	output := info.output.Interface()([]*bool)
+	output := info.output.Interface().([]*bool)
 	fn := function.(func(*int8) *bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2710,7 +2710,7 @@ func mapPtrInt8ToPtrBool(itemsValue *reflect.Value, function interface{}, info *
 
 func mapInt8ToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int8)
-	output := info.output.Interface()([]int)
+	output := info.output.Interface().([]int)
 	fn := function.(func(int8) int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2720,7 +2720,7 @@ func mapInt8ToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo
 
 func mapInt8ToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int8)
-	output := info.output.Interface()([]*int)
+	output := info.output.Interface().([]*int)
 	fn := function.(func(int8) *int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2731,7 +2731,7 @@ func mapInt8ToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapPtrInt8ToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int8)
-	output := info.output.Interface()([]int)
+	output := info.output.Interface().([]int)
 	fn := function.(func(*int8) int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2742,7 +2742,7 @@ func mapPtrInt8ToInt(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapPtrInt8ToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int8)
-	output := info.output.Interface()([]*int)
+	output := info.output.Interface().([]*int)
 	fn := function.(func(*int8) *int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2752,7 +2752,7 @@ func mapPtrInt8ToPtrInt(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapInt8ToInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int8)
-	output := info.output.Interface()([]int8)
+	output := info.output.Interface().([]int8)
 	fn := function.(func(int8) int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2762,7 +2762,7 @@ func mapInt8ToInt8(itemsValue *reflect.Value, function interface{}, info *mapInf
 
 func mapInt8ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int8)
-	output := info.output.Interface()([]*int8)
+	output := info.output.Interface().([]*int8)
 	fn := function.(func(int8) *int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2773,7 +2773,7 @@ func mapInt8ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrInt8ToInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int8)
-	output := info.output.Interface()([]int8)
+	output := info.output.Interface().([]int8)
 	fn := function.(func(*int8) int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2784,7 +2784,7 @@ func mapPtrInt8ToInt8(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrInt8ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int8)
-	output := info.output.Interface()([]*int8)
+	output := info.output.Interface().([]*int8)
 	fn := function.(func(*int8) *int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2794,7 +2794,7 @@ func mapPtrInt8ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *
 
 func mapInt8ToInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int8)
-	output := info.output.Interface()([]int16)
+	output := info.output.Interface().([]int16)
 	fn := function.(func(int8) int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2804,7 +2804,7 @@ func mapInt8ToInt16(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapInt8ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int8)
-	output := info.output.Interface()([]*int16)
+	output := info.output.Interface().([]*int16)
 	fn := function.(func(int8) *int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2815,7 +2815,7 @@ func mapInt8ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrInt8ToInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int8)
-	output := info.output.Interface()([]int16)
+	output := info.output.Interface().([]int16)
 	fn := function.(func(*int8) int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2826,7 +2826,7 @@ func mapPtrInt8ToInt16(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrInt8ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int8)
-	output := info.output.Interface()([]*int16)
+	output := info.output.Interface().([]*int16)
 	fn := function.(func(*int8) *int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2836,7 +2836,7 @@ func mapPtrInt8ToPtrInt16(itemsValue *reflect.Value, function interface{}, info 
 
 func mapInt8ToInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int8)
-	output := info.output.Interface()([]int32)
+	output := info.output.Interface().([]int32)
 	fn := function.(func(int8) int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2846,7 +2846,7 @@ func mapInt8ToInt32(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapInt8ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int8)
-	output := info.output.Interface()([]*int32)
+	output := info.output.Interface().([]*int32)
 	fn := function.(func(int8) *int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2857,7 +2857,7 @@ func mapInt8ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrInt8ToInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int8)
-	output := info.output.Interface()([]int32)
+	output := info.output.Interface().([]int32)
 	fn := function.(func(*int8) int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2868,7 +2868,7 @@ func mapPtrInt8ToInt32(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrInt8ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int8)
-	output := info.output.Interface()([]*int32)
+	output := info.output.Interface().([]*int32)
 	fn := function.(func(*int8) *int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2878,7 +2878,7 @@ func mapPtrInt8ToPtrInt32(itemsValue *reflect.Value, function interface{}, info 
 
 func mapInt8ToInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int8)
-	output := info.output.Interface()([]int64)
+	output := info.output.Interface().([]int64)
 	fn := function.(func(int8) int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2888,7 +2888,7 @@ func mapInt8ToInt64(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapInt8ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int8)
-	output := info.output.Interface()([]*int64)
+	output := info.output.Interface().([]*int64)
 	fn := function.(func(int8) *int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2899,7 +2899,7 @@ func mapInt8ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrInt8ToInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int8)
-	output := info.output.Interface()([]int64)
+	output := info.output.Interface().([]int64)
 	fn := function.(func(*int8) int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2910,7 +2910,7 @@ func mapPtrInt8ToInt64(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrInt8ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int8)
-	output := info.output.Interface()([]*int64)
+	output := info.output.Interface().([]*int64)
 	fn := function.(func(*int8) *int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2920,7 +2920,7 @@ func mapPtrInt8ToPtrInt64(itemsValue *reflect.Value, function interface{}, info 
 
 func mapInt8ToUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int8)
-	output := info.output.Interface()([]uint)
+	output := info.output.Interface().([]uint)
 	fn := function.(func(int8) uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2930,7 +2930,7 @@ func mapInt8ToUint(itemsValue *reflect.Value, function interface{}, info *mapInf
 
 func mapInt8ToPtrUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int8)
-	output := info.output.Interface()([]*uint)
+	output := info.output.Interface().([]*uint)
 	fn := function.(func(int8) *uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2941,7 +2941,7 @@ func mapInt8ToPtrUint(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrInt8ToUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int8)
-	output := info.output.Interface()([]uint)
+	output := info.output.Interface().([]uint)
 	fn := function.(func(*int8) uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2952,7 +2952,7 @@ func mapPtrInt8ToUint(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrInt8ToPtrUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int8)
-	output := info.output.Interface()([]*uint)
+	output := info.output.Interface().([]*uint)
 	fn := function.(func(*int8) *uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2962,7 +2962,7 @@ func mapPtrInt8ToPtrUint(itemsValue *reflect.Value, function interface{}, info *
 
 func mapInt8ToUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int8)
-	output := info.output.Interface()([]uint8)
+	output := info.output.Interface().([]uint8)
 	fn := function.(func(int8) uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2972,7 +2972,7 @@ func mapInt8ToUint8(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapInt8ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int8)
-	output := info.output.Interface()([]*uint8)
+	output := info.output.Interface().([]*uint8)
 	fn := function.(func(int8) *uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2983,7 +2983,7 @@ func mapInt8ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrInt8ToUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int8)
-	output := info.output.Interface()([]uint8)
+	output := info.output.Interface().([]uint8)
 	fn := function.(func(*int8) uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -2994,7 +2994,7 @@ func mapPtrInt8ToUint8(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrInt8ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int8)
-	output := info.output.Interface()([]*uint8)
+	output := info.output.Interface().([]*uint8)
 	fn := function.(func(*int8) *uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3004,7 +3004,7 @@ func mapPtrInt8ToPtrUint8(itemsValue *reflect.Value, function interface{}, info 
 
 func mapInt8ToUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int8)
-	output := info.output.Interface()([]uint16)
+	output := info.output.Interface().([]uint16)
 	fn := function.(func(int8) uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3014,7 +3014,7 @@ func mapInt8ToUint16(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapInt8ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int8)
-	output := info.output.Interface()([]*uint16)
+	output := info.output.Interface().([]*uint16)
 	fn := function.(func(int8) *uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3025,7 +3025,7 @@ func mapInt8ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt8ToUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int8)
-	output := info.output.Interface()([]uint16)
+	output := info.output.Interface().([]uint16)
 	fn := function.(func(*int8) uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3036,7 +3036,7 @@ func mapPtrInt8ToUint16(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt8ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int8)
-	output := info.output.Interface()([]*uint16)
+	output := info.output.Interface().([]*uint16)
 	fn := function.(func(*int8) *uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3046,7 +3046,7 @@ func mapPtrInt8ToPtrUint16(itemsValue *reflect.Value, function interface{}, info
 
 func mapInt8ToUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int8)
-	output := info.output.Interface()([]uint32)
+	output := info.output.Interface().([]uint32)
 	fn := function.(func(int8) uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3056,7 +3056,7 @@ func mapInt8ToUint32(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapInt8ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int8)
-	output := info.output.Interface()([]*uint32)
+	output := info.output.Interface().([]*uint32)
 	fn := function.(func(int8) *uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3067,7 +3067,7 @@ func mapInt8ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt8ToUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int8)
-	output := info.output.Interface()([]uint32)
+	output := info.output.Interface().([]uint32)
 	fn := function.(func(*int8) uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3078,7 +3078,7 @@ func mapPtrInt8ToUint32(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt8ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int8)
-	output := info.output.Interface()([]*uint32)
+	output := info.output.Interface().([]*uint32)
 	fn := function.(func(*int8) *uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3088,7 +3088,7 @@ func mapPtrInt8ToPtrUint32(itemsValue *reflect.Value, function interface{}, info
 
 func mapInt8ToUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int8)
-	output := info.output.Interface()([]uint64)
+	output := info.output.Interface().([]uint64)
 	fn := function.(func(int8) uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3098,7 +3098,7 @@ func mapInt8ToUint64(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapInt8ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int8)
-	output := info.output.Interface()([]*uint64)
+	output := info.output.Interface().([]*uint64)
 	fn := function.(func(int8) *uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3109,7 +3109,7 @@ func mapInt8ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt8ToUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int8)
-	output := info.output.Interface()([]uint64)
+	output := info.output.Interface().([]uint64)
 	fn := function.(func(*int8) uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3120,7 +3120,7 @@ func mapPtrInt8ToUint64(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt8ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int8)
-	output := info.output.Interface()([]*uint64)
+	output := info.output.Interface().([]*uint64)
 	fn := function.(func(*int8) *uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3130,7 +3130,7 @@ func mapPtrInt8ToPtrUint64(itemsValue *reflect.Value, function interface{}, info
 
 func mapInt8ToFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int8)
-	output := info.output.Interface()([]float32)
+	output := info.output.Interface().([]float32)
 	fn := function.(func(int8) float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3140,7 +3140,7 @@ func mapInt8ToFloat32(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapInt8ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int8)
-	output := info.output.Interface()([]*float32)
+	output := info.output.Interface().([]*float32)
 	fn := function.(func(int8) *float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3151,7 +3151,7 @@ func mapInt8ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrInt8ToFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int8)
-	output := info.output.Interface()([]float32)
+	output := info.output.Interface().([]float32)
 	fn := function.(func(*int8) float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3162,7 +3162,7 @@ func mapPtrInt8ToFloat32(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrInt8ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int8)
-	output := info.output.Interface()([]*float32)
+	output := info.output.Interface().([]*float32)
 	fn := function.(func(*int8) *float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3172,7 +3172,7 @@ func mapPtrInt8ToPtrFloat32(itemsValue *reflect.Value, function interface{}, inf
 
 func mapInt8ToFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int8)
-	output := info.output.Interface()([]float64)
+	output := info.output.Interface().([]float64)
 	fn := function.(func(int8) float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3182,7 +3182,7 @@ func mapInt8ToFloat64(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapInt8ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int8)
-	output := info.output.Interface()([]*float64)
+	output := info.output.Interface().([]*float64)
 	fn := function.(func(int8) *float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3193,7 +3193,7 @@ func mapInt8ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrInt8ToFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int8)
-	output := info.output.Interface()([]float64)
+	output := info.output.Interface().([]float64)
 	fn := function.(func(*int8) float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3204,7 +3204,7 @@ func mapPtrInt8ToFloat64(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrInt8ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int8)
-	output := info.output.Interface()([]*float64)
+	output := info.output.Interface().([]*float64)
 	fn := function.(func(*int8) *float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3214,7 +3214,7 @@ func mapPtrInt8ToPtrFloat64(itemsValue *reflect.Value, function interface{}, inf
 
 func mapInt16ToString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int16)
-	output := info.output.Interface()([]string)
+	output := info.output.Interface().([]string)
 	fn := function.(func(int16) string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3224,7 +3224,7 @@ func mapInt16ToString(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapInt16ToPtrString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int16)
-	output := info.output.Interface()([]*string)
+	output := info.output.Interface().([]*string)
 	fn := function.(func(int16) *string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3235,7 +3235,7 @@ func mapInt16ToPtrString(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrInt16ToString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int16)
-	output := info.output.Interface()([]string)
+	output := info.output.Interface().([]string)
 	fn := function.(func(*int16) string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3246,7 +3246,7 @@ func mapPtrInt16ToString(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrInt16ToPtrString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int16)
-	output := info.output.Interface()([]*string)
+	output := info.output.Interface().([]*string)
 	fn := function.(func(*int16) *string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3256,7 +3256,7 @@ func mapPtrInt16ToPtrString(itemsValue *reflect.Value, function interface{}, inf
 
 func mapInt16ToBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int16)
-	output := info.output.Interface()([]bool)
+	output := info.output.Interface().([]bool)
 	fn := function.(func(int16) bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3266,7 +3266,7 @@ func mapInt16ToBool(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapInt16ToPtrBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int16)
-	output := info.output.Interface()([]*bool)
+	output := info.output.Interface().([]*bool)
 	fn := function.(func(int16) *bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3277,7 +3277,7 @@ func mapInt16ToPtrBool(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrInt16ToBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int16)
-	output := info.output.Interface()([]bool)
+	output := info.output.Interface().([]bool)
 	fn := function.(func(*int16) bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3288,7 +3288,7 @@ func mapPtrInt16ToBool(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrInt16ToPtrBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int16)
-	output := info.output.Interface()([]*bool)
+	output := info.output.Interface().([]*bool)
 	fn := function.(func(*int16) *bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3298,7 +3298,7 @@ func mapPtrInt16ToPtrBool(itemsValue *reflect.Value, function interface{}, info 
 
 func mapInt16ToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int16)
-	output := info.output.Interface()([]int)
+	output := info.output.Interface().([]int)
 	fn := function.(func(int16) int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3308,7 +3308,7 @@ func mapInt16ToInt(itemsValue *reflect.Value, function interface{}, info *mapInf
 
 func mapInt16ToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int16)
-	output := info.output.Interface()([]*int)
+	output := info.output.Interface().([]*int)
 	fn := function.(func(int16) *int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3319,7 +3319,7 @@ func mapInt16ToPtrInt(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrInt16ToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int16)
-	output := info.output.Interface()([]int)
+	output := info.output.Interface().([]int)
 	fn := function.(func(*int16) int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3330,7 +3330,7 @@ func mapPtrInt16ToInt(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrInt16ToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int16)
-	output := info.output.Interface()([]*int)
+	output := info.output.Interface().([]*int)
 	fn := function.(func(*int16) *int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3340,7 +3340,7 @@ func mapPtrInt16ToPtrInt(itemsValue *reflect.Value, function interface{}, info *
 
 func mapInt16ToInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int16)
-	output := info.output.Interface()([]int8)
+	output := info.output.Interface().([]int8)
 	fn := function.(func(int16) int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3350,7 +3350,7 @@ func mapInt16ToInt8(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapInt16ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int16)
-	output := info.output.Interface()([]*int8)
+	output := info.output.Interface().([]*int8)
 	fn := function.(func(int16) *int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3361,7 +3361,7 @@ func mapInt16ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrInt16ToInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int16)
-	output := info.output.Interface()([]int8)
+	output := info.output.Interface().([]int8)
 	fn := function.(func(*int16) int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3372,7 +3372,7 @@ func mapPtrInt16ToInt8(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrInt16ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int16)
-	output := info.output.Interface()([]*int8)
+	output := info.output.Interface().([]*int8)
 	fn := function.(func(*int16) *int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3382,7 +3382,7 @@ func mapPtrInt16ToPtrInt8(itemsValue *reflect.Value, function interface{}, info 
 
 func mapInt16ToInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int16)
-	output := info.output.Interface()([]int16)
+	output := info.output.Interface().([]int16)
 	fn := function.(func(int16) int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3392,7 +3392,7 @@ func mapInt16ToInt16(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapInt16ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int16)
-	output := info.output.Interface()([]*int16)
+	output := info.output.Interface().([]*int16)
 	fn := function.(func(int16) *int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3403,7 +3403,7 @@ func mapInt16ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt16ToInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int16)
-	output := info.output.Interface()([]int16)
+	output := info.output.Interface().([]int16)
 	fn := function.(func(*int16) int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3414,7 +3414,7 @@ func mapPtrInt16ToInt16(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt16ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int16)
-	output := info.output.Interface()([]*int16)
+	output := info.output.Interface().([]*int16)
 	fn := function.(func(*int16) *int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3424,7 +3424,7 @@ func mapPtrInt16ToPtrInt16(itemsValue *reflect.Value, function interface{}, info
 
 func mapInt16ToInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int16)
-	output := info.output.Interface()([]int32)
+	output := info.output.Interface().([]int32)
 	fn := function.(func(int16) int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3434,7 +3434,7 @@ func mapInt16ToInt32(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapInt16ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int16)
-	output := info.output.Interface()([]*int32)
+	output := info.output.Interface().([]*int32)
 	fn := function.(func(int16) *int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3445,7 +3445,7 @@ func mapInt16ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt16ToInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int16)
-	output := info.output.Interface()([]int32)
+	output := info.output.Interface().([]int32)
 	fn := function.(func(*int16) int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3456,7 +3456,7 @@ func mapPtrInt16ToInt32(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt16ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int16)
-	output := info.output.Interface()([]*int32)
+	output := info.output.Interface().([]*int32)
 	fn := function.(func(*int16) *int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3466,7 +3466,7 @@ func mapPtrInt16ToPtrInt32(itemsValue *reflect.Value, function interface{}, info
 
 func mapInt16ToInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int16)
-	output := info.output.Interface()([]int64)
+	output := info.output.Interface().([]int64)
 	fn := function.(func(int16) int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3476,7 +3476,7 @@ func mapInt16ToInt64(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapInt16ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int16)
-	output := info.output.Interface()([]*int64)
+	output := info.output.Interface().([]*int64)
 	fn := function.(func(int16) *int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3487,7 +3487,7 @@ func mapInt16ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt16ToInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int16)
-	output := info.output.Interface()([]int64)
+	output := info.output.Interface().([]int64)
 	fn := function.(func(*int16) int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3498,7 +3498,7 @@ func mapPtrInt16ToInt64(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt16ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int16)
-	output := info.output.Interface()([]*int64)
+	output := info.output.Interface().([]*int64)
 	fn := function.(func(*int16) *int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3508,7 +3508,7 @@ func mapPtrInt16ToPtrInt64(itemsValue *reflect.Value, function interface{}, info
 
 func mapInt16ToUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int16)
-	output := info.output.Interface()([]uint)
+	output := info.output.Interface().([]uint)
 	fn := function.(func(int16) uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3518,7 +3518,7 @@ func mapInt16ToUint(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapInt16ToPtrUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int16)
-	output := info.output.Interface()([]*uint)
+	output := info.output.Interface().([]*uint)
 	fn := function.(func(int16) *uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3529,7 +3529,7 @@ func mapInt16ToPtrUint(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrInt16ToUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int16)
-	output := info.output.Interface()([]uint)
+	output := info.output.Interface().([]uint)
 	fn := function.(func(*int16) uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3540,7 +3540,7 @@ func mapPtrInt16ToUint(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrInt16ToPtrUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int16)
-	output := info.output.Interface()([]*uint)
+	output := info.output.Interface().([]*uint)
 	fn := function.(func(*int16) *uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3550,7 +3550,7 @@ func mapPtrInt16ToPtrUint(itemsValue *reflect.Value, function interface{}, info 
 
 func mapInt16ToUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int16)
-	output := info.output.Interface()([]uint8)
+	output := info.output.Interface().([]uint8)
 	fn := function.(func(int16) uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3560,7 +3560,7 @@ func mapInt16ToUint8(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapInt16ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int16)
-	output := info.output.Interface()([]*uint8)
+	output := info.output.Interface().([]*uint8)
 	fn := function.(func(int16) *uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3571,7 +3571,7 @@ func mapInt16ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt16ToUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int16)
-	output := info.output.Interface()([]uint8)
+	output := info.output.Interface().([]uint8)
 	fn := function.(func(*int16) uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3582,7 +3582,7 @@ func mapPtrInt16ToUint8(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt16ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int16)
-	output := info.output.Interface()([]*uint8)
+	output := info.output.Interface().([]*uint8)
 	fn := function.(func(*int16) *uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3592,7 +3592,7 @@ func mapPtrInt16ToPtrUint8(itemsValue *reflect.Value, function interface{}, info
 
 func mapInt16ToUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int16)
-	output := info.output.Interface()([]uint16)
+	output := info.output.Interface().([]uint16)
 	fn := function.(func(int16) uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3602,7 +3602,7 @@ func mapInt16ToUint16(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapInt16ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int16)
-	output := info.output.Interface()([]*uint16)
+	output := info.output.Interface().([]*uint16)
 	fn := function.(func(int16) *uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3613,7 +3613,7 @@ func mapInt16ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrInt16ToUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int16)
-	output := info.output.Interface()([]uint16)
+	output := info.output.Interface().([]uint16)
 	fn := function.(func(*int16) uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3624,7 +3624,7 @@ func mapPtrInt16ToUint16(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrInt16ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int16)
-	output := info.output.Interface()([]*uint16)
+	output := info.output.Interface().([]*uint16)
 	fn := function.(func(*int16) *uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3634,7 +3634,7 @@ func mapPtrInt16ToPtrUint16(itemsValue *reflect.Value, function interface{}, inf
 
 func mapInt16ToUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int16)
-	output := info.output.Interface()([]uint32)
+	output := info.output.Interface().([]uint32)
 	fn := function.(func(int16) uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3644,7 +3644,7 @@ func mapInt16ToUint32(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapInt16ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int16)
-	output := info.output.Interface()([]*uint32)
+	output := info.output.Interface().([]*uint32)
 	fn := function.(func(int16) *uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3655,7 +3655,7 @@ func mapInt16ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrInt16ToUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int16)
-	output := info.output.Interface()([]uint32)
+	output := info.output.Interface().([]uint32)
 	fn := function.(func(*int16) uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3666,7 +3666,7 @@ func mapPtrInt16ToUint32(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrInt16ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int16)
-	output := info.output.Interface()([]*uint32)
+	output := info.output.Interface().([]*uint32)
 	fn := function.(func(*int16) *uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3676,7 +3676,7 @@ func mapPtrInt16ToPtrUint32(itemsValue *reflect.Value, function interface{}, inf
 
 func mapInt16ToUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int16)
-	output := info.output.Interface()([]uint64)
+	output := info.output.Interface().([]uint64)
 	fn := function.(func(int16) uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3686,7 +3686,7 @@ func mapInt16ToUint64(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapInt16ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int16)
-	output := info.output.Interface()([]*uint64)
+	output := info.output.Interface().([]*uint64)
 	fn := function.(func(int16) *uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3697,7 +3697,7 @@ func mapInt16ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrInt16ToUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int16)
-	output := info.output.Interface()([]uint64)
+	output := info.output.Interface().([]uint64)
 	fn := function.(func(*int16) uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3708,7 +3708,7 @@ func mapPtrInt16ToUint64(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrInt16ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int16)
-	output := info.output.Interface()([]*uint64)
+	output := info.output.Interface().([]*uint64)
 	fn := function.(func(*int16) *uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3718,7 +3718,7 @@ func mapPtrInt16ToPtrUint64(itemsValue *reflect.Value, function interface{}, inf
 
 func mapInt16ToFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int16)
-	output := info.output.Interface()([]float32)
+	output := info.output.Interface().([]float32)
 	fn := function.(func(int16) float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3728,7 +3728,7 @@ func mapInt16ToFloat32(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapInt16ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int16)
-	output := info.output.Interface()([]*float32)
+	output := info.output.Interface().([]*float32)
 	fn := function.(func(int16) *float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3739,7 +3739,7 @@ func mapInt16ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrInt16ToFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int16)
-	output := info.output.Interface()([]float32)
+	output := info.output.Interface().([]float32)
 	fn := function.(func(*int16) float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3750,7 +3750,7 @@ func mapPtrInt16ToFloat32(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrInt16ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int16)
-	output := info.output.Interface()([]*float32)
+	output := info.output.Interface().([]*float32)
 	fn := function.(func(*int16) *float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3760,7 +3760,7 @@ func mapPtrInt16ToPtrFloat32(itemsValue *reflect.Value, function interface{}, in
 
 func mapInt16ToFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int16)
-	output := info.output.Interface()([]float64)
+	output := info.output.Interface().([]float64)
 	fn := function.(func(int16) float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3770,7 +3770,7 @@ func mapInt16ToFloat64(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapInt16ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int16)
-	output := info.output.Interface()([]*float64)
+	output := info.output.Interface().([]*float64)
 	fn := function.(func(int16) *float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3781,7 +3781,7 @@ func mapInt16ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrInt16ToFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int16)
-	output := info.output.Interface()([]float64)
+	output := info.output.Interface().([]float64)
 	fn := function.(func(*int16) float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3792,7 +3792,7 @@ func mapPtrInt16ToFloat64(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrInt16ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int16)
-	output := info.output.Interface()([]*float64)
+	output := info.output.Interface().([]*float64)
 	fn := function.(func(*int16) *float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3802,7 +3802,7 @@ func mapPtrInt16ToPtrFloat64(itemsValue *reflect.Value, function interface{}, in
 
 func mapInt32ToString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int32)
-	output := info.output.Interface()([]string)
+	output := info.output.Interface().([]string)
 	fn := function.(func(int32) string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3812,7 +3812,7 @@ func mapInt32ToString(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapInt32ToPtrString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int32)
-	output := info.output.Interface()([]*string)
+	output := info.output.Interface().([]*string)
 	fn := function.(func(int32) *string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3823,7 +3823,7 @@ func mapInt32ToPtrString(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrInt32ToString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int32)
-	output := info.output.Interface()([]string)
+	output := info.output.Interface().([]string)
 	fn := function.(func(*int32) string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3834,7 +3834,7 @@ func mapPtrInt32ToString(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrInt32ToPtrString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int32)
-	output := info.output.Interface()([]*string)
+	output := info.output.Interface().([]*string)
 	fn := function.(func(*int32) *string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3844,7 +3844,7 @@ func mapPtrInt32ToPtrString(itemsValue *reflect.Value, function interface{}, inf
 
 func mapInt32ToBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int32)
-	output := info.output.Interface()([]bool)
+	output := info.output.Interface().([]bool)
 	fn := function.(func(int32) bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3854,7 +3854,7 @@ func mapInt32ToBool(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapInt32ToPtrBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int32)
-	output := info.output.Interface()([]*bool)
+	output := info.output.Interface().([]*bool)
 	fn := function.(func(int32) *bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3865,7 +3865,7 @@ func mapInt32ToPtrBool(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrInt32ToBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int32)
-	output := info.output.Interface()([]bool)
+	output := info.output.Interface().([]bool)
 	fn := function.(func(*int32) bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3876,7 +3876,7 @@ func mapPtrInt32ToBool(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrInt32ToPtrBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int32)
-	output := info.output.Interface()([]*bool)
+	output := info.output.Interface().([]*bool)
 	fn := function.(func(*int32) *bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3886,7 +3886,7 @@ func mapPtrInt32ToPtrBool(itemsValue *reflect.Value, function interface{}, info 
 
 func mapInt32ToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int32)
-	output := info.output.Interface()([]int)
+	output := info.output.Interface().([]int)
 	fn := function.(func(int32) int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3896,7 +3896,7 @@ func mapInt32ToInt(itemsValue *reflect.Value, function interface{}, info *mapInf
 
 func mapInt32ToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int32)
-	output := info.output.Interface()([]*int)
+	output := info.output.Interface().([]*int)
 	fn := function.(func(int32) *int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3907,7 +3907,7 @@ func mapInt32ToPtrInt(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrInt32ToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int32)
-	output := info.output.Interface()([]int)
+	output := info.output.Interface().([]int)
 	fn := function.(func(*int32) int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3918,7 +3918,7 @@ func mapPtrInt32ToInt(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrInt32ToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int32)
-	output := info.output.Interface()([]*int)
+	output := info.output.Interface().([]*int)
 	fn := function.(func(*int32) *int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3928,7 +3928,7 @@ func mapPtrInt32ToPtrInt(itemsValue *reflect.Value, function interface{}, info *
 
 func mapInt32ToInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int32)
-	output := info.output.Interface()([]int8)
+	output := info.output.Interface().([]int8)
 	fn := function.(func(int32) int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3938,7 +3938,7 @@ func mapInt32ToInt8(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapInt32ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int32)
-	output := info.output.Interface()([]*int8)
+	output := info.output.Interface().([]*int8)
 	fn := function.(func(int32) *int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3949,7 +3949,7 @@ func mapInt32ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrInt32ToInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int32)
-	output := info.output.Interface()([]int8)
+	output := info.output.Interface().([]int8)
 	fn := function.(func(*int32) int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3960,7 +3960,7 @@ func mapPtrInt32ToInt8(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrInt32ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int32)
-	output := info.output.Interface()([]*int8)
+	output := info.output.Interface().([]*int8)
 	fn := function.(func(*int32) *int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3970,7 +3970,7 @@ func mapPtrInt32ToPtrInt8(itemsValue *reflect.Value, function interface{}, info 
 
 func mapInt32ToInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int32)
-	output := info.output.Interface()([]int16)
+	output := info.output.Interface().([]int16)
 	fn := function.(func(int32) int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3980,7 +3980,7 @@ func mapInt32ToInt16(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapInt32ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int32)
-	output := info.output.Interface()([]*int16)
+	output := info.output.Interface().([]*int16)
 	fn := function.(func(int32) *int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -3991,7 +3991,7 @@ func mapInt32ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt32ToInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int32)
-	output := info.output.Interface()([]int16)
+	output := info.output.Interface().([]int16)
 	fn := function.(func(*int32) int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4002,7 +4002,7 @@ func mapPtrInt32ToInt16(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt32ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int32)
-	output := info.output.Interface()([]*int16)
+	output := info.output.Interface().([]*int16)
 	fn := function.(func(*int32) *int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4012,7 +4012,7 @@ func mapPtrInt32ToPtrInt16(itemsValue *reflect.Value, function interface{}, info
 
 func mapInt32ToInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int32)
-	output := info.output.Interface()([]int32)
+	output := info.output.Interface().([]int32)
 	fn := function.(func(int32) int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4022,7 +4022,7 @@ func mapInt32ToInt32(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapInt32ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int32)
-	output := info.output.Interface()([]*int32)
+	output := info.output.Interface().([]*int32)
 	fn := function.(func(int32) *int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4033,7 +4033,7 @@ func mapInt32ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt32ToInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int32)
-	output := info.output.Interface()([]int32)
+	output := info.output.Interface().([]int32)
 	fn := function.(func(*int32) int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4044,7 +4044,7 @@ func mapPtrInt32ToInt32(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt32ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int32)
-	output := info.output.Interface()([]*int32)
+	output := info.output.Interface().([]*int32)
 	fn := function.(func(*int32) *int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4054,7 +4054,7 @@ func mapPtrInt32ToPtrInt32(itemsValue *reflect.Value, function interface{}, info
 
 func mapInt32ToInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int32)
-	output := info.output.Interface()([]int64)
+	output := info.output.Interface().([]int64)
 	fn := function.(func(int32) int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4064,7 +4064,7 @@ func mapInt32ToInt64(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapInt32ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int32)
-	output := info.output.Interface()([]*int64)
+	output := info.output.Interface().([]*int64)
 	fn := function.(func(int32) *int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4075,7 +4075,7 @@ func mapInt32ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt32ToInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int32)
-	output := info.output.Interface()([]int64)
+	output := info.output.Interface().([]int64)
 	fn := function.(func(*int32) int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4086,7 +4086,7 @@ func mapPtrInt32ToInt64(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt32ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int32)
-	output := info.output.Interface()([]*int64)
+	output := info.output.Interface().([]*int64)
 	fn := function.(func(*int32) *int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4096,7 +4096,7 @@ func mapPtrInt32ToPtrInt64(itemsValue *reflect.Value, function interface{}, info
 
 func mapInt32ToUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int32)
-	output := info.output.Interface()([]uint)
+	output := info.output.Interface().([]uint)
 	fn := function.(func(int32) uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4106,7 +4106,7 @@ func mapInt32ToUint(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapInt32ToPtrUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int32)
-	output := info.output.Interface()([]*uint)
+	output := info.output.Interface().([]*uint)
 	fn := function.(func(int32) *uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4117,7 +4117,7 @@ func mapInt32ToPtrUint(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrInt32ToUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int32)
-	output := info.output.Interface()([]uint)
+	output := info.output.Interface().([]uint)
 	fn := function.(func(*int32) uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4128,7 +4128,7 @@ func mapPtrInt32ToUint(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrInt32ToPtrUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int32)
-	output := info.output.Interface()([]*uint)
+	output := info.output.Interface().([]*uint)
 	fn := function.(func(*int32) *uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4138,7 +4138,7 @@ func mapPtrInt32ToPtrUint(itemsValue *reflect.Value, function interface{}, info 
 
 func mapInt32ToUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int32)
-	output := info.output.Interface()([]uint8)
+	output := info.output.Interface().([]uint8)
 	fn := function.(func(int32) uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4148,7 +4148,7 @@ func mapInt32ToUint8(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapInt32ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int32)
-	output := info.output.Interface()([]*uint8)
+	output := info.output.Interface().([]*uint8)
 	fn := function.(func(int32) *uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4159,7 +4159,7 @@ func mapInt32ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt32ToUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int32)
-	output := info.output.Interface()([]uint8)
+	output := info.output.Interface().([]uint8)
 	fn := function.(func(*int32) uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4170,7 +4170,7 @@ func mapPtrInt32ToUint8(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt32ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int32)
-	output := info.output.Interface()([]*uint8)
+	output := info.output.Interface().([]*uint8)
 	fn := function.(func(*int32) *uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4180,7 +4180,7 @@ func mapPtrInt32ToPtrUint8(itemsValue *reflect.Value, function interface{}, info
 
 func mapInt32ToUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int32)
-	output := info.output.Interface()([]uint16)
+	output := info.output.Interface().([]uint16)
 	fn := function.(func(int32) uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4190,7 +4190,7 @@ func mapInt32ToUint16(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapInt32ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int32)
-	output := info.output.Interface()([]*uint16)
+	output := info.output.Interface().([]*uint16)
 	fn := function.(func(int32) *uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4201,7 +4201,7 @@ func mapInt32ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrInt32ToUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int32)
-	output := info.output.Interface()([]uint16)
+	output := info.output.Interface().([]uint16)
 	fn := function.(func(*int32) uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4212,7 +4212,7 @@ func mapPtrInt32ToUint16(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrInt32ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int32)
-	output := info.output.Interface()([]*uint16)
+	output := info.output.Interface().([]*uint16)
 	fn := function.(func(*int32) *uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4222,7 +4222,7 @@ func mapPtrInt32ToPtrUint16(itemsValue *reflect.Value, function interface{}, inf
 
 func mapInt32ToUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int32)
-	output := info.output.Interface()([]uint32)
+	output := info.output.Interface().([]uint32)
 	fn := function.(func(int32) uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4232,7 +4232,7 @@ func mapInt32ToUint32(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapInt32ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int32)
-	output := info.output.Interface()([]*uint32)
+	output := info.output.Interface().([]*uint32)
 	fn := function.(func(int32) *uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4243,7 +4243,7 @@ func mapInt32ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrInt32ToUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int32)
-	output := info.output.Interface()([]uint32)
+	output := info.output.Interface().([]uint32)
 	fn := function.(func(*int32) uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4254,7 +4254,7 @@ func mapPtrInt32ToUint32(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrInt32ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int32)
-	output := info.output.Interface()([]*uint32)
+	output := info.output.Interface().([]*uint32)
 	fn := function.(func(*int32) *uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4264,7 +4264,7 @@ func mapPtrInt32ToPtrUint32(itemsValue *reflect.Value, function interface{}, inf
 
 func mapInt32ToUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int32)
-	output := info.output.Interface()([]uint64)
+	output := info.output.Interface().([]uint64)
 	fn := function.(func(int32) uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4274,7 +4274,7 @@ func mapInt32ToUint64(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapInt32ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int32)
-	output := info.output.Interface()([]*uint64)
+	output := info.output.Interface().([]*uint64)
 	fn := function.(func(int32) *uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4285,7 +4285,7 @@ func mapInt32ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrInt32ToUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int32)
-	output := info.output.Interface()([]uint64)
+	output := info.output.Interface().([]uint64)
 	fn := function.(func(*int32) uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4296,7 +4296,7 @@ func mapPtrInt32ToUint64(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrInt32ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int32)
-	output := info.output.Interface()([]*uint64)
+	output := info.output.Interface().([]*uint64)
 	fn := function.(func(*int32) *uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4306,7 +4306,7 @@ func mapPtrInt32ToPtrUint64(itemsValue *reflect.Value, function interface{}, inf
 
 func mapInt32ToFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int32)
-	output := info.output.Interface()([]float32)
+	output := info.output.Interface().([]float32)
 	fn := function.(func(int32) float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4316,7 +4316,7 @@ func mapInt32ToFloat32(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapInt32ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int32)
-	output := info.output.Interface()([]*float32)
+	output := info.output.Interface().([]*float32)
 	fn := function.(func(int32) *float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4327,7 +4327,7 @@ func mapInt32ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrInt32ToFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int32)
-	output := info.output.Interface()([]float32)
+	output := info.output.Interface().([]float32)
 	fn := function.(func(*int32) float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4338,7 +4338,7 @@ func mapPtrInt32ToFloat32(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrInt32ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int32)
-	output := info.output.Interface()([]*float32)
+	output := info.output.Interface().([]*float32)
 	fn := function.(func(*int32) *float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4348,7 +4348,7 @@ func mapPtrInt32ToPtrFloat32(itemsValue *reflect.Value, function interface{}, in
 
 func mapInt32ToFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int32)
-	output := info.output.Interface()([]float64)
+	output := info.output.Interface().([]float64)
 	fn := function.(func(int32) float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4358,7 +4358,7 @@ func mapInt32ToFloat64(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapInt32ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int32)
-	output := info.output.Interface()([]*float64)
+	output := info.output.Interface().([]*float64)
 	fn := function.(func(int32) *float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4369,7 +4369,7 @@ func mapInt32ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrInt32ToFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int32)
-	output := info.output.Interface()([]float64)
+	output := info.output.Interface().([]float64)
 	fn := function.(func(*int32) float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4380,7 +4380,7 @@ func mapPtrInt32ToFloat64(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrInt32ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int32)
-	output := info.output.Interface()([]*float64)
+	output := info.output.Interface().([]*float64)
 	fn := function.(func(*int32) *float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4390,7 +4390,7 @@ func mapPtrInt32ToPtrFloat64(itemsValue *reflect.Value, function interface{}, in
 
 func mapInt64ToString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int64)
-	output := info.output.Interface()([]string)
+	output := info.output.Interface().([]string)
 	fn := function.(func(int64) string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4400,7 +4400,7 @@ func mapInt64ToString(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapInt64ToPtrString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int64)
-	output := info.output.Interface()([]*string)
+	output := info.output.Interface().([]*string)
 	fn := function.(func(int64) *string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4411,7 +4411,7 @@ func mapInt64ToPtrString(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrInt64ToString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int64)
-	output := info.output.Interface()([]string)
+	output := info.output.Interface().([]string)
 	fn := function.(func(*int64) string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4422,7 +4422,7 @@ func mapPtrInt64ToString(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrInt64ToPtrString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int64)
-	output := info.output.Interface()([]*string)
+	output := info.output.Interface().([]*string)
 	fn := function.(func(*int64) *string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4432,7 +4432,7 @@ func mapPtrInt64ToPtrString(itemsValue *reflect.Value, function interface{}, inf
 
 func mapInt64ToBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int64)
-	output := info.output.Interface()([]bool)
+	output := info.output.Interface().([]bool)
 	fn := function.(func(int64) bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4442,7 +4442,7 @@ func mapInt64ToBool(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapInt64ToPtrBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int64)
-	output := info.output.Interface()([]*bool)
+	output := info.output.Interface().([]*bool)
 	fn := function.(func(int64) *bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4453,7 +4453,7 @@ func mapInt64ToPtrBool(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrInt64ToBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int64)
-	output := info.output.Interface()([]bool)
+	output := info.output.Interface().([]bool)
 	fn := function.(func(*int64) bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4464,7 +4464,7 @@ func mapPtrInt64ToBool(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrInt64ToPtrBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int64)
-	output := info.output.Interface()([]*bool)
+	output := info.output.Interface().([]*bool)
 	fn := function.(func(*int64) *bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4474,7 +4474,7 @@ func mapPtrInt64ToPtrBool(itemsValue *reflect.Value, function interface{}, info 
 
 func mapInt64ToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int64)
-	output := info.output.Interface()([]int)
+	output := info.output.Interface().([]int)
 	fn := function.(func(int64) int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4484,7 +4484,7 @@ func mapInt64ToInt(itemsValue *reflect.Value, function interface{}, info *mapInf
 
 func mapInt64ToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int64)
-	output := info.output.Interface()([]*int)
+	output := info.output.Interface().([]*int)
 	fn := function.(func(int64) *int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4495,7 +4495,7 @@ func mapInt64ToPtrInt(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrInt64ToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int64)
-	output := info.output.Interface()([]int)
+	output := info.output.Interface().([]int)
 	fn := function.(func(*int64) int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4506,7 +4506,7 @@ func mapPtrInt64ToInt(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrInt64ToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int64)
-	output := info.output.Interface()([]*int)
+	output := info.output.Interface().([]*int)
 	fn := function.(func(*int64) *int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4516,7 +4516,7 @@ func mapPtrInt64ToPtrInt(itemsValue *reflect.Value, function interface{}, info *
 
 func mapInt64ToInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int64)
-	output := info.output.Interface()([]int8)
+	output := info.output.Interface().([]int8)
 	fn := function.(func(int64) int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4526,7 +4526,7 @@ func mapInt64ToInt8(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapInt64ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int64)
-	output := info.output.Interface()([]*int8)
+	output := info.output.Interface().([]*int8)
 	fn := function.(func(int64) *int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4537,7 +4537,7 @@ func mapInt64ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrInt64ToInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int64)
-	output := info.output.Interface()([]int8)
+	output := info.output.Interface().([]int8)
 	fn := function.(func(*int64) int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4548,7 +4548,7 @@ func mapPtrInt64ToInt8(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrInt64ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int64)
-	output := info.output.Interface()([]*int8)
+	output := info.output.Interface().([]*int8)
 	fn := function.(func(*int64) *int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4558,7 +4558,7 @@ func mapPtrInt64ToPtrInt8(itemsValue *reflect.Value, function interface{}, info 
 
 func mapInt64ToInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int64)
-	output := info.output.Interface()([]int16)
+	output := info.output.Interface().([]int16)
 	fn := function.(func(int64) int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4568,7 +4568,7 @@ func mapInt64ToInt16(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapInt64ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int64)
-	output := info.output.Interface()([]*int16)
+	output := info.output.Interface().([]*int16)
 	fn := function.(func(int64) *int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4579,7 +4579,7 @@ func mapInt64ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt64ToInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int64)
-	output := info.output.Interface()([]int16)
+	output := info.output.Interface().([]int16)
 	fn := function.(func(*int64) int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4590,7 +4590,7 @@ func mapPtrInt64ToInt16(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt64ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int64)
-	output := info.output.Interface()([]*int16)
+	output := info.output.Interface().([]*int16)
 	fn := function.(func(*int64) *int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4600,7 +4600,7 @@ func mapPtrInt64ToPtrInt16(itemsValue *reflect.Value, function interface{}, info
 
 func mapInt64ToInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int64)
-	output := info.output.Interface()([]int32)
+	output := info.output.Interface().([]int32)
 	fn := function.(func(int64) int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4610,7 +4610,7 @@ func mapInt64ToInt32(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapInt64ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int64)
-	output := info.output.Interface()([]*int32)
+	output := info.output.Interface().([]*int32)
 	fn := function.(func(int64) *int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4621,7 +4621,7 @@ func mapInt64ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt64ToInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int64)
-	output := info.output.Interface()([]int32)
+	output := info.output.Interface().([]int32)
 	fn := function.(func(*int64) int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4632,7 +4632,7 @@ func mapPtrInt64ToInt32(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt64ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int64)
-	output := info.output.Interface()([]*int32)
+	output := info.output.Interface().([]*int32)
 	fn := function.(func(*int64) *int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4642,7 +4642,7 @@ func mapPtrInt64ToPtrInt32(itemsValue *reflect.Value, function interface{}, info
 
 func mapInt64ToInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int64)
-	output := info.output.Interface()([]int64)
+	output := info.output.Interface().([]int64)
 	fn := function.(func(int64) int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4652,7 +4652,7 @@ func mapInt64ToInt64(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapInt64ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int64)
-	output := info.output.Interface()([]*int64)
+	output := info.output.Interface().([]*int64)
 	fn := function.(func(int64) *int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4663,7 +4663,7 @@ func mapInt64ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt64ToInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int64)
-	output := info.output.Interface()([]int64)
+	output := info.output.Interface().([]int64)
 	fn := function.(func(*int64) int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4674,7 +4674,7 @@ func mapPtrInt64ToInt64(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt64ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int64)
-	output := info.output.Interface()([]*int64)
+	output := info.output.Interface().([]*int64)
 	fn := function.(func(*int64) *int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4684,7 +4684,7 @@ func mapPtrInt64ToPtrInt64(itemsValue *reflect.Value, function interface{}, info
 
 func mapInt64ToUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int64)
-	output := info.output.Interface()([]uint)
+	output := info.output.Interface().([]uint)
 	fn := function.(func(int64) uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4694,7 +4694,7 @@ func mapInt64ToUint(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapInt64ToPtrUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int64)
-	output := info.output.Interface()([]*uint)
+	output := info.output.Interface().([]*uint)
 	fn := function.(func(int64) *uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4705,7 +4705,7 @@ func mapInt64ToPtrUint(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrInt64ToUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int64)
-	output := info.output.Interface()([]uint)
+	output := info.output.Interface().([]uint)
 	fn := function.(func(*int64) uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4716,7 +4716,7 @@ func mapPtrInt64ToUint(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrInt64ToPtrUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int64)
-	output := info.output.Interface()([]*uint)
+	output := info.output.Interface().([]*uint)
 	fn := function.(func(*int64) *uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4726,7 +4726,7 @@ func mapPtrInt64ToPtrUint(itemsValue *reflect.Value, function interface{}, info 
 
 func mapInt64ToUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int64)
-	output := info.output.Interface()([]uint8)
+	output := info.output.Interface().([]uint8)
 	fn := function.(func(int64) uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4736,7 +4736,7 @@ func mapInt64ToUint8(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapInt64ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int64)
-	output := info.output.Interface()([]*uint8)
+	output := info.output.Interface().([]*uint8)
 	fn := function.(func(int64) *uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4747,7 +4747,7 @@ func mapInt64ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt64ToUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int64)
-	output := info.output.Interface()([]uint8)
+	output := info.output.Interface().([]uint8)
 	fn := function.(func(*int64) uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4758,7 +4758,7 @@ func mapPtrInt64ToUint8(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrInt64ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int64)
-	output := info.output.Interface()([]*uint8)
+	output := info.output.Interface().([]*uint8)
 	fn := function.(func(*int64) *uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4768,7 +4768,7 @@ func mapPtrInt64ToPtrUint8(itemsValue *reflect.Value, function interface{}, info
 
 func mapInt64ToUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int64)
-	output := info.output.Interface()([]uint16)
+	output := info.output.Interface().([]uint16)
 	fn := function.(func(int64) uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4778,7 +4778,7 @@ func mapInt64ToUint16(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapInt64ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int64)
-	output := info.output.Interface()([]*uint16)
+	output := info.output.Interface().([]*uint16)
 	fn := function.(func(int64) *uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4789,7 +4789,7 @@ func mapInt64ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrInt64ToUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int64)
-	output := info.output.Interface()([]uint16)
+	output := info.output.Interface().([]uint16)
 	fn := function.(func(*int64) uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4800,7 +4800,7 @@ func mapPtrInt64ToUint16(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrInt64ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int64)
-	output := info.output.Interface()([]*uint16)
+	output := info.output.Interface().([]*uint16)
 	fn := function.(func(*int64) *uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4810,7 +4810,7 @@ func mapPtrInt64ToPtrUint16(itemsValue *reflect.Value, function interface{}, inf
 
 func mapInt64ToUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int64)
-	output := info.output.Interface()([]uint32)
+	output := info.output.Interface().([]uint32)
 	fn := function.(func(int64) uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4820,7 +4820,7 @@ func mapInt64ToUint32(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapInt64ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int64)
-	output := info.output.Interface()([]*uint32)
+	output := info.output.Interface().([]*uint32)
 	fn := function.(func(int64) *uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4831,7 +4831,7 @@ func mapInt64ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrInt64ToUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int64)
-	output := info.output.Interface()([]uint32)
+	output := info.output.Interface().([]uint32)
 	fn := function.(func(*int64) uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4842,7 +4842,7 @@ func mapPtrInt64ToUint32(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrInt64ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int64)
-	output := info.output.Interface()([]*uint32)
+	output := info.output.Interface().([]*uint32)
 	fn := function.(func(*int64) *uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4852,7 +4852,7 @@ func mapPtrInt64ToPtrUint32(itemsValue *reflect.Value, function interface{}, inf
 
 func mapInt64ToUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int64)
-	output := info.output.Interface()([]uint64)
+	output := info.output.Interface().([]uint64)
 	fn := function.(func(int64) uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4862,7 +4862,7 @@ func mapInt64ToUint64(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapInt64ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int64)
-	output := info.output.Interface()([]*uint64)
+	output := info.output.Interface().([]*uint64)
 	fn := function.(func(int64) *uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4873,7 +4873,7 @@ func mapInt64ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrInt64ToUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int64)
-	output := info.output.Interface()([]uint64)
+	output := info.output.Interface().([]uint64)
 	fn := function.(func(*int64) uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4884,7 +4884,7 @@ func mapPtrInt64ToUint64(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrInt64ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int64)
-	output := info.output.Interface()([]*uint64)
+	output := info.output.Interface().([]*uint64)
 	fn := function.(func(*int64) *uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4894,7 +4894,7 @@ func mapPtrInt64ToPtrUint64(itemsValue *reflect.Value, function interface{}, inf
 
 func mapInt64ToFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int64)
-	output := info.output.Interface()([]float32)
+	output := info.output.Interface().([]float32)
 	fn := function.(func(int64) float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4904,7 +4904,7 @@ func mapInt64ToFloat32(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapInt64ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int64)
-	output := info.output.Interface()([]*float32)
+	output := info.output.Interface().([]*float32)
 	fn := function.(func(int64) *float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4915,7 +4915,7 @@ func mapInt64ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrInt64ToFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int64)
-	output := info.output.Interface()([]float32)
+	output := info.output.Interface().([]float32)
 	fn := function.(func(*int64) float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4926,7 +4926,7 @@ func mapPtrInt64ToFloat32(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrInt64ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int64)
-	output := info.output.Interface()([]*float32)
+	output := info.output.Interface().([]*float32)
 	fn := function.(func(*int64) *float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4936,7 +4936,7 @@ func mapPtrInt64ToPtrFloat32(itemsValue *reflect.Value, function interface{}, in
 
 func mapInt64ToFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int64)
-	output := info.output.Interface()([]float64)
+	output := info.output.Interface().([]float64)
 	fn := function.(func(int64) float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4946,7 +4946,7 @@ func mapInt64ToFloat64(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapInt64ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]int64)
-	output := info.output.Interface()([]*float64)
+	output := info.output.Interface().([]*float64)
 	fn := function.(func(int64) *float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4957,7 +4957,7 @@ func mapInt64ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrInt64ToFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int64)
-	output := info.output.Interface()([]float64)
+	output := info.output.Interface().([]float64)
 	fn := function.(func(*int64) float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4968,7 +4968,7 @@ func mapPtrInt64ToFloat64(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrInt64ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*int64)
-	output := info.output.Interface()([]*float64)
+	output := info.output.Interface().([]*float64)
 	fn := function.(func(*int64) *float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4978,7 +4978,7 @@ func mapPtrInt64ToPtrFloat64(itemsValue *reflect.Value, function interface{}, in
 
 func mapUintToString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint)
-	output := info.output.Interface()([]string)
+	output := info.output.Interface().([]string)
 	fn := function.(func(uint) string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4988,7 +4988,7 @@ func mapUintToString(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapUintToPtrString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint)
-	output := info.output.Interface()([]*string)
+	output := info.output.Interface().([]*string)
 	fn := function.(func(uint) *string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -4999,7 +4999,7 @@ func mapUintToPtrString(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUintToString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint)
-	output := info.output.Interface()([]string)
+	output := info.output.Interface().([]string)
 	fn := function.(func(*uint) string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5010,7 +5010,7 @@ func mapPtrUintToString(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUintToPtrString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint)
-	output := info.output.Interface()([]*string)
+	output := info.output.Interface().([]*string)
 	fn := function.(func(*uint) *string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5020,7 +5020,7 @@ func mapPtrUintToPtrString(itemsValue *reflect.Value, function interface{}, info
 
 func mapUintToBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint)
-	output := info.output.Interface()([]bool)
+	output := info.output.Interface().([]bool)
 	fn := function.(func(uint) bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5030,7 +5030,7 @@ func mapUintToBool(itemsValue *reflect.Value, function interface{}, info *mapInf
 
 func mapUintToPtrBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint)
-	output := info.output.Interface()([]*bool)
+	output := info.output.Interface().([]*bool)
 	fn := function.(func(uint) *bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5041,7 +5041,7 @@ func mapUintToPtrBool(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrUintToBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint)
-	output := info.output.Interface()([]bool)
+	output := info.output.Interface().([]bool)
 	fn := function.(func(*uint) bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5052,7 +5052,7 @@ func mapPtrUintToBool(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrUintToPtrBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint)
-	output := info.output.Interface()([]*bool)
+	output := info.output.Interface().([]*bool)
 	fn := function.(func(*uint) *bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5062,7 +5062,7 @@ func mapPtrUintToPtrBool(itemsValue *reflect.Value, function interface{}, info *
 
 func mapUintToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint)
-	output := info.output.Interface()([]int)
+	output := info.output.Interface().([]int)
 	fn := function.(func(uint) int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5072,7 +5072,7 @@ func mapUintToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo
 
 func mapUintToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint)
-	output := info.output.Interface()([]*int)
+	output := info.output.Interface().([]*int)
 	fn := function.(func(uint) *int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5083,7 +5083,7 @@ func mapUintToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapPtrUintToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint)
-	output := info.output.Interface()([]int)
+	output := info.output.Interface().([]int)
 	fn := function.(func(*uint) int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5094,7 +5094,7 @@ func mapPtrUintToInt(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapPtrUintToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint)
-	output := info.output.Interface()([]*int)
+	output := info.output.Interface().([]*int)
 	fn := function.(func(*uint) *int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5104,7 +5104,7 @@ func mapPtrUintToPtrInt(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapUintToInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint)
-	output := info.output.Interface()([]int8)
+	output := info.output.Interface().([]int8)
 	fn := function.(func(uint) int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5114,7 +5114,7 @@ func mapUintToInt8(itemsValue *reflect.Value, function interface{}, info *mapInf
 
 func mapUintToPtrInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint)
-	output := info.output.Interface()([]*int8)
+	output := info.output.Interface().([]*int8)
 	fn := function.(func(uint) *int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5125,7 +5125,7 @@ func mapUintToPtrInt8(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrUintToInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint)
-	output := info.output.Interface()([]int8)
+	output := info.output.Interface().([]int8)
 	fn := function.(func(*uint) int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5136,7 +5136,7 @@ func mapPtrUintToInt8(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrUintToPtrInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint)
-	output := info.output.Interface()([]*int8)
+	output := info.output.Interface().([]*int8)
 	fn := function.(func(*uint) *int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5146,7 +5146,7 @@ func mapPtrUintToPtrInt8(itemsValue *reflect.Value, function interface{}, info *
 
 func mapUintToInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint)
-	output := info.output.Interface()([]int16)
+	output := info.output.Interface().([]int16)
 	fn := function.(func(uint) int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5156,7 +5156,7 @@ func mapUintToInt16(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapUintToPtrInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint)
-	output := info.output.Interface()([]*int16)
+	output := info.output.Interface().([]*int16)
 	fn := function.(func(uint) *int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5167,7 +5167,7 @@ func mapUintToPtrInt16(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrUintToInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint)
-	output := info.output.Interface()([]int16)
+	output := info.output.Interface().([]int16)
 	fn := function.(func(*uint) int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5178,7 +5178,7 @@ func mapPtrUintToInt16(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrUintToPtrInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint)
-	output := info.output.Interface()([]*int16)
+	output := info.output.Interface().([]*int16)
 	fn := function.(func(*uint) *int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5188,7 +5188,7 @@ func mapPtrUintToPtrInt16(itemsValue *reflect.Value, function interface{}, info 
 
 func mapUintToInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint)
-	output := info.output.Interface()([]int32)
+	output := info.output.Interface().([]int32)
 	fn := function.(func(uint) int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5198,7 +5198,7 @@ func mapUintToInt32(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapUintToPtrInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint)
-	output := info.output.Interface()([]*int32)
+	output := info.output.Interface().([]*int32)
 	fn := function.(func(uint) *int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5209,7 +5209,7 @@ func mapUintToPtrInt32(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrUintToInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint)
-	output := info.output.Interface()([]int32)
+	output := info.output.Interface().([]int32)
 	fn := function.(func(*uint) int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5220,7 +5220,7 @@ func mapPtrUintToInt32(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrUintToPtrInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint)
-	output := info.output.Interface()([]*int32)
+	output := info.output.Interface().([]*int32)
 	fn := function.(func(*uint) *int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5230,7 +5230,7 @@ func mapPtrUintToPtrInt32(itemsValue *reflect.Value, function interface{}, info 
 
 func mapUintToInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint)
-	output := info.output.Interface()([]int64)
+	output := info.output.Interface().([]int64)
 	fn := function.(func(uint) int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5240,7 +5240,7 @@ func mapUintToInt64(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapUintToPtrInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint)
-	output := info.output.Interface()([]*int64)
+	output := info.output.Interface().([]*int64)
 	fn := function.(func(uint) *int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5251,7 +5251,7 @@ func mapUintToPtrInt64(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrUintToInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint)
-	output := info.output.Interface()([]int64)
+	output := info.output.Interface().([]int64)
 	fn := function.(func(*uint) int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5262,7 +5262,7 @@ func mapPtrUintToInt64(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrUintToPtrInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint)
-	output := info.output.Interface()([]*int64)
+	output := info.output.Interface().([]*int64)
 	fn := function.(func(*uint) *int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5272,7 +5272,7 @@ func mapPtrUintToPtrInt64(itemsValue *reflect.Value, function interface{}, info 
 
 func mapUintToUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint)
-	output := info.output.Interface()([]uint)
+	output := info.output.Interface().([]uint)
 	fn := function.(func(uint) uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5282,7 +5282,7 @@ func mapUintToUint(itemsValue *reflect.Value, function interface{}, info *mapInf
 
 func mapUintToPtrUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint)
-	output := info.output.Interface()([]*uint)
+	output := info.output.Interface().([]*uint)
 	fn := function.(func(uint) *uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5293,7 +5293,7 @@ func mapUintToPtrUint(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrUintToUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint)
-	output := info.output.Interface()([]uint)
+	output := info.output.Interface().([]uint)
 	fn := function.(func(*uint) uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5304,7 +5304,7 @@ func mapPtrUintToUint(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrUintToPtrUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint)
-	output := info.output.Interface()([]*uint)
+	output := info.output.Interface().([]*uint)
 	fn := function.(func(*uint) *uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5314,7 +5314,7 @@ func mapPtrUintToPtrUint(itemsValue *reflect.Value, function interface{}, info *
 
 func mapUintToUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint)
-	output := info.output.Interface()([]uint8)
+	output := info.output.Interface().([]uint8)
 	fn := function.(func(uint) uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5324,7 +5324,7 @@ func mapUintToUint8(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapUintToPtrUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint)
-	output := info.output.Interface()([]*uint8)
+	output := info.output.Interface().([]*uint8)
 	fn := function.(func(uint) *uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5335,7 +5335,7 @@ func mapUintToPtrUint8(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrUintToUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint)
-	output := info.output.Interface()([]uint8)
+	output := info.output.Interface().([]uint8)
 	fn := function.(func(*uint) uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5346,7 +5346,7 @@ func mapPtrUintToUint8(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrUintToPtrUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint)
-	output := info.output.Interface()([]*uint8)
+	output := info.output.Interface().([]*uint8)
 	fn := function.(func(*uint) *uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5356,7 +5356,7 @@ func mapPtrUintToPtrUint8(itemsValue *reflect.Value, function interface{}, info 
 
 func mapUintToUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint)
-	output := info.output.Interface()([]uint16)
+	output := info.output.Interface().([]uint16)
 	fn := function.(func(uint) uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5366,7 +5366,7 @@ func mapUintToUint16(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapUintToPtrUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint)
-	output := info.output.Interface()([]*uint16)
+	output := info.output.Interface().([]*uint16)
 	fn := function.(func(uint) *uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5377,7 +5377,7 @@ func mapUintToPtrUint16(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUintToUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint)
-	output := info.output.Interface()([]uint16)
+	output := info.output.Interface().([]uint16)
 	fn := function.(func(*uint) uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5388,7 +5388,7 @@ func mapPtrUintToUint16(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUintToPtrUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint)
-	output := info.output.Interface()([]*uint16)
+	output := info.output.Interface().([]*uint16)
 	fn := function.(func(*uint) *uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5398,7 +5398,7 @@ func mapPtrUintToPtrUint16(itemsValue *reflect.Value, function interface{}, info
 
 func mapUintToUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint)
-	output := info.output.Interface()([]uint32)
+	output := info.output.Interface().([]uint32)
 	fn := function.(func(uint) uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5408,7 +5408,7 @@ func mapUintToUint32(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapUintToPtrUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint)
-	output := info.output.Interface()([]*uint32)
+	output := info.output.Interface().([]*uint32)
 	fn := function.(func(uint) *uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5419,7 +5419,7 @@ func mapUintToPtrUint32(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUintToUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint)
-	output := info.output.Interface()([]uint32)
+	output := info.output.Interface().([]uint32)
 	fn := function.(func(*uint) uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5430,7 +5430,7 @@ func mapPtrUintToUint32(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUintToPtrUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint)
-	output := info.output.Interface()([]*uint32)
+	output := info.output.Interface().([]*uint32)
 	fn := function.(func(*uint) *uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5440,7 +5440,7 @@ func mapPtrUintToPtrUint32(itemsValue *reflect.Value, function interface{}, info
 
 func mapUintToUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint)
-	output := info.output.Interface()([]uint64)
+	output := info.output.Interface().([]uint64)
 	fn := function.(func(uint) uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5450,7 +5450,7 @@ func mapUintToUint64(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapUintToPtrUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint)
-	output := info.output.Interface()([]*uint64)
+	output := info.output.Interface().([]*uint64)
 	fn := function.(func(uint) *uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5461,7 +5461,7 @@ func mapUintToPtrUint64(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUintToUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint)
-	output := info.output.Interface()([]uint64)
+	output := info.output.Interface().([]uint64)
 	fn := function.(func(*uint) uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5472,7 +5472,7 @@ func mapPtrUintToUint64(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUintToPtrUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint)
-	output := info.output.Interface()([]*uint64)
+	output := info.output.Interface().([]*uint64)
 	fn := function.(func(*uint) *uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5482,7 +5482,7 @@ func mapPtrUintToPtrUint64(itemsValue *reflect.Value, function interface{}, info
 
 func mapUintToFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint)
-	output := info.output.Interface()([]float32)
+	output := info.output.Interface().([]float32)
 	fn := function.(func(uint) float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5492,7 +5492,7 @@ func mapUintToFloat32(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapUintToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint)
-	output := info.output.Interface()([]*float32)
+	output := info.output.Interface().([]*float32)
 	fn := function.(func(uint) *float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5503,7 +5503,7 @@ func mapUintToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUintToFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint)
-	output := info.output.Interface()([]float32)
+	output := info.output.Interface().([]float32)
 	fn := function.(func(*uint) float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5514,7 +5514,7 @@ func mapPtrUintToFloat32(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUintToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint)
-	output := info.output.Interface()([]*float32)
+	output := info.output.Interface().([]*float32)
 	fn := function.(func(*uint) *float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5524,7 +5524,7 @@ func mapPtrUintToPtrFloat32(itemsValue *reflect.Value, function interface{}, inf
 
 func mapUintToFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint)
-	output := info.output.Interface()([]float64)
+	output := info.output.Interface().([]float64)
 	fn := function.(func(uint) float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5534,7 +5534,7 @@ func mapUintToFloat64(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapUintToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint)
-	output := info.output.Interface()([]*float64)
+	output := info.output.Interface().([]*float64)
 	fn := function.(func(uint) *float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5545,7 +5545,7 @@ func mapUintToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUintToFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint)
-	output := info.output.Interface()([]float64)
+	output := info.output.Interface().([]float64)
 	fn := function.(func(*uint) float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5556,7 +5556,7 @@ func mapPtrUintToFloat64(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUintToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint)
-	output := info.output.Interface()([]*float64)
+	output := info.output.Interface().([]*float64)
 	fn := function.(func(*uint) *float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5566,7 +5566,7 @@ func mapPtrUintToPtrFloat64(itemsValue *reflect.Value, function interface{}, inf
 
 func mapUint8ToString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint8)
-	output := info.output.Interface()([]string)
+	output := info.output.Interface().([]string)
 	fn := function.(func(uint8) string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5576,7 +5576,7 @@ func mapUint8ToString(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapUint8ToPtrString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint8)
-	output := info.output.Interface()([]*string)
+	output := info.output.Interface().([]*string)
 	fn := function.(func(uint8) *string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5587,7 +5587,7 @@ func mapUint8ToPtrString(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint8ToString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint8)
-	output := info.output.Interface()([]string)
+	output := info.output.Interface().([]string)
 	fn := function.(func(*uint8) string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5598,7 +5598,7 @@ func mapPtrUint8ToString(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint8ToPtrString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint8)
-	output := info.output.Interface()([]*string)
+	output := info.output.Interface().([]*string)
 	fn := function.(func(*uint8) *string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5608,7 +5608,7 @@ func mapPtrUint8ToPtrString(itemsValue *reflect.Value, function interface{}, inf
 
 func mapUint8ToBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint8)
-	output := info.output.Interface()([]bool)
+	output := info.output.Interface().([]bool)
 	fn := function.(func(uint8) bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5618,7 +5618,7 @@ func mapUint8ToBool(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapUint8ToPtrBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint8)
-	output := info.output.Interface()([]*bool)
+	output := info.output.Interface().([]*bool)
 	fn := function.(func(uint8) *bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5629,7 +5629,7 @@ func mapUint8ToPtrBool(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrUint8ToBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint8)
-	output := info.output.Interface()([]bool)
+	output := info.output.Interface().([]bool)
 	fn := function.(func(*uint8) bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5640,7 +5640,7 @@ func mapPtrUint8ToBool(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrUint8ToPtrBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint8)
-	output := info.output.Interface()([]*bool)
+	output := info.output.Interface().([]*bool)
 	fn := function.(func(*uint8) *bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5650,7 +5650,7 @@ func mapPtrUint8ToPtrBool(itemsValue *reflect.Value, function interface{}, info 
 
 func mapUint8ToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint8)
-	output := info.output.Interface()([]int)
+	output := info.output.Interface().([]int)
 	fn := function.(func(uint8) int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5660,7 +5660,7 @@ func mapUint8ToInt(itemsValue *reflect.Value, function interface{}, info *mapInf
 
 func mapUint8ToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint8)
-	output := info.output.Interface()([]*int)
+	output := info.output.Interface().([]*int)
 	fn := function.(func(uint8) *int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5671,7 +5671,7 @@ func mapUint8ToPtrInt(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrUint8ToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint8)
-	output := info.output.Interface()([]int)
+	output := info.output.Interface().([]int)
 	fn := function.(func(*uint8) int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5682,7 +5682,7 @@ func mapPtrUint8ToInt(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapPtrUint8ToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint8)
-	output := info.output.Interface()([]*int)
+	output := info.output.Interface().([]*int)
 	fn := function.(func(*uint8) *int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5692,7 +5692,7 @@ func mapPtrUint8ToPtrInt(itemsValue *reflect.Value, function interface{}, info *
 
 func mapUint8ToInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint8)
-	output := info.output.Interface()([]int8)
+	output := info.output.Interface().([]int8)
 	fn := function.(func(uint8) int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5702,7 +5702,7 @@ func mapUint8ToInt8(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapUint8ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint8)
-	output := info.output.Interface()([]*int8)
+	output := info.output.Interface().([]*int8)
 	fn := function.(func(uint8) *int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5713,7 +5713,7 @@ func mapUint8ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrUint8ToInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint8)
-	output := info.output.Interface()([]int8)
+	output := info.output.Interface().([]int8)
 	fn := function.(func(*uint8) int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5724,7 +5724,7 @@ func mapPtrUint8ToInt8(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrUint8ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint8)
-	output := info.output.Interface()([]*int8)
+	output := info.output.Interface().([]*int8)
 	fn := function.(func(*uint8) *int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5734,7 +5734,7 @@ func mapPtrUint8ToPtrInt8(itemsValue *reflect.Value, function interface{}, info 
 
 func mapUint8ToInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint8)
-	output := info.output.Interface()([]int16)
+	output := info.output.Interface().([]int16)
 	fn := function.(func(uint8) int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5744,7 +5744,7 @@ func mapUint8ToInt16(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapUint8ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint8)
-	output := info.output.Interface()([]*int16)
+	output := info.output.Interface().([]*int16)
 	fn := function.(func(uint8) *int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5755,7 +5755,7 @@ func mapUint8ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUint8ToInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint8)
-	output := info.output.Interface()([]int16)
+	output := info.output.Interface().([]int16)
 	fn := function.(func(*uint8) int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5766,7 +5766,7 @@ func mapPtrUint8ToInt16(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUint8ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint8)
-	output := info.output.Interface()([]*int16)
+	output := info.output.Interface().([]*int16)
 	fn := function.(func(*uint8) *int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5776,7 +5776,7 @@ func mapPtrUint8ToPtrInt16(itemsValue *reflect.Value, function interface{}, info
 
 func mapUint8ToInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint8)
-	output := info.output.Interface()([]int32)
+	output := info.output.Interface().([]int32)
 	fn := function.(func(uint8) int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5786,7 +5786,7 @@ func mapUint8ToInt32(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapUint8ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint8)
-	output := info.output.Interface()([]*int32)
+	output := info.output.Interface().([]*int32)
 	fn := function.(func(uint8) *int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5797,7 +5797,7 @@ func mapUint8ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUint8ToInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint8)
-	output := info.output.Interface()([]int32)
+	output := info.output.Interface().([]int32)
 	fn := function.(func(*uint8) int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5808,7 +5808,7 @@ func mapPtrUint8ToInt32(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUint8ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint8)
-	output := info.output.Interface()([]*int32)
+	output := info.output.Interface().([]*int32)
 	fn := function.(func(*uint8) *int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5818,7 +5818,7 @@ func mapPtrUint8ToPtrInt32(itemsValue *reflect.Value, function interface{}, info
 
 func mapUint8ToInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint8)
-	output := info.output.Interface()([]int64)
+	output := info.output.Interface().([]int64)
 	fn := function.(func(uint8) int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5828,7 +5828,7 @@ func mapUint8ToInt64(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapUint8ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint8)
-	output := info.output.Interface()([]*int64)
+	output := info.output.Interface().([]*int64)
 	fn := function.(func(uint8) *int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5839,7 +5839,7 @@ func mapUint8ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUint8ToInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint8)
-	output := info.output.Interface()([]int64)
+	output := info.output.Interface().([]int64)
 	fn := function.(func(*uint8) int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5850,7 +5850,7 @@ func mapPtrUint8ToInt64(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUint8ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint8)
-	output := info.output.Interface()([]*int64)
+	output := info.output.Interface().([]*int64)
 	fn := function.(func(*uint8) *int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5860,7 +5860,7 @@ func mapPtrUint8ToPtrInt64(itemsValue *reflect.Value, function interface{}, info
 
 func mapUint8ToUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint8)
-	output := info.output.Interface()([]uint)
+	output := info.output.Interface().([]uint)
 	fn := function.(func(uint8) uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5870,7 +5870,7 @@ func mapUint8ToUint(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapUint8ToPtrUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint8)
-	output := info.output.Interface()([]*uint)
+	output := info.output.Interface().([]*uint)
 	fn := function.(func(uint8) *uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5881,7 +5881,7 @@ func mapUint8ToPtrUint(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrUint8ToUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint8)
-	output := info.output.Interface()([]uint)
+	output := info.output.Interface().([]uint)
 	fn := function.(func(*uint8) uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5892,7 +5892,7 @@ func mapPtrUint8ToUint(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrUint8ToPtrUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint8)
-	output := info.output.Interface()([]*uint)
+	output := info.output.Interface().([]*uint)
 	fn := function.(func(*uint8) *uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5902,7 +5902,7 @@ func mapPtrUint8ToPtrUint(itemsValue *reflect.Value, function interface{}, info 
 
 func mapUint8ToUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint8)
-	output := info.output.Interface()([]uint8)
+	output := info.output.Interface().([]uint8)
 	fn := function.(func(uint8) uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5912,7 +5912,7 @@ func mapUint8ToUint8(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapUint8ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint8)
-	output := info.output.Interface()([]*uint8)
+	output := info.output.Interface().([]*uint8)
 	fn := function.(func(uint8) *uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5923,7 +5923,7 @@ func mapUint8ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUint8ToUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint8)
-	output := info.output.Interface()([]uint8)
+	output := info.output.Interface().([]uint8)
 	fn := function.(func(*uint8) uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5934,7 +5934,7 @@ func mapPtrUint8ToUint8(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUint8ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint8)
-	output := info.output.Interface()([]*uint8)
+	output := info.output.Interface().([]*uint8)
 	fn := function.(func(*uint8) *uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5944,7 +5944,7 @@ func mapPtrUint8ToPtrUint8(itemsValue *reflect.Value, function interface{}, info
 
 func mapUint8ToUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint8)
-	output := info.output.Interface()([]uint16)
+	output := info.output.Interface().([]uint16)
 	fn := function.(func(uint8) uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5954,7 +5954,7 @@ func mapUint8ToUint16(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapUint8ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint8)
-	output := info.output.Interface()([]*uint16)
+	output := info.output.Interface().([]*uint16)
 	fn := function.(func(uint8) *uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5965,7 +5965,7 @@ func mapUint8ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint8ToUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint8)
-	output := info.output.Interface()([]uint16)
+	output := info.output.Interface().([]uint16)
 	fn := function.(func(*uint8) uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5976,7 +5976,7 @@ func mapPtrUint8ToUint16(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint8ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint8)
-	output := info.output.Interface()([]*uint16)
+	output := info.output.Interface().([]*uint16)
 	fn := function.(func(*uint8) *uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5986,7 +5986,7 @@ func mapPtrUint8ToPtrUint16(itemsValue *reflect.Value, function interface{}, inf
 
 func mapUint8ToUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint8)
-	output := info.output.Interface()([]uint32)
+	output := info.output.Interface().([]uint32)
 	fn := function.(func(uint8) uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -5996,7 +5996,7 @@ func mapUint8ToUint32(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapUint8ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint8)
-	output := info.output.Interface()([]*uint32)
+	output := info.output.Interface().([]*uint32)
 	fn := function.(func(uint8) *uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6007,7 +6007,7 @@ func mapUint8ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint8ToUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint8)
-	output := info.output.Interface()([]uint32)
+	output := info.output.Interface().([]uint32)
 	fn := function.(func(*uint8) uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6018,7 +6018,7 @@ func mapPtrUint8ToUint32(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint8ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint8)
-	output := info.output.Interface()([]*uint32)
+	output := info.output.Interface().([]*uint32)
 	fn := function.(func(*uint8) *uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6028,7 +6028,7 @@ func mapPtrUint8ToPtrUint32(itemsValue *reflect.Value, function interface{}, inf
 
 func mapUint8ToUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint8)
-	output := info.output.Interface()([]uint64)
+	output := info.output.Interface().([]uint64)
 	fn := function.(func(uint8) uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6038,7 +6038,7 @@ func mapUint8ToUint64(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapUint8ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint8)
-	output := info.output.Interface()([]*uint64)
+	output := info.output.Interface().([]*uint64)
 	fn := function.(func(uint8) *uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6049,7 +6049,7 @@ func mapUint8ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint8ToUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint8)
-	output := info.output.Interface()([]uint64)
+	output := info.output.Interface().([]uint64)
 	fn := function.(func(*uint8) uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6060,7 +6060,7 @@ func mapPtrUint8ToUint64(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint8ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint8)
-	output := info.output.Interface()([]*uint64)
+	output := info.output.Interface().([]*uint64)
 	fn := function.(func(*uint8) *uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6070,7 +6070,7 @@ func mapPtrUint8ToPtrUint64(itemsValue *reflect.Value, function interface{}, inf
 
 func mapUint8ToFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint8)
-	output := info.output.Interface()([]float32)
+	output := info.output.Interface().([]float32)
 	fn := function.(func(uint8) float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6080,7 +6080,7 @@ func mapUint8ToFloat32(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapUint8ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint8)
-	output := info.output.Interface()([]*float32)
+	output := info.output.Interface().([]*float32)
 	fn := function.(func(uint8) *float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6091,7 +6091,7 @@ func mapUint8ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrUint8ToFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint8)
-	output := info.output.Interface()([]float32)
+	output := info.output.Interface().([]float32)
 	fn := function.(func(*uint8) float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6102,7 +6102,7 @@ func mapPtrUint8ToFloat32(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrUint8ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint8)
-	output := info.output.Interface()([]*float32)
+	output := info.output.Interface().([]*float32)
 	fn := function.(func(*uint8) *float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6112,7 +6112,7 @@ func mapPtrUint8ToPtrFloat32(itemsValue *reflect.Value, function interface{}, in
 
 func mapUint8ToFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint8)
-	output := info.output.Interface()([]float64)
+	output := info.output.Interface().([]float64)
 	fn := function.(func(uint8) float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6122,7 +6122,7 @@ func mapUint8ToFloat64(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapUint8ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint8)
-	output := info.output.Interface()([]*float64)
+	output := info.output.Interface().([]*float64)
 	fn := function.(func(uint8) *float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6133,7 +6133,7 @@ func mapUint8ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrUint8ToFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint8)
-	output := info.output.Interface()([]float64)
+	output := info.output.Interface().([]float64)
 	fn := function.(func(*uint8) float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6144,7 +6144,7 @@ func mapPtrUint8ToFloat64(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrUint8ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint8)
-	output := info.output.Interface()([]*float64)
+	output := info.output.Interface().([]*float64)
 	fn := function.(func(*uint8) *float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6154,7 +6154,7 @@ func mapPtrUint8ToPtrFloat64(itemsValue *reflect.Value, function interface{}, in
 
 func mapUint16ToString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint16)
-	output := info.output.Interface()([]string)
+	output := info.output.Interface().([]string)
 	fn := function.(func(uint16) string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6164,7 +6164,7 @@ func mapUint16ToString(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapUint16ToPtrString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint16)
-	output := info.output.Interface()([]*string)
+	output := info.output.Interface().([]*string)
 	fn := function.(func(uint16) *string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6175,7 +6175,7 @@ func mapUint16ToPtrString(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrUint16ToString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint16)
-	output := info.output.Interface()([]string)
+	output := info.output.Interface().([]string)
 	fn := function.(func(*uint16) string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6186,7 +6186,7 @@ func mapPtrUint16ToString(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrUint16ToPtrString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint16)
-	output := info.output.Interface()([]*string)
+	output := info.output.Interface().([]*string)
 	fn := function.(func(*uint16) *string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6196,7 +6196,7 @@ func mapPtrUint16ToPtrString(itemsValue *reflect.Value, function interface{}, in
 
 func mapUint16ToBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint16)
-	output := info.output.Interface()([]bool)
+	output := info.output.Interface().([]bool)
 	fn := function.(func(uint16) bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6206,7 +6206,7 @@ func mapUint16ToBool(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapUint16ToPtrBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint16)
-	output := info.output.Interface()([]*bool)
+	output := info.output.Interface().([]*bool)
 	fn := function.(func(uint16) *bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6217,7 +6217,7 @@ func mapUint16ToPtrBool(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUint16ToBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint16)
-	output := info.output.Interface()([]bool)
+	output := info.output.Interface().([]bool)
 	fn := function.(func(*uint16) bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6228,7 +6228,7 @@ func mapPtrUint16ToBool(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUint16ToPtrBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint16)
-	output := info.output.Interface()([]*bool)
+	output := info.output.Interface().([]*bool)
 	fn := function.(func(*uint16) *bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6238,7 +6238,7 @@ func mapPtrUint16ToPtrBool(itemsValue *reflect.Value, function interface{}, info
 
 func mapUint16ToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint16)
-	output := info.output.Interface()([]int)
+	output := info.output.Interface().([]int)
 	fn := function.(func(uint16) int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6248,7 +6248,7 @@ func mapUint16ToInt(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapUint16ToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint16)
-	output := info.output.Interface()([]*int)
+	output := info.output.Interface().([]*int)
 	fn := function.(func(uint16) *int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6259,7 +6259,7 @@ func mapUint16ToPtrInt(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrUint16ToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint16)
-	output := info.output.Interface()([]int)
+	output := info.output.Interface().([]int)
 	fn := function.(func(*uint16) int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6270,7 +6270,7 @@ func mapPtrUint16ToInt(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrUint16ToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint16)
-	output := info.output.Interface()([]*int)
+	output := info.output.Interface().([]*int)
 	fn := function.(func(*uint16) *int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6280,7 +6280,7 @@ func mapPtrUint16ToPtrInt(itemsValue *reflect.Value, function interface{}, info 
 
 func mapUint16ToInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint16)
-	output := info.output.Interface()([]int8)
+	output := info.output.Interface().([]int8)
 	fn := function.(func(uint16) int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6290,7 +6290,7 @@ func mapUint16ToInt8(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapUint16ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint16)
-	output := info.output.Interface()([]*int8)
+	output := info.output.Interface().([]*int8)
 	fn := function.(func(uint16) *int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6301,7 +6301,7 @@ func mapUint16ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUint16ToInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint16)
-	output := info.output.Interface()([]int8)
+	output := info.output.Interface().([]int8)
 	fn := function.(func(*uint16) int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6312,7 +6312,7 @@ func mapPtrUint16ToInt8(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUint16ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint16)
-	output := info.output.Interface()([]*int8)
+	output := info.output.Interface().([]*int8)
 	fn := function.(func(*uint16) *int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6322,7 +6322,7 @@ func mapPtrUint16ToPtrInt8(itemsValue *reflect.Value, function interface{}, info
 
 func mapUint16ToInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint16)
-	output := info.output.Interface()([]int16)
+	output := info.output.Interface().([]int16)
 	fn := function.(func(uint16) int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6332,7 +6332,7 @@ func mapUint16ToInt16(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapUint16ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint16)
-	output := info.output.Interface()([]*int16)
+	output := info.output.Interface().([]*int16)
 	fn := function.(func(uint16) *int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6343,7 +6343,7 @@ func mapUint16ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint16ToInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint16)
-	output := info.output.Interface()([]int16)
+	output := info.output.Interface().([]int16)
 	fn := function.(func(*uint16) int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6354,7 +6354,7 @@ func mapPtrUint16ToInt16(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint16ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint16)
-	output := info.output.Interface()([]*int16)
+	output := info.output.Interface().([]*int16)
 	fn := function.(func(*uint16) *int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6364,7 +6364,7 @@ func mapPtrUint16ToPtrInt16(itemsValue *reflect.Value, function interface{}, inf
 
 func mapUint16ToInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint16)
-	output := info.output.Interface()([]int32)
+	output := info.output.Interface().([]int32)
 	fn := function.(func(uint16) int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6374,7 +6374,7 @@ func mapUint16ToInt32(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapUint16ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint16)
-	output := info.output.Interface()([]*int32)
+	output := info.output.Interface().([]*int32)
 	fn := function.(func(uint16) *int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6385,7 +6385,7 @@ func mapUint16ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint16ToInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint16)
-	output := info.output.Interface()([]int32)
+	output := info.output.Interface().([]int32)
 	fn := function.(func(*uint16) int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6396,7 +6396,7 @@ func mapPtrUint16ToInt32(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint16ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint16)
-	output := info.output.Interface()([]*int32)
+	output := info.output.Interface().([]*int32)
 	fn := function.(func(*uint16) *int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6406,7 +6406,7 @@ func mapPtrUint16ToPtrInt32(itemsValue *reflect.Value, function interface{}, inf
 
 func mapUint16ToInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint16)
-	output := info.output.Interface()([]int64)
+	output := info.output.Interface().([]int64)
 	fn := function.(func(uint16) int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6416,7 +6416,7 @@ func mapUint16ToInt64(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapUint16ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint16)
-	output := info.output.Interface()([]*int64)
+	output := info.output.Interface().([]*int64)
 	fn := function.(func(uint16) *int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6427,7 +6427,7 @@ func mapUint16ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint16ToInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint16)
-	output := info.output.Interface()([]int64)
+	output := info.output.Interface().([]int64)
 	fn := function.(func(*uint16) int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6438,7 +6438,7 @@ func mapPtrUint16ToInt64(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint16ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint16)
-	output := info.output.Interface()([]*int64)
+	output := info.output.Interface().([]*int64)
 	fn := function.(func(*uint16) *int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6448,7 +6448,7 @@ func mapPtrUint16ToPtrInt64(itemsValue *reflect.Value, function interface{}, inf
 
 func mapUint16ToUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint16)
-	output := info.output.Interface()([]uint)
+	output := info.output.Interface().([]uint)
 	fn := function.(func(uint16) uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6458,7 +6458,7 @@ func mapUint16ToUint(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapUint16ToPtrUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint16)
-	output := info.output.Interface()([]*uint)
+	output := info.output.Interface().([]*uint)
 	fn := function.(func(uint16) *uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6469,7 +6469,7 @@ func mapUint16ToPtrUint(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUint16ToUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint16)
-	output := info.output.Interface()([]uint)
+	output := info.output.Interface().([]uint)
 	fn := function.(func(*uint16) uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6480,7 +6480,7 @@ func mapPtrUint16ToUint(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUint16ToPtrUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint16)
-	output := info.output.Interface()([]*uint)
+	output := info.output.Interface().([]*uint)
 	fn := function.(func(*uint16) *uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6490,7 +6490,7 @@ func mapPtrUint16ToPtrUint(itemsValue *reflect.Value, function interface{}, info
 
 func mapUint16ToUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint16)
-	output := info.output.Interface()([]uint8)
+	output := info.output.Interface().([]uint8)
 	fn := function.(func(uint16) uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6500,7 +6500,7 @@ func mapUint16ToUint8(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapUint16ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint16)
-	output := info.output.Interface()([]*uint8)
+	output := info.output.Interface().([]*uint8)
 	fn := function.(func(uint16) *uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6511,7 +6511,7 @@ func mapUint16ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint16ToUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint16)
-	output := info.output.Interface()([]uint8)
+	output := info.output.Interface().([]uint8)
 	fn := function.(func(*uint16) uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6522,7 +6522,7 @@ func mapPtrUint16ToUint8(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint16ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint16)
-	output := info.output.Interface()([]*uint8)
+	output := info.output.Interface().([]*uint8)
 	fn := function.(func(*uint16) *uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6532,7 +6532,7 @@ func mapPtrUint16ToPtrUint8(itemsValue *reflect.Value, function interface{}, inf
 
 func mapUint16ToUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint16)
-	output := info.output.Interface()([]uint16)
+	output := info.output.Interface().([]uint16)
 	fn := function.(func(uint16) uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6542,7 +6542,7 @@ func mapUint16ToUint16(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapUint16ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint16)
-	output := info.output.Interface()([]*uint16)
+	output := info.output.Interface().([]*uint16)
 	fn := function.(func(uint16) *uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6553,7 +6553,7 @@ func mapUint16ToPtrUint16(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrUint16ToUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint16)
-	output := info.output.Interface()([]uint16)
+	output := info.output.Interface().([]uint16)
 	fn := function.(func(*uint16) uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6564,7 +6564,7 @@ func mapPtrUint16ToUint16(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrUint16ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint16)
-	output := info.output.Interface()([]*uint16)
+	output := info.output.Interface().([]*uint16)
 	fn := function.(func(*uint16) *uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6574,7 +6574,7 @@ func mapPtrUint16ToPtrUint16(itemsValue *reflect.Value, function interface{}, in
 
 func mapUint16ToUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint16)
-	output := info.output.Interface()([]uint32)
+	output := info.output.Interface().([]uint32)
 	fn := function.(func(uint16) uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6584,7 +6584,7 @@ func mapUint16ToUint32(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapUint16ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint16)
-	output := info.output.Interface()([]*uint32)
+	output := info.output.Interface().([]*uint32)
 	fn := function.(func(uint16) *uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6595,7 +6595,7 @@ func mapUint16ToPtrUint32(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrUint16ToUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint16)
-	output := info.output.Interface()([]uint32)
+	output := info.output.Interface().([]uint32)
 	fn := function.(func(*uint16) uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6606,7 +6606,7 @@ func mapPtrUint16ToUint32(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrUint16ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint16)
-	output := info.output.Interface()([]*uint32)
+	output := info.output.Interface().([]*uint32)
 	fn := function.(func(*uint16) *uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6616,7 +6616,7 @@ func mapPtrUint16ToPtrUint32(itemsValue *reflect.Value, function interface{}, in
 
 func mapUint16ToUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint16)
-	output := info.output.Interface()([]uint64)
+	output := info.output.Interface().([]uint64)
 	fn := function.(func(uint16) uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6626,7 +6626,7 @@ func mapUint16ToUint64(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapUint16ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint16)
-	output := info.output.Interface()([]*uint64)
+	output := info.output.Interface().([]*uint64)
 	fn := function.(func(uint16) *uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6637,7 +6637,7 @@ func mapUint16ToPtrUint64(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrUint16ToUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint16)
-	output := info.output.Interface()([]uint64)
+	output := info.output.Interface().([]uint64)
 	fn := function.(func(*uint16) uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6648,7 +6648,7 @@ func mapPtrUint16ToUint64(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrUint16ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint16)
-	output := info.output.Interface()([]*uint64)
+	output := info.output.Interface().([]*uint64)
 	fn := function.(func(*uint16) *uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6658,7 +6658,7 @@ func mapPtrUint16ToPtrUint64(itemsValue *reflect.Value, function interface{}, in
 
 func mapUint16ToFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint16)
-	output := info.output.Interface()([]float32)
+	output := info.output.Interface().([]float32)
 	fn := function.(func(uint16) float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6668,7 +6668,7 @@ func mapUint16ToFloat32(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapUint16ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint16)
-	output := info.output.Interface()([]*float32)
+	output := info.output.Interface().([]*float32)
 	fn := function.(func(uint16) *float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6679,7 +6679,7 @@ func mapUint16ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrUint16ToFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint16)
-	output := info.output.Interface()([]float32)
+	output := info.output.Interface().([]float32)
 	fn := function.(func(*uint16) float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6690,7 +6690,7 @@ func mapPtrUint16ToFloat32(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrUint16ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint16)
-	output := info.output.Interface()([]*float32)
+	output := info.output.Interface().([]*float32)
 	fn := function.(func(*uint16) *float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6700,7 +6700,7 @@ func mapPtrUint16ToPtrFloat32(itemsValue *reflect.Value, function interface{}, i
 
 func mapUint16ToFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint16)
-	output := info.output.Interface()([]float64)
+	output := info.output.Interface().([]float64)
 	fn := function.(func(uint16) float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6710,7 +6710,7 @@ func mapUint16ToFloat64(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapUint16ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint16)
-	output := info.output.Interface()([]*float64)
+	output := info.output.Interface().([]*float64)
 	fn := function.(func(uint16) *float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6721,7 +6721,7 @@ func mapUint16ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrUint16ToFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint16)
-	output := info.output.Interface()([]float64)
+	output := info.output.Interface().([]float64)
 	fn := function.(func(*uint16) float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6732,7 +6732,7 @@ func mapPtrUint16ToFloat64(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrUint16ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint16)
-	output := info.output.Interface()([]*float64)
+	output := info.output.Interface().([]*float64)
 	fn := function.(func(*uint16) *float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6742,7 +6742,7 @@ func mapPtrUint16ToPtrFloat64(itemsValue *reflect.Value, function interface{}, i
 
 func mapUint32ToString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint32)
-	output := info.output.Interface()([]string)
+	output := info.output.Interface().([]string)
 	fn := function.(func(uint32) string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6752,7 +6752,7 @@ func mapUint32ToString(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapUint32ToPtrString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint32)
-	output := info.output.Interface()([]*string)
+	output := info.output.Interface().([]*string)
 	fn := function.(func(uint32) *string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6763,7 +6763,7 @@ func mapUint32ToPtrString(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrUint32ToString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint32)
-	output := info.output.Interface()([]string)
+	output := info.output.Interface().([]string)
 	fn := function.(func(*uint32) string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6774,7 +6774,7 @@ func mapPtrUint32ToString(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrUint32ToPtrString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint32)
-	output := info.output.Interface()([]*string)
+	output := info.output.Interface().([]*string)
 	fn := function.(func(*uint32) *string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6784,7 +6784,7 @@ func mapPtrUint32ToPtrString(itemsValue *reflect.Value, function interface{}, in
 
 func mapUint32ToBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint32)
-	output := info.output.Interface()([]bool)
+	output := info.output.Interface().([]bool)
 	fn := function.(func(uint32) bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6794,7 +6794,7 @@ func mapUint32ToBool(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapUint32ToPtrBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint32)
-	output := info.output.Interface()([]*bool)
+	output := info.output.Interface().([]*bool)
 	fn := function.(func(uint32) *bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6805,7 +6805,7 @@ func mapUint32ToPtrBool(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUint32ToBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint32)
-	output := info.output.Interface()([]bool)
+	output := info.output.Interface().([]bool)
 	fn := function.(func(*uint32) bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6816,7 +6816,7 @@ func mapPtrUint32ToBool(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUint32ToPtrBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint32)
-	output := info.output.Interface()([]*bool)
+	output := info.output.Interface().([]*bool)
 	fn := function.(func(*uint32) *bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6826,7 +6826,7 @@ func mapPtrUint32ToPtrBool(itemsValue *reflect.Value, function interface{}, info
 
 func mapUint32ToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint32)
-	output := info.output.Interface()([]int)
+	output := info.output.Interface().([]int)
 	fn := function.(func(uint32) int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6836,7 +6836,7 @@ func mapUint32ToInt(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapUint32ToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint32)
-	output := info.output.Interface()([]*int)
+	output := info.output.Interface().([]*int)
 	fn := function.(func(uint32) *int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6847,7 +6847,7 @@ func mapUint32ToPtrInt(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrUint32ToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint32)
-	output := info.output.Interface()([]int)
+	output := info.output.Interface().([]int)
 	fn := function.(func(*uint32) int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6858,7 +6858,7 @@ func mapPtrUint32ToInt(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrUint32ToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint32)
-	output := info.output.Interface()([]*int)
+	output := info.output.Interface().([]*int)
 	fn := function.(func(*uint32) *int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6868,7 +6868,7 @@ func mapPtrUint32ToPtrInt(itemsValue *reflect.Value, function interface{}, info 
 
 func mapUint32ToInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint32)
-	output := info.output.Interface()([]int8)
+	output := info.output.Interface().([]int8)
 	fn := function.(func(uint32) int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6878,7 +6878,7 @@ func mapUint32ToInt8(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapUint32ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint32)
-	output := info.output.Interface()([]*int8)
+	output := info.output.Interface().([]*int8)
 	fn := function.(func(uint32) *int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6889,7 +6889,7 @@ func mapUint32ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUint32ToInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint32)
-	output := info.output.Interface()([]int8)
+	output := info.output.Interface().([]int8)
 	fn := function.(func(*uint32) int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6900,7 +6900,7 @@ func mapPtrUint32ToInt8(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUint32ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint32)
-	output := info.output.Interface()([]*int8)
+	output := info.output.Interface().([]*int8)
 	fn := function.(func(*uint32) *int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6910,7 +6910,7 @@ func mapPtrUint32ToPtrInt8(itemsValue *reflect.Value, function interface{}, info
 
 func mapUint32ToInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint32)
-	output := info.output.Interface()([]int16)
+	output := info.output.Interface().([]int16)
 	fn := function.(func(uint32) int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6920,7 +6920,7 @@ func mapUint32ToInt16(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapUint32ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint32)
-	output := info.output.Interface()([]*int16)
+	output := info.output.Interface().([]*int16)
 	fn := function.(func(uint32) *int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6931,7 +6931,7 @@ func mapUint32ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint32ToInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint32)
-	output := info.output.Interface()([]int16)
+	output := info.output.Interface().([]int16)
 	fn := function.(func(*uint32) int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6942,7 +6942,7 @@ func mapPtrUint32ToInt16(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint32ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint32)
-	output := info.output.Interface()([]*int16)
+	output := info.output.Interface().([]*int16)
 	fn := function.(func(*uint32) *int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6952,7 +6952,7 @@ func mapPtrUint32ToPtrInt16(itemsValue *reflect.Value, function interface{}, inf
 
 func mapUint32ToInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint32)
-	output := info.output.Interface()([]int32)
+	output := info.output.Interface().([]int32)
 	fn := function.(func(uint32) int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6962,7 +6962,7 @@ func mapUint32ToInt32(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapUint32ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint32)
-	output := info.output.Interface()([]*int32)
+	output := info.output.Interface().([]*int32)
 	fn := function.(func(uint32) *int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6973,7 +6973,7 @@ func mapUint32ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint32ToInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint32)
-	output := info.output.Interface()([]int32)
+	output := info.output.Interface().([]int32)
 	fn := function.(func(*uint32) int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6984,7 +6984,7 @@ func mapPtrUint32ToInt32(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint32ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint32)
-	output := info.output.Interface()([]*int32)
+	output := info.output.Interface().([]*int32)
 	fn := function.(func(*uint32) *int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -6994,7 +6994,7 @@ func mapPtrUint32ToPtrInt32(itemsValue *reflect.Value, function interface{}, inf
 
 func mapUint32ToInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint32)
-	output := info.output.Interface()([]int64)
+	output := info.output.Interface().([]int64)
 	fn := function.(func(uint32) int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7004,7 +7004,7 @@ func mapUint32ToInt64(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapUint32ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint32)
-	output := info.output.Interface()([]*int64)
+	output := info.output.Interface().([]*int64)
 	fn := function.(func(uint32) *int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7015,7 +7015,7 @@ func mapUint32ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint32ToInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint32)
-	output := info.output.Interface()([]int64)
+	output := info.output.Interface().([]int64)
 	fn := function.(func(*uint32) int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7026,7 +7026,7 @@ func mapPtrUint32ToInt64(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint32ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint32)
-	output := info.output.Interface()([]*int64)
+	output := info.output.Interface().([]*int64)
 	fn := function.(func(*uint32) *int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7036,7 +7036,7 @@ func mapPtrUint32ToPtrInt64(itemsValue *reflect.Value, function interface{}, inf
 
 func mapUint32ToUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint32)
-	output := info.output.Interface()([]uint)
+	output := info.output.Interface().([]uint)
 	fn := function.(func(uint32) uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7046,7 +7046,7 @@ func mapUint32ToUint(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapUint32ToPtrUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint32)
-	output := info.output.Interface()([]*uint)
+	output := info.output.Interface().([]*uint)
 	fn := function.(func(uint32) *uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7057,7 +7057,7 @@ func mapUint32ToPtrUint(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUint32ToUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint32)
-	output := info.output.Interface()([]uint)
+	output := info.output.Interface().([]uint)
 	fn := function.(func(*uint32) uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7068,7 +7068,7 @@ func mapPtrUint32ToUint(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUint32ToPtrUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint32)
-	output := info.output.Interface()([]*uint)
+	output := info.output.Interface().([]*uint)
 	fn := function.(func(*uint32) *uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7078,7 +7078,7 @@ func mapPtrUint32ToPtrUint(itemsValue *reflect.Value, function interface{}, info
 
 func mapUint32ToUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint32)
-	output := info.output.Interface()([]uint8)
+	output := info.output.Interface().([]uint8)
 	fn := function.(func(uint32) uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7088,7 +7088,7 @@ func mapUint32ToUint8(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapUint32ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint32)
-	output := info.output.Interface()([]*uint8)
+	output := info.output.Interface().([]*uint8)
 	fn := function.(func(uint32) *uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7099,7 +7099,7 @@ func mapUint32ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint32ToUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint32)
-	output := info.output.Interface()([]uint8)
+	output := info.output.Interface().([]uint8)
 	fn := function.(func(*uint32) uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7110,7 +7110,7 @@ func mapPtrUint32ToUint8(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint32ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint32)
-	output := info.output.Interface()([]*uint8)
+	output := info.output.Interface().([]*uint8)
 	fn := function.(func(*uint32) *uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7120,7 +7120,7 @@ func mapPtrUint32ToPtrUint8(itemsValue *reflect.Value, function interface{}, inf
 
 func mapUint32ToUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint32)
-	output := info.output.Interface()([]uint16)
+	output := info.output.Interface().([]uint16)
 	fn := function.(func(uint32) uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7130,7 +7130,7 @@ func mapUint32ToUint16(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapUint32ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint32)
-	output := info.output.Interface()([]*uint16)
+	output := info.output.Interface().([]*uint16)
 	fn := function.(func(uint32) *uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7141,7 +7141,7 @@ func mapUint32ToPtrUint16(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrUint32ToUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint32)
-	output := info.output.Interface()([]uint16)
+	output := info.output.Interface().([]uint16)
 	fn := function.(func(*uint32) uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7152,7 +7152,7 @@ func mapPtrUint32ToUint16(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrUint32ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint32)
-	output := info.output.Interface()([]*uint16)
+	output := info.output.Interface().([]*uint16)
 	fn := function.(func(*uint32) *uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7162,7 +7162,7 @@ func mapPtrUint32ToPtrUint16(itemsValue *reflect.Value, function interface{}, in
 
 func mapUint32ToUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint32)
-	output := info.output.Interface()([]uint32)
+	output := info.output.Interface().([]uint32)
 	fn := function.(func(uint32) uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7172,7 +7172,7 @@ func mapUint32ToUint32(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapUint32ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint32)
-	output := info.output.Interface()([]*uint32)
+	output := info.output.Interface().([]*uint32)
 	fn := function.(func(uint32) *uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7183,7 +7183,7 @@ func mapUint32ToPtrUint32(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrUint32ToUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint32)
-	output := info.output.Interface()([]uint32)
+	output := info.output.Interface().([]uint32)
 	fn := function.(func(*uint32) uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7194,7 +7194,7 @@ func mapPtrUint32ToUint32(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrUint32ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint32)
-	output := info.output.Interface()([]*uint32)
+	output := info.output.Interface().([]*uint32)
 	fn := function.(func(*uint32) *uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7204,7 +7204,7 @@ func mapPtrUint32ToPtrUint32(itemsValue *reflect.Value, function interface{}, in
 
 func mapUint32ToUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint32)
-	output := info.output.Interface()([]uint64)
+	output := info.output.Interface().([]uint64)
 	fn := function.(func(uint32) uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7214,7 +7214,7 @@ func mapUint32ToUint64(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapUint32ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint32)
-	output := info.output.Interface()([]*uint64)
+	output := info.output.Interface().([]*uint64)
 	fn := function.(func(uint32) *uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7225,7 +7225,7 @@ func mapUint32ToPtrUint64(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrUint32ToUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint32)
-	output := info.output.Interface()([]uint64)
+	output := info.output.Interface().([]uint64)
 	fn := function.(func(*uint32) uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7236,7 +7236,7 @@ func mapPtrUint32ToUint64(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrUint32ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint32)
-	output := info.output.Interface()([]*uint64)
+	output := info.output.Interface().([]*uint64)
 	fn := function.(func(*uint32) *uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7246,7 +7246,7 @@ func mapPtrUint32ToPtrUint64(itemsValue *reflect.Value, function interface{}, in
 
 func mapUint32ToFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint32)
-	output := info.output.Interface()([]float32)
+	output := info.output.Interface().([]float32)
 	fn := function.(func(uint32) float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7256,7 +7256,7 @@ func mapUint32ToFloat32(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapUint32ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint32)
-	output := info.output.Interface()([]*float32)
+	output := info.output.Interface().([]*float32)
 	fn := function.(func(uint32) *float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7267,7 +7267,7 @@ func mapUint32ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrUint32ToFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint32)
-	output := info.output.Interface()([]float32)
+	output := info.output.Interface().([]float32)
 	fn := function.(func(*uint32) float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7278,7 +7278,7 @@ func mapPtrUint32ToFloat32(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrUint32ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint32)
-	output := info.output.Interface()([]*float32)
+	output := info.output.Interface().([]*float32)
 	fn := function.(func(*uint32) *float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7288,7 +7288,7 @@ func mapPtrUint32ToPtrFloat32(itemsValue *reflect.Value, function interface{}, i
 
 func mapUint32ToFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint32)
-	output := info.output.Interface()([]float64)
+	output := info.output.Interface().([]float64)
 	fn := function.(func(uint32) float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7298,7 +7298,7 @@ func mapUint32ToFloat64(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapUint32ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint32)
-	output := info.output.Interface()([]*float64)
+	output := info.output.Interface().([]*float64)
 	fn := function.(func(uint32) *float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7309,7 +7309,7 @@ func mapUint32ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrUint32ToFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint32)
-	output := info.output.Interface()([]float64)
+	output := info.output.Interface().([]float64)
 	fn := function.(func(*uint32) float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7320,7 +7320,7 @@ func mapPtrUint32ToFloat64(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrUint32ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint32)
-	output := info.output.Interface()([]*float64)
+	output := info.output.Interface().([]*float64)
 	fn := function.(func(*uint32) *float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7330,7 +7330,7 @@ func mapPtrUint32ToPtrFloat64(itemsValue *reflect.Value, function interface{}, i
 
 func mapUint64ToString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint64)
-	output := info.output.Interface()([]string)
+	output := info.output.Interface().([]string)
 	fn := function.(func(uint64) string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7340,7 +7340,7 @@ func mapUint64ToString(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapUint64ToPtrString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint64)
-	output := info.output.Interface()([]*string)
+	output := info.output.Interface().([]*string)
 	fn := function.(func(uint64) *string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7351,7 +7351,7 @@ func mapUint64ToPtrString(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrUint64ToString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint64)
-	output := info.output.Interface()([]string)
+	output := info.output.Interface().([]string)
 	fn := function.(func(*uint64) string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7362,7 +7362,7 @@ func mapPtrUint64ToString(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrUint64ToPtrString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint64)
-	output := info.output.Interface()([]*string)
+	output := info.output.Interface().([]*string)
 	fn := function.(func(*uint64) *string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7372,7 +7372,7 @@ func mapPtrUint64ToPtrString(itemsValue *reflect.Value, function interface{}, in
 
 func mapUint64ToBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint64)
-	output := info.output.Interface()([]bool)
+	output := info.output.Interface().([]bool)
 	fn := function.(func(uint64) bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7382,7 +7382,7 @@ func mapUint64ToBool(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapUint64ToPtrBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint64)
-	output := info.output.Interface()([]*bool)
+	output := info.output.Interface().([]*bool)
 	fn := function.(func(uint64) *bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7393,7 +7393,7 @@ func mapUint64ToPtrBool(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUint64ToBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint64)
-	output := info.output.Interface()([]bool)
+	output := info.output.Interface().([]bool)
 	fn := function.(func(*uint64) bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7404,7 +7404,7 @@ func mapPtrUint64ToBool(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUint64ToPtrBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint64)
-	output := info.output.Interface()([]*bool)
+	output := info.output.Interface().([]*bool)
 	fn := function.(func(*uint64) *bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7414,7 +7414,7 @@ func mapPtrUint64ToPtrBool(itemsValue *reflect.Value, function interface{}, info
 
 func mapUint64ToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint64)
-	output := info.output.Interface()([]int)
+	output := info.output.Interface().([]int)
 	fn := function.(func(uint64) int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7424,7 +7424,7 @@ func mapUint64ToInt(itemsValue *reflect.Value, function interface{}, info *mapIn
 
 func mapUint64ToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint64)
-	output := info.output.Interface()([]*int)
+	output := info.output.Interface().([]*int)
 	fn := function.(func(uint64) *int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7435,7 +7435,7 @@ func mapUint64ToPtrInt(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrUint64ToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint64)
-	output := info.output.Interface()([]int)
+	output := info.output.Interface().([]int)
 	fn := function.(func(*uint64) int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7446,7 +7446,7 @@ func mapPtrUint64ToInt(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapPtrUint64ToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint64)
-	output := info.output.Interface()([]*int)
+	output := info.output.Interface().([]*int)
 	fn := function.(func(*uint64) *int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7456,7 +7456,7 @@ func mapPtrUint64ToPtrInt(itemsValue *reflect.Value, function interface{}, info 
 
 func mapUint64ToInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint64)
-	output := info.output.Interface()([]int8)
+	output := info.output.Interface().([]int8)
 	fn := function.(func(uint64) int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7466,7 +7466,7 @@ func mapUint64ToInt8(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapUint64ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint64)
-	output := info.output.Interface()([]*int8)
+	output := info.output.Interface().([]*int8)
 	fn := function.(func(uint64) *int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7477,7 +7477,7 @@ func mapUint64ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUint64ToInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint64)
-	output := info.output.Interface()([]int8)
+	output := info.output.Interface().([]int8)
 	fn := function.(func(*uint64) int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7488,7 +7488,7 @@ func mapPtrUint64ToInt8(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUint64ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint64)
-	output := info.output.Interface()([]*int8)
+	output := info.output.Interface().([]*int8)
 	fn := function.(func(*uint64) *int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7498,7 +7498,7 @@ func mapPtrUint64ToPtrInt8(itemsValue *reflect.Value, function interface{}, info
 
 func mapUint64ToInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint64)
-	output := info.output.Interface()([]int16)
+	output := info.output.Interface().([]int16)
 	fn := function.(func(uint64) int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7508,7 +7508,7 @@ func mapUint64ToInt16(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapUint64ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint64)
-	output := info.output.Interface()([]*int16)
+	output := info.output.Interface().([]*int16)
 	fn := function.(func(uint64) *int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7519,7 +7519,7 @@ func mapUint64ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint64ToInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint64)
-	output := info.output.Interface()([]int16)
+	output := info.output.Interface().([]int16)
 	fn := function.(func(*uint64) int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7530,7 +7530,7 @@ func mapPtrUint64ToInt16(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint64ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint64)
-	output := info.output.Interface()([]*int16)
+	output := info.output.Interface().([]*int16)
 	fn := function.(func(*uint64) *int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7540,7 +7540,7 @@ func mapPtrUint64ToPtrInt16(itemsValue *reflect.Value, function interface{}, inf
 
 func mapUint64ToInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint64)
-	output := info.output.Interface()([]int32)
+	output := info.output.Interface().([]int32)
 	fn := function.(func(uint64) int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7550,7 +7550,7 @@ func mapUint64ToInt32(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapUint64ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint64)
-	output := info.output.Interface()([]*int32)
+	output := info.output.Interface().([]*int32)
 	fn := function.(func(uint64) *int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7561,7 +7561,7 @@ func mapUint64ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint64ToInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint64)
-	output := info.output.Interface()([]int32)
+	output := info.output.Interface().([]int32)
 	fn := function.(func(*uint64) int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7572,7 +7572,7 @@ func mapPtrUint64ToInt32(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint64ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint64)
-	output := info.output.Interface()([]*int32)
+	output := info.output.Interface().([]*int32)
 	fn := function.(func(*uint64) *int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7582,7 +7582,7 @@ func mapPtrUint64ToPtrInt32(itemsValue *reflect.Value, function interface{}, inf
 
 func mapUint64ToInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint64)
-	output := info.output.Interface()([]int64)
+	output := info.output.Interface().([]int64)
 	fn := function.(func(uint64) int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7592,7 +7592,7 @@ func mapUint64ToInt64(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapUint64ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint64)
-	output := info.output.Interface()([]*int64)
+	output := info.output.Interface().([]*int64)
 	fn := function.(func(uint64) *int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7603,7 +7603,7 @@ func mapUint64ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint64ToInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint64)
-	output := info.output.Interface()([]int64)
+	output := info.output.Interface().([]int64)
 	fn := function.(func(*uint64) int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7614,7 +7614,7 @@ func mapPtrUint64ToInt64(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint64ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint64)
-	output := info.output.Interface()([]*int64)
+	output := info.output.Interface().([]*int64)
 	fn := function.(func(*uint64) *int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7624,7 +7624,7 @@ func mapPtrUint64ToPtrInt64(itemsValue *reflect.Value, function interface{}, inf
 
 func mapUint64ToUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint64)
-	output := info.output.Interface()([]uint)
+	output := info.output.Interface().([]uint)
 	fn := function.(func(uint64) uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7634,7 +7634,7 @@ func mapUint64ToUint(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapUint64ToPtrUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint64)
-	output := info.output.Interface()([]*uint)
+	output := info.output.Interface().([]*uint)
 	fn := function.(func(uint64) *uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7645,7 +7645,7 @@ func mapUint64ToPtrUint(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUint64ToUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint64)
-	output := info.output.Interface()([]uint)
+	output := info.output.Interface().([]uint)
 	fn := function.(func(*uint64) uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7656,7 +7656,7 @@ func mapPtrUint64ToUint(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrUint64ToPtrUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint64)
-	output := info.output.Interface()([]*uint)
+	output := info.output.Interface().([]*uint)
 	fn := function.(func(*uint64) *uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7666,7 +7666,7 @@ func mapPtrUint64ToPtrUint(itemsValue *reflect.Value, function interface{}, info
 
 func mapUint64ToUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint64)
-	output := info.output.Interface()([]uint8)
+	output := info.output.Interface().([]uint8)
 	fn := function.(func(uint64) uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7676,7 +7676,7 @@ func mapUint64ToUint8(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapUint64ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint64)
-	output := info.output.Interface()([]*uint8)
+	output := info.output.Interface().([]*uint8)
 	fn := function.(func(uint64) *uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7687,7 +7687,7 @@ func mapUint64ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint64ToUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint64)
-	output := info.output.Interface()([]uint8)
+	output := info.output.Interface().([]uint8)
 	fn := function.(func(*uint64) uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7698,7 +7698,7 @@ func mapPtrUint64ToUint8(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrUint64ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint64)
-	output := info.output.Interface()([]*uint8)
+	output := info.output.Interface().([]*uint8)
 	fn := function.(func(*uint64) *uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7708,7 +7708,7 @@ func mapPtrUint64ToPtrUint8(itemsValue *reflect.Value, function interface{}, inf
 
 func mapUint64ToUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint64)
-	output := info.output.Interface()([]uint16)
+	output := info.output.Interface().([]uint16)
 	fn := function.(func(uint64) uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7718,7 +7718,7 @@ func mapUint64ToUint16(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapUint64ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint64)
-	output := info.output.Interface()([]*uint16)
+	output := info.output.Interface().([]*uint16)
 	fn := function.(func(uint64) *uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7729,7 +7729,7 @@ func mapUint64ToPtrUint16(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrUint64ToUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint64)
-	output := info.output.Interface()([]uint16)
+	output := info.output.Interface().([]uint16)
 	fn := function.(func(*uint64) uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7740,7 +7740,7 @@ func mapPtrUint64ToUint16(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrUint64ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint64)
-	output := info.output.Interface()([]*uint16)
+	output := info.output.Interface().([]*uint16)
 	fn := function.(func(*uint64) *uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7750,7 +7750,7 @@ func mapPtrUint64ToPtrUint16(itemsValue *reflect.Value, function interface{}, in
 
 func mapUint64ToUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint64)
-	output := info.output.Interface()([]uint32)
+	output := info.output.Interface().([]uint32)
 	fn := function.(func(uint64) uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7760,7 +7760,7 @@ func mapUint64ToUint32(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapUint64ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint64)
-	output := info.output.Interface()([]*uint32)
+	output := info.output.Interface().([]*uint32)
 	fn := function.(func(uint64) *uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7771,7 +7771,7 @@ func mapUint64ToPtrUint32(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrUint64ToUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint64)
-	output := info.output.Interface()([]uint32)
+	output := info.output.Interface().([]uint32)
 	fn := function.(func(*uint64) uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7782,7 +7782,7 @@ func mapPtrUint64ToUint32(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrUint64ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint64)
-	output := info.output.Interface()([]*uint32)
+	output := info.output.Interface().([]*uint32)
 	fn := function.(func(*uint64) *uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7792,7 +7792,7 @@ func mapPtrUint64ToPtrUint32(itemsValue *reflect.Value, function interface{}, in
 
 func mapUint64ToUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint64)
-	output := info.output.Interface()([]uint64)
+	output := info.output.Interface().([]uint64)
 	fn := function.(func(uint64) uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7802,7 +7802,7 @@ func mapUint64ToUint64(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapUint64ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint64)
-	output := info.output.Interface()([]*uint64)
+	output := info.output.Interface().([]*uint64)
 	fn := function.(func(uint64) *uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7813,7 +7813,7 @@ func mapUint64ToPtrUint64(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrUint64ToUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint64)
-	output := info.output.Interface()([]uint64)
+	output := info.output.Interface().([]uint64)
 	fn := function.(func(*uint64) uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7824,7 +7824,7 @@ func mapPtrUint64ToUint64(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrUint64ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint64)
-	output := info.output.Interface()([]*uint64)
+	output := info.output.Interface().([]*uint64)
 	fn := function.(func(*uint64) *uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7834,7 +7834,7 @@ func mapPtrUint64ToPtrUint64(itemsValue *reflect.Value, function interface{}, in
 
 func mapUint64ToFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint64)
-	output := info.output.Interface()([]float32)
+	output := info.output.Interface().([]float32)
 	fn := function.(func(uint64) float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7844,7 +7844,7 @@ func mapUint64ToFloat32(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapUint64ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint64)
-	output := info.output.Interface()([]*float32)
+	output := info.output.Interface().([]*float32)
 	fn := function.(func(uint64) *float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7855,7 +7855,7 @@ func mapUint64ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrUint64ToFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint64)
-	output := info.output.Interface()([]float32)
+	output := info.output.Interface().([]float32)
 	fn := function.(func(*uint64) float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7866,7 +7866,7 @@ func mapPtrUint64ToFloat32(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrUint64ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint64)
-	output := info.output.Interface()([]*float32)
+	output := info.output.Interface().([]*float32)
 	fn := function.(func(*uint64) *float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7876,7 +7876,7 @@ func mapPtrUint64ToPtrFloat32(itemsValue *reflect.Value, function interface{}, i
 
 func mapUint64ToFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint64)
-	output := info.output.Interface()([]float64)
+	output := info.output.Interface().([]float64)
 	fn := function.(func(uint64) float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7886,7 +7886,7 @@ func mapUint64ToFloat64(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapUint64ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]uint64)
-	output := info.output.Interface()([]*float64)
+	output := info.output.Interface().([]*float64)
 	fn := function.(func(uint64) *float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7897,7 +7897,7 @@ func mapUint64ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrUint64ToFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint64)
-	output := info.output.Interface()([]float64)
+	output := info.output.Interface().([]float64)
 	fn := function.(func(*uint64) float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7908,7 +7908,7 @@ func mapPtrUint64ToFloat64(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrUint64ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*uint64)
-	output := info.output.Interface()([]*float64)
+	output := info.output.Interface().([]*float64)
 	fn := function.(func(*uint64) *float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7918,7 +7918,7 @@ func mapPtrUint64ToPtrFloat64(itemsValue *reflect.Value, function interface{}, i
 
 func mapFloat32ToString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float32)
-	output := info.output.Interface()([]string)
+	output := info.output.Interface().([]string)
 	fn := function.(func(float32) string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7928,7 +7928,7 @@ func mapFloat32ToString(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapFloat32ToPtrString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float32)
-	output := info.output.Interface()([]*string)
+	output := info.output.Interface().([]*string)
 	fn := function.(func(float32) *string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7939,7 +7939,7 @@ func mapFloat32ToPtrString(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrFloat32ToString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float32)
-	output := info.output.Interface()([]string)
+	output := info.output.Interface().([]string)
 	fn := function.(func(*float32) string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7950,7 +7950,7 @@ func mapPtrFloat32ToString(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrFloat32ToPtrString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float32)
-	output := info.output.Interface()([]*string)
+	output := info.output.Interface().([]*string)
 	fn := function.(func(*float32) *string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7960,7 +7960,7 @@ func mapPtrFloat32ToPtrString(itemsValue *reflect.Value, function interface{}, i
 
 func mapFloat32ToBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float32)
-	output := info.output.Interface()([]bool)
+	output := info.output.Interface().([]bool)
 	fn := function.(func(float32) bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7970,7 +7970,7 @@ func mapFloat32ToBool(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapFloat32ToPtrBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float32)
-	output := info.output.Interface()([]*bool)
+	output := info.output.Interface().([]*bool)
 	fn := function.(func(float32) *bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7981,7 +7981,7 @@ func mapFloat32ToPtrBool(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrFloat32ToBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float32)
-	output := info.output.Interface()([]bool)
+	output := info.output.Interface().([]bool)
 	fn := function.(func(*float32) bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -7992,7 +7992,7 @@ func mapPtrFloat32ToBool(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrFloat32ToPtrBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float32)
-	output := info.output.Interface()([]*bool)
+	output := info.output.Interface().([]*bool)
 	fn := function.(func(*float32) *bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8002,7 +8002,7 @@ func mapPtrFloat32ToPtrBool(itemsValue *reflect.Value, function interface{}, inf
 
 func mapFloat32ToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float32)
-	output := info.output.Interface()([]int)
+	output := info.output.Interface().([]int)
 	fn := function.(func(float32) int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8012,7 +8012,7 @@ func mapFloat32ToInt(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapFloat32ToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float32)
-	output := info.output.Interface()([]*int)
+	output := info.output.Interface().([]*int)
 	fn := function.(func(float32) *int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8023,7 +8023,7 @@ func mapFloat32ToPtrInt(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrFloat32ToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float32)
-	output := info.output.Interface()([]int)
+	output := info.output.Interface().([]int)
 	fn := function.(func(*float32) int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8034,7 +8034,7 @@ func mapPtrFloat32ToInt(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrFloat32ToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float32)
-	output := info.output.Interface()([]*int)
+	output := info.output.Interface().([]*int)
 	fn := function.(func(*float32) *int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8044,7 +8044,7 @@ func mapPtrFloat32ToPtrInt(itemsValue *reflect.Value, function interface{}, info
 
 func mapFloat32ToInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float32)
-	output := info.output.Interface()([]int8)
+	output := info.output.Interface().([]int8)
 	fn := function.(func(float32) int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8054,7 +8054,7 @@ func mapFloat32ToInt8(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapFloat32ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float32)
-	output := info.output.Interface()([]*int8)
+	output := info.output.Interface().([]*int8)
 	fn := function.(func(float32) *int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8065,7 +8065,7 @@ func mapFloat32ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrFloat32ToInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float32)
-	output := info.output.Interface()([]int8)
+	output := info.output.Interface().([]int8)
 	fn := function.(func(*float32) int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8076,7 +8076,7 @@ func mapPtrFloat32ToInt8(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrFloat32ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float32)
-	output := info.output.Interface()([]*int8)
+	output := info.output.Interface().([]*int8)
 	fn := function.(func(*float32) *int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8086,7 +8086,7 @@ func mapPtrFloat32ToPtrInt8(itemsValue *reflect.Value, function interface{}, inf
 
 func mapFloat32ToInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float32)
-	output := info.output.Interface()([]int16)
+	output := info.output.Interface().([]int16)
 	fn := function.(func(float32) int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8096,7 +8096,7 @@ func mapFloat32ToInt16(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapFloat32ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float32)
-	output := info.output.Interface()([]*int16)
+	output := info.output.Interface().([]*int16)
 	fn := function.(func(float32) *int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8107,7 +8107,7 @@ func mapFloat32ToPtrInt16(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrFloat32ToInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float32)
-	output := info.output.Interface()([]int16)
+	output := info.output.Interface().([]int16)
 	fn := function.(func(*float32) int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8118,7 +8118,7 @@ func mapPtrFloat32ToInt16(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrFloat32ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float32)
-	output := info.output.Interface()([]*int16)
+	output := info.output.Interface().([]*int16)
 	fn := function.(func(*float32) *int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8128,7 +8128,7 @@ func mapPtrFloat32ToPtrInt16(itemsValue *reflect.Value, function interface{}, in
 
 func mapFloat32ToInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float32)
-	output := info.output.Interface()([]int32)
+	output := info.output.Interface().([]int32)
 	fn := function.(func(float32) int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8138,7 +8138,7 @@ func mapFloat32ToInt32(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapFloat32ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float32)
-	output := info.output.Interface()([]*int32)
+	output := info.output.Interface().([]*int32)
 	fn := function.(func(float32) *int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8149,7 +8149,7 @@ func mapFloat32ToPtrInt32(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrFloat32ToInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float32)
-	output := info.output.Interface()([]int32)
+	output := info.output.Interface().([]int32)
 	fn := function.(func(*float32) int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8160,7 +8160,7 @@ func mapPtrFloat32ToInt32(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrFloat32ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float32)
-	output := info.output.Interface()([]*int32)
+	output := info.output.Interface().([]*int32)
 	fn := function.(func(*float32) *int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8170,7 +8170,7 @@ func mapPtrFloat32ToPtrInt32(itemsValue *reflect.Value, function interface{}, in
 
 func mapFloat32ToInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float32)
-	output := info.output.Interface()([]int64)
+	output := info.output.Interface().([]int64)
 	fn := function.(func(float32) int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8180,7 +8180,7 @@ func mapFloat32ToInt64(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapFloat32ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float32)
-	output := info.output.Interface()([]*int64)
+	output := info.output.Interface().([]*int64)
 	fn := function.(func(float32) *int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8191,7 +8191,7 @@ func mapFloat32ToPtrInt64(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrFloat32ToInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float32)
-	output := info.output.Interface()([]int64)
+	output := info.output.Interface().([]int64)
 	fn := function.(func(*float32) int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8202,7 +8202,7 @@ func mapPtrFloat32ToInt64(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrFloat32ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float32)
-	output := info.output.Interface()([]*int64)
+	output := info.output.Interface().([]*int64)
 	fn := function.(func(*float32) *int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8212,7 +8212,7 @@ func mapPtrFloat32ToPtrInt64(itemsValue *reflect.Value, function interface{}, in
 
 func mapFloat32ToUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float32)
-	output := info.output.Interface()([]uint)
+	output := info.output.Interface().([]uint)
 	fn := function.(func(float32) uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8222,7 +8222,7 @@ func mapFloat32ToUint(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapFloat32ToPtrUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float32)
-	output := info.output.Interface()([]*uint)
+	output := info.output.Interface().([]*uint)
 	fn := function.(func(float32) *uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8233,7 +8233,7 @@ func mapFloat32ToPtrUint(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrFloat32ToUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float32)
-	output := info.output.Interface()([]uint)
+	output := info.output.Interface().([]uint)
 	fn := function.(func(*float32) uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8244,7 +8244,7 @@ func mapPtrFloat32ToUint(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrFloat32ToPtrUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float32)
-	output := info.output.Interface()([]*uint)
+	output := info.output.Interface().([]*uint)
 	fn := function.(func(*float32) *uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8254,7 +8254,7 @@ func mapPtrFloat32ToPtrUint(itemsValue *reflect.Value, function interface{}, inf
 
 func mapFloat32ToUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float32)
-	output := info.output.Interface()([]uint8)
+	output := info.output.Interface().([]uint8)
 	fn := function.(func(float32) uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8264,7 +8264,7 @@ func mapFloat32ToUint8(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapFloat32ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float32)
-	output := info.output.Interface()([]*uint8)
+	output := info.output.Interface().([]*uint8)
 	fn := function.(func(float32) *uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8275,7 +8275,7 @@ func mapFloat32ToPtrUint8(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrFloat32ToUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float32)
-	output := info.output.Interface()([]uint8)
+	output := info.output.Interface().([]uint8)
 	fn := function.(func(*float32) uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8286,7 +8286,7 @@ func mapPtrFloat32ToUint8(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrFloat32ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float32)
-	output := info.output.Interface()([]*uint8)
+	output := info.output.Interface().([]*uint8)
 	fn := function.(func(*float32) *uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8296,7 +8296,7 @@ func mapPtrFloat32ToPtrUint8(itemsValue *reflect.Value, function interface{}, in
 
 func mapFloat32ToUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float32)
-	output := info.output.Interface()([]uint16)
+	output := info.output.Interface().([]uint16)
 	fn := function.(func(float32) uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8306,7 +8306,7 @@ func mapFloat32ToUint16(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapFloat32ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float32)
-	output := info.output.Interface()([]*uint16)
+	output := info.output.Interface().([]*uint16)
 	fn := function.(func(float32) *uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8317,7 +8317,7 @@ func mapFloat32ToPtrUint16(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrFloat32ToUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float32)
-	output := info.output.Interface()([]uint16)
+	output := info.output.Interface().([]uint16)
 	fn := function.(func(*float32) uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8328,7 +8328,7 @@ func mapPtrFloat32ToUint16(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrFloat32ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float32)
-	output := info.output.Interface()([]*uint16)
+	output := info.output.Interface().([]*uint16)
 	fn := function.(func(*float32) *uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8338,7 +8338,7 @@ func mapPtrFloat32ToPtrUint16(itemsValue *reflect.Value, function interface{}, i
 
 func mapFloat32ToUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float32)
-	output := info.output.Interface()([]uint32)
+	output := info.output.Interface().([]uint32)
 	fn := function.(func(float32) uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8348,7 +8348,7 @@ func mapFloat32ToUint32(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapFloat32ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float32)
-	output := info.output.Interface()([]*uint32)
+	output := info.output.Interface().([]*uint32)
 	fn := function.(func(float32) *uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8359,7 +8359,7 @@ func mapFloat32ToPtrUint32(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrFloat32ToUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float32)
-	output := info.output.Interface()([]uint32)
+	output := info.output.Interface().([]uint32)
 	fn := function.(func(*float32) uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8370,7 +8370,7 @@ func mapPtrFloat32ToUint32(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrFloat32ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float32)
-	output := info.output.Interface()([]*uint32)
+	output := info.output.Interface().([]*uint32)
 	fn := function.(func(*float32) *uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8380,7 +8380,7 @@ func mapPtrFloat32ToPtrUint32(itemsValue *reflect.Value, function interface{}, i
 
 func mapFloat32ToUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float32)
-	output := info.output.Interface()([]uint64)
+	output := info.output.Interface().([]uint64)
 	fn := function.(func(float32) uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8390,7 +8390,7 @@ func mapFloat32ToUint64(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapFloat32ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float32)
-	output := info.output.Interface()([]*uint64)
+	output := info.output.Interface().([]*uint64)
 	fn := function.(func(float32) *uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8401,7 +8401,7 @@ func mapFloat32ToPtrUint64(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrFloat32ToUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float32)
-	output := info.output.Interface()([]uint64)
+	output := info.output.Interface().([]uint64)
 	fn := function.(func(*float32) uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8412,7 +8412,7 @@ func mapPtrFloat32ToUint64(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrFloat32ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float32)
-	output := info.output.Interface()([]*uint64)
+	output := info.output.Interface().([]*uint64)
 	fn := function.(func(*float32) *uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8422,7 +8422,7 @@ func mapPtrFloat32ToPtrUint64(itemsValue *reflect.Value, function interface{}, i
 
 func mapFloat32ToFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float32)
-	output := info.output.Interface()([]float32)
+	output := info.output.Interface().([]float32)
 	fn := function.(func(float32) float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8432,7 +8432,7 @@ func mapFloat32ToFloat32(itemsValue *reflect.Value, function interface{}, info *
 
 func mapFloat32ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float32)
-	output := info.output.Interface()([]*float32)
+	output := info.output.Interface().([]*float32)
 	fn := function.(func(float32) *float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8443,7 +8443,7 @@ func mapFloat32ToPtrFloat32(itemsValue *reflect.Value, function interface{}, inf
 
 func mapPtrFloat32ToFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float32)
-	output := info.output.Interface()([]float32)
+	output := info.output.Interface().([]float32)
 	fn := function.(func(*float32) float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8454,7 +8454,7 @@ func mapPtrFloat32ToFloat32(itemsValue *reflect.Value, function interface{}, inf
 
 func mapPtrFloat32ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float32)
-	output := info.output.Interface()([]*float32)
+	output := info.output.Interface().([]*float32)
 	fn := function.(func(*float32) *float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8464,7 +8464,7 @@ func mapPtrFloat32ToPtrFloat32(itemsValue *reflect.Value, function interface{}, 
 
 func mapFloat32ToFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float32)
-	output := info.output.Interface()([]float64)
+	output := info.output.Interface().([]float64)
 	fn := function.(func(float32) float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8474,7 +8474,7 @@ func mapFloat32ToFloat64(itemsValue *reflect.Value, function interface{}, info *
 
 func mapFloat32ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float32)
-	output := info.output.Interface()([]*float64)
+	output := info.output.Interface().([]*float64)
 	fn := function.(func(float32) *float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8485,7 +8485,7 @@ func mapFloat32ToPtrFloat64(itemsValue *reflect.Value, function interface{}, inf
 
 func mapPtrFloat32ToFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float32)
-	output := info.output.Interface()([]float64)
+	output := info.output.Interface().([]float64)
 	fn := function.(func(*float32) float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8496,7 +8496,7 @@ func mapPtrFloat32ToFloat64(itemsValue *reflect.Value, function interface{}, inf
 
 func mapPtrFloat32ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float32)
-	output := info.output.Interface()([]*float64)
+	output := info.output.Interface().([]*float64)
 	fn := function.(func(*float32) *float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8506,7 +8506,7 @@ func mapPtrFloat32ToPtrFloat64(itemsValue *reflect.Value, function interface{}, 
 
 func mapFloat64ToString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float64)
-	output := info.output.Interface()([]string)
+	output := info.output.Interface().([]string)
 	fn := function.(func(float64) string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8516,7 +8516,7 @@ func mapFloat64ToString(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapFloat64ToPtrString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float64)
-	output := info.output.Interface()([]*string)
+	output := info.output.Interface().([]*string)
 	fn := function.(func(float64) *string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8527,7 +8527,7 @@ func mapFloat64ToPtrString(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrFloat64ToString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float64)
-	output := info.output.Interface()([]string)
+	output := info.output.Interface().([]string)
 	fn := function.(func(*float64) string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8538,7 +8538,7 @@ func mapPtrFloat64ToString(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrFloat64ToPtrString(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float64)
-	output := info.output.Interface()([]*string)
+	output := info.output.Interface().([]*string)
 	fn := function.(func(*float64) *string)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8548,7 +8548,7 @@ func mapPtrFloat64ToPtrString(itemsValue *reflect.Value, function interface{}, i
 
 func mapFloat64ToBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float64)
-	output := info.output.Interface()([]bool)
+	output := info.output.Interface().([]bool)
 	fn := function.(func(float64) bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8558,7 +8558,7 @@ func mapFloat64ToBool(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapFloat64ToPtrBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float64)
-	output := info.output.Interface()([]*bool)
+	output := info.output.Interface().([]*bool)
 	fn := function.(func(float64) *bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8569,7 +8569,7 @@ func mapFloat64ToPtrBool(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrFloat64ToBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float64)
-	output := info.output.Interface()([]bool)
+	output := info.output.Interface().([]bool)
 	fn := function.(func(*float64) bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8580,7 +8580,7 @@ func mapPtrFloat64ToBool(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrFloat64ToPtrBool(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float64)
-	output := info.output.Interface()([]*bool)
+	output := info.output.Interface().([]*bool)
 	fn := function.(func(*float64) *bool)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8590,7 +8590,7 @@ func mapPtrFloat64ToPtrBool(itemsValue *reflect.Value, function interface{}, inf
 
 func mapFloat64ToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float64)
-	output := info.output.Interface()([]int)
+	output := info.output.Interface().([]int)
 	fn := function.(func(float64) int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8600,7 +8600,7 @@ func mapFloat64ToInt(itemsValue *reflect.Value, function interface{}, info *mapI
 
 func mapFloat64ToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float64)
-	output := info.output.Interface()([]*int)
+	output := info.output.Interface().([]*int)
 	fn := function.(func(float64) *int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8611,7 +8611,7 @@ func mapFloat64ToPtrInt(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrFloat64ToInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float64)
-	output := info.output.Interface()([]int)
+	output := info.output.Interface().([]int)
 	fn := function.(func(*float64) int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8622,7 +8622,7 @@ func mapPtrFloat64ToInt(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapPtrFloat64ToPtrInt(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float64)
-	output := info.output.Interface()([]*int)
+	output := info.output.Interface().([]*int)
 	fn := function.(func(*float64) *int)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8632,7 +8632,7 @@ func mapPtrFloat64ToPtrInt(itemsValue *reflect.Value, function interface{}, info
 
 func mapFloat64ToInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float64)
-	output := info.output.Interface()([]int8)
+	output := info.output.Interface().([]int8)
 	fn := function.(func(float64) int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8642,7 +8642,7 @@ func mapFloat64ToInt8(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapFloat64ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float64)
-	output := info.output.Interface()([]*int8)
+	output := info.output.Interface().([]*int8)
 	fn := function.(func(float64) *int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8653,7 +8653,7 @@ func mapFloat64ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrFloat64ToInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float64)
-	output := info.output.Interface()([]int8)
+	output := info.output.Interface().([]int8)
 	fn := function.(func(*float64) int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8664,7 +8664,7 @@ func mapPtrFloat64ToInt8(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrFloat64ToPtrInt8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float64)
-	output := info.output.Interface()([]*int8)
+	output := info.output.Interface().([]*int8)
 	fn := function.(func(*float64) *int8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8674,7 +8674,7 @@ func mapPtrFloat64ToPtrInt8(itemsValue *reflect.Value, function interface{}, inf
 
 func mapFloat64ToInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float64)
-	output := info.output.Interface()([]int16)
+	output := info.output.Interface().([]int16)
 	fn := function.(func(float64) int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8684,7 +8684,7 @@ func mapFloat64ToInt16(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapFloat64ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float64)
-	output := info.output.Interface()([]*int16)
+	output := info.output.Interface().([]*int16)
 	fn := function.(func(float64) *int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8695,7 +8695,7 @@ func mapFloat64ToPtrInt16(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrFloat64ToInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float64)
-	output := info.output.Interface()([]int16)
+	output := info.output.Interface().([]int16)
 	fn := function.(func(*float64) int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8706,7 +8706,7 @@ func mapPtrFloat64ToInt16(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrFloat64ToPtrInt16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float64)
-	output := info.output.Interface()([]*int16)
+	output := info.output.Interface().([]*int16)
 	fn := function.(func(*float64) *int16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8716,7 +8716,7 @@ func mapPtrFloat64ToPtrInt16(itemsValue *reflect.Value, function interface{}, in
 
 func mapFloat64ToInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float64)
-	output := info.output.Interface()([]int32)
+	output := info.output.Interface().([]int32)
 	fn := function.(func(float64) int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8726,7 +8726,7 @@ func mapFloat64ToInt32(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapFloat64ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float64)
-	output := info.output.Interface()([]*int32)
+	output := info.output.Interface().([]*int32)
 	fn := function.(func(float64) *int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8737,7 +8737,7 @@ func mapFloat64ToPtrInt32(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrFloat64ToInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float64)
-	output := info.output.Interface()([]int32)
+	output := info.output.Interface().([]int32)
 	fn := function.(func(*float64) int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8748,7 +8748,7 @@ func mapPtrFloat64ToInt32(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrFloat64ToPtrInt32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float64)
-	output := info.output.Interface()([]*int32)
+	output := info.output.Interface().([]*int32)
 	fn := function.(func(*float64) *int32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8758,7 +8758,7 @@ func mapPtrFloat64ToPtrInt32(itemsValue *reflect.Value, function interface{}, in
 
 func mapFloat64ToInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float64)
-	output := info.output.Interface()([]int64)
+	output := info.output.Interface().([]int64)
 	fn := function.(func(float64) int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8768,7 +8768,7 @@ func mapFloat64ToInt64(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapFloat64ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float64)
-	output := info.output.Interface()([]*int64)
+	output := info.output.Interface().([]*int64)
 	fn := function.(func(float64) *int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8779,7 +8779,7 @@ func mapFloat64ToPtrInt64(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrFloat64ToInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float64)
-	output := info.output.Interface()([]int64)
+	output := info.output.Interface().([]int64)
 	fn := function.(func(*float64) int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8790,7 +8790,7 @@ func mapPtrFloat64ToInt64(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrFloat64ToPtrInt64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float64)
-	output := info.output.Interface()([]*int64)
+	output := info.output.Interface().([]*int64)
 	fn := function.(func(*float64) *int64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8800,7 +8800,7 @@ func mapPtrFloat64ToPtrInt64(itemsValue *reflect.Value, function interface{}, in
 
 func mapFloat64ToUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float64)
-	output := info.output.Interface()([]uint)
+	output := info.output.Interface().([]uint)
 	fn := function.(func(float64) uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8810,7 +8810,7 @@ func mapFloat64ToUint(itemsValue *reflect.Value, function interface{}, info *map
 
 func mapFloat64ToPtrUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float64)
-	output := info.output.Interface()([]*uint)
+	output := info.output.Interface().([]*uint)
 	fn := function.(func(float64) *uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8821,7 +8821,7 @@ func mapFloat64ToPtrUint(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrFloat64ToUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float64)
-	output := info.output.Interface()([]uint)
+	output := info.output.Interface().([]uint)
 	fn := function.(func(*float64) uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8832,7 +8832,7 @@ func mapPtrFloat64ToUint(itemsValue *reflect.Value, function interface{}, info *
 
 func mapPtrFloat64ToPtrUint(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float64)
-	output := info.output.Interface()([]*uint)
+	output := info.output.Interface().([]*uint)
 	fn := function.(func(*float64) *uint)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8842,7 +8842,7 @@ func mapPtrFloat64ToPtrUint(itemsValue *reflect.Value, function interface{}, inf
 
 func mapFloat64ToUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float64)
-	output := info.output.Interface()([]uint8)
+	output := info.output.Interface().([]uint8)
 	fn := function.(func(float64) uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8852,7 +8852,7 @@ func mapFloat64ToUint8(itemsValue *reflect.Value, function interface{}, info *ma
 
 func mapFloat64ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float64)
-	output := info.output.Interface()([]*uint8)
+	output := info.output.Interface().([]*uint8)
 	fn := function.(func(float64) *uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8863,7 +8863,7 @@ func mapFloat64ToPtrUint8(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrFloat64ToUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float64)
-	output := info.output.Interface()([]uint8)
+	output := info.output.Interface().([]uint8)
 	fn := function.(func(*float64) uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8874,7 +8874,7 @@ func mapPtrFloat64ToUint8(itemsValue *reflect.Value, function interface{}, info 
 
 func mapPtrFloat64ToPtrUint8(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float64)
-	output := info.output.Interface()([]*uint8)
+	output := info.output.Interface().([]*uint8)
 	fn := function.(func(*float64) *uint8)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8884,7 +8884,7 @@ func mapPtrFloat64ToPtrUint8(itemsValue *reflect.Value, function interface{}, in
 
 func mapFloat64ToUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float64)
-	output := info.output.Interface()([]uint16)
+	output := info.output.Interface().([]uint16)
 	fn := function.(func(float64) uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8894,7 +8894,7 @@ func mapFloat64ToUint16(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapFloat64ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float64)
-	output := info.output.Interface()([]*uint16)
+	output := info.output.Interface().([]*uint16)
 	fn := function.(func(float64) *uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8905,7 +8905,7 @@ func mapFloat64ToPtrUint16(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrFloat64ToUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float64)
-	output := info.output.Interface()([]uint16)
+	output := info.output.Interface().([]uint16)
 	fn := function.(func(*float64) uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8916,7 +8916,7 @@ func mapPtrFloat64ToUint16(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrFloat64ToPtrUint16(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float64)
-	output := info.output.Interface()([]*uint16)
+	output := info.output.Interface().([]*uint16)
 	fn := function.(func(*float64) *uint16)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8926,7 +8926,7 @@ func mapPtrFloat64ToPtrUint16(itemsValue *reflect.Value, function interface{}, i
 
 func mapFloat64ToUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float64)
-	output := info.output.Interface()([]uint32)
+	output := info.output.Interface().([]uint32)
 	fn := function.(func(float64) uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8936,7 +8936,7 @@ func mapFloat64ToUint32(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapFloat64ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float64)
-	output := info.output.Interface()([]*uint32)
+	output := info.output.Interface().([]*uint32)
 	fn := function.(func(float64) *uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8947,7 +8947,7 @@ func mapFloat64ToPtrUint32(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrFloat64ToUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float64)
-	output := info.output.Interface()([]uint32)
+	output := info.output.Interface().([]uint32)
 	fn := function.(func(*float64) uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8958,7 +8958,7 @@ func mapPtrFloat64ToUint32(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrFloat64ToPtrUint32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float64)
-	output := info.output.Interface()([]*uint32)
+	output := info.output.Interface().([]*uint32)
 	fn := function.(func(*float64) *uint32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8968,7 +8968,7 @@ func mapPtrFloat64ToPtrUint32(itemsValue *reflect.Value, function interface{}, i
 
 func mapFloat64ToUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float64)
-	output := info.output.Interface()([]uint64)
+	output := info.output.Interface().([]uint64)
 	fn := function.(func(float64) uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8978,7 +8978,7 @@ func mapFloat64ToUint64(itemsValue *reflect.Value, function interface{}, info *m
 
 func mapFloat64ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float64)
-	output := info.output.Interface()([]*uint64)
+	output := info.output.Interface().([]*uint64)
 	fn := function.(func(float64) *uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -8989,7 +8989,7 @@ func mapFloat64ToPtrUint64(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrFloat64ToUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float64)
-	output := info.output.Interface()([]uint64)
+	output := info.output.Interface().([]uint64)
 	fn := function.(func(*float64) uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -9000,7 +9000,7 @@ func mapPtrFloat64ToUint64(itemsValue *reflect.Value, function interface{}, info
 
 func mapPtrFloat64ToPtrUint64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float64)
-	output := info.output.Interface()([]*uint64)
+	output := info.output.Interface().([]*uint64)
 	fn := function.(func(*float64) *uint64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -9010,7 +9010,7 @@ func mapPtrFloat64ToPtrUint64(itemsValue *reflect.Value, function interface{}, i
 
 func mapFloat64ToFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float64)
-	output := info.output.Interface()([]float32)
+	output := info.output.Interface().([]float32)
 	fn := function.(func(float64) float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -9020,7 +9020,7 @@ func mapFloat64ToFloat32(itemsValue *reflect.Value, function interface{}, info *
 
 func mapFloat64ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float64)
-	output := info.output.Interface()([]*float32)
+	output := info.output.Interface().([]*float32)
 	fn := function.(func(float64) *float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -9031,7 +9031,7 @@ func mapFloat64ToPtrFloat32(itemsValue *reflect.Value, function interface{}, inf
 
 func mapPtrFloat64ToFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float64)
-	output := info.output.Interface()([]float32)
+	output := info.output.Interface().([]float32)
 	fn := function.(func(*float64) float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -9042,7 +9042,7 @@ func mapPtrFloat64ToFloat32(itemsValue *reflect.Value, function interface{}, inf
 
 func mapPtrFloat64ToPtrFloat32(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float64)
-	output := info.output.Interface()([]*float32)
+	output := info.output.Interface().([]*float32)
 	fn := function.(func(*float64) *float32)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -9052,7 +9052,7 @@ func mapPtrFloat64ToPtrFloat32(itemsValue *reflect.Value, function interface{}, 
 
 func mapFloat64ToFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float64)
-	output := info.output.Interface()([]float64)
+	output := info.output.Interface().([]float64)
 	fn := function.(func(float64) float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -9062,7 +9062,7 @@ func mapFloat64ToFloat64(itemsValue *reflect.Value, function interface{}, info *
 
 func mapFloat64ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]float64)
-	output := info.output.Interface()([]*float64)
+	output := info.output.Interface().([]*float64)
 	fn := function.(func(float64) *float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -9073,7 +9073,7 @@ func mapFloat64ToPtrFloat64(itemsValue *reflect.Value, function interface{}, inf
 
 func mapPtrFloat64ToFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float64)
-	output := info.output.Interface()([]float64)
+	output := info.output.Interface().([]float64)
 	fn := function.(func(*float64) float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
@@ -9084,7 +9084,7 @@ func mapPtrFloat64ToFloat64(itemsValue *reflect.Value, function interface{}, inf
 
 func mapPtrFloat64ToPtrFloat64(itemsValue *reflect.Value, function interface{}, info *mapInfo) interface{}  {
 	input := itemsValue.Interface().([]*float64)
-	output := info.output.Interface()([]*float64)
+	output := info.output.Interface().([]*float64)
 	fn := function.(func(*float64) *float64)
 	for i := 0; i < len(input); i++ {
 		output = append(output,fn(input[i]))
