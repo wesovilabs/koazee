@@ -18,7 +18,7 @@ type streamMap struct {
 }
 
 func (m *streamMap) run(s *Stream) *Stream {
-	mInfo, err := m.validateMap(s);
+	mInfo, err := m.validateMap(s)
 	if err != nil {
 		s.err = err
 		return s
