@@ -4,7 +4,7 @@ package _map
 import "reflect"
 
 
-type dispatchFunction func(items *reflect.Value, fn interface{}) interface{}
+type dispatchFunction func(items *reflect.Value, fn interface{}, info *mapInfo) interface{}
 
 var dispatcher = map[string]map[string]dispatchFunction{
 	"string": {
