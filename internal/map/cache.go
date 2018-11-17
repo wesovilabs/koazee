@@ -28,5 +28,4 @@ type mapInfo struct {
 	fnOutputType reflect.Type
 	isPtr        bool
 	items        reflect.Value
-	output       reflect.Value
 }
