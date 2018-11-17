@@ -41,6 +41,7 @@ func (m *Map) Run() (interface{}, *errors.Error) {
 
 func (m *Map) validate() (*mapInfo, *errors.Error) {
 	item := &mapInfo{}
+	item.fnInputType = m.ItemsType
 	fnType := reflect.TypeOf(m.Func)
 	if val := cache.get(m.ItemsType, fnType); val != nil {
 		return val, nil
@@ -65,8 +66,8 @@ func (m *Map) validate() (*mapInfo, *errors.Error) {
 			"The type of the argument in the provided "+
 				"function must be %s", m.ItemsType.String())
 	}
-	item.outputType = reflect.New(item.fnValue.Type().Out(0)).Elem().Type()
-	item.items = reflect.MakeSlice(reflect.SliceOf(item.outputType), 0, 0)
+	item.fnOutputType = reflect.New(item.fnValue.Type().Out(0)).Elem().Type()
+	// item.items = reflect.MakeSlice(reflect.SliceOf(item.fnOutputType), 0, 0)
 	item.isPtr = m.ItemsValue.Index(0).Kind() == reflect.Ptr
 	cache.add(m.ItemsType, fnType, item)
 	return item, nil
