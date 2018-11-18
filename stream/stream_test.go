@@ -1,6 +1,7 @@
 package stream_test
 
 import (
+	"github.com/wesovilabs/koazee/operation/first"
 	"testing"
 
 	"github.com/wesovilabs/koazee/errors"
@@ -210,7 +211,7 @@ func TestOutput_Float64(t *testing.T) {
 func TestOutput_Err(t *testing.T) {
 	assert.Equal(
 		t,
-		errors.EmptyStream(stream.OpCodeFirst, "It can not be taken an element from a nil Stream"),
+		errors.EmptyStream(first.OpCode, "It can not be taken an element from an empty Stream"),
 		stream.New(nil).First().Err(),
 	)
 }

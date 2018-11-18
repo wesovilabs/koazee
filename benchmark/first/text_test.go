@@ -1,10 +1,9 @@
-package at
+package first
 
 import (
 	"github.com/wesovilabs/koazee"
 	"github.com/wesovilabs/koazee/benchmark/utils"
 	"github.com/wesovilabs/koazee/stream"
-	"math/rand"
 	"testing"
 )
 
@@ -18,13 +17,12 @@ func BenchmarkString10Koazee(b *testing.B) {
 	b.StopTimer()
 	stream := koazee.
 		StreamOf(strings10)
-	index := rand.Intn(10)
 	for i := 0; i < b.N; i++ {
 		b.StartTimer()
-		stream.At(index)
+		stream.Last()
 
 	}
-	atOutput = result
+	firstOutput = result
 }
 
 func BenchmarkString100Koazee(b *testing.B) {
@@ -32,13 +30,12 @@ func BenchmarkString100Koazee(b *testing.B) {
 	b.StopTimer()
 	stream := koazee.
 		StreamOf(strings100)
-	index := rand.Intn(100)
 	for i := 0; i < b.N; i++ {
 		b.StartTimer()
-		stream.At(index)
+		stream.Last()
 
 	}
-	atOutput = result
+	firstOutput = result
 }
 
 func BenchmarkString1000Koazee(b *testing.B) {
@@ -46,13 +43,12 @@ func BenchmarkString1000Koazee(b *testing.B) {
 	b.StopTimer()
 	stream := koazee.
 		StreamOf(strings1000)
-	index := rand.Intn(1000)
 	for i := 0; i < b.N; i++ {
 		b.StartTimer()
-		stream.At(index)
+		stream.Last()
 
 	}
-	atOutput = result
+	firstOutput = result
 }
 
 func BenchmarkString10000Koazee(b *testing.B) {
@@ -60,11 +56,10 @@ func BenchmarkString10000Koazee(b *testing.B) {
 	b.StopTimer()
 	stream := koazee.
 		StreamOf(strings10000)
-	index := rand.Intn(10000)
 	for i := 0; i < b.N; i++ {
 		b.StartTimer()
-		stream.At(index)
+		stream.Last()
 
 	}
-	atOutput = result
+	firstOutput = result
 }

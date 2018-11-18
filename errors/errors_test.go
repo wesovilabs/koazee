@@ -1,6 +1,8 @@
 package errors_test
 
 import (
+	"github.com/wesovilabs/koazee/operation/filter"
+	"github.com/wesovilabs/koazee/operation/last"
 	"testing"
 
 	atOperation "github.com/wesovilabs/koazee/operation/at"
@@ -23,11 +25,11 @@ func TestError_Error(t *testing.T) {
 	assert.Equal(t, "[contains:unknown] argument", err.Error())
 	err = errors.New(stream.OpCodeDrop, "unknown", "argument")
 	assert.Equal(t, "[drop:unknown] argument", err.Error())
-	err = errors.New(stream.OpCodeFilter, "unknown", "argument")
+	err = errors.New(filter.OpCode, "unknown", "argument")
 	assert.Equal(t, "[filter:unknown] argument", err.Error())
 	err = errors.New(stream.OpCodeForEach, "unknown", "argument")
 	assert.Equal(t, "[forEach:unknown] argument", err.Error())
-	err = errors.New(stream.OpCodeLast, "unknown", "argument")
+	err = errors.New(last.OpCode, "unknown", "argument")
 	assert.Equal(t, "[last:unknown] argument", err.Error())
 	err = errors.New(mapInternal.OpCode, "unknown", "argument")
 	assert.Equal(t, "[map:unknown] argument", err.Error())
