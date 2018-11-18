@@ -33,6 +33,9 @@ func (r *Reduce) Run() (interface{}, *errors.Error) {
 }
 
 func (r *Reduce) validate() (*reduceInfo, *errors.Error) {
+	if r.ItemsValue == nil {
+		return nil, errors.EmptyStream(OpCode, "A nil Stream can not be reduced")
+	}
 	fnType := reflect.TypeOf(r.Func)
 	if reduceInfo := cache.get(r.ItemsType, fnType); reduceInfo != nil {
 		return reduceInfo, nil
@@ -40,9 +43,7 @@ func (r *Reduce) validate() (*reduceInfo, *errors.Error) {
 	info := &reduceInfo{}
 	info.fnType = fnType
 	info.fnValue = reflect.ValueOf(r.Func)
-	if r.ItemsValue == nil {
-		return nil, errors.EmptyStream(OpCode, "A nil Stream can not be reduced")
-	}
+
 	if fnType.Kind() != reflect.Func {
 		return nil, errors.InvalidArgument(OpCode, "The reduce operation requires a function as argument")
 	}

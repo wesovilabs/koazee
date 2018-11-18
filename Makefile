@@ -5,7 +5,7 @@ clean:
 	rm -f coverage.txt
 	rm -rf vendor
 deps:
-	${GO} mod vendor
+	#${GO} mod vendor
 	${GO} mod download
 test:
 	${GO} test  -v ./...
@@ -18,7 +18,8 @@ check: fmt
 lint:
 	golint
 benchmark: fmt
-	${GO} test -bench Benchmark.+ -run -Benchmark.+ -v ./benchmark/...
+	#${GO} run ./benchmark/main.go
+	${GO} test -bench Benchmark.+ -run -Benchmark.+ -v ./benchmark/at/...
 info: fmt
 	depscheck -totalonly -tests .
 	golocc

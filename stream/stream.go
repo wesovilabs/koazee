@@ -1,50 +1,10 @@
 package stream
 
 import (
-	"reflect"
-
 	"github.com/wesovilabs/koazee/errors"
+	"reflect"
 )
 
-/**
-// Stream is an interface that provides the operations over a Stream
-type Stream interface {
-	// Add this operation is used to add a new element into the Stream. The element will be added in
-	// the last position
-	Add(interface{}) Stream
-	// Drop this operation is used to drop an existing element in the Stream
-	Drop(interface{}) Stream
-	// First this operation is used to obtain the first element in the Stream
-	First() Output
-	// Last this operation is used to obtain the last element in the Stream
-	Last() Output
-	// Att this operation is used to obtain the element in the Stream that is in the given position
-	At(int) Output
-	// Reduce this operation is used to obtain a result after applying the provided function
-	// over all the items in the Stream
-	Reduce(function interface{}) Output
-	// Reduce this operation is used to check if an element is found in the Stream
-	Contains(interface{}) (bool, *errors.Error)
-	// Reduce this operation is used to obtain the number of elements in the Stream
-	Count() (int, *errors.Error)
-	// Reduce this operation is used to convert the current elements in the Stream into a different type
-	Map(interface{}) Stream
-	// Reduce this operation is used to discard those elements that don't match with the provided function
-	Filter(function interface{}) Stream
-	// Reduce this operation is used to do something over all the elements in the Stream
-	ForEach(function interface{}) Stream
-	// Reduce this operation is used to sort the elements in the Stream
-	Sort(function interface{}) Stream
-	// Reduce this operation is used to remove duplicates elements in the Stream
-	RemoveDuplicates() Stream
-	// Reduce this operation is used to obtain the value of the Stream
-	Out() Output
-	// Reduce this operation is used to load  or replace the elements in the Stream
-	With(interface{}) Stream
-	// Reduce this operation is used to joing 2 or more streams in a single one
-	Compose(...Stream) Stream
-}
-**/
 // Output structure for returning single values
 type Output struct {
 	value interface{}
@@ -177,6 +137,7 @@ type Stream struct {
 	items      interface{}
 	itemsValue *reflect.Value
 	itemsType  reflect.Type
+	itemsLen   int
 	err        *errors.Error
 	operations []lazyOp
 }
@@ -204,8 +165,8 @@ func New(items interface{}) *Stream {
 		items:      items,
 		itemsType:  itemsType,
 		itemsValue: &(itemsValue),
+		itemsLen:   itemsValue.Len(),
 	}
-
 }
 
 // Error initialize the Stream with error

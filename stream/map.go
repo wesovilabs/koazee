@@ -1,7 +1,7 @@
 package stream
 
 import (
-	Map_ "github.com/wesovilabs/koazee/internal/maps"
+	Map_ "github.com/wesovilabs/koazee/operation/maps"
 )
 
 type streamMap struct {

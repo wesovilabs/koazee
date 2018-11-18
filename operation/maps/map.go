@@ -43,11 +43,13 @@ func (m *Map) validate() (*mapInfo, *errors.Error) {
 	item := &mapInfo{}
 	item.fnInputType = m.ItemsType
 	fnType := reflect.TypeOf(m.Func)
-	if val := cache.get(m.ItemsType, fnType); val != nil {
-		return val, nil
-	}
+	/**
 	if m.ItemsValue == nil {
 		return nil, errors.EmptyStream(OpCode, "A nil Stream can not be iterated")
+	}
+	**/
+	if val := cache.get(m.ItemsType, fnType); val != nil {
+		return val, nil
 	}
 	item.fnValue = reflect.ValueOf(m.Func)
 	if item.fnValue.Type().Kind() != reflect.Func {

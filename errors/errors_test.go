@@ -3,8 +3,9 @@ package errors_test
 import (
 	"testing"
 
-	mapInternal "github.com/wesovilabs/koazee/internal/maps"
-	reduceInternal "github.com/wesovilabs/koazee/internal/reduce"
+	atOperation "github.com/wesovilabs/koazee/operation/at"
+	mapInternal "github.com/wesovilabs/koazee/operation/maps"
+	reduceInternal "github.com/wesovilabs/koazee/operation/reduce"
 	"github.com/wesovilabs/koazee/stream"
 
 	"github.com/stretchr/testify/assert"
@@ -16,7 +17,7 @@ func TestError_Error(t *testing.T) {
 	assert.Equal(t, "[count:unknown] argument", err.Error())
 	err = errors.New(stream.OpCodeAdd, "unknown", "argument")
 	assert.Equal(t, "[add:unknown] argument", err.Error())
-	err = errors.New(stream.OpCodeAt, "unknown", "argument")
+	err = errors.New(atOperation.OpCode, "unknown", "argument")
 	assert.Equal(t, "[at:unknown] argument", err.Error())
 	err = errors.New(stream.OpCodeContains, "unknown", "argument")
 	assert.Equal(t, "[contains:unknown] argument", err.Error())

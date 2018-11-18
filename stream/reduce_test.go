@@ -6,7 +6,7 @@ import (
 	"github.com/wesovilabs/koazee"
 	"github.com/wesovilabs/koazee/errors"
 
-	reduceInternal "github.com/wesovilabs/koazee/internal/reduce"
+	reduceInternal "github.com/wesovilabs/koazee/operation/reduce"
 	"github.com/wesovilabs/koazee/stream"
 
 	"github.com/stretchr/testify/assert"

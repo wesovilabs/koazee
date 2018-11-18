@@ -7,7 +7,7 @@ import (
 	"github.com/wesovilabs/koazee"
 	"github.com/wesovilabs/koazee/errors"
 
-	mapInternal "github.com/wesovilabs/koazee/internal/maps"
+	mapInternal "github.com/wesovilabs/koazee/operation/maps"
 	"github.com/wesovilabs/koazee/stream"
 
 	"github.com/stretchr/testify/assert"
@@ -43,11 +43,6 @@ func TestStream_Map_validation(t *testing.T) {
 		t,
 		errors.InvalidArgument(mapInternal.OpCode, "The map operation requires a function as argument"),
 		koazee.StreamOf([]string{"Freedom", "for", "the", "animals"}).Map(10).Out().Err())
-
-	assert.Equal(
-		t,
-		errors.EmptyStream(mapInternal.OpCode, "A nil Stream can not be iterated"),
-		koazee.Stream().Map(func() {}).Out().Err())
 
 	assert.Equal(
 		t,
