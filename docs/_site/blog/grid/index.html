@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta name="generator" content="Hugo 0.40.3" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Grid </title>
+
+  
+  <meta name="description" content="Flexible, fully responsive and ready to use"> 
+  
+  
+  
+  
+  
+
+  
+
+  <meta name="author" content="Iván Corrales Solera">
+
+
+  <meta property="og:title" content="Grid" />
+<meta property="og:description" content="Flexible, fully responsive and ready to use" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://wesovilabs.com/koazee/blog/grid/" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  
+  
+
+  <link rel="canonical" href="http://wesovilabs.com/koazee/blog/grid/">  
+
+  <link rel="shortcut icon" type="image/png" href="data:image/png;base64,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RvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3EldwAAAAAAAJJjRvlaOwAAAAAAALXmk3Eld+D/AfhEhmLqHBsfAAAAAElFTkSuQmCC">
+
+
+  <link href="/koazee/css/font.css" rel="stylesheet" type="text/css">
+  <link href="/koazee/css/kube.css" rel="stylesheet" type="text/css">
+  <link href="/koazee/css/kube.legenda.css" rel="stylesheet" type="text/css">
+  <link href="/koazee/css/highlight.css" rel="stylesheet" type="text/css">
+  <link href="/koazee/css/master.css" rel="stylesheet" type="text/css">
+  <link href="/koazee/css/kube.demo.css" rel="stylesheet" type="text/css">
+  <link href="/koazee/css/syntax.css" rel="stylesheet" type="text/css">
+
+ <link href="/koazee/css/custom.css" rel="stylesheet" type="text/css">
+
+  <script src="/koazee/js/jquery-2.1.4.min.js" type="text/javascript">
+  </script>
+
+  <script type="text/javascript" src="/koazee/js/tocbot.min.js"></script>
+</head>
+
+
+<body class="page-kube">
+  <header> <div class="show-sm">
+    <div id="nav-toggle-box">
+      <div id="nav-toggle-brand">
+        <a href="/">Koazee</a>
+      </div><a data-component="toggleme" data-target="#top" href="#" id="nav-toggle"><i class="kube-menu"></i></a>
+    </div>
+  </div>
+  <div class="hide-sm" id="top">
+    <div id="top-brand">
+      <a href="/koazee" title="home">Koazee</a>
+    </div>
+    <nav id="top-nav-main">
+      <ul>
+       
+       
+    <li><a href="/koazee/getting-started/" >Getting started</a></li>
+    
+    <li><a href="/koazee/docs/" >Documentation</a></li>
+    
+    <li><a href="/koazee/guides/" >Guides &amp; Tutorials</a></li>
+    
+      </ul>
+    </nav>
+    <nav id="top-nav-extra">
+      <ul>
+         <li>
+            <a href="https://www.linkedin.com/in/ivan-corrales-solera/">About me</a>
+          </li>
+      </ul>
+    </nav>
+  </div>
+ </header>
+  <main>
+<div class="push-center" itemscope itemtype="http://schema.org/BlogPosting">
+    
+<meta itemprop="name" content="Grid">
+<meta itemprop="description" content="Flexible, fully responsive and ready to use">
+
+
+
+<meta itemprop="wordCount" content="659">
+
+
+
+<meta itemprop="keywords" content="" />
+
+<div id="hero">
+    <h1 itemprop="headline">  Grid</h1>
+    
+<blockquote itemprop="description">Flexible, fully responsive and ready to use</blockquote>
+
+<time class="post-time"><span class="icon">
+  <i class="fa fa-clock-o" aria-hidden="true"></i>
+</span>
+<span>4 minute read</span>
+<span class="icon">
+ <i class="fa fa-pencil" aria-hidden="true"></i>
+</span>
+
+  Published: <time datetime="0001-01-01T00:00:00&#43;00:00">1 Jan, 0001</time>
+
+</time>
+</div>
+<div id="post-box">
+<div id="post" itemprop="articleBody">
+    
+    <div id="main">
+  <h3 class="section-head" id="h-columns"><a href="#h-columns">Columns</a></h3>
+  <p>Columns are building blocks for many websites. Here's how columns are formed in Kube, and here's how you can use them right away.</p>
+  <div class="example demo-grid">
+    <div class="row">
+      <div class="col col-1">
+        1
+      </div>
+      <div class="col col-11">
+        11
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-2">
+        2
+      </div>
+      <div class="col col-10">
+        10
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-3">
+        3
+      </div>
+      <div class="col col-9">
+        9
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-4">
+        4
+      </div>
+      <div class="col col-8">
+        8
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-5">
+        5
+      </div>
+      <div class="col col-7">
+        7
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-6">
+        6
+      </div>
+      <div class="col col-6">
+        6
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-7">
+        7
+      </div>
+      <div class="col col-5">
+        5
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-8">
+        8
+      </div>
+      <div class="col col-4">
+        4
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-9">
+        9
+      </div>
+      <div class="col col-3">
+        3
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-10">
+        10
+      </div>
+      <div class="col col-2">
+        2
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-11">
+        11
+      </div>
+      <div class="col col-1">
+        1
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-12">
+        12
+      </div>
+    </div>
+    <pre class="code skip">&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"row"</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-4"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-8"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+&lt;/<span class="hljs-keyword">div</span>&gt;
+</pre>
+  </div>
+  <h3 class="section-head" id="h-gutters"><a href="#h-gutters">Gutters</a></h3>
+  <div class="example demo-grid">
+    <div class="row gutters">
+      <div class="col col-3">
+        3
+      </div>
+      <div class="col col-9">
+        9
+      </div>
+    </div>
+    <pre class="code skip">&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"row gutters"</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-3"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-9"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+&lt;/<span class="hljs-keyword">div</span>&gt;
+</pre>
+  </div>
+  <h3 class="section-head" id="h-auto-width"><a href="#h-auto-width">Auto Width</a></h3>
+  <div class="example demo-grid">
+    <div class="row auto">
+      <div class="col">
+        auto
+      </div>
+      <div class="col">
+        auto
+      </div>
+      <div class="col">
+        auto
+      </div>
+    </div>
+    <pre class="code skip">&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"row auto"</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+&lt;/<span class="hljs-keyword">div</span>&gt;
+</pre>
+  </div>
+  <h5>Auto + Gutters</h5>
+  <div class="example demo-grid">
+    <div class="row gutters auto">
+      <div class="col">
+        auto
+      </div>
+      <div class="col">
+        auto
+      </div>
+      <div class="col">
+        auto
+      </div>
+      <div class="col">
+        auto
+      </div>
+    </div>
+    <pre class="code skip">&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"row gutters auto"</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+&lt;/<span class="hljs-keyword">div</span>&gt;
+</pre>
+  </div>
+  <h3 class="section-head" id="h-bricks"><a href="#h-bricks">Bricks</a></h3>
+  <div class="example demo-grid">
+    <div class="row">
+      <div class="col col-6">
+        50%
+      </div>
+      <div class="col col-6">
+        50%
+      </div>
+      <div class="col col-6">
+        50%
+      </div>
+      <div class="col col-6">
+        50%
+      </div>
+    </div>
+    <pre class="code skip">&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"row"</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-6"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-6"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-6"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-6"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+&lt;/<span class="hljs-keyword">div</span>&gt;
+</pre>
+  </div>
+  <h5>Bricks + Gutters</h5>
+  <div class="example demo-grid">
+    <div class="row gutters">
+      <div class="col col-4">
+        33%
+      </div>
+      <div class="col col-4">
+        33%
+      </div>
+      <div class="col col-4">
+        33%
+      </div>
+      <div class="col col-4">
+        33%
+      </div>
+      <div class="col col-4">
+        33%
+      </div>
+      <div class="col col-4">
+        33%
+      </div>
+    </div>
+    <pre class="code skip">&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"row gutters"</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-4"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-4"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-4"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-4"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+&lt;/<span class="hljs-keyword">div</span>&gt;
+</pre>
+  </div>
+  <h3 class="section-head" id="h-offset"><a href="#h-offset">Offset</a></h3>
+  <p>Offsetting columns is very simple in Kube. Just use column's class as usual, for example, <code>col col-2</code> and then add the offset value <code>offset-4</code>. This will offset this column and all following columns by 4.</p>
+  <div class="example demo-grid">
+    <div class="row">
+      <div class="col col-2">
+        2
+      </div>
+      <div class="col col-6 offset-4">
+        6
+      </div>
+    </div>
+    <pre class="code skip">&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"row"</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-2"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-6 offset-4"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+&lt;/<span class="hljs-keyword">div</span>&gt;
+</pre>
+  </div>
+  <h3 class="section-head" id="h-nested"><a href="#h-nested">Nested</a></h3>
+  <p>Here's an example of nesting columns within columns. In this example, we have a single row, with two columns .col col-6, a div nested within the second column, with .row end class to denote where to inject nested columns, and the three nested columns.</p>
+  <div class="example demo-grid">
+    <div class="row">
+      <div class="col col-6">
+        6
+      </div>
+      <div class="col col-6 demo-col-nested">
+        <div class="row">
+          <div class="col col-4">
+            4
+          </div>
+          <div class="col col-4">
+            4
+          </div>
+          <div class="col col-4">
+            4
+          </div>
+        </div>
+      </div>
+    </div>
+    <pre class="code skip">&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"row"</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-6"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-6"</span>&gt;
+        &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"row"</span>&gt;
+            &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-4"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+            &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-4"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+            &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-4"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+        &lt;/<span class="hljs-keyword">div</span>&gt;
+    &lt;/<span class="hljs-keyword">div</span>&gt;
+&lt;/<span class="hljs-keyword">div</span>&gt;
+</pre>
+  </div>
+  <h3 class="section-head" id="h-equal-height"><a href="#h-equal-height">Equal Height Columns</a></h3>
+  <p>Columns are equal height by default in Kube</p>
+  <div class="example demo-grid">
+    <div class="row">
+      <div class="col col-6">
+        1
+      </div>
+      <div class="col col-6">
+        1<br>
+        2<br>
+        3
+      </div>
+    </div>
+    <pre class="code skip">&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"row"</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-6"</span>&gt;
+        ...
+    &lt;/<span class="hljs-keyword">div</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-6"</span>&gt;
+        ...
+        ...
+        ...
+    &lt;/<span class="hljs-keyword">div</span>&gt;
+&lt;/<span class="hljs-keyword">div</span>&gt;
+</pre>
+  </div>
+  <h3 class="section-head" id="h-reordering"><a href="#h-reordering">Reordering</a></h3>
+  <h5>First</h5>
+  <div class="example demo-grid">
+    <div class="row">
+      <div class="col col-4">
+        4
+      </div>
+      <div class="col col-8 first">
+        8
+      </div>
+    </div>
+    <pre class="code skip">&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"row"</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-4"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-8 first"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+&lt;/<span class="hljs-keyword">div</span>&gt;
+</pre>
+  </div>
+  <h5>Last</h5>
+  <div class="example demo-grid">
+    <div class="row">
+      <div class="col col-3 last">
+        3
+      </div>
+      <div class="col col-9">
+        9
+      </div>
+    </div>
+    <pre class="code skip">&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"row"</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-3 last"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-9"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+&lt;/<span class="hljs-keyword">div</span>&gt;
+</pre>
+  </div>
+  <h3 class="section-head" id="h-around"><a href="#h-around">Around</a></h3>
+  <p>When you want your columns to be surrounded by an even margins on both sides, just use <code>.around</code> class.</p>
+  <div class="example demo-grid">
+    <div class="row around">
+      <div class="col col-3">
+        3
+      </div>
+      <div class="col col-3">
+        3
+      </div>
+      <div class="col col-3">
+        3
+      </div>
+    </div>
+    <pre class="code skip">&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"row around"</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-3"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-3"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-3"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+&lt;/<span class="hljs-keyword">div</span>&gt;
+</pre>
+  </div>
+  <h3 class="section-head" id="h-between"><a href="#h-between">Between</a></h3>
+  <p>Sometime you just need space between columns, and not around them. Well, there's a class for that: <code>.between</code></p>
+  <div class="example demo-grid">
+    <div class="row between">
+      <div class="col col-3">
+        3
+      </div>
+      <div class="col col-3">
+        3
+      </div>
+      <div class="col col-3">
+        3
+      </div>
+    </div>
+    <pre class="code skip">&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"row between"</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-3"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-3"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-3"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+&lt;/<span class="hljs-keyword">div</span>&gt;
+</pre>
+  </div>
+  <h3 class="section-head" id="h-alignment"><a href="#h-alignment">Alignment</a></h3>
+  <h5>Align Center</h5>
+  <div class="example demo-grid">
+    <div class="row align-center">
+      <div class="col col-6">
+        6
+      </div>
+    </div>
+    <pre class="code skip">&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"row align-center"</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-6"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+&lt;/<span class="hljs-keyword">div</span>&gt;
+</pre>
+  </div>
+  <h5>Align Right</h5>
+  <div class="example demo-grid">
+    <div class="row align-right">
+      <div class="col col-3">
+        3
+      </div>
+      <div class="col col-3">
+        3
+      </div>
+    </div>
+    <pre class="code skip">&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"row align-right"</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-3"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-3"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+&lt;/<span class="hljs-keyword">div</span>&gt;
+</pre>
+  </div>
+  <h5>Align Middle</h5>
+  <div class="example demo-grid">
+    <div class="row align-middle" style="height: 104px; border: 1px solid #eee;">
+      <div class="col col-4" style="height: 36px;">
+        4
+      </div>
+      <div class="col col-4" style="height: 56px;">
+        4
+      </div>
+      <div class="col col-4" style="height: 36px;">
+        4
+      </div>
+    </div>
+    <pre class="code skip">&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"row align-middle"</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-4"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-4"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-4"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+&lt;/<span class="hljs-keyword">div</span>&gt;
+</pre>
+  </div>
+  <h3 class="section-head" id="h-push"><a href="#h-push">Push</a></h3>
+  <h5>Push Center</h5>
+  <div class="example demo-grid">
+    <div class="row">
+      <div class="col col-4 push-center">
+        .push-center
+      </div>
+    </div>
+    <pre class="code skip">&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"row"</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-4 push-center"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+&lt;/<span class="hljs-keyword">div</span>&gt;
+</pre>
+  </div>
+  <h5>Push Right</h5>
+  <div class="example demo-grid">
+    <div class="row">
+      <div class="col col-6">
+        ...
+      </div>
+      <div class="col col-4 push-right">
+        .push-right
+      </div>
+    </div>
+    <pre class="code skip">&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"row"</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-6"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-4 push-right"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+&lt;/<span class="hljs-keyword">div</span>&gt;
+</pre>
+  </div>
+  <h5>Push Middle</h5>
+  <div class="example demo-grid">
+    <div class="row" style="height: 104px;">
+      <div class="col col-8 push-middle">
+        .push-middle
+      </div>
+    </div>
+    <pre class="code skip">&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"row"</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-8 push-middle"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+&lt;/<span class="hljs-keyword">div</span>&gt;
+</pre>
+  </div>
+  <h5>Push Mixed</h5>
+  <div class="example demo-grid">
+    <div class="row" style="height: 104px;">
+      <div class="col col-8 push-middle push-center">
+        .push-middle.push-center
+      </div>
+    </div>
+    <pre class="code skip">&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"row"</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-8 push-middle push-center"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+&lt;/<span class="hljs-keyword">div</span>&gt;
+</pre>
+  </div>
+  <h5>Push Bottom</h5>
+  <div class="example demo-grid">
+    <div class="row" style="height: 104px;">
+      <div class="col col-8 push-bottom">
+        .push-bottom
+      </div>
+    </div>
+    <pre class="code skip">&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"row"</span>&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"col col-8 push-bottom"</span>&gt;...&lt;/<span class="hljs-keyword">div</span>&gt;
+&lt;/<span class="hljs-keyword">div</span>&gt;
+</pre>
+  </div>
+  <h3 class="section-head" id="h-fixed-column"><a href="#h-fixed-column">Fixed Width Column</a></h3>
+  <p>Here's one more bit of magic. You can set a fixed width column and still have a responsive and flexible layout right beside this fixed width column.</p>
+  <div class="example demo-grid">
+    <div id="demo-container">
+      <div id="demo-sidebar">
+        sidebar
+      </div>
+      <div id="demo-content">
+        content
+      </div>
+    </div>
+    <pre class="code skip"><span class="hljs-comment">&lt;!-- scss --&gt;</span>
+#container {
+    @include grid-row;
+}
+#sidebar {
+    @include flex-item-width(300px);
+}
+#content {
+    @include flex-item-auto;
+}
+
+<span class="hljs-comment">&lt;!-- html --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"container"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"sidebar"</span>&gt;</span>Sidebar<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"content"</span>&gt;</span>Content<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+</pre>
+  </div>
+  <h3 class="section-head" id="h-media-grid"><a href="#h-media-grid">Media Grid</a></h3>
+  <p>Media grid is a great example of Kube's flexibility and versatility. Whenever you have some media to display, you can choose to use Media grid. This type of grid is ideal for featuring photos; it adds some visual music and slight randomness to your layout.</p>
+  <div class="example demo-grid">
+    <div id="demo-media-grid">
+      <div>
+        1
+      </div>
+      <div>
+        2
+      </div>
+      <div>
+        3
+      </div>
+      <div>
+        4
+      </div>
+      <div>
+        5
+      </div>
+      <div>
+        6
+      </div>
+      <div>
+        7
+      </div>
+      <div>
+        8
+      </div>
+      <div>
+        9
+      </div>
+      <div>
+        10
+      </div>
+    </div>
+    <pre class="code skip"><span class="hljs-comment">&lt;!-- scss --&gt;</span>
+#media-grid {
+
+    @include grid-media-columns(2);
+
+    &amp; &gt; div {
+        margin-bottom: 20px;
+        height: 80px;
+    }
+    &amp; &gt; div:nth-child(2n) {
+      height: 200px;
+    }
+    &amp; &gt; div:nth-child(5n) {
+      height: 120px;
+    }
+}
+
+<span class="hljs-comment">&lt;!-- html --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"media-grid"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>6<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>7<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>8<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>9<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</pre>
+  </div>
+</div>
+
+
+</div>
+
+<div class="form-subscribe">
+    <div id="form-subscribe-success" style="display: none;"></div>
+<div id="form-subscribe-box">
+        <h4>All about Redactor, Grafs and Kube.</h4>
+        <p>Monthly news &amp; updates. Just straight to the point.</p>
+
+        <form action="" name="mc-embedded-subscribe-form" method="post" class="form"><input type="hidden" name="authorize-token" value="">
+            <div id="subscribe-email-validation-error"></div>
+            <div class="form-item">
+                <div class="append">
+                    <input type="email" name="EMAIL" id="mce-EMAIL" placeholder="Email">
+                    <button class="button">Subscribe</button>
+                </div>
+            </div>
+    
+            
+            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="" tabindex="-1" value=""></div>
+        </form>
+
+        <div class="form-subscribe-twitter"><div>or</div> <a href="https://twitter.com/jebli_7">Follow us on Twitter</a></div>
+    </div>
+</div>
+
+    <div class="">
+        <p>
+  Published
+  
+    
+      by <span itemprop="author">Iván Corrales Solera</span>
+    
+  
+  <time datetime="0001-01-01T00:00:00&#43;00:00">
+    1 Jan, 0001
+  </time>
+  
+  
+  using <span itemprop="wordCount">659</span> words.
+</p>
+
+        
+
+
+
+    </div>
+    
+    
+    
+</div>
+</div>
+</main>
+  <footer>   <footer id="footer">
+    <nav>
+      <ul>
+        <li><span>koazee</span></li>
+        <li>
+          <a href="https://twitter.com/@wesovilabs">Give a shout-out on Twitter!</a>
+        </li>
+          <li>
+              <a href="https://github.com/ivancorrales">Follow me on Github</a>
+          </li>
+      </ul>
+    </nav>
+    <p>koazee&copy;2018 Licence MIT.</p>
+  </footer> </footer>
+
+
+  <script src="/koazee/js/kube.js" type="text/javascript">
+  </script>
+  <script src="/koazee/js/kube.legenda.js" type="text/javascript">
+  </script>
+  <script src="/koazee/js/master.js" type="text/javascript">
+  </script>
+</body>
+
+</html>
