@@ -9,5 +9,5 @@ pkg
 
 #IDEs
 /.idea
-
+.hugo
 coverage.txt/themes/

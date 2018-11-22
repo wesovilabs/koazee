@@ -84,7 +84,7 @@
   </div>
   <div class="hide-sm" id="top">
     <div id="top-brand">
-      <a href="/" title="home">Koazee</a>
+      <a href="/koazee" title="home">Koazee</a>
     </div>
     <nav id="top-nav-main">
       <ul>
@@ -94,7 +94,7 @@
     
     <li><a href="/koazee/docs/" >Documentation</a></li>
     
-    <li><a href="/koazee/blog/" >Guides</a></li>
+    <li><a href="/koazee/guides/" >Guides &amp; Tutorials</a></li>
     
       </ul>
     </nav>
@@ -140,9 +140,7 @@ headingSelector: 'h3'
 
 
     <p><h3 class="section-head" id="h-signature"><a href="#h-signature">Function signature</a></h3>
-<p>This function receives an argument and return the Stream</p></p>
-
-<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang">    <span class="kd">func</span> <span class="nx">Add</span><span class="p">(</span><span class="nx">item</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">stream</span> <span class="nx">S</span><span class="p">)</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang">    <span class="kd">func</span> <span class="nx">Add</span><span class="p">(</span><span class="nx">item</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">stream</span> <span class="nx">S</span><span class="p">)</span></code></pre></div></p>
 
 <p><h4>Arguments</h4>
 <table>
@@ -206,14 +204,36 @@ headingSelector: 'h3'
 <h3 class="section-head" id="h-examples"><a href="#h-examples">Examples</a></h3>
 <nav class="tabs" data-component="tabs">
     <ul>
-      <li>
+      <li class="active">
         <a href="#numbers">Numbers</a>
       </li>
-      <li class="active">
+      <li>
         <a href="#struct_pointers">Pointers</a>
       </li>
     </ul>
 </nav>
+<div id="numbers">
+<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;github.com/wesovilabs/koazee&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">var</span> <span class="nx">numbers</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">newList</span> <span class="o">:=</span> <span class="nx">koazee</span><span class="p">.</span><span class="nx">Stream</span><span class="p">().</span>
+		<span class="nx">Add</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span>
+		<span class="nx">With</span><span class="p">(</span><span class="nx">numbers</span><span class="p">).</span>
+		<span class="nx">Out</span><span class="p">().</span>
+		<span class="nx">Val</span><span class="p">().([]</span><span class="kt">int</span><span class="p">)</span>
+
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">number</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">newList</span> <span class="p">{</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&#34;%d\n&#34;</span><span class="p">,</span> <span class="nx">number</span><span class="p">)</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+</div>
 <div id="struct_pointers">
 <div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kn">package</span> <span class="nx">main</span>
 
@@ -264,28 +284,7 @@ headingSelector: 'h3'
 		<span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&#34;%s was invited to the party\n&#34;</span><span class="p">,</span> <span class="nx">primate</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
 	<span class="p">}</span>
 <span class="p">}</span></code></pre></div>
-</div>
-<div id="numbers">
-<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="kn">import</span> <span class="p">(</span>
-	<span class="s">&#34;fmt&#34;</span>
-	<span class="s">&#34;github.com/wesovilabs/koazee&#34;</span>
-<span class="p">)</span>
-
-<span class="kd">var</span> <span class="nx">numbers</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">}</span>
-
-<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">newList</span> <span class="o">:=</span> <span class="nx">koazee</span><span class="p">.</span><span class="nx">Stream</span><span class="p">().</span>
-		<span class="nx">Add</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span>
-		<span class="nx">With</span><span class="p">(</span><span class="nx">numbers</span><span class="p">).</span>
-		<span class="nx">Out</span><span class="p">().</span>
-		<span class="nx">Val</span><span class="p">().([]</span><span class="kt">int</span><span class="p">)</span>
-
-	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">number</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">newList</span> <span class="p">{</span>
-		<span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&#34;%d\n&#34;</span><span class="p">,</span> <span class="nx">number</span><span class="p">)</span>
-	<span class="p">}</span>
-<span class="p">}</span></code></pre></div></p>
+</div></p>
 
 
     

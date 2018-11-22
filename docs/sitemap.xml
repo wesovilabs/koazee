@@ -8,7 +8,19 @@
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/quick-start/</loc>
+    <loc>http://wesovilabs.com/koazee/blog/quick-start/</loc>
+  </url>
+  
+  <url>
+    <loc>http://wesovilabs.com/koazee/docs/first/</loc>
+  </url>
+  
+  <url>
+    <loc>http://wesovilabs.com/koazee/docs/last/</loc>
+  </url>
+  
+  <url>
+    <loc>http://wesovilabs.com/koazee/docs/at/</loc>
   </url>
   
   <url>
@@ -20,11 +32,47 @@
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/custom-plugins/</loc>
+    <loc>http://wesovilabs.com/koazee/docs/contains/</loc>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/typography/</loc>
+    <loc>http://wesovilabs.com/koazee/docs/count/</loc>
+  </url>
+  
+  <url>
+    <loc>http://wesovilabs.com/koazee/docs/filter/</loc>
+  </url>
+  
+  <url>
+    <loc>http://wesovilabs.com/koazee/docs/reduce/</loc>
+  </url>
+  
+  <url>
+    <loc>http://wesovilabs.com/koazee/docs/map/</loc>
+  </url>
+  
+  <url>
+    <loc>http://wesovilabs.com/koazee/backup/custom-plugins/</loc>
+  </url>
+  
+  <url>
+    <loc>http://wesovilabs.com/koazee/docs/foreach/</loc>
+  </url>
+  
+  <url>
+    <loc>http://wesovilabs.com/koazee/docs/sort/</loc>
+  </url>
+  
+  <url>
+    <loc>http://wesovilabs.com/koazee/docs/removeduplicates/</loc>
+  </url>
+  
+  <url>
+    <loc>http://wesovilabs.com/koazee/docs/compose/</loc>
+  </url>
+  
+  <url>
+    <loc>http://wesovilabs.com/koazee/backup/typography/</loc>
   </url>
   
   <url>
@@ -37,27 +85,32 @@
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/grid/</loc>
+    <loc>http://wesovilabs.com/koazee/blog/grid/</loc>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/tables/</loc>
+    <loc>http://wesovilabs.com/koazee/blog/tables/</loc>
     <lastmod>2017-04-10T16:40:43+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/forms/</loc>
+    <loc>http://wesovilabs.com/koazee/blog/forms/</loc>
     <lastmod>2017-04-10T16:40:50+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/buttons/</loc>
+    <loc>http://wesovilabs.com/koazee/backup/buttons/</loc>
     <lastmod>2017-04-10T16:41:16+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/labels/</loc>
+    <loc>http://wesovilabs.com/koazee/blog/labels/</loc>
     <lastmod>2017-04-10T16:40:43+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://wesovilabs.com/koazee/backup/messages/</loc>
+    <lastmod>2017-04-10T16:41:34+01:00</lastmod>
   </url>
   
   <url>
@@ -66,38 +119,38 @@
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/messages/</loc>
-    <lastmod>2017-04-10T16:41:34+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://wesovilabs.com/koazee/docs/tabs/</loc>
+    <loc>http://wesovilabs.com/koazee/blog/tabs/</loc>
     <lastmod>2017-04-10T16:41:40+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/breadcrumbs/</loc>
+    <loc>http://wesovilabs.com/koazee/backup/breadcrumbs/</loc>
     <lastmod>2017-04-10T16:41:54+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/pagination/</loc>
+    <loc>http://wesovilabs.com/koazee/blog/pagination/</loc>
     <lastmod>2017-04-10T16:42:03+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/dropdown/</loc>
+    <loc>http://wesovilabs.com/koazee/blog/dropdown/</loc>
     <lastmod>2017-04-10T16:42:12+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/modal/</loc>
+    <loc>http://wesovilabs.com/koazee/blog/modal/</loc>
     <lastmod>2017-04-10T16:42:18+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/sticky/</loc>
+    <loc>http://wesovilabs.com/koazee/blog/sticky/</loc>
     <lastmod>2017-04-10T16:42:26+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://wesovilabs.com/koazee/backup/collapse/</loc>
+    <lastmod>2017-04-10T16:42:50+01:00</lastmod>
   </url>
   
   <url>
@@ -106,28 +159,22 @@
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/collapse/</loc>
-    <lastmod>2017-04-10T16:42:50+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://wesovilabs.com/koazee/docs/offcanvas/</loc>
+    <loc>http://wesovilabs.com/koazee/blog/offcanvas/</loc>
     <lastmod>2017-04-10T16:42:43+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/toggleme/</loc>
+    <loc>http://wesovilabs.com/koazee/blog/toggleme/</loc>
     <lastmod>2017-04-10T16:42:59+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/animation/</loc>
+    <loc>http://wesovilabs.com/koazee/backup/animation/</loc>
     <lastmod>2017-04-10T16:43:08+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://wesovilabs.com/koazee/docs/</loc>
-    <lastmod>2017-04-10T16:40:43+01:00</lastmod>
   </url>
   
   <url>
@@ -135,28 +182,38 @@
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/colors/</loc>
+    <loc>http://wesovilabs.com/koazee/guides/logging/</loc>
+  </url>
+  
+  <url>
+    <loc>http://wesovilabs.com/koazee/backup/colors/</loc>
     <lastmod>2017-04-10T16:43:14+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/sizing/</loc>
+    <loc>http://wesovilabs.com/koazee/blog/sizing/</loc>
     <lastmod>2017-04-10T16:43:21+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/mixins/</loc>
+    <loc>http://wesovilabs.com/koazee/blog/mixins/</loc>
     <lastmod>2017-04-10T16:43:36+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wesovilabs.com/koazee/docs/utils/</loc>
+    <loc>http://wesovilabs.com/koazee/blog/utils/</loc>
     <lastmod>2017-04-10T16:43:30+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://wesovilabs.com/koazee/blog/inline-style/</loc>
     <lastmod>2017-04-02T21:56:55+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://wesovilabs.com/koazee/backup/</loc>
+    <lastmod>2017-04-10T16:41:16+01:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -189,6 +246,11 @@
   <url>
     <loc>http://wesovilabs.com/koazee/categories/general/</loc>
     <lastmod>2017-03-02T21:56:55+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://wesovilabs.com/koazee/guides/</loc>
     <priority>0</priority>
   </url>
   
