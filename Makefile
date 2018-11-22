@@ -30,5 +30,7 @@ install:
 	${GO} install github.com/golangci/golangci-lint/cmd/golangci-lint
 site:
 	cd docs; \
-	bundle install; \
+	jekyll serve
+doc:
+	cd .hugo; \
 	jekyll serve
