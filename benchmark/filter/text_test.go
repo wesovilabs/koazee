@@ -22,11 +22,11 @@ BenchmarkString10000TextLenKoazee-4   	    1000	   2431268 ns/op
 */
 /**
 Koazee Gelada
-BenchmarkString10TextLenKoazee-4      	 2000000	       753 ns/op
-BenchmarkString100TextLenKoazee-4     	 1000000	      2081 ns/op
-BenchmarkString1000TextLenKoazee-4    	  100000	     18506 ns/op
-BenchmarkString10000TextLenKoazee-4   	    5000	    253658 ns/op
- */
+BenchmarkString10TextLenKoazee-4      	 2000000	       625 ns/op
+BenchmarkString100TextLenKoazee-4     	 1000000	      2073 ns/op
+BenchmarkString1000TextLenKoazee-4    	  100000	     19183 ns/op
+BenchmarkString10000TextLenKoazee-4   	    5000	    257391 ns/op
+*/
 func BenchmarkString10TextLenKoazee(b *testing.B) {
 	b.StopTimer()
 	stream := koazee.

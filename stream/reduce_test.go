@@ -1,6 +1,7 @@
 package stream_test
 
 import (
+	"github.com/wesovilabs/koazee/operation/add"
 	"testing"
 
 	"github.com/wesovilabs/koazee"
@@ -77,6 +78,6 @@ func TestStream_Reduce_validation(t *testing.T) {
 	// To verify how errors are propagated
 	assert.Equal(
 		t,
-		stream.OpCodeAdd,
+		add.OpCode,
 		stream.New([]int{}).Add("home").Out().Err().Operation())
 }

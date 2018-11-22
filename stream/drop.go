@@ -32,6 +32,7 @@ func (op *drop) run(s *Stream) *Stream {
 			newItems = reflect.Append(newItems, items.Index(index))
 		}
 	}
+	s.itemsLen = newItems.Len()
 	s.items = newItems.Interface()
 	return s
 }

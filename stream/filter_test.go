@@ -26,12 +26,12 @@ func TestStream_Filter_validation(t *testing.T) {
 		t,
 		errors.InvalidArgument(filter.OpCode, "The filter operation requires a function as argument"),
 		koazee.StreamOf([]string{"Freedom", "for", "the", "animals"}).Filter(10).Out().Err())
-/**
-	assert.Equal(
-		t,
-		errors.EmptyStream(filter.OpCode, "A nil Stream can not be filtered"),
-		koazee.Stream().Filter(func() {}).Out().Err())
-**/
+	/**
+		assert.Equal(
+			t,
+			errors.EmptyStream(filter.OpCode, "A nil Stream can not be filtered"),
+			koazee.Stream().Filter(func() {}).Out().Err())
+	**/
 	assert.Equal(
 		t,
 		errors.InvalidArgument(filter.OpCode, "The provided function must retrieve 1 argument"),

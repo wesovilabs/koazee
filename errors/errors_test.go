@@ -1,6 +1,8 @@
 package errors_test
 
 import (
+	"github.com/wesovilabs/koazee/operation/add"
+	"github.com/wesovilabs/koazee/operation/contains"
 	"github.com/wesovilabs/koazee/operation/filter"
 	"github.com/wesovilabs/koazee/operation/last"
 	"testing"
@@ -15,13 +17,11 @@ import (
 )
 
 func TestError_Error(t *testing.T) {
-	err := errors.New(stream.OpCodeCount, "unknown", "argument")
-	assert.Equal(t, "[count:unknown] argument", err.Error())
-	err = errors.New(stream.OpCodeAdd, "unknown", "argument")
+	err := errors.New(add.OpCode, "unknown", "argument")
 	assert.Equal(t, "[add:unknown] argument", err.Error())
 	err = errors.New(atOperation.OpCode, "unknown", "argument")
 	assert.Equal(t, "[at:unknown] argument", err.Error())
-	err = errors.New(stream.OpCodeContains, "unknown", "argument")
+	err = errors.New(contains.OpCode, "unknown", "argument")
 	assert.Equal(t, "[contains:unknown] argument", err.Error())
 	err = errors.New(stream.OpCodeDrop, "unknown", "argument")
 	assert.Equal(t, "[drop:unknown] argument", err.Error())

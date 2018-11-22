@@ -1,9 +1,8 @@
 package errors_test
 
 import (
+	"github.com/wesovilabs/koazee/operation/add"
 	"testing"
-
-	"github.com/wesovilabs/koazee/stream"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/wesovilabs/koazee/errors"
@@ -16,19 +15,19 @@ func TestErrCode_String(t *testing.T) {
 }
 
 func TestInvalidType(t *testing.T) {
-	err := errors.InvalidType(stream.OpCodeAdd, "My error is %s, %d times", "fail", 3)
+	err := errors.InvalidType(add.OpCode, "My error is %s, %d times", "fail", 3)
 	assert.Equal(t, "err.invalid-type", err.Code())
 	assert.Equal(t, "[add:err.invalid-type] My error is fail, 3 times", err.Error())
 }
 
 func TestInvalidStreamIndex(t *testing.T) {
-	err := errors.InvalidIndex(stream.OpCodeAdd, "Index not valid")
+	err := errors.InvalidIndex(add.OpCode, "Index not valid")
 	assert.Equal(t, "err.invalid-index", err.Code())
 	assert.Equal(t, "[add:err.invalid-index] Index not valid", err.Error())
 }
 
 func TestItemsNil(t *testing.T) {
-	err := errors.EmptyStream(stream.OpCodeAdd, "items is nil")
+	err := errors.EmptyStream(add.OpCode, "items is nil")
 	assert.Equal(t, "err.items-nil", err.Code())
 	assert.Equal(t, "[add:err.items-nil] items is nil", err.Error())
 }

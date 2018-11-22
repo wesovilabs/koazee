@@ -1,12 +1,13 @@
 package stream_test
 
 import (
+	"github.com/wesovilabs/koazee/operation/add"
 	"testing"
 
 	"github.com/wesovilabs/koazee/errors"
 
-	"github.com/wesovilabs/koazee/stream"
 	"github.com/wesovilabs/koazee/operation/last"
+	"github.com/wesovilabs/koazee/stream"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -32,7 +33,7 @@ func TestStream_Last_validation(t *testing.T) {
 	// To verify how errors are propagated
 	assert.Equal(
 		t,
-		stream.OpCodeAdd,
+		add.OpCode,
 		stream.New([]int{}).Add("home").Last().Err().Operation())
 
 }

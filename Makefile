@@ -19,7 +19,7 @@ lint:
 	golint
 benchmark: fmt
 	#${GO} run ./benchmark/main.go
-	${GO} test -bench Benchmark.+ -run -Benchmark.+ -v ./benchmark/filter/...
+	${GO} test -bench Benchmark.+ -run -Benchmark.+ -v ./benchmark/contains/...
 info: fmt
 	depscheck -totalonly -tests .
 	golocc

@@ -1,6 +1,8 @@
 package stream_test
 
 import (
+	"github.com/wesovilabs/koazee/operation/add"
+	"github.com/wesovilabs/koazee/operation/contains"
 	"testing"
 
 	"github.com/wesovilabs/koazee/errors"
@@ -26,49 +28,44 @@ func TestStream_Contains(t *testing.T) {
 }
 
 func TestStream_Contains_validate(t *testing.T) {
-	contains, err := stream.New([]string{"Adopt", "a", "dog", ",", "don't", "buy"}).Contains(true)
+	c, err := stream.New([]string{"Adopt", "a", "dog", ",", "don't", "buy"}).Contains(true)
 	assert.Equal(
 		t,
 		false,
-		contains,
+		c,
 	)
 	assert.Equal(
 		t,
-		errors.InvalidArgument(stream.OpCodeContains,
+		errors.InvalidArgument(contains.OpCode,
 			"The Stream contains elements of type string and the passed argument has type bool"),
 		err,
 	)
 
-	contains, err = stream.New([]person{{"Iván", 34}}).Contains(nil)
+	c, err = stream.New([]person{{"Iván", 34}}).Contains(nil)
 	assert.Equal(
 		t,
 		false,
-		contains,
+		c,
 	)
 	assert.Equal(
 		t,
-		errors.InvalidArgument(stream.OpCodeContains,
+		errors.InvalidArgument(contains.OpCode,
 			"It can not be checked if an array of non-pointers "+
 				"contains a nil value"),
 		err,
 	)
 
-	contains, err = stream.New(nil).Contains(5)
+	c, _ = stream.New(nil).Contains(5)
 	assert.Equal(
 		t,
 		false,
-		contains,
+		c,
 	)
-	assert.Equal(
-		t,
-		errors.EmptyStream(stream.OpCodeContains, "It can not be "+
-			"checked if an element is in a nil Stream"),
-		err,
-	)
+
 	_, err = stream.New([]int{}).Add("home").Contains("home")
 	// To verify how errors are propagated
 	assert.Equal(
 		t,
-		stream.OpCodeAdd, err.Operation())
+		add.OpCode, err.Operation())
 
 }
