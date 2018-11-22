@@ -191,17 +191,6 @@ Errors    Type Message     err.items-nil A nil stream can not be iterated  Examp
     </item>
     
     <item>
-      <title>stream.Compose</title>
-      <link>http://wesovilabs.com/koazee/docs/compose/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://wesovilabs.com/koazee/docs/compose/</guid>
-      <description>Function signature func Compose(streams []stream.S) (stream stream.S) 
-Arguments    Name Type Description     streams Array of Streams List of streams to be joined    Output    Name Type Description     strea, stream.S A new stream that will contain both the items and operations in all the the joined streams   
-Errors    Type Message     err.</description>
-    </item>
-    
-    <item>
       <title>Typography</title>
       <link>http://wesovilabs.com/koazee/backup/typography/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -421,6 +410,17 @@ Toggle      Shop   News   Contact   Blog   Account      &amp;lt;div class=&amp;l
     </item>
     
     <item>
+      <title>Performance improvements in Koazee v0.0.2</title>
+      <link>http://wesovilabs.com/koazee/guides/performance/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://wesovilabs.com/koazee/guides/performance/</guid>
+      <description>Why   After releasing Koazee Titi (v0.0.1) I was asked to publish some benchmark. As you know, Koazee is based in reflection and this is even more expensive than I expected before writing the tests.  Benchmark tests helped me to do big performance improvements in v0.0.2 as we will see in this guide. 
+
+Running benchmark tests locally  Benchmark tests are available in Koazee repository</description>
+    </item>
+    
+    <item>
       <title>Colors</title>
       <link>http://wesovilabs.com/koazee/backup/colors/</link>
       <pubDate>Mon, 10 Apr 2017 16:43:14 +0100</pubDate>
@@ -475,16 +475,6 @@ invisible  But you can see this div because it has visible class.</description>
       
       <guid>http://wesovilabs.com/koazee/blog/inline-style/</guid>
       <description>Chocolate tiramisu pastry a link cotton candy sesame snaps. Dessert cake chocolate bar a bold part sugar plum bonbon marshmallow lollipop toffee soufflé. Donut caramels chocolate bar. Oat cake cookie a marked part cheesecake donut. Jelly-o  $code marzipan cake. Bonbon sesame snaps chocolate an italic part oat cake pudding sweet roll caramels bonbon. Soufflé muffin 👻 gummies sugar plum dessert bonbon bear claw. Sweet ice cream jujubes. Marzipan sugar plum pastry chocolate ⌘+A bar fruitcake.</description>
-    </item>
-    
-    <item>
-      <title>Password Recovery</title>
-      <link>http://wesovilabs.com/koazee/password-recovery/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://wesovilabs.com/koazee/password-recovery/</guid>
-      <description>Your email    Send Back to Log In
- </description>
     </item>
     
     <item>

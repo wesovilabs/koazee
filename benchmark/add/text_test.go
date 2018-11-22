@@ -14,12 +14,12 @@ var strings10000 = utils.ArrayOfString(1, 10, 10000)
 
 /**
 Titi
-BenchmarkString10Koazee-4      	 5000000	       280 ns/op
+BenchmarkAddString10-4      	 5000000	       280 ns/op
 BenchmarkString100Koazee-4     	 5000000	       259 ns/op
 BenchmarkString1000Koazee-4    	 5000000	       267 ns/op
 BenchmarkString10000Koazee-4   	 5000000	       270 ns/op
 */
-func BenchmarkString10Koazee(b *testing.B) {
+func BenchmarkAddString10(b *testing.B) {
 	var result *stream.Output
 	b.StopTimer()
 	stream := koazee.

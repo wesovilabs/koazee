@@ -158,16 +158,5 @@ Output None
 Errors    Type Message     err.items-nil A nil stream can not be iterated  Examples  Numbers   Pointers    package mainimport (&amp;#34;fmt&amp;#34;&amp;#34;github.com/wesovilabs/koazee&amp;#34;)var numbers = []int{1, 1, 9, 3, 5, 7, 9}func main() {fmt.Println(koazee.Stream().With(numbers).RemoveDuplicates().Out().Val())}  package mainimport (&amp;#34;fmt&amp;#34;&amp;#34;github.com/wesovilabs/koazee&amp;#34;)type genre intconst (female genre = iotamale)type primate struct {name stringage intfamily stringgenre genre}func newPrimate(name string, age int, family string, genre genre) *primate {return &amp;amp;primate{name: name,age: age,family: family,genre: genre,}}var primates = []*primate{newPrimate(&amp;#34;John&amp;#34;, 15, &amp;#34;Capuchin&amp;#34;, male),newPrimate(&amp;#34;Laura&amp;#34;, 12, &amp;#34;Squirrel monkey&amp;#34;, female),newPrimate(&amp;#34;Benjamin&amp;#34;, 23, &amp;#34;Spider monkey&amp;#34;, male),newPrimate(&amp;#34;George&amp;#34;, 19, &amp;#34;Golden Lion Tamarin&amp;#34;, male),newPrimate(&amp;#34;Jane&amp;#34;, 33, &amp;#34;Orangutan&amp;#34;, female),newPrimate(&amp;#34;Sarah&amp;#34;, 7, &amp;#34;Gibbon&amp;#34;, female),newPrimate(&amp;#34;George&amp;#34;, 19, &amp;#34;Golden Lion Tamarin&amp;#34;, male),}func main() {primates := koazee.</description>
     </item>
     
-    <item>
-      <title>stream.Compose</title>
-      <link>http://wesovilabs.com/koazee/docs/compose/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://wesovilabs.com/koazee/docs/compose/</guid>
-      <description>Function signature func Compose(streams []stream.S) (stream stream.S) 
-Arguments    Name Type Description     streams Array of Streams List of streams to be joined    Output    Name Type Description     strea, stream.S A new stream that will contain both the items and operations in all the the joined streams   
-Errors    Type Message     err.</description>
-    </item>
-    
   </channel>
 </rss>

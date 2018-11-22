@@ -200,12 +200,8 @@ Once Koazee is added to the project you just need to import it
         <td>RemoveDuplicates</td>
         <td>Remove duplicates elements in the stream</td>
         <td><a href="/koazee/docs/removeduplicates">Documentation</a>
-      </tr>    
-      <tr>
-        <td>Compose</td>
-        <td>Join 2 or more streams in a single one</td>
-        <td><a href="/koazee/docs/compose">Documentation</a>
-      </tr>      
+      </tr>         
+      </tr>         
     </tbody>
   </table>
 </div>
