@@ -11,7 +11,6 @@ const OpCode = "removeDuplicates"
 type RemoveDuplicates struct {
 	ItemsValue reflect.Value
 	ItemsType  reflect.Type
-
 }
 
 func (op *RemoveDuplicates) Run() (reflect.Value, *errors.Error) {
@@ -56,7 +55,7 @@ func (op *RemoveDuplicates) prepareMapWithKeys() map[interface{}]int {
 			v := op.ItemsValue.Index(index).Elem().Interface()
 			keys[v]++
 		}
-	}else{
+	} else {
 		for index := 0; index < op.ItemsValue.Len(); index++ {
 			v := op.ItemsValue.Index(index).Interface()
 			keys[v]++

@@ -8,7 +8,7 @@ type streamDuplicates struct {
 }
 
 func (m *streamDuplicates) run(s Stream) Stream {
-	if s.itemsLen==0{
+	if s.itemsLen == 0 {
 		return s
 	}
 	value, err := (&duplicates.RemoveDuplicates{ItemsType: s.itemsType, ItemsValue: s.itemsValue}).Run()

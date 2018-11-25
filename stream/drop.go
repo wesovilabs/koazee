@@ -12,7 +12,7 @@ type streamDrop struct {
 }
 
 func (a *streamDrop) run(s Stream) Stream {
-	if s.itemsLen==0{
+	if s.itemsLen == 0 {
 		return s
 	}
 	value, err := (&drop.Drop{ItemsType: s.itemsType, ItemsValue: s.itemsValue, Item: a.Item}).Run()

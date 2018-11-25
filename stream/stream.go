@@ -175,15 +175,6 @@ func New(items interface{}) Stream {
 	return s
 }
 
-func (s Stream) withItems(items interface{}) {
-	itemsValue := reflect.ValueOf(items)
-	itemsType := reflect.TypeOf(items)
-	s.items = items
-	s.itemsType = itemsType
-	s.itemsValue = itemsValue
-	s.itemsLen = itemsValue.Len()
-}
-
 func (s Stream) withItemsValue(items reflect.Value) Stream {
 	// itemsType := reflect.TypeOf(items)
 	s.itemsValue = items

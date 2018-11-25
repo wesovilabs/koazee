@@ -39,9 +39,9 @@ func TestStream_At_validation(t *testing.T) {
 
 	// To verify how errors are propagated
 	/**
-	assert.Equal(
-		t,
-		add.OpCode,
-		stream.New([]int{}).Add("home").At(0).Err().Operation())
-**/
+		assert.Equal(
+			t,
+			add.OpCode,
+			stream.New([]int{}).Add("home").At(0).Err().Operation())
+	**/
 }

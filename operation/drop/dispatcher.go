@@ -1,12 +1,10 @@
-
 package drop
 
 import "reflect"
 
-
 type dispatchFunction func(items reflect.Value, item interface{}) interface{}
 
-func reverseIndexes(indexes []int) []int{
+func reverseIndexes(indexes []int) []int {
 	for i := len(indexes)/2 - 1; i >= 0; i-- {
 		opp := len(indexes) - 1 - i
 		indexes[i], indexes[opp] = indexes[opp], indexes[i]
@@ -15,41 +13,41 @@ func reverseIndexes(indexes []int) []int{
 }
 
 var dispatcher = map[string]dispatchFunction{
-	"string":  dropString,
+	"string":   dropString,
 	"*string":  dropPtrString,
-	"bool":  dropBool,
-	"*bool":  dropPtrBool,
-	"int":  dropInt,
-	"*int":  dropPtrInt,
-	"int8":  dropInt8,
-	"*int8":  dropPtrInt8,
-	"int16":  dropInt16,
-	"*int16":  dropPtrInt16,
-	"int32":  dropInt32,
-	"*int32":  dropPtrInt32,
-	"int64":  dropInt64,
-	"*int64":  dropPtrInt64,
-	"uint":  dropUint,
-	"*uint":  dropPtrUint,
-	"uint8":  dropUint8,
-	"*uint8":  dropPtrUint8,
-	"uint16":  dropUint16,
+	"bool":     dropBool,
+	"*bool":    dropPtrBool,
+	"int":      dropInt,
+	"*int":     dropPtrInt,
+	"int8":     dropInt8,
+	"*int8":    dropPtrInt8,
+	"int16":    dropInt16,
+	"*int16":   dropPtrInt16,
+	"int32":    dropInt32,
+	"*int32":   dropPtrInt32,
+	"int64":    dropInt64,
+	"*int64":   dropPtrInt64,
+	"uint":     dropUint,
+	"*uint":    dropPtrUint,
+	"uint8":    dropUint8,
+	"*uint8":   dropPtrUint8,
+	"uint16":   dropUint16,
 	"*uint16":  dropPtrUint16,
-	"uint32":  dropUint32,
+	"uint32":   dropUint32,
 	"*uint32":  dropPtrUint32,
-	"uint64":  dropUint64,
+	"uint64":   dropUint64,
 	"*uint64":  dropPtrUint64,
 	"float32":  dropFloat32,
-	"*float32":  dropPtrFloat32,
+	"*float32": dropPtrFloat32,
 	"float64":  dropFloat64,
-	"*float64":  dropPtrFloat64,
+	"*float64": dropPtrFloat64,
 }
 
-func dispatch(items reflect.Value, itemValue interface{}, info *dropInfo) (bool,interface{}) {
-	input:=(*info.itemType).String()
-	if fnVal,ok:=dispatcher[input];ok{
-		return true, fnVal(items,itemValue)
-    }
+func dispatch(items reflect.Value, itemValue interface{}, info *dropInfo) (bool, interface{}) {
+	input := (*info.itemType).String()
+	if fnVal, ok := dispatcher[input]; ok {
+		return true, fnVal(items, itemValue)
+	}
 	return false, nil
 }
 

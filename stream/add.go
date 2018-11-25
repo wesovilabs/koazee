@@ -13,13 +13,13 @@ type streamAdd struct {
 }
 
 func (a *streamAdd) run(s Stream) Stream {
-	if s.itemsLen==0{
-		elementType:=reflect.TypeOf(a.Item)
-		if s.itemsType!=nil &&(s.itemsType!=elementType){
-			s.err= errors.InvalidType(add.OpCode,"invalid type")
+	if s.itemsLen == 0 {
+		elementType := reflect.TypeOf(a.Item)
+		if s.itemsType != nil && (s.itemsType != elementType) {
+			s.err = errors.InvalidType(add.OpCode, "invalid type")
 			return s
 		}
-		slice:=reflect.MakeSlice(reflect.SliceOf(elementType), 0, 0)
+		slice := reflect.MakeSlice(reflect.SliceOf(elementType), 0, 0)
 		s = s.withItemsValue(slice)
 	}
 	value, err := (&add.Add{ItemsType: s.itemsType, ItemsValue: s.itemsValue, Item: a.Item}).Run()
