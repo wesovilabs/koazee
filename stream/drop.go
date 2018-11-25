@@ -18,7 +18,7 @@ func (op *drop) name() string {
 }
 
 // Run performs the operations whenever is called
-func (op *drop) run(s *Stream) *Stream {
+func (op *drop) run(s Stream) Stream {
 	if err := op.validate(s); err != nil {
 		s.err = err
 		return s
@@ -37,7 +37,7 @@ func (op *drop) run(s *Stream) *Stream {
 	return s
 }
 
-func (op *drop) validate(s *Stream) *errors.Error {
+func (op *drop) validate(s Stream) *errors.Error {
 	if s.items == nil {
 		return errors.EmptyStream(op.name(), "An element can not be dropped in a nil Stream")
 	}

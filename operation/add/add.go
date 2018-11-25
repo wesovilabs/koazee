@@ -1,7 +1,6 @@
 package add
 
 import (
-	"fmt"
 	"reflect"
 
 	"github.com/wesovilabs/koazee/errors"
@@ -12,26 +11,22 @@ const OpCode = "add"
 
 // Add struct for defining Add operation
 type Add struct {
-	ItemsValue *reflect.Value
+	ItemsValue reflect.Value
 	ItemsType  reflect.Type
 	Item       interface{}
 }
 
 // Run performs the operations whenever is called
-func (op *Add) Run() (interface{}, *errors.Error) {
+func (op *Add) Run() (reflect.Value, *errors.Error) {
 	info, err := op.validate()
 	if err != nil {
-		return nil, err
+		return reflect.ValueOf(nil), err
 	}
-	/**
-	if found, items := dispatch(op.ItemsValue, info.itemValue, info); found {
-		return items, nil
+	if op.ItemsValue.Len() == 0 {
+		return reflect.ValueOf(nil), errors.EmptyStream(OpCode, "")
 	}
-	**/
-	if op.ItemsValue == nil {
-		return []interface{}{info.itemValue}, nil
-	}
-	return reflect.Append(*op.ItemsValue, info.itemValue), nil
+	newItems := reflect.Append(op.ItemsValue, info.itemValue)
+	return newItems, nil
 }
 
 func (op *Add) validate() (*addInfo, *errors.Error) {
@@ -39,9 +34,9 @@ func (op *Add) validate() (*addInfo, *errors.Error) {
 	if info := cache.get(op.ItemsType, itemType); info != nil {
 		return info, nil
 	}
-	fmt.Println("cache...")
+
 	info := &addInfo{itemType: &itemType}
-	if op.ItemsValue != nil {
+	if op.ItemsValue.Len() > 0 {
 		if op.ItemsValue.Kind() != reflect.Ptr && op.Item == nil {
 			return nil, errors.InvalidArgument(OpCode, "A nil value can not be added in a Stream of non-pointers values")
 		}
@@ -50,7 +45,8 @@ func (op *Add) validate() (*addInfo, *errors.Error) {
 				"An element whose type is %s can not be added in a Stream of type %s", itemType, op.ItemsType)
 		}
 	}
-	info.itemValue = reflect.ValueOf(op.Item)
+	value := reflect.ValueOf(op.Item)
+	info.itemValue = value
 	cache.add(op.ItemsType, itemType, info)
 	return info, nil
 }

@@ -11,7 +11,7 @@ const OpCode = "filter"
 
 type Filter struct {
 	ItemsType  reflect.Type
-	ItemsValue *reflect.Value
+	ItemsValue reflect.Value
 	Func       interface{}
 }
 
@@ -19,10 +19,10 @@ func (op *Filter) name() string {
 	return OpCode
 }
 
-func (op *Filter) Run() (interface{}, *errors.Error) {
+func (op *Filter) Run() (reflect.Value, *errors.Error) {
 	info, err := op.validate()
 	if err != nil {
-		return nil, err
+		return reflect.ValueOf(nil), err
 	}
 	if found, result := dispatch(op.ItemsValue, op.Func, info); found {
 		return result, nil
@@ -36,7 +36,7 @@ func (op *Filter) Run() (interface{}, *errors.Error) {
 			newItems = reflect.Append(newItems, item)
 		}
 	}
-	return newItems.Interface(), nil
+	return newItems, nil
 }
 
 func (op *Filter) validate() (*filterInfo, *errors.Error) {
@@ -58,6 +58,7 @@ func (op *Filter) validate() (*filterInfo, *errors.Error) {
 	}
 	fnOut := reflect.New(function.Type().Out(0)).Elem()
 	fnIn := reflect.New(function.Type().In(0)).Elem()
+
 	if fnIn.Type() != op.ItemsType {
 		return nil, errors.InvalidArgument(op.name(),
 			"The type of the argument in the provided function must be %s",

@@ -16,7 +16,7 @@ func (op *removeDuplicates) name() string {
 	return OpCodeRemoveDuplicates
 }
 
-func (op *removeDuplicates) run(s *Stream) *Stream {
+func (op *removeDuplicates) run(s Stream) Stream {
 	if err := op.validate(s); err != nil {
 		s.err = err
 		return s
@@ -35,7 +35,7 @@ func (op *removeDuplicates) run(s *Stream) *Stream {
 	return s
 }
 
-func (op *removeDuplicates) validate(s *Stream) *errors.Error {
+func (op *removeDuplicates) validate(s Stream) *errors.Error {
 	if s.items == nil {
 		return errors.EmptyStream(op.name(), "A nil Stream can not be iterated")
 	}
@@ -44,7 +44,7 @@ func (op *removeDuplicates) validate(s *Stream) *errors.Error {
 
 // RemoveDuplicates remove all thoese elements are duplicated in the Stream, leaving only
 // an element with the same value
-func (s *Stream) RemoveDuplicates() *Stream {
+func (s Stream) RemoveDuplicates() Stream {
 	s.operations = append(s.operations, &removeDuplicates{})
 	return s
 }

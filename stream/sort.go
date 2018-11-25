@@ -17,7 +17,7 @@ func (op *sort) name() string {
 	return OpCodeSort
 }
 
-func (op *sort) run(s *Stream) *Stream {
+func (op *sort) run(s Stream) Stream {
 	if err := op.validate(s); err != nil {
 		s.err = err
 		return s
@@ -28,7 +28,7 @@ func (op *sort) run(s *Stream) *Stream {
 	return s
 }
 
-func (op *sort) validate(s *Stream) *errors.Error {
+func (op *sort) validate(s Stream) *errors.Error {
 	if s.items == nil {
 		return errors.EmptyStream(op.name(), "A nil Stream can not be sorted")
 	}

@@ -9,17 +9,18 @@ const OpCode = "reduce"
 
 type Reduce struct {
 	ItemsType  reflect.Type
-	ItemsValue *reflect.Value
+	ItemsValue reflect.Value
 	Func       interface{}
 }
 
-func (r *Reduce) Run() (interface{}, *errors.Error) {
+func (r *Reduce) Run() (reflect.Value, *errors.Error) {
 	info, err := r.validate()
 	if err != nil {
-		return nil, err
+		return reflect.ValueOf(nil), err
 	}
 	if found, result := dispatch(r.ItemsValue, r.Func, info); found {
-		return result, nil
+		v := reflect.ValueOf(result)
+		return v, nil
 	}
 	var argv = make([]reflect.Value, 2)
 	acc := reflect.New(info.fnIn1Type).Elem()
@@ -29,11 +30,11 @@ func (r *Reduce) Run() (interface{}, *errors.Error) {
 		output := info.fnValue.Call(argv)
 		acc = output[0]
 	}
-	return acc.Interface(), nil
+	return acc, nil
 }
 
 func (r *Reduce) validate() (*reduceInfo, *errors.Error) {
-	if r.ItemsValue == nil {
+	if r.ItemsValue == reflect.ValueOf(nil) {
 		return nil, errors.EmptyStream(OpCode, "A nil Stream can not be reduced")
 	}
 	fnType := reflect.TypeOf(r.Func)

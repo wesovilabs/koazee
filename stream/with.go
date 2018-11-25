@@ -18,13 +18,12 @@ func (op *with) name() string {
 }
 
 // Run performs the operations whenever is called
-func (op *with) run(s *Stream) *Stream {
+func (op *with) run(s Stream) Stream {
 	if reflect.TypeOf(op.data).Kind() == reflect.Slice {
 		itemsType := reflect.TypeOf(op.data).Elem()
-		itemsValue := reflect.ValueOf(op.data)
 		s.items = op.data
 		s.itemsType = itemsType
-		s.itemsValue = &(itemsValue)
+		s.itemsValue = reflect.ValueOf(op.data)
 		return s
 	}
 
@@ -32,6 +31,6 @@ func (op *with) run(s *Stream) *Stream {
 		"Unsupported type! Only arrays are permitted"))
 }
 
-func (s *Stream) With(data interface{}) *Stream {
+func (s Stream) With(data interface{}) Stream {
 	return (&with{data}).run(s)
 }

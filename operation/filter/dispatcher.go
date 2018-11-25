@@ -1,8 +1,10 @@
 package filter
 
-import "reflect"
+import (
+	"reflect"
+)
 
-type dispatchFunction func(items *reflect.Value, fn interface{}) interface{}
+type dispatchFunction func(items reflect.Value, fn interface{}) interface{}
 
 var dispatcher = map[string]dispatchFunction{
 	"string":   filterString,
@@ -35,15 +37,16 @@ var dispatcher = map[string]dispatchFunction{
 	"*float64": filterPtrFloat64,
 }
 
-func dispatch(items *reflect.Value, function interface{}, info *filterInfo) (bool, interface{}) {
+func dispatch(items reflect.Value, function interface{}, info *filterInfo) (bool, reflect.Value) {
 	input := info.fnInputType.String()
 	if fnVal, ok := dispatcher[input]; ok {
-		return true, fnVal(items, function)
+		res := reflect.ValueOf(fnVal(items, function))
+		return true, res
 	}
-	return false, nil
+	return false, reflect.ValueOf(nil)
 }
 
-func filterString(itemsValue *reflect.Value, function interface{}) interface{} {
+func filterString(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]string)
 	output := make([]string, 0)
 	fn := function.(func(string) bool)
@@ -55,7 +58,7 @@ func filterString(itemsValue *reflect.Value, function interface{}) interface{} {
 	return output
 }
 
-func filterPtrString(itemsValue *reflect.Value, function interface{}) interface{} {
+func filterPtrString(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]*string)
 	output := make([]*string, 0)
 	fn := function.(func(*string) bool)
@@ -67,7 +70,7 @@ func filterPtrString(itemsValue *reflect.Value, function interface{}) interface{
 	return output
 }
 
-func filterBool(itemsValue *reflect.Value, function interface{}) interface{} {
+func filterBool(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]bool)
 	output := make([]bool, 0)
 	fn := function.(func(bool) bool)
@@ -79,7 +82,7 @@ func filterBool(itemsValue *reflect.Value, function interface{}) interface{} {
 	return output
 }
 
-func filterPtrBool(itemsValue *reflect.Value, function interface{}) interface{} {
+func filterPtrBool(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]*bool)
 	output := make([]*bool, 0)
 	fn := function.(func(*bool) bool)
@@ -91,7 +94,7 @@ func filterPtrBool(itemsValue *reflect.Value, function interface{}) interface{} 
 	return output
 }
 
-func filterInt(itemsValue *reflect.Value, function interface{}) interface{} {
+func filterInt(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]int)
 	output := make([]int, 0)
 	fn := function.(func(int) bool)
@@ -103,7 +106,7 @@ func filterInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	return output
 }
 
-func filterPtrInt(itemsValue *reflect.Value, function interface{}) interface{} {
+func filterPtrInt(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]*int)
 	output := make([]*int, 0)
 	fn := function.(func(*int) bool)
@@ -115,7 +118,7 @@ func filterPtrInt(itemsValue *reflect.Value, function interface{}) interface{} {
 	return output
 }
 
-func filterInt8(itemsValue *reflect.Value, function interface{}) interface{} {
+func filterInt8(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]int8)
 	output := make([]int8, 0)
 	fn := function.(func(int8) bool)
@@ -127,7 +130,7 @@ func filterInt8(itemsValue *reflect.Value, function interface{}) interface{} {
 	return output
 }
 
-func filterPtrInt8(itemsValue *reflect.Value, function interface{}) interface{} {
+func filterPtrInt8(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]*int8)
 	output := make([]*int8, 0)
 	fn := function.(func(*int8) bool)
@@ -139,7 +142,7 @@ func filterPtrInt8(itemsValue *reflect.Value, function interface{}) interface{} 
 	return output
 }
 
-func filterInt16(itemsValue *reflect.Value, function interface{}) interface{} {
+func filterInt16(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]int16)
 	output := make([]int16, 0)
 	fn := function.(func(int16) bool)
@@ -151,7 +154,7 @@ func filterInt16(itemsValue *reflect.Value, function interface{}) interface{} {
 	return output
 }
 
-func filterPtrInt16(itemsValue *reflect.Value, function interface{}) interface{} {
+func filterPtrInt16(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]*int16)
 	output := make([]*int16, 0)
 	fn := function.(func(*int16) bool)
@@ -163,7 +166,7 @@ func filterPtrInt16(itemsValue *reflect.Value, function interface{}) interface{}
 	return output
 }
 
-func filterInt32(itemsValue *reflect.Value, function interface{}) interface{} {
+func filterInt32(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]int32)
 	output := make([]int32, 0)
 	fn := function.(func(int32) bool)
@@ -175,7 +178,7 @@ func filterInt32(itemsValue *reflect.Value, function interface{}) interface{} {
 	return output
 }
 
-func filterPtrInt32(itemsValue *reflect.Value, function interface{}) interface{} {
+func filterPtrInt32(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]*int32)
 	output := make([]*int32, 0)
 	fn := function.(func(*int32) bool)
@@ -187,7 +190,7 @@ func filterPtrInt32(itemsValue *reflect.Value, function interface{}) interface{}
 	return output
 }
 
-func filterInt64(itemsValue *reflect.Value, function interface{}) interface{} {
+func filterInt64(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]int64)
 	output := make([]int64, 0)
 	fn := function.(func(int64) bool)
@@ -199,7 +202,7 @@ func filterInt64(itemsValue *reflect.Value, function interface{}) interface{} {
 	return output
 }
 
-func filterPtrInt64(itemsValue *reflect.Value, function interface{}) interface{} {
+func filterPtrInt64(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]*int64)
 	output := make([]*int64, 0)
 	fn := function.(func(*int64) bool)
@@ -211,7 +214,7 @@ func filterPtrInt64(itemsValue *reflect.Value, function interface{}) interface{}
 	return output
 }
 
-func filterUint(itemsValue *reflect.Value, function interface{}) interface{} {
+func filterUint(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]uint)
 	output := make([]uint, 0)
 	fn := function.(func(uint) bool)
@@ -223,7 +226,7 @@ func filterUint(itemsValue *reflect.Value, function interface{}) interface{} {
 	return output
 }
 
-func filterPtrUint(itemsValue *reflect.Value, function interface{}) interface{} {
+func filterPtrUint(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]*uint)
 	output := make([]*uint, 0)
 	fn := function.(func(*uint) bool)
@@ -235,7 +238,7 @@ func filterPtrUint(itemsValue *reflect.Value, function interface{}) interface{} 
 	return output
 }
 
-func filterUint8(itemsValue *reflect.Value, function interface{}) interface{} {
+func filterUint8(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]uint8)
 	output := make([]uint8, 0)
 	fn := function.(func(uint8) bool)
@@ -247,7 +250,7 @@ func filterUint8(itemsValue *reflect.Value, function interface{}) interface{} {
 	return output
 }
 
-func filterPtrUint8(itemsValue *reflect.Value, function interface{}) interface{} {
+func filterPtrUint8(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]*uint8)
 	output := make([]*uint8, 0)
 	fn := function.(func(*uint8) bool)
@@ -259,7 +262,7 @@ func filterPtrUint8(itemsValue *reflect.Value, function interface{}) interface{}
 	return output
 }
 
-func filterUint16(itemsValue *reflect.Value, function interface{}) interface{} {
+func filterUint16(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]uint16)
 	output := make([]uint16, 0)
 	fn := function.(func(uint16) bool)
@@ -271,7 +274,7 @@ func filterUint16(itemsValue *reflect.Value, function interface{}) interface{} {
 	return output
 }
 
-func filterPtrUint16(itemsValue *reflect.Value, function interface{}) interface{} {
+func filterPtrUint16(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]*uint16)
 	output := make([]*uint16, 0)
 	fn := function.(func(*uint16) bool)
@@ -283,7 +286,7 @@ func filterPtrUint16(itemsValue *reflect.Value, function interface{}) interface{
 	return output
 }
 
-func filterUint32(itemsValue *reflect.Value, function interface{}) interface{} {
+func filterUint32(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]uint32)
 	output := make([]uint32, 0)
 	fn := function.(func(uint32) bool)
@@ -295,7 +298,7 @@ func filterUint32(itemsValue *reflect.Value, function interface{}) interface{} {
 	return output
 }
 
-func filterPtrUint32(itemsValue *reflect.Value, function interface{}) interface{} {
+func filterPtrUint32(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]*uint32)
 	output := make([]*uint32, 0)
 	fn := function.(func(*uint32) bool)
@@ -307,7 +310,7 @@ func filterPtrUint32(itemsValue *reflect.Value, function interface{}) interface{
 	return output
 }
 
-func filterUint64(itemsValue *reflect.Value, function interface{}) interface{} {
+func filterUint64(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]uint64)
 	output := make([]uint64, 0)
 	fn := function.(func(uint64) bool)
@@ -319,7 +322,7 @@ func filterUint64(itemsValue *reflect.Value, function interface{}) interface{} {
 	return output
 }
 
-func filterPtrUint64(itemsValue *reflect.Value, function interface{}) interface{} {
+func filterPtrUint64(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]*uint64)
 	output := make([]*uint64, 0)
 	fn := function.(func(*uint64) bool)
@@ -331,7 +334,7 @@ func filterPtrUint64(itemsValue *reflect.Value, function interface{}) interface{
 	return output
 }
 
-func filterFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
+func filterFloat32(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]float32)
 	output := make([]float32, 0)
 	fn := function.(func(float32) bool)
@@ -343,7 +346,7 @@ func filterFloat32(itemsValue *reflect.Value, function interface{}) interface{} 
 	return output
 }
 
-func filterPtrFloat32(itemsValue *reflect.Value, function interface{}) interface{} {
+func filterPtrFloat32(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]*float32)
 	output := make([]*float32, 0)
 	fn := function.(func(*float32) bool)
@@ -355,7 +358,7 @@ func filterPtrFloat32(itemsValue *reflect.Value, function interface{}) interface
 	return output
 }
 
-func filterFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
+func filterFloat64(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]float64)
 	output := make([]float64, 0)
 	fn := function.(func(float64) bool)
@@ -367,7 +370,7 @@ func filterFloat64(itemsValue *reflect.Value, function interface{}) interface{} 
 	return output
 }
 
-func filterPtrFloat64(itemsValue *reflect.Value, function interface{}) interface{} {
+func filterPtrFloat64(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]*float64)
 	output := make([]*float64, 0)
 	fn := function.(func(*float64) bool)

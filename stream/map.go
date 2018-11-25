@@ -8,14 +8,13 @@ type streamMap struct {
 	fn interface{}
 }
 
-func (m *streamMap) run(s *Stream) *Stream {
+func (m *streamMap) run(s Stream) Stream {
 	value, err := (&Map_.Map{ItemsType: s.itemsType, ItemsValue: s.itemsValue, Func: m.fn}).Run()
 	if err != nil {
 		s.err = err
 		return s
 	}
-	s.items = value
-	return s
+	return s.withItemsValue(value)
 }
 
 // Map performs a mutation over all the elements in the Stream and return a new Stream

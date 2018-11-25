@@ -20,9 +20,9 @@ lint:
 op=
 benchmark: fmt
 ifeq ($(op),)
-	${GO} test -bench Benchmark.+ -run -Benchmark.+ -v ./benchmark/...
+	${GO} test -bench Benchmark.+ -failfast -run -Benchmark.+ -v ./benchmark/...
 else
-	${GO} test -bench Benchmark.+ -run -Benchmark.+ -v ./benchmark/$(op)/...
+	${GO} test -bench Benchmark.+ -failfast -run -Benchmark.+ -v ./benchmark/$(op)_test.go
 endif
 
 info: fmt

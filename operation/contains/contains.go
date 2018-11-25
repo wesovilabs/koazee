@@ -10,12 +10,12 @@ const OpCode = "contains"
 
 type Contains struct {
 	ItemsType reflect.Type
-	Items     *reflect.Value
+	Items     reflect.Value
 	Element   interface{}
 }
 
 func (op *Contains) Run() (bool, *errors.Error) {
-	if op.Items == nil {
+	if op.Items.Len() == 0 {
 		return false, nil
 	}
 	if err := op.validate(); err != nil {

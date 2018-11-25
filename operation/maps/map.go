@@ -9,17 +9,17 @@ const OpCode = "map"
 
 type Map struct {
 	ItemsType  reflect.Type
-	ItemsValue *reflect.Value
+	ItemsValue reflect.Value
 	Func       interface{}
 }
 
-func (m *Map) Run() (interface{}, *errors.Error) {
+func (m *Map) Run() (reflect.Value, *errors.Error) {
 	mInfo, err := m.validate()
 	if err != nil {
-		return nil, err
+		return reflect.ValueOf(nil), err
 	}
 	if found, result := dispatch(m.ItemsValue, m.Func, mInfo); found {
-		return result, nil
+		return reflect.ValueOf(result), nil
 	}
 	newItems := reflect.MakeSlice(reflect.SliceOf(mInfo.fnOutputType), 0, 0)
 	var argv = make([]reflect.Value, 1)
@@ -36,7 +36,7 @@ func (m *Map) Run() (interface{}, *errors.Error) {
 			newItems = reflect.Append(newItems, result[0])
 		}
 	}
-	return newItems.Interface(), nil
+	return newItems, nil
 }
 
 func (m *Map) validate() (*mapInfo, *errors.Error) {

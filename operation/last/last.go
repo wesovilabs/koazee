@@ -9,15 +9,15 @@ import (
 const OpCode = "last"
 
 type Last struct {
-	ItemsValue *reflect.Value
+	ItemsValue reflect.Value
 	Len        int
 }
 
-func (op *Last) Run() (interface{}, *errors.Error) {
+func (op *Last) Run() (reflect.Value, *errors.Error) {
 	if err := op.validate(); err != nil {
-		return nil, err
+		return reflect.ValueOf(nil), err
 	}
-	out := op.ItemsValue.Index(op.Len - 1).Interface()
+	out := op.ItemsValue.Index(op.Len - 1)
 	return out, nil
 }
 

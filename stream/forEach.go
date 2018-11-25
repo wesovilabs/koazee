@@ -19,7 +19,7 @@ func (op *forEach) name() string {
 	return OpCodeForEach
 }
 
-func (op *forEach) run(s *Stream) *Stream {
+func (op *forEach) run(s Stream) Stream {
 	if err := op.validate(s); err != nil {
 		s.err = err
 		return s
@@ -36,7 +36,7 @@ func (op *forEach) run(s *Stream) *Stream {
 	return s
 }
 
-func (op *forEach) validate(s *Stream) *errors.Error {
+func (op *forEach) validate(s Stream) *errors.Error {
 	if s.items == nil {
 		return errors.EmptyStream(op.name(), "A nil Stream can not be used to perform ForEach operation")
 	}

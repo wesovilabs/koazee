@@ -9,17 +9,17 @@ import (
 const OpCode = "at"
 
 type At struct {
-	ItemsValue *reflect.Value
+	ItemsValue reflect.Value
 	Len        int
 	Index      int
 }
 
-func (op *At) Run() (interface{}, *errors.Error) {
+func (op *At) Run() (reflect.Value, *errors.Error) {
 	if err := op.validate(); err != nil {
-		return nil, err
+		return reflect.ValueOf(nil), err
 	}
-	out := op.ItemsValue.Index(op.Index).Interface()
-	return out, nil
+	v := op.ItemsValue.Index(op.Index)
+	return v, nil
 }
 
 func (op *At) validate() *errors.Error {
