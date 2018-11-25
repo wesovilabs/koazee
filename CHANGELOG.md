@@ -12,6 +12,8 @@
 ### Removed
 - Compose operation
 - Interface S
+- Logger is deprecated
+
 
 ## Titi (v0.0.1) - 12/11/2018
 ### Added

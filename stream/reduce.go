@@ -6,7 +6,7 @@ import (
 )
 
 // Reduce
-func (s *Stream) Reduce(fn interface{}) Output {
+func (s Stream) Reduce(fn interface{}) Output {
 	current := s.run()
 	if current.err != nil {
 		return Output{reflect.ValueOf(nil), current.err}

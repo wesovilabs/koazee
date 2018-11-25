@@ -22,9 +22,6 @@ func (op *Add) Run() (reflect.Value, *errors.Error) {
 	if err != nil {
 		return reflect.ValueOf(nil), err
 	}
-	if op.ItemsValue.Len() == 0 {
-		return reflect.ValueOf(nil), errors.EmptyStream(OpCode, "")
-	}
 	newItems := reflect.Append(op.ItemsValue, info.itemValue)
 	return newItems, nil
 }
@@ -34,7 +31,6 @@ func (op *Add) validate() (*addInfo, *errors.Error) {
 	if info := cache.get(op.ItemsType, itemType); info != nil {
 		return info, nil
 	}
-
 	info := &addInfo{itemType: &itemType}
 	if op.ItemsValue.Len() > 0 {
 		if op.ItemsValue.Kind() != reflect.Ptr && op.Item == nil {

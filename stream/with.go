@@ -24,6 +24,7 @@ func (op *with) run(s Stream) Stream {
 		s.items = op.data
 		s.itemsType = itemsType
 		s.itemsValue = reflect.ValueOf(op.data)
+		s.itemsLen = s.itemsValue.Len()
 		return s
 	}
 

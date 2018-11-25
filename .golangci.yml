@@ -36,6 +36,7 @@ run:
   skip-files:
   - ".*\\.my\\.go$"
   - lib/bad.go
+  - ".*_test.go"
 
 
 # output configuration options

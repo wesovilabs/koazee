@@ -18,7 +18,7 @@ func (m *streamMap) run(s Stream) Stream {
 }
 
 // Map performs a mutation over all the elements in the Stream and return a new Stream
-func (s *Stream) Map(fn interface{}) *Stream {
+func (s Stream) Map(fn interface{}) Stream {
 	s.operations = append(s.operations, &streamMap{fn})
 	return s
 }

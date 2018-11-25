@@ -6,7 +6,7 @@ import (
 )
 
 // At returns the element in the Stream in the given position
-func (s *Stream) Last() *Output {
+func (s Stream) Last() *Output {
 	current := s.run()
 	if current.err != nil {
 		return &Output{reflect.ValueOf(nil), current.err}

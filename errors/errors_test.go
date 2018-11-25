@@ -3,6 +3,8 @@ package errors_test
 import (
 	"github.com/wesovilabs/koazee/operation/add"
 	"github.com/wesovilabs/koazee/operation/contains"
+	"github.com/wesovilabs/koazee/operation/drop"
+	"github.com/wesovilabs/koazee/operation/duplicates"
 	"github.com/wesovilabs/koazee/operation/filter"
 	"github.com/wesovilabs/koazee/operation/last"
 	"testing"
@@ -23,7 +25,7 @@ func TestError_Error(t *testing.T) {
 	assert.Equal(t, "[at:unknown] argument", err.Error())
 	err = errors.New(contains.OpCode, "unknown", "argument")
 	assert.Equal(t, "[contains:unknown] argument", err.Error())
-	err = errors.New(stream.OpCodeDrop, "unknown", "argument")
+	err = errors.New(drop.OpCode, "unknown", "argument")
 	assert.Equal(t, "[drop:unknown] argument", err.Error())
 	err = errors.New(filter.OpCode, "unknown", "argument")
 	assert.Equal(t, "[filter:unknown] argument", err.Error())
@@ -37,7 +39,7 @@ func TestError_Error(t *testing.T) {
 	assert.Equal(t, "[out:unknown] argument", err.Error())
 	err = errors.New(reduceInternal.OpCode, "unknown", "argument")
 	assert.Equal(t, "[reduce:unknown] argument", err.Error())
-	err = errors.New(stream.OpCodeRemoveDuplicates, "unknown", "argument")
+	err = errors.New(duplicates.OpCode, "unknown", "argument")
 	assert.Equal(t, "[removeDuplicates:unknown] argument", err.Error())
 	err = errors.New(stream.OpCodeSort, "unknown", "argument")
 	assert.Equal(t, "[sort:unknown] argument", err.Error())

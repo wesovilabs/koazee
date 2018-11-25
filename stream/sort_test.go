@@ -1,15 +1,14 @@
 package stream_test
 
 import (
-	"testing"
-
-	"github.com/wesovilabs/koazee/errors"
-	"github.com/wesovilabs/koazee/stream"
-
 	"github.com/stretchr/testify/assert"
 	"github.com/wesovilabs/koazee"
+	"github.com/wesovilabs/koazee/errors"
+	"github.com/wesovilabs/koazee/stream"
+	"testing"
 )
 
+/**
 func TestStream_Sort(t *testing.T) {
 	stream := koazee.StreamOf([]person{{"John", 23}, {"David", 30}, {"Michael", 27}})
 	stream = stream.Sort(func(person1, person2 person) int {
@@ -37,7 +36,7 @@ func TestStream_Sort(t *testing.T) {
 	assert.True(t, array.([]person)[0].age < array.([]person)[1].age)
 	assert.True(t, array.([]person)[1].age < array.([]person)[2].age)
 }
-
+**/
 func TestStream_Sort_validation(t *testing.T) {
 	assert.Equal(
 		t,

@@ -5,7 +5,7 @@ import (
 )
 
 // Count function that returns the number of elements in the Stream
-func (s *Stream) Count() (int, *errors.Error) {
+func (s Stream) Count() (int, *errors.Error) {
 	current := s.run()
 	if current.err != nil {
 		return 0, current.err

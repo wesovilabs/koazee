@@ -1,13 +1,14 @@
 # Created by .ignore support plugin (hsz.mobi)
 test
-.gopath
-bin
+/.gopath
+/bin
 
-build
-dist
-pkg
+/build
+/dist
+/pkg
 
 #IDEs
 /.idea
-.hugo
-coverage.txt/themes/
+/.hugo
+/coverage.txt
+/.private

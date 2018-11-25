@@ -6,10 +6,13 @@ import (
 )
 
 // Contains check if the passed element is found in the Stream
-func (s *Stream) Contains(element interface{}) (bool, *errors.Error) {
+func (s Stream) Contains(element interface{}) (bool, *errors.Error) {
 	current := s.run()
 	if current.err != nil {
 		return false, current.err
+	}
+	if current.itemsLen == 0 {
+		return false, nil
 	}
 	return (&contains.Contains{Items: current.itemsValue, ItemsType: current.itemsType, Element: element}).Run()
 }

@@ -16,7 +16,7 @@ func (m *streamFilter) run(s Stream) Stream {
 }
 
 // Filter discard the elements in the Stream that don't match with the provided filter
-func (s *Stream) Filter(fn interface{}) *Stream {
+func (s Stream) Filter(fn interface{}) Stream {
 	s.operations = append(s.operations, &streamFilter{fn})
 	return s
 }
