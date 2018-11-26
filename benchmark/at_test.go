@@ -52,17 +52,17 @@ func BenchmarkAtString1000(b *testing.B) {
 	}
 }
 
-func BenchmarkAtString10000(b *testing.B) {
+func BenchmarkAtString5000(b *testing.B) {
 	var result *stream.Output
 	b.StopTimer()
-	index := rand.Intn(10000)
+	index := rand.Intn(5000)
 	for i := 0; i < b.N; i++ {
 		stream := koazee.
-			StreamOf(strings10000)
+			StreamOf(strings5000)
 		b.StartTimer()
 		result = stream.At(index)
 	}
-	if strings10000[index] != result.String() {
-		b.Fatalf("It should return value %s but retrieved %s", strings10000[index], result.String())
+	if strings5000[index] != result.String() {
+		b.Fatalf("It should return value %s but retrieved %s", strings5000[index], result.String())
 	}
 }

@@ -63,18 +63,18 @@ func BenchmarkReduceString1000SumLen(b *testing.B) {
 	}
 }
 
-func BenchmarkReduceString10000SumLen(b *testing.B) {
+func BenchmarkReduceString5000SumLen(b *testing.B) {
 	b.StopTimer()
 	var result stream.Output
 
 	for i := 0; i < b.N; i++ {
 		stream := koazee.
-			StreamOf(strings10000)
+			StreamOf(strings5000)
 		b.StartTimer()
 		result = stream.Reduce(func(acc int, val string) int { return acc + len(val) })
 	}
 	expected := 0
-	for _, val := range strings10000 {
+	for _, val := range strings5000 {
 		expected += len(val)
 	}
 	if result.Int() != expected {
@@ -139,18 +139,18 @@ func BenchmarkReduceInt1000Sum(b *testing.B) {
 	}
 }
 
-func BenchmarkReduceInt10000Sum(b *testing.B) {
+func BenchmarkReduceInt5000Sum(b *testing.B) {
 	b.StopTimer()
 	var result stream.Output
 
 	for i := 0; i < b.N; i++ {
 		stream := koazee.
-			StreamOf(numbers10000)
+			StreamOf(numbers2500)
 		b.StartTimer()
 		result = stream.Reduce(func(acc, val int) int { return acc + val })
 	}
 	expected := 0
-	for _, val := range numbers10000 {
+	for _, val := range numbers2500 {
 		expected += val
 	}
 	if result.Int() != expected {

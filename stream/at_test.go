@@ -5,7 +5,7 @@ import (
 
 	"github.com/wesovilabs/koazee/errors"
 
-	atOperation "github.com/wesovilabs/koazee/operation/at"
+	atOperation "github.com/wesovilabs/koazee/internal/at"
 	"github.com/wesovilabs/koazee/stream"
 
 	"github.com/stretchr/testify/assert"

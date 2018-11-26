@@ -9,7 +9,7 @@ import (
 var array10WithDuplicates = append(strings10[0:5], strings10[0:5]...)
 var array100WithDuplicates = append(strings100[0:50], strings100[0:50]...)
 var array1000WithDuplicates = append(strings1000[0:500], strings1000[0:500]...)
-var array10000WithDuplicates = append(strings10000[0:5000], strings10000[0:5000]...)
+var array5000WithDuplicates = append(strings5000[0:2500], strings5000[0:2500]...)
 
 func BenchmarkDuplicatedString10(b *testing.B) {
 	b.StopTimer()
@@ -68,12 +68,12 @@ func BenchmarkDuplicatedString1000(b *testing.B) {
 	}
 }
 
-func BenchmarkDuplicatedString10000(b *testing.B) {
+func BenchmarkDuplicatedString5000(b *testing.B) {
 	b.StopTimer()
 	var outStream stream.Stream
 	for i := 0; i < b.N; i++ {
 		stream := koazee.
-			StreamOf(array10000WithDuplicates)
+			StreamOf(array5000WithDuplicates)
 		b.StartTimer()
 		outStream = stream.RemoveDuplicates().Do()
 	}

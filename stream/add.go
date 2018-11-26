@@ -2,7 +2,7 @@ package stream
 
 import (
 	"github.com/wesovilabs/koazee/errors"
-	"github.com/wesovilabs/koazee/operation/add"
+	"github.com/wesovilabs/koazee/internal/add"
 	"reflect"
 )
 

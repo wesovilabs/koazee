@@ -48,16 +48,16 @@ func BenchmarkLastString1000(b *testing.B) {
 	}
 }
 
-func BenchmarkLastString10000(b *testing.B) {
+func BenchmarkLastString5000(b *testing.B) {
 	var result *stream.Output
 	b.StopTimer()
 	for i := 0; i < b.N; i++ {
 		stream := koazee.
-			StreamOf(strings10000)
+			StreamOf(strings5000)
 		b.StartTimer()
 		result = stream.Last()
 	}
-	if strings10000[9999] != result.String() {
-		b.Fatalf("It should return value %s but retrieved %s", strings10000[9999], result.String())
+	if strings5000[9999] != result.String() {
+		b.Fatalf("It should return value %s but retrieved %s", strings5000[9999], result.String())
 	}
 }

@@ -56,12 +56,12 @@ func BenchmarkFilterNumbers1000LenIsEven(b *testing.B) {
 	}
 }
 
-func BenchmarkFilterNumbers10000LenIsEven(b *testing.B) {
+func BenchmarkFilterNumbers5000LenIsEven(b *testing.B) {
 	b.StopTimer()
 	var outStream stream.Stream
 	for i := 0; i < b.N; i++ {
 		stream := koazee.
-			StreamOf(numbers10000)
+			StreamOf(numbers2500)
 		b.StartTimer()
 		outStream = stream.Filter(filterFn).Do()
 	}

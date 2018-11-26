@@ -1,7 +1,7 @@
 package stream_test
 
 import (
-	"github.com/wesovilabs/koazee/operation/drop"
+	"github.com/wesovilabs/koazee/internal/drop"
 	"testing"
 
 	"github.com/stretchr/testify/assert"

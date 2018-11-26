@@ -1,7 +1,7 @@
 package stream
 
 import (
-	"github.com/wesovilabs/koazee/operation/reduce"
+	"github.com/wesovilabs/koazee/internal/reduce"
 	"reflect"
 )
 

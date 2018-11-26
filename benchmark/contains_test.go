@@ -6,10 +6,10 @@ import (
 )
 
 /*
-BenchmarkString10Koazee-4      	 1000000	      1025 ns/op
+BenchmarkString10Koazee-4      	 500000	      1025 ns/op
 BenchmarkString100Koazee-4     	  200000	      8568 ns/op
 BenchmarkString1000Koazee-4    	   20000	     87407 ns/op
-BenchmarkString10000Koazee-4   	    2000	    886315 ns/op
+BenchmarkString5000Koazee-4   	    2000	    886315 ns/op
 
 */
 
@@ -55,14 +55,14 @@ func BenchmarkContainsString1000FirstElement(b *testing.B) {
 	}
 }
 
-func BenchmarkContainsString10000FirstElement(b *testing.B) {
+func BenchmarkContainsString5000FirstElement(b *testing.B) {
 	b.StopTimer()
 	var found = false
 	for i := 0; i < b.N; i++ {
 		stream := koazee.
-			StreamOf(strings10000)
+			StreamOf(strings5000)
 		b.StartTimer()
-		found, _ = stream.Contains(strings10000[0])
+		found, _ = stream.Contains(strings5000[0])
 	}
 	if !found {
 		b.Fatalf("Element should be found")
@@ -111,14 +111,14 @@ func BenchmarkContainsString1000LastElement(b *testing.B) {
 	}
 }
 
-func BenchmarkContainsString10000LastElement(b *testing.B) {
+func BenchmarkContainsString5000LastElement(b *testing.B) {
 	b.StopTimer()
 	var found = false
 	for i := 0; i < b.N; i++ {
 		stream := koazee.
-			StreamOf(strings10000)
+			StreamOf(strings5000)
 		b.StartTimer()
-		found, _ = stream.Contains(strings10000[9999])
+		found, _ = stream.Contains(strings5000[9999])
 	}
 	if !found {
 		b.Fatalf("Element should be found")
@@ -167,12 +167,12 @@ func BenchmarkContainsString1000NotFound(b *testing.B) {
 	}
 }
 
-func BenchmarkContainsString10000NotFound(b *testing.B) {
+func BenchmarkContainsString5000NotFound(b *testing.B) {
 	b.StopTimer()
 	var found = false
 	for i := 0; i < b.N; i++ {
 		stream := koazee.
-			StreamOf(strings10000)
+			StreamOf(strings5000)
 		b.StartTimer()
 		found, _ = stream.Contains("notfound")
 	}

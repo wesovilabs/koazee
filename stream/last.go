@@ -1,7 +1,7 @@
 package stream
 
 import (
-	"github.com/wesovilabs/koazee/operation/last"
+	"github.com/wesovilabs/koazee/internal/last"
 	"reflect"
 )
 

@@ -2,7 +2,7 @@ package stream
 
 import (
 	"github.com/wesovilabs/koazee/errors"
-	"github.com/wesovilabs/koazee/operation/contains"
+	"github.com/wesovilabs/koazee/internal/contains"
 )
 
 // Contains check if the passed element is found in the Stream

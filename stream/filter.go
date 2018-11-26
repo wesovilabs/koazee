@@ -1,6 +1,6 @@
 package stream
 
-import "github.com/wesovilabs/koazee/operation/filter"
+import "github.com/wesovilabs/koazee/internal/filter"
 
 type streamFilter struct {
 	fn interface{}

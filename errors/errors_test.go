@@ -1,17 +1,17 @@
 package errors_test
 
 import (
-	"github.com/wesovilabs/koazee/operation/add"
-	"github.com/wesovilabs/koazee/operation/contains"
-	"github.com/wesovilabs/koazee/operation/drop"
-	"github.com/wesovilabs/koazee/operation/duplicates"
-	"github.com/wesovilabs/koazee/operation/filter"
-	"github.com/wesovilabs/koazee/operation/last"
+	"github.com/wesovilabs/koazee/internal/add"
+	"github.com/wesovilabs/koazee/internal/contains"
+	"github.com/wesovilabs/koazee/internal/drop"
+	"github.com/wesovilabs/koazee/internal/duplicates"
+	"github.com/wesovilabs/koazee/internal/filter"
+	"github.com/wesovilabs/koazee/internal/last"
 	"testing"
 
-	atOperation "github.com/wesovilabs/koazee/operation/at"
-	mapInternal "github.com/wesovilabs/koazee/operation/maps"
-	reduceInternal "github.com/wesovilabs/koazee/operation/reduce"
+	atOperation "github.com/wesovilabs/koazee/internal/at"
+	mapInternal "github.com/wesovilabs/koazee/internal/maps"
+	reduceInternal "github.com/wesovilabs/koazee/internal/reduce"
 	"github.com/wesovilabs/koazee/stream"
 
 	"github.com/stretchr/testify/assert"

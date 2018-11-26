@@ -1,7 +1,7 @@
 package stream_test
 
 import (
-	"github.com/wesovilabs/koazee/operation/filter"
+	"github.com/wesovilabs/koazee/internal/filter"
 	"testing"
 
 	"github.com/wesovilabs/koazee"

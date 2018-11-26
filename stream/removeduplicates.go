@@ -1,7 +1,7 @@
 package stream
 
 import (
-	"github.com/wesovilabs/koazee/operation/duplicates"
+	"github.com/wesovilabs/koazee/internal/duplicates"
 )
 
 type streamDuplicates struct {

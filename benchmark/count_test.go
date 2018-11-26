@@ -47,16 +47,16 @@ func BenchmarkCountString1000(b *testing.B) {
 	}
 }
 
-func BenchmarkCountString10000(b *testing.B) {
+func BenchmarkCountString5000(b *testing.B) {
 	var count = 0
 	b.StopTimer()
 	for i := 0; i < b.N; i++ {
 		stream := koazee.
-			StreamOf(strings10000)
+			StreamOf(strings5000)
 		b.StartTimer()
 		count, _ = stream.Count()
 	}
-	if count != 10000 {
-		b.Fatalf("It should return value %d but retrieved %d", 10000, count)
+	if count != 5000 {
+		b.Fatalf("It should return value %d but retrieved %d", 5000, count)
 	}
 }

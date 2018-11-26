@@ -1,13 +1,13 @@
 package stream_test
 
 import (
-	"github.com/wesovilabs/koazee/operation/add"
+	"github.com/wesovilabs/koazee/internal/add"
 	"testing"
 
 	"github.com/wesovilabs/koazee"
 	"github.com/wesovilabs/koazee/errors"
 
-	reduceInternal "github.com/wesovilabs/koazee/operation/reduce"
+	reduceInternal "github.com/wesovilabs/koazee/internal/reduce"
 	"github.com/wesovilabs/koazee/stream"
 
 	"github.com/stretchr/testify/assert"
