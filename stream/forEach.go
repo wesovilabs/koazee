@@ -3,8 +3,6 @@ package stream
 import (
 	"reflect"
 
-	"github.com/wesovilabs/koazee/logger"
-
 	"github.com/wesovilabs/koazee/errors"
 )
 
@@ -19,7 +17,7 @@ func (op *forEach) name() string {
 	return OpCodeForEach
 }
 
-func (op *forEach) run(s *stream) *stream {
+func (op *forEach) run(s Stream) Stream {
 	if err := op.validate(s); err != nil {
 		s.err = err
 		return s
@@ -32,13 +30,12 @@ func (op *forEach) run(s *stream) *stream {
 		argv[0] = item
 		function.Call(argv)
 	}
-	logger.DebugInfo("%s", op.name())
 	return s
 }
 
-func (op *forEach) validate(s *stream) *errors.Error {
+func (op *forEach) validate(s Stream) *errors.Error {
 	if s.items == nil {
-		return errors.EmptyStream(op.name(), "A nil stream can not be used to perform ForEach operation")
+		return errors.EmptyStream(op.name(), "A nil Stream can not be used to perform ForEach operation")
 	}
 	itemsType := reflect.TypeOf(s.items).Elem()
 	function := reflect.ValueOf(op.fn)
@@ -60,8 +57,8 @@ func (op *forEach) validate(s *stream) *errors.Error {
 	return nil
 }
 
-// ForEach executes the provided function for all the elements in the stream
-func (s stream) ForEach(fn interface{}) S {
+// ForEach executes the provided function for all the elements in the Stream
+func (s Stream) ForEach(fn interface{}) Stream {
 	s.operations = append(s.operations, &forEach{fn})
 	return s
 }

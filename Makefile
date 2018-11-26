@@ -17,8 +17,14 @@ check: fmt
 	golangci-lint run
 lint:
 	golint
+op=
 benchmark: fmt
-	${GO} test -bench Benchmark.+ -run -Benchmark.+ -v
+ifeq ($(op),)
+	${GO} test -bench Benchmark.+ -failfast -run -Benchmark.+ -v ./benchmark/...
+else
+	${GO} test -bench Benchmark.+ -failfast -run -Benchmark.+ -v ./benchmark/$(op)_test.go
+endif
+
 info: fmt
 	depscheck -totalonly -tests .
 	golocc
@@ -28,6 +34,8 @@ install:
 	${GO} get -u github.com/divan/depscheck
 	${GO} install github.com/golangci/golangci-lint/cmd/golangci-lint
 site:
-	cd docs; \
-	bundle install; \
+	cd .hugo; \
+	hugo server --buildDrafts
+doc:
+	cd .hugo; \
 	jekyll serve

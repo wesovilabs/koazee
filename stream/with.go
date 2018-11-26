@@ -1,13 +1,8 @@
 package stream
 
 import (
-	"reflect"
-
-	"github.com/wesovilabs/koazee/utils"
-
-	"github.com/wesovilabs/koazee/logger"
-
 	"github.com/wesovilabs/koazee/errors"
+	"reflect"
 )
 
 // OpCodeWith identifier for operation with
@@ -23,32 +18,20 @@ func (op *with) name() string {
 }
 
 // Run performs the operations whenever is called
-func (op *with) run(s stream) stream {
-	nature := utils.NatureOf(op.data)
-	switch nature {
-	case utils.NatureArray:
-		out := items(op.data)
-		logger.DebugInfo("%s  %v", op.name(), out)
-		s.items = out
-
-	default:
-		s.err = errors.InvalidType(op.name(), "Unsupported type! Only arrays are permitted")
+func (op *with) run(s Stream) Stream {
+	if reflect.TypeOf(op.data).Kind() == reflect.Slice {
+		itemsType := reflect.TypeOf(op.data).Elem()
+		s.items = op.data
+		s.itemsType = itemsType
+		s.itemsValue = reflect.ValueOf(op.data)
+		s.itemsLen = s.itemsValue.Len()
 		return s
 	}
 
-	return s
+	return Error(errors.InvalidType(op.name(),
+		"Unsupported type! Only arrays are permitted"))
 }
 
-func (s stream) With(data interface{}) S {
+func (s Stream) With(data interface{}) Stream {
 	return (&with{data}).run(s)
-}
-
-func items(data interface{}) interface{} {
-	elemType := reflect.TypeOf(data).Elem()
-	v := reflect.ValueOf(data)
-	slice := reflect.MakeSlice(reflect.SliceOf(elemType), v.Len(), v.Len())
-	for index := 0; index < v.Len(); index++ {
-		slice.Index(index).Set(v.Index(index))
-	}
-	return slice.Interface()
 }

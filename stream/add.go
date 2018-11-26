@@ -1,53 +1,36 @@
 package stream
 
 import (
-	"reflect"
-
 	"github.com/wesovilabs/koazee/errors"
+	"github.com/wesovilabs/koazee/operation/add"
+	"reflect"
 )
 
-// OpCodeAdd identifier for operation add
-const OpCodeAdd = "add"
-
-// OperationAdd struct for defining add operation
-type add struct {
-	input interface{}
+type streamAdd struct {
+	ItemsValue reflect.Value
+	ItemsType  reflect.Type
+	Item       interface{}
 }
 
-func (op *add) name() string {
-	return OpCodeAdd
-}
-
-// Run performs the operations whenever is called
-func (op *add) run(s *stream) *stream {
-	if err := op.validate(s); err != nil {
+func (a *streamAdd) run(s Stream) Stream {
+	if s.itemsLen == 0 {
+		elementType := reflect.TypeOf(a.Item)
+		if s.itemsType != nil && (s.itemsType != elementType) {
+			s.err = errors.InvalidType(add.OpCode, "invalid type")
+			return s
+		}
+		slice := reflect.MakeSlice(reflect.SliceOf(elementType), 0, 0)
+		s = s.withItemsValue(slice)
+	}
+	value, err := (&add.Add{ItemsType: s.itemsType, ItemsValue: s.itemsValue, Item: a.Item}).Run()
+	if err != nil {
 		s.err = err
 		return s
 	}
-	element := reflect.ValueOf(op.input)
-	v := reflect.ValueOf(s.items)
-	newItems := reflect.Append(v, element)
-	s.items = newItems.Interface()
-	return s
+	return s.withItemsValue(value)
 }
 
-func (op *add) validate(s *stream) *errors.Error {
-	if s.items == nil {
-		return errors.EmptyStream(op.name(), "An element can not be added in a nil stream")
-	}
-	itemsType := reflect.TypeOf(s.items).Elem()
-	elementType := reflect.TypeOf(op.input)
-	if itemsType.Kind() != reflect.Ptr && op.input == nil {
-		return errors.InvalidArgument(op.name(), "A nil value can not be added in a stream of non-pointers values")
-	}
-	if elementType != itemsType {
-		return errors.InvalidArgument(op.name(),
-			"An element whose type is %s can not be added in a stream of type %s", elementType, itemsType)
-	}
-	return nil
-}
-
-func (s stream) Add(input interface{}) S {
-	s.operations = append(s.operations, &add{input})
+func (s Stream) Add(input interface{}) Stream {
+	s.operations = append(s.operations, &streamAdd{ItemsValue: s.itemsValue, ItemsType: s.itemsType, Item: input})
 	return s
 }

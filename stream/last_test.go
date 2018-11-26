@@ -1,10 +1,12 @@
 package stream_test
 
 import (
+	"github.com/wesovilabs/koazee/operation/add"
 	"testing"
 
 	"github.com/wesovilabs/koazee/errors"
 
+	"github.com/wesovilabs/koazee/operation/last"
 	"github.com/wesovilabs/koazee/stream"
 
 	"github.com/stretchr/testify/assert"
@@ -20,18 +22,18 @@ func TestStream_Last_validation(t *testing.T) {
 
 	assert.Equal(
 		t,
-		errors.EmptyStream(stream.OpCodeLast, "It can not be taken an element from a nil stream"),
+		errors.EmptyStream(last.OpCode, "It can not be taken an element from an empty Stream"),
 		stream.New(nil).Last().Err())
 
 	assert.Equal(
 		t,
-		errors.EmptyStream(stream.OpCodeLast, "It can not be taken an element from an empty stream"),
+		errors.EmptyStream(last.OpCode, "It can not be taken an element from an empty Stream"),
 		stream.New([]int{}).Last().Err())
 
 	// To verify how errors are propagated
 	assert.Equal(
 		t,
-		stream.OpCodeAdd,
+		add.OpCode,
 		stream.New([]int{}).Add("home").Last().Err().Operation())
 
 }

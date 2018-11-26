@@ -24,5 +24,6 @@ func NatureOf(data interface{}) StreamType {
 }
 
 func isArray(data interface{}) bool {
+
 	return data != nil && strings.HasPrefix(reflect.TypeOf(data).String(), "[]")
 }

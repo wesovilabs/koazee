@@ -2,38 +2,39 @@ package stream
 
 import (
 	"github.com/wesovilabs/koazee/errors"
+	"reflect"
 )
 
 // OpCodeOut identifier for operation out
 const OpCodeOut = "out"
 
 type out struct {
-	items interface{}
+	items reflect.Value
 }
 
 func (op *out) name() string {
 	return OpCodeOut
 }
 
-func (op *out) run() output {
+func (op *out) run() *Output {
 	if err := op.validate(); err != nil {
-		return output{nil, err}
+		return &Output{reflect.ValueOf(nil), err}
 	}
-	return output{op.items, nil}
+	return &Output{op.items, nil}
 }
 
 func (op *out) validate() *errors.Error {
-	if op.items == nil {
-		return errors.EmptyStream(op.name(), "It can not be outputted a nil stream")
+	if op.items == reflect.ValueOf(nil) {
+		return errors.EmptyStream(op.name(), "It can not be outputted a nil Stream")
 	}
 	return nil
 }
 
-// At returns the element in the stream in the given position
-func (s stream) Out() output {
+// At returns the element in the Stream in the given position
+func (s Stream) Out() *Output {
 	current := s.run()
 	if current.err != nil {
-		return output{nil, current.err}
+		return &Output{reflect.ValueOf(nil), current.err}
 	}
-	return (&out{current.items}).run()
+	return (&out{current.itemsValue}).run()
 }

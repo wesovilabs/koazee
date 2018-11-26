@@ -27,6 +27,7 @@ run:
   skip-dirs:
   - samples
   - docs
+  - benchmark
 
   # which files to skip: they will be analyzed, but issues from them
   # won't be reported. Default value is empty list, but there is
@@ -35,6 +36,7 @@ run:
   skip-files:
   - ".*\\.my\\.go$"
   - lib/bad.go
+  - ".*_test.go"
 
 
 # output configuration options
@@ -136,4 +138,5 @@ linters:
   disable:
     - gochecknoglobals
     - dupl
+    - goimports
   fast: false

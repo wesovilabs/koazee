@@ -1,6 +1,7 @@
 package stream_test
 
 import (
+	"github.com/wesovilabs/koazee/operation/add"
 	"testing"
 
 	"github.com/wesovilabs/koazee/errors"
@@ -20,13 +21,13 @@ func TestStream_Out_validation(t *testing.T) {
 
 	assert.Equal(
 		t,
-		errors.EmptyStream(stream.OpCodeOut, "It can not be outputted a nil stream"),
+		errors.EmptyStream(stream.OpCodeOut, "It can not be outputted a nil Stream"),
 		stream.New(nil).Out().Err())
 
 	// To verify how errors are propagated
 	assert.Equal(
 		t,
-		stream.OpCodeAdd,
+		add.OpCode,
 		stream.New([]int{}).Add("home").Out().Err().Operation())
 
 }

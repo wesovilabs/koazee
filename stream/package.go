@@ -1,2 +1,2 @@
-//Package stream contains the implementations for the possible operations in a stream
+//Package Stream contains the implementations for the possible operations in a Stream
 package stream

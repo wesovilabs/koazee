@@ -7,6 +7,7 @@ import (
 	"github.com/wesovilabs/koazee"
 	"github.com/wesovilabs/koazee/errors"
 
+	mapInternal "github.com/wesovilabs/koazee/operation/maps"
 	"github.com/wesovilabs/koazee/stream"
 
 	"github.com/stretchr/testify/assert"
@@ -40,27 +41,22 @@ func TestStream_Map(t *testing.T) {
 func TestStream_Map_validation(t *testing.T) {
 	assert.Equal(
 		t,
-		errors.InvalidArgument(stream.OpCodeMap, "The map operation requires a function as argument"),
+		errors.InvalidArgument(mapInternal.OpCode, "The map operation requires a function as argument"),
 		koazee.StreamOf([]string{"Freedom", "for", "the", "animals"}).Map(10).Out().Err())
 
 	assert.Equal(
 		t,
-		errors.EmptyStream(stream.OpCodeMap, "A nil stream can not be iterated"),
-		koazee.Stream().Map(func() {}).Out().Err())
-
-	assert.Equal(
-		t,
-		errors.InvalidArgument(stream.OpCodeMap, "The provided function must retrieve 1 argument"),
+		errors.InvalidArgument(mapInternal.OpCode, "The provided function must retrieve 1 argument"),
 		koazee.StreamOf([]int{2, 3, 2}).Map(func() {}).Out().Err())
 
 	assert.Equal(
 		t,
-		errors.InvalidArgument(stream.OpCodeMap, "The type of the argument in the provided function must be int"),
+		errors.InvalidArgument(mapInternal.OpCode, "The type of the argument in the provided function must be int"),
 		koazee.StreamOf([]int{2, 3, 2}).Map(func(val string) bool { return true }).Out().Err())
 
 	assert.Equal(
 		t,
-		errors.InvalidArgument(stream.OpCodeMap, "The provided function must return 1 value"),
+		errors.InvalidArgument(mapInternal.OpCode, "The provided function must return 1 value"),
 		koazee.StreamOf([]int{2, 3, 2}).Map(func(val int) {}).Out().Err())
 
 }

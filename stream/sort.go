@@ -17,7 +17,7 @@ func (op *sort) name() string {
 	return OpCodeSort
 }
 
-func (op *sort) run(s *stream) *stream {
+func (op *sort) run(s Stream) Stream {
 	if err := op.validate(s); err != nil {
 		s.err = err
 		return s
@@ -28,9 +28,9 @@ func (op *sort) run(s *stream) *stream {
 	return s
 }
 
-func (op *sort) validate(s *stream) *errors.Error {
+func (op *sort) validate(s Stream) *errors.Error {
 	if s.items == nil {
-		return errors.EmptyStream(op.name(), "A nil stream can not be sorted")
+		return errors.EmptyStream(op.name(), "A nil Stream can not be sorted")
 	}
 	itemsType := reflect.TypeOf(s.items).Elem()
 
@@ -52,13 +52,13 @@ func (op *sort) validate(s *stream) *errors.Error {
 		return errors.InvalidArgument(op.name(), "The type of the both arguments must be  %s", itemsType.String())
 	}
 	if fnOut.Type().Kind() != reflect.Int {
-		return errors.InvalidArgument(op.name(), "The type of the output in the provided function must be int")
+		return errors.InvalidArgument(op.name(), "The type of the Output in the provided function must be int")
 	}
 	return nil
 }
 
-// Sort sorts the elements in the stream by applying the provided function
-func (s stream) Sort(fn interface{}) S {
+// Sort sorts the elements in the Stream by applying the provided function
+func (s Stream) Sort(fn interface{}) Stream {
 	s.operations = append(s.operations, &sort{fn})
 	return s
 }
