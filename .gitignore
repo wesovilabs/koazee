@@ -12,3 +12,4 @@ test
 /.hugo
 /coverage.txt
 /.private
+/loc

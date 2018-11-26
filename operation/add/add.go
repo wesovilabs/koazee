@@ -22,6 +22,9 @@ func (op *Add) Run() (reflect.Value, *errors.Error) {
 	if err != nil {
 		return reflect.ValueOf(nil), err
 	}
+	if found, result := dispatch(op.ItemsValue, op.Item, info); found {
+		return reflect.ValueOf(result), nil
+	}
 	newItems := reflect.Append(op.ItemsValue, info.itemValue)
 	return newItems, nil
 }

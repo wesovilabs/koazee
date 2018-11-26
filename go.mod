@@ -11,6 +11,7 @@ require (
 	github.com/golangci/revgrep v0.0.0-20180812185044-276a5c0a1039 // indirect
 	github.com/golangci/tools v0.0.0-20181110070903-2cefd77fef9b // indirect
 	github.com/golangci/unparam v0.0.0-20180902115109-7ad9dbcccc16 // indirect
+	github.com/magiconair/properties v1.8.0
 	github.com/mattn/go-isatty v0.0.4 // indirect
 	github.com/mattn/go-runewidth v0.0.3 // indirect
 	github.com/mitchellh/mapstructure v1.1.2 // indirect
