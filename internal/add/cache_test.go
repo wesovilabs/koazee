@@ -11,7 +11,6 @@ func TestAdd_cacheAdd(t *testing.T) {
 	itemsType := reflect.TypeOf("")
 	itemType := reflect.TypeOf("")
 	info := &addInfo{
-		itemValue: reflect.ValueOf(""),
 		itemType:  &itemType,
 	}
 	cache.add(itemsType, itemType, info)
@@ -29,7 +28,6 @@ func TestAdd_cacheGetExistingElement(t *testing.T) {
 	itemsType := reflect.TypeOf("")
 	itemType := reflect.TypeOf("")
 	info := &addInfo{
-		itemValue: reflect.ValueOf(""),
 		itemType:  &itemType,
 	}
 	cache.add(itemsType, itemType, info)

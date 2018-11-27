@@ -25,7 +25,7 @@ func (op *Add) Run() (reflect.Value, *errors.Error) {
 	if found, result := dispatch(op.ItemsValue, op.Item, info); found {
 		return reflect.ValueOf(result), nil
 	}
-	newItems := reflect.Append(op.ItemsValue, info.itemValue)
+	newItems := reflect.Append(op.ItemsValue, reflect.ValueOf(op.Item))
 	return newItems, nil
 }
 
@@ -36,16 +36,17 @@ func (op *Add) validate() (*addInfo, *errors.Error) {
 	}
 	info := &addInfo{itemType: &itemType}
 	if op.ItemsValue.Len() > 0 {
-		if op.ItemsValue.Kind() != reflect.Ptr && op.Item == nil {
+		if op.ItemsType.Kind() != reflect.Ptr && op.Item == nil {
 			return nil, errors.InvalidArgument(OpCode, "A nil value can not be added in a Stream of non-pointers values")
 		}
-		if op.ItemsType != itemType {
+		if op.ItemsType != itemType && (op.Item!=nil){
 			return nil, errors.InvalidArgument(OpCode,
-				"An element whose type is %s can not be added in a Stream of type %s", itemType, op.ItemsType)
+				"An element whose type is %s can not be added in a Stream of type %s", itemType.String(), op.ItemsType)
 		}
 	}
-	value := reflect.ValueOf(op.Item)
-	info.itemValue = value
+	if op.Item == nil {
+		itemType = op.ItemsType
+	}
 	cache.add(op.ItemsType, itemType, info)
 	return info, nil
 }

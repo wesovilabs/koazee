@@ -23,6 +23,5 @@ func (c *cacheType) get(itemsType, funcType reflect.Type) *addInfo {
 }
 
 type addInfo struct {
-	itemValue reflect.Value
 	itemType  *reflect.Type
 }
