@@ -1,6 +1,7 @@
 package add
 
 import (
+	"fmt"
 	"reflect"
 
 	"github.com/wesovilabs/koazee/errors"
@@ -31,6 +32,7 @@ func (op *Add) Run() (reflect.Value, *errors.Error) {
 
 func (op *Add) validate() (*addInfo, *errors.Error) {
 	itemType := reflect.TypeOf(op.Item)
+	fmt.Printf("%v\n",cache)
 	if info := cache.get(op.ItemsType, itemType); info != nil {
 		return info, nil
 	}

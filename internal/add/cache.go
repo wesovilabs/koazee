@@ -13,9 +13,9 @@ func (c *cacheType) add(itemsType, itemType reflect.Type, item *addInfo) {
 	cache[itemsType][itemType] = item
 }
 
-func (c *cacheType) get(itemsType, funcType reflect.Type) *addInfo {
+func (c *cacheType) get(itemsType, itemType reflect.Type) *addInfo {
 	if val, ok := cache[itemsType]; ok {
-		if val2, ok := val[funcType]; ok {
+		if val2, ok := val[itemType]; ok {
 			return val2
 		}
 	}
