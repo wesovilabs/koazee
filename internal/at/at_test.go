@@ -19,7 +19,6 @@ func TestAt_Run(t *testing.T) {
 	assert.Equal(t, 40, val.Elem().Interface())
 }
 
-
 func TestAt_validate(t *testing.T) {
 	at := At{
 		ItemsValue: reflect.ValueOf([]*int{utils.IntPtr(4)}),

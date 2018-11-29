@@ -61,7 +61,6 @@ func TestContains_Run(t *testing.T) {
 	assert.Nil(t, err)
 	assert.True(t, found)
 
-
 	person = utils.Person{FirstName: "John", LastName: "Doe", Age: 25, Male: true}
 	contains = &Contains{
 		Items: reflect.ValueOf([]utils.Person{

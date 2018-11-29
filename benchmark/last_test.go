@@ -57,7 +57,7 @@ func BenchmarkLastString5000(b *testing.B) {
 		b.StartTimer()
 		result = stream.Last()
 	}
-	if strings5000[9999] != result.String() {
-		b.Fatalf("It should return value %s but retrieved %s", strings5000[9999], result.String())
+	if strings5000[4999] != result.String() {
+		b.Fatalf("It should return value %s but retrieved %s", strings5000[4999], result.String())
 	}
 }

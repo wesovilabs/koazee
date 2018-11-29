@@ -118,7 +118,7 @@ func BenchmarkContainsString5000LastElement(b *testing.B) {
 		stream := koazee.
 			StreamOf(strings5000)
 		b.StartTimer()
-		found, _ = stream.Contains(strings5000[9999])
+		found, _ = stream.Contains(strings5000[4999])
 	}
 	if !found {
 		b.Fatalf("Element should be found")

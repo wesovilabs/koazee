@@ -1,51 +1,49 @@
-
 package contains
 
 import "reflect"
 
-
 type dispatchFunction func(reflect.Value, interface{}) bool
 
 var dispatcher = map[string]dispatchFunction{
-	"string":  containsString,
+	"string":   containsString,
 	"*string":  containsPtrString,
-	"bool":  containsBool,
-	"*bool":  containsPtrBool,
-	"int":  containsInt,
-	"*int":  containsPtrInt,
-	"int8":  containsInt8,
-	"*int8":  containsPtrInt8,
-	"int16":  containsInt16,
-	"*int16":  containsPtrInt16,
-	"int32":  containsInt32,
-	"*int32":  containsPtrInt32,
-	"int64":  containsInt64,
-	"*int64":  containsPtrInt64,
-	"uint":  containsUint,
-	"*uint":  containsPtrUint,
-	"uint8":  containsUint8,
-	"*uint8":  containsPtrUint8,
-	"uint16":  containsUint16,
+	"bool":     containsBool,
+	"*bool":    containsPtrBool,
+	"int":      containsInt,
+	"*int":     containsPtrInt,
+	"int8":     containsInt8,
+	"*int8":    containsPtrInt8,
+	"int16":    containsInt16,
+	"*int16":   containsPtrInt16,
+	"int32":    containsInt32,
+	"*int32":   containsPtrInt32,
+	"int64":    containsInt64,
+	"*int64":   containsPtrInt64,
+	"uint":     containsUint,
+	"*uint":    containsPtrUint,
+	"uint8":    containsUint8,
+	"*uint8":   containsPtrUint8,
+	"uint16":   containsUint16,
 	"*uint16":  containsPtrUint16,
-	"uint32":  containsUint32,
+	"uint32":   containsUint32,
 	"*uint32":  containsPtrUint32,
-	"uint64":  containsUint64,
+	"uint64":   containsUint64,
 	"*uint64":  containsPtrUint64,
 	"float32":  containsFloat32,
-	"*float32":  containsPtrFloat32,
+	"*float32": containsPtrFloat32,
 	"float64":  containsFloat64,
-	"*float64":  containsPtrFloat64,
+	"*float64": containsPtrFloat64,
 }
 
-func dispatch(items reflect.Value, val interface{},itemsType reflect.Type) (bool,bool) {
-	input:=itemsType.String()
-	if fnVal,ok:=dispatcher[input];ok{
-		return true, fnVal(items,val)
-    }
+func dispatch(items reflect.Value, val interface{}, itemsType reflect.Type) (bool, bool) {
+	input := itemsType.String()
+	if fnVal, ok := dispatcher[input]; ok {
+		return true, fnVal(items, val)
+	}
 	return false, false
 }
 
-func containsString(itemsValue reflect.Value, item interface{}) bool  {
+func containsString(itemsValue reflect.Value, item interface{}) bool {
 	element := item.(string)
 	array := itemsValue.Interface().([]string)
 	for _, val := range array {
@@ -56,7 +54,7 @@ func containsString(itemsValue reflect.Value, item interface{}) bool  {
 	return false
 }
 
-func containsPtrString(itemsValue reflect.Value, item interface{}) bool  {
+func containsPtrString(itemsValue reflect.Value, item interface{}) bool {
 	element := item.(*string)
 	array := itemsValue.Interface().([]*string)
 	for _, val := range array {
@@ -67,7 +65,7 @@ func containsPtrString(itemsValue reflect.Value, item interface{}) bool  {
 	return false
 }
 
-func containsBool(itemsValue reflect.Value, item interface{}) bool  {
+func containsBool(itemsValue reflect.Value, item interface{}) bool {
 	element := item.(bool)
 	array := itemsValue.Interface().([]bool)
 	for _, val := range array {
@@ -78,7 +76,7 @@ func containsBool(itemsValue reflect.Value, item interface{}) bool  {
 	return false
 }
 
-func containsPtrBool(itemsValue reflect.Value, item interface{}) bool  {
+func containsPtrBool(itemsValue reflect.Value, item interface{}) bool {
 	element := item.(*bool)
 	array := itemsValue.Interface().([]*bool)
 	for _, val := range array {
@@ -89,7 +87,7 @@ func containsPtrBool(itemsValue reflect.Value, item interface{}) bool  {
 	return false
 }
 
-func containsInt(itemsValue reflect.Value, item interface{}) bool  {
+func containsInt(itemsValue reflect.Value, item interface{}) bool {
 	element := item.(int)
 	array := itemsValue.Interface().([]int)
 	for _, val := range array {
@@ -100,7 +98,7 @@ func containsInt(itemsValue reflect.Value, item interface{}) bool  {
 	return false
 }
 
-func containsPtrInt(itemsValue reflect.Value, item interface{}) bool  {
+func containsPtrInt(itemsValue reflect.Value, item interface{}) bool {
 	element := item.(*int)
 	array := itemsValue.Interface().([]*int)
 	for _, val := range array {
@@ -111,7 +109,7 @@ func containsPtrInt(itemsValue reflect.Value, item interface{}) bool  {
 	return false
 }
 
-func containsInt8(itemsValue reflect.Value, item interface{}) bool  {
+func containsInt8(itemsValue reflect.Value, item interface{}) bool {
 	element := item.(int8)
 	array := itemsValue.Interface().([]int8)
 	for _, val := range array {
@@ -122,7 +120,7 @@ func containsInt8(itemsValue reflect.Value, item interface{}) bool  {
 	return false
 }
 
-func containsPtrInt8(itemsValue reflect.Value, item interface{}) bool  {
+func containsPtrInt8(itemsValue reflect.Value, item interface{}) bool {
 	element := item.(*int8)
 	array := itemsValue.Interface().([]*int8)
 	for _, val := range array {
@@ -133,7 +131,7 @@ func containsPtrInt8(itemsValue reflect.Value, item interface{}) bool  {
 	return false
 }
 
-func containsInt16(itemsValue reflect.Value, item interface{}) bool  {
+func containsInt16(itemsValue reflect.Value, item interface{}) bool {
 	element := item.(int16)
 	array := itemsValue.Interface().([]int16)
 	for _, val := range array {
@@ -144,7 +142,7 @@ func containsInt16(itemsValue reflect.Value, item interface{}) bool  {
 	return false
 }
 
-func containsPtrInt16(itemsValue reflect.Value, item interface{}) bool  {
+func containsPtrInt16(itemsValue reflect.Value, item interface{}) bool {
 	element := item.(*int16)
 	array := itemsValue.Interface().([]*int16)
 	for _, val := range array {
@@ -155,7 +153,7 @@ func containsPtrInt16(itemsValue reflect.Value, item interface{}) bool  {
 	return false
 }
 
-func containsInt32(itemsValue reflect.Value, item interface{}) bool  {
+func containsInt32(itemsValue reflect.Value, item interface{}) bool {
 	element := item.(int32)
 	array := itemsValue.Interface().([]int32)
 	for _, val := range array {
@@ -166,7 +164,7 @@ func containsInt32(itemsValue reflect.Value, item interface{}) bool  {
 	return false
 }
 
-func containsPtrInt32(itemsValue reflect.Value, item interface{}) bool  {
+func containsPtrInt32(itemsValue reflect.Value, item interface{}) bool {
 	element := item.(*int32)
 	array := itemsValue.Interface().([]*int32)
 	for _, val := range array {
@@ -177,7 +175,7 @@ func containsPtrInt32(itemsValue reflect.Value, item interface{}) bool  {
 	return false
 }
 
-func containsInt64(itemsValue reflect.Value, item interface{}) bool  {
+func containsInt64(itemsValue reflect.Value, item interface{}) bool {
 	element := item.(int64)
 	array := itemsValue.Interface().([]int64)
 	for _, val := range array {
@@ -188,7 +186,7 @@ func containsInt64(itemsValue reflect.Value, item interface{}) bool  {
 	return false
 }
 
-func containsPtrInt64(itemsValue reflect.Value, item interface{}) bool  {
+func containsPtrInt64(itemsValue reflect.Value, item interface{}) bool {
 	element := item.(*int64)
 	array := itemsValue.Interface().([]*int64)
 	for _, val := range array {
@@ -199,7 +197,7 @@ func containsPtrInt64(itemsValue reflect.Value, item interface{}) bool  {
 	return false
 }
 
-func containsUint(itemsValue reflect.Value, item interface{}) bool  {
+func containsUint(itemsValue reflect.Value, item interface{}) bool {
 	element := item.(uint)
 	array := itemsValue.Interface().([]uint)
 	for _, val := range array {
@@ -210,7 +208,7 @@ func containsUint(itemsValue reflect.Value, item interface{}) bool  {
 	return false
 }
 
-func containsPtrUint(itemsValue reflect.Value, item interface{}) bool  {
+func containsPtrUint(itemsValue reflect.Value, item interface{}) bool {
 	element := item.(*uint)
 	array := itemsValue.Interface().([]*uint)
 	for _, val := range array {
@@ -221,7 +219,7 @@ func containsPtrUint(itemsValue reflect.Value, item interface{}) bool  {
 	return false
 }
 
-func containsUint8(itemsValue reflect.Value, item interface{}) bool  {
+func containsUint8(itemsValue reflect.Value, item interface{}) bool {
 	element := item.(uint8)
 	array := itemsValue.Interface().([]uint8)
 	for _, val := range array {
@@ -232,7 +230,7 @@ func containsUint8(itemsValue reflect.Value, item interface{}) bool  {
 	return false
 }
 
-func containsPtrUint8(itemsValue reflect.Value, item interface{}) bool  {
+func containsPtrUint8(itemsValue reflect.Value, item interface{}) bool {
 	element := item.(*uint8)
 	array := itemsValue.Interface().([]*uint8)
 	for _, val := range array {
@@ -243,7 +241,7 @@ func containsPtrUint8(itemsValue reflect.Value, item interface{}) bool  {
 	return false
 }
 
-func containsUint16(itemsValue reflect.Value, item interface{}) bool  {
+func containsUint16(itemsValue reflect.Value, item interface{}) bool {
 	element := item.(uint16)
 	array := itemsValue.Interface().([]uint16)
 	for _, val := range array {
@@ -254,7 +252,7 @@ func containsUint16(itemsValue reflect.Value, item interface{}) bool  {
 	return false
 }
 
-func containsPtrUint16(itemsValue reflect.Value, item interface{}) bool  {
+func containsPtrUint16(itemsValue reflect.Value, item interface{}) bool {
 	element := item.(*uint16)
 	array := itemsValue.Interface().([]*uint16)
 	for _, val := range array {
@@ -265,7 +263,7 @@ func containsPtrUint16(itemsValue reflect.Value, item interface{}) bool  {
 	return false
 }
 
-func containsUint32(itemsValue reflect.Value, item interface{}) bool  {
+func containsUint32(itemsValue reflect.Value, item interface{}) bool {
 	element := item.(uint32)
 	array := itemsValue.Interface().([]uint32)
 	for _, val := range array {
@@ -276,7 +274,7 @@ func containsUint32(itemsValue reflect.Value, item interface{}) bool  {
 	return false
 }
 
-func containsPtrUint32(itemsValue reflect.Value, item interface{}) bool  {
+func containsPtrUint32(itemsValue reflect.Value, item interface{}) bool {
 	element := item.(*uint32)
 	array := itemsValue.Interface().([]*uint32)
 	for _, val := range array {
@@ -287,7 +285,7 @@ func containsPtrUint32(itemsValue reflect.Value, item interface{}) bool  {
 	return false
 }
 
-func containsUint64(itemsValue reflect.Value, item interface{}) bool  {
+func containsUint64(itemsValue reflect.Value, item interface{}) bool {
 	element := item.(uint64)
 	array := itemsValue.Interface().([]uint64)
 	for _, val := range array {
@@ -298,7 +296,7 @@ func containsUint64(itemsValue reflect.Value, item interface{}) bool  {
 	return false
 }
 
-func containsPtrUint64(itemsValue reflect.Value, item interface{}) bool  {
+func containsPtrUint64(itemsValue reflect.Value, item interface{}) bool {
 	element := item.(*uint64)
 	array := itemsValue.Interface().([]*uint64)
 	for _, val := range array {
@@ -309,7 +307,7 @@ func containsPtrUint64(itemsValue reflect.Value, item interface{}) bool  {
 	return false
 }
 
-func containsFloat32(itemsValue reflect.Value, item interface{}) bool  {
+func containsFloat32(itemsValue reflect.Value, item interface{}) bool {
 	element := item.(float32)
 	array := itemsValue.Interface().([]float32)
 	for _, val := range array {
@@ -320,7 +318,7 @@ func containsFloat32(itemsValue reflect.Value, item interface{}) bool  {
 	return false
 }
 
-func containsPtrFloat32(itemsValue reflect.Value, item interface{}) bool  {
+func containsPtrFloat32(itemsValue reflect.Value, item interface{}) bool {
 	element := item.(*float32)
 	array := itemsValue.Interface().([]*float32)
 	for _, val := range array {
@@ -331,7 +329,7 @@ func containsPtrFloat32(itemsValue reflect.Value, item interface{}) bool  {
 	return false
 }
 
-func containsFloat64(itemsValue reflect.Value, item interface{}) bool  {
+func containsFloat64(itemsValue reflect.Value, item interface{}) bool {
 	element := item.(float64)
 	array := itemsValue.Interface().([]float64)
 	for _, val := range array {
@@ -342,7 +340,7 @@ func containsFloat64(itemsValue reflect.Value, item interface{}) bool  {
 	return false
 }
 
-func containsPtrFloat64(itemsValue reflect.Value, item interface{}) bool  {
+func containsPtrFloat64(itemsValue reflect.Value, item interface{}) bool {
 	element := item.(*float64)
 	array := itemsValue.Interface().([]*float64)
 	for _, val := range array {

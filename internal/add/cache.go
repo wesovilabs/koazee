@@ -23,5 +23,5 @@ func (c *cacheType) get(itemsType, itemType reflect.Type) *addInfo {
 }
 
 type addInfo struct {
-	itemType  *reflect.Type
+	itemType *reflect.Type
 }

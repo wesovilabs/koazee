@@ -11,7 +11,7 @@ func TestAdd_cacheAdd(t *testing.T) {
 	itemsType := reflect.TypeOf("")
 	itemType := reflect.TypeOf("")
 	info := &addInfo{
-		itemType:  &itemType,
+		itemType: &itemType,
 	}
 	cache.add(itemsType, itemType, info)
 	assert.Equal(t, 1, len(cache))
@@ -28,7 +28,7 @@ func TestAdd_cacheGetExistingElement(t *testing.T) {
 	itemsType := reflect.TypeOf("")
 	itemType := reflect.TypeOf("")
 	info := &addInfo{
-		itemType:  &itemType,
+		itemType: &itemType,
 	}
 	cache.add(itemsType, itemType, info)
 	assert.Equal(t, info, cache.get(itemsType, itemType))
