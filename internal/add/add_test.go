@@ -70,7 +70,7 @@ func TestAdd_RunError_invalidArgument(t *testing.T) {
 		ItemsType:  reflect.TypeOf(people).Elem(),
 	}
 	value, err := add.Run()
-	assert.Nil(t, value)
+	assert.Equal(t, reflect.ValueOf(nil), value)
 	assert.NotNil(t, err)
 	assert.Equal(t, "[add:err.invalid-argument] An element whose type is int can not be added in a Stream of type *utils.Person", err.Error())
 }

@@ -1,7 +1,6 @@
 package add
 
 import (
-	"fmt"
 	"reflect"
 
 	"github.com/wesovilabs/koazee/errors"
@@ -32,7 +31,6 @@ func (op *Add) Run() (reflect.Value, *errors.Error) {
 
 func (op *Add) validate() (*addInfo, *errors.Error) {
 	itemType := reflect.TypeOf(op.Item)
-	fmt.Printf("%v\n",cache)
 	if info := cache.get(op.ItemsType, itemType); info != nil {
 		return info, nil
 	}
@@ -41,7 +39,7 @@ func (op *Add) validate() (*addInfo, *errors.Error) {
 		if op.ItemsType.Kind() != reflect.Ptr && op.Item == nil {
 			return nil, errors.InvalidArgument(OpCode, "A nil value can not be added in a Stream of non-pointers values")
 		}
-		if op.ItemsType != itemType && (op.Item!=nil){
+		if op.ItemsType != itemType && (op.Item != nil) {
 			return nil, errors.InvalidArgument(OpCode,
 				"An element whose type is %s can not be added in a Stream of type %s", itemType.String(), op.ItemsType)
 		}

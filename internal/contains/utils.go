@@ -3,7 +3,7 @@ package contains
 import "reflect"
 
 func equalsValues(value1, value2 reflect.Value) bool {
-	if value1.Kind() == reflect.Ptr {
+	if value1.Kind() == reflect.Ptr && value2.Kind() == reflect.Ptr {
 		return equalsPtr(value1, value2)
 	}
 	return equalsValue(value1, value2)
