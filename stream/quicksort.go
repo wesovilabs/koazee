@@ -22,11 +22,11 @@ func quickSort(items reflect.Value, itemsType reflect.Type, function interface{}
 		argv[1] = item
 		result := fn.Call(argv)[0]
 		switch result.Int() {
-		case -1:
+		case 1:
 			less = reflect.Append(less, item)
 		case 0:
 			middle = reflect.Append(middle, item)
-		case 1:
+		case -1:
 			more = reflect.Append(more, item)
 		}
 	}

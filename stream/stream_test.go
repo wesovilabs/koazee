@@ -2,6 +2,7 @@ package stream_test
 
 import (
 	"github.com/wesovilabs/koazee/internal/first"
+	"github.com/wesovilabs/koazee/internal/foreach"
 	"testing"
 
 	"github.com/wesovilabs/koazee/errors"
@@ -11,7 +12,7 @@ import (
 )
 
 func TestError(t *testing.T) {
-	err := errors.InvalidType(stream.OpCodeForEach, "error")
+	err := errors.InvalidType(foreach.OpCode, "error")
 	assert.Equal(
 		t,
 		err,

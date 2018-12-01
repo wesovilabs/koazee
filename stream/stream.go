@@ -150,15 +150,12 @@ func (s Stream) run() Stream {
 		return s
 	}
 	s = s.operations[0].run(s)
-	s.operations = make([]lazyOp, 0)
 	if s.err != nil {
 		return s
 	}
-	if len(s.operations) > 1 {
-		s.operations = s.operations[1:]
-		return s.run()
-	}
-	return s
+	s.operations = s.operations[1:]
+	return s.run()
+
 }
 
 // New creates a Stream with the provided array of elements

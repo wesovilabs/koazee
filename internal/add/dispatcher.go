@@ -47,8 +47,13 @@ func addString(itemsValue reflect.Value, itemValue interface{}) interface{} {
 	input := itemsValue.Interface().([]string)
 	item := itemValue.(string)
 	n := len(input)
+
 	output := make([]string, n+1)
-	copy(output, input)
+	half := len(input) / 2
+	for i := half - 1; i >= 0; i-- {
+		output[i] = input[i]
+		output[half+i] = input[half+i]
+	}
 	output[n] = item
 	return output
 }

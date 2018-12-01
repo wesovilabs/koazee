@@ -24,7 +24,8 @@ func (op *sort) run(s Stream) Stream {
 	}
 	itemsType := reflect.TypeOf(s.items).Elem()
 	items := reflect.ValueOf(s.items)
-	s.items = quickSort(items, itemsType, op.fn).Interface()
+	out := quickSort(items, itemsType, op.fn)
+	s = s.withItemsValue(out)
 	return s
 }
 

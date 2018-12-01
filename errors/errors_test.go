@@ -6,6 +6,7 @@ import (
 	"github.com/wesovilabs/koazee/internal/drop"
 	"github.com/wesovilabs/koazee/internal/duplicates"
 	"github.com/wesovilabs/koazee/internal/filter"
+	"github.com/wesovilabs/koazee/internal/foreach"
 	"github.com/wesovilabs/koazee/internal/last"
 	"testing"
 
@@ -29,7 +30,7 @@ func TestError_Error(t *testing.T) {
 	assert.Equal(t, "[drop:unknown] argument", err.Error())
 	err = errors.New(filter.OpCode, "unknown", "argument")
 	assert.Equal(t, "[filter:unknown] argument", err.Error())
-	err = errors.New(stream.OpCodeForEach, "unknown", "argument")
+	err = errors.New(foreach.OpCode, "unknown", "argument")
 	assert.Equal(t, "[forEach:unknown] argument", err.Error())
 	err = errors.New(last.OpCode, "unknown", "argument")
 	assert.Equal(t, "[last:unknown] argument", err.Error())
@@ -48,10 +49,10 @@ func TestError_Error(t *testing.T) {
 }
 
 func TestError_Code(t *testing.T) {
-	err := errors.InvalidType(stream.OpCodeForEach, "This is so weird").
+	err := errors.InvalidType(foreach.OpCode, "This is so weird").
 		With("when", "today")
 	assert.Equal(t, errors.ErrInvalidType.String(), err.Code())
-	assert.Equal(t, stream.OpCodeForEach, err.Operation())
+	assert.Equal(t, foreach.OpCode, err.Operation())
 	assert.Equal(t, "[forEach:err.invalid-type] This is so weird\n  "+
 		"- when: today", err.Error())
 }

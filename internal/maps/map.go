@@ -22,17 +22,18 @@ func (m *Map) Run() (reflect.Value, *errors.Error) {
 		return reflect.ValueOf(result), nil
 	}
 	newItems := reflect.MakeSlice(reflect.SliceOf(mInfo.fnOutputType), 0, 0)
+	fn := reflect.ValueOf(m.Func)
 	var argv = make([]reflect.Value, 1)
 	if mInfo.isPtr {
 		for index := 0; index < m.ItemsValue.Len(); index++ {
 			argv[0] = reflect.ValueOf(reflect.ValueOf(m.ItemsValue.Index(index).Interface()).Elem().Addr().Interface())
-			result := mInfo.fnValue.Call(argv)
+			result := fn.Call(argv)
 			newItems = reflect.Append(newItems, result[0])
 		}
 	} else {
 		for index := 0; index < m.ItemsValue.Len(); index++ {
 			argv[0] = m.ItemsValue.Index(index)
-			result := mInfo.fnValue.Call(argv)
+			result := fn.Call(argv)
 			newItems = reflect.Append(newItems, result[0])
 		}
 	}

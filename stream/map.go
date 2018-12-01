@@ -2,6 +2,7 @@ package stream
 
 import (
 	Map_ "github.com/wesovilabs/koazee/internal/maps"
+	"reflect"
 )
 
 type streamMap struct {
@@ -14,7 +15,9 @@ func (m *streamMap) run(s Stream) Stream {
 		s.err = err
 		return s
 	}
-	return s.withItemsValue(value)
+	s = s.withItemsValue(value)
+	s.itemsType = reflect.TypeOf(value.Interface()).Elem()
+	return s
 }
 
 // Map performs a mutation over all the elements in the Stream and return a new Stream
