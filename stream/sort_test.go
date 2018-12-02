@@ -4,7 +4,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/wesovilabs/koazee"
 	"github.com/wesovilabs/koazee/errors"
-	"github.com/wesovilabs/koazee/stream"
+	"github.com/wesovilabs/koazee/internal/sort"
 	"testing"
 )
 
@@ -40,42 +40,42 @@ func TestStream_Sort(t *testing.T) {
 func TestStream_Sort_validation(t *testing.T) {
 	assert.Equal(
 		t,
-		errors.InvalidArgument(stream.OpCode, "The filter operation requires a function as argument"),
+		errors.InvalidArgument(sort.OpCode, "The filter operation requires a function as argument"),
 		koazee.StreamOf([]string{"Freedom", "for", "the", "animals"}).Sort(10).Out().Err())
 
 	assert.Equal(
 		t,
-		errors.EmptyStream(stream.OpCode, "A nil Stream can not be sorted"),
+		errors.InvalidArgument(sort.OpCode, "The provided function must retrieve 2 arguments"),
 		koazee.Stream().Sort(func() {}).Out().Err())
 
 	assert.Equal(
 		t,
-		errors.InvalidArgument(stream.OpCode, "The provided function must retrieve 2 arguments"),
+		errors.InvalidArgument(sort.OpCode, "The provided function must retrieve 2 arguments"),
 		koazee.StreamOf([]int{2, 3, 2}).Sort(func() {}).Out().Err())
 
 	assert.Equal(
 		t,
-		errors.InvalidArgument(stream.OpCode, "The provided function must retrieve 2 arguments"),
+		errors.InvalidArgument(sort.OpCode, "The provided function must retrieve 2 arguments"),
 		koazee.StreamOf([]int{2, 3, 2}).Sort(func(val int) {}).Out().Err())
 
 	assert.Equal(
 		t,
-		errors.InvalidArgument(stream.OpCode, "The provided function must return 1 value"),
+		errors.InvalidArgument(sort.OpCode, "The provided function must return 1 value"),
 		koazee.StreamOf([]int{2, 3, 2}).Sort(func(val int, val2 string) {}).Out().Err())
 
 	assert.Equal(
 		t,
-		errors.InvalidArgument(stream.OpCode, "The provided function must return 1 value"),
+		errors.InvalidArgument(sort.OpCode, "The provided function must return 1 value"),
 		koazee.StreamOf([]int{2, 3, 2}).Sort(func(val int, val2 string) (string, string) { return "", "" }).Out().Err())
 
 	assert.Equal(
 		t,
-		errors.InvalidArgument(stream.OpCode, "The type of the both arguments must be  int"),
+		errors.InvalidArgument(sort.OpCode, "The type of the both arguments must be  int"),
 		koazee.StreamOf([]int{2, 3, 2}).Sort(func(val int, val2 string) string { return "hi" }).Out().Err())
 
 	assert.Equal(
 		t,
-		errors.InvalidArgument(stream.OpCode, "The type of the Output in the provided function must be int"),
+		errors.InvalidArgument(sort.OpCode, "The type of the Output in the provided function must be int"),
 		koazee.StreamOf([]int{2, 3, 2}).Sort(func(val int, val2 int) string { return "hi" }).Out().Err())
 
 }

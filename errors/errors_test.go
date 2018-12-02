@@ -8,6 +8,7 @@ import (
 	"github.com/wesovilabs/koazee/internal/filter"
 	"github.com/wesovilabs/koazee/internal/foreach"
 	"github.com/wesovilabs/koazee/internal/last"
+	"github.com/wesovilabs/koazee/internal/sort"
 	"testing"
 
 	atOperation "github.com/wesovilabs/koazee/internal/at"
@@ -42,7 +43,7 @@ func TestError_Error(t *testing.T) {
 	assert.Equal(t, "[reduce:unknown] argument", err.Error())
 	err = errors.New(duplicates.OpCode, "unknown", "argument")
 	assert.Equal(t, "[removeDuplicates:unknown] argument", err.Error())
-	err = errors.New(stream.OpCode, "unknown", "argument")
+	err = errors.New(sort.OpCode, "unknown", "argument")
 	assert.Equal(t, "[sort:unknown] argument", err.Error())
 	err = errors.New(stream.OpCodeWith, "unknown", "argument")
 	assert.Equal(t, "[with:unknown] argument", err.Error())
