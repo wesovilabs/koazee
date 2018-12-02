@@ -310,7 +310,7 @@ var {
   opacity: .6;
   font-style: normal; }
 
-mark, samp, kbd {
+mark, code, samp, kbd {
   position: relative;
   top: -1px;
   padding: 4px 4px 2px 4px;
@@ -318,6 +318,8 @@ mark, samp, kbd {
   line-height: 1;
   color: rgba(49, 52, 57, 0.85); }
 
+code {
+  background: #e0e1e1; }
 
 mark {
   background: #f7ba45; }
@@ -342,11 +344,22 @@ sup {
 sub {
   bottom: 1px; }
 
-pre, samp, var, kbd {
+pre, code, samp, var, kbd {
   font-family: Consolas, Monaco, "Courier New", monospace; }
 
-pre, samp, var, kbd, mark {
+pre, code, samp, var, kbd, mark {
   font-size: 87.5%; }
+
+pre,
+pre code {
+  background: #f8f8f8;
+  padding: 0;
+  top: 0;
+  display: block;
+  line-height: 20px;
+  color: rgba(49, 52, 57, 0.85);
+  overflow: none;
+  white-space: pre-wrap; }
 
 pre {
   padding: 1rem; }
