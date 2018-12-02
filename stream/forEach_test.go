@@ -23,12 +23,12 @@ func TestStream_ForEach_validation(t *testing.T) {
 		t,
 		errors.InvalidArgument(foreach.OpCode, "The forEach operation requires a function as argument"),
 		koazee.StreamOf([]string{"Freedom", "for", "the", "animals"}).ForEach(10).Out().Err())
-/**
-	assert.Equal(
-		t,
-		errors.EmptyStream(foreach.OpCode, "A nil Stream can not be used to perform ForEach operation"),
-		koazee.Stream().ForEach(func() {}).Out().Err())
-**/
+	/**
+		assert.Equal(
+			t,
+			errors.EmptyStream(foreach.OpCode, "A nil Stream can not be used to perform ForEach operation"),
+			koazee.Stream().ForEach(func() {}).Out().Err())
+	**/
 	assert.Equal(
 		t,
 		errors.InvalidArgument(foreach.OpCode, "The provided function must retrieve 1 argument"),

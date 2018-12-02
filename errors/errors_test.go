@@ -42,7 +42,7 @@ func TestError_Error(t *testing.T) {
 	assert.Equal(t, "[reduce:unknown] argument", err.Error())
 	err = errors.New(duplicates.OpCode, "unknown", "argument")
 	assert.Equal(t, "[removeDuplicates:unknown] argument", err.Error())
-	err = errors.New(stream.OpCodeSort, "unknown", "argument")
+	err = errors.New(stream.OpCode, "unknown", "argument")
 	assert.Equal(t, "[sort:unknown] argument", err.Error())
 	err = errors.New(stream.OpCodeWith, "unknown", "argument")
 	assert.Equal(t, "[with:unknown] argument", err.Error())
