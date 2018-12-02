@@ -28,6 +28,23 @@ Visit the [Koazee wiki](https://github.com/wesovilabs/koazee/wiki) to find out w
 - **Functional programming**: Let's write clearer code more compressed and predictable
 
 
+### Koazee Operations
+
+| Operation  | Description  | Since  |
+|---|---|---|
+| [At](https://github.com/wesovilabs/koazee/wiki/Operation-at) | It returns the element in the given position |  v0.0.1 |
+| [First](https://github.com/wesovilabs/koazee/wiki/Operation-first) | It returns the element in the first position |  v0.0.1 |
+| [Last](https://github.com/wesovilabs/koazee/wiki/Operation-last) | It returns the element in the last position |  v0.0.1 |
+| [Add](https://github.com/wesovilabs/koazee/wiki/Operation-add) | It adds a new element in the last position |  v0.0.1 |
+| [Drop](https://github.com/wesovilabs/koazee/wiki/Operation-drop) | It removes an element from the stream |  v0.0.1 |
+| [Map](https://github.com/wesovilabs/koazee/wiki/Operation-map) | It converts the element in the stream |  v0.0.1 |
+| [Filter](https://github.com/wesovilabs/koazee/wiki/Operation-filter) | It discards those elements that doesn't match with the provided filter|  v0.0.1 |
+| [Reduce](https://github.com/wesovilabs/koazee/wiki/Operation-reduce) | It reduceshe stream to a single value by executing a provided function for each value of the stream|  v0.0.1 |
+| [Reduce](https://github.com/wesovilabs/koazee/wiki/Operation-foreach) | It does something over all the elements in the stream.|  v0.0.1 |
+| [RemoveDuplicates](https://github.com/wesovilabs/koazee/wiki/Operation-removeDuplcates) | It removes duplicated elements.|  v0.0.1 |
+| [Count](https://github.com/wesovilabs/koazee/wiki/Operation-count) | It returns the number of elements in a stream|  v0.0.1 |
+| [Contains](https://github.com/wesovilabs/koazee/wiki/Operation-contains) | It checks if the given element is found in the stream.|  v0.0.1 |
+
 ### Samples
 
 If you like how look the code below, that means that you should be using Koazee in your projects.
@@ -67,20 +84,20 @@ func listOfAuthors() stream.Stream {
     Map(func(quote *database.Quote) string {
       return quote.Author
     }).
-      RemoveDuplicates().
-      Sort(strings.Compare)
+  	RemoveDuplicates().
+    Sort(strings.Compare)
 }
 
 func printNameOfAuthors() stream.Stream {
   return listOfAuthors().
-  	ForEach(func(author string) {
+    ForEach(func(author string) {
       fmt.Printf(" * %s\n", author)
     })
 }
 
 func quotesByAuthorOrderedByQuoteLen(author string) stream.Stream {
   return quotesStream.
-  	Filter(func(quote *database.Quote) bool {
+    Filter(func(quote *database.Quote) bool {
       return quote.Author == author
     }).
     Map(func(quote *database.Quote) string {
