@@ -27,5 +27,4 @@ type sortInfo struct {
 	fnInput1Type reflect.Type
 	fnInput2Type reflect.Type
 	fnOutputType reflect.Type
-	isPtr        bool
 }

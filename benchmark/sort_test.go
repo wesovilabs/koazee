@@ -19,7 +19,7 @@ BenchmarkSortString100SumLen-4    	  200000	      8023 ns/op
 BenchmarkSortString1000SumLen-4   	   10000	    140208 ns/op
 BenchmarkSortString5000SumLen-4   	    2000	    896392 ns/op
 
- */
+*/
 func BenchmarkSortString10SumLen(b *testing.B) {
 	b.StopTimer()
 	var result stream.Stream
