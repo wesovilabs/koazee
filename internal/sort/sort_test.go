@@ -78,6 +78,20 @@ func testSortArrayOfStringInvalidFunctionArgType(t *testing.T) {
 	assert.NotNil(t, err)
 	assert.Equal(t, err.Error(), "[sort:err.invalid-argument] The type of the both arguments must be  string")
 }
+func testSortArrayOfStringInvalidFunctionOutType(t *testing.T) {
+	items := []string{"a", "b", "h", "d"}
+	sort := sort.Sort{
+		ItemsValue: reflect.ValueOf(items),
+		ItemsType:  reflect.TypeOf("a"),
+		Func: func(a, b string) bool {
+			return true
+		},
+	}
+	values, err := sort.Run()
+	assert.Equal(t, reflect.ValueOf(nil), values)
+	assert.NotNil(t, err)
+	assert.Equal(t, err.Error(), "[sort:err.invalid-argument] The type of the Output in the provided function must be int")
+}
 
 func testSortArrayOfStringInvalidFunctionArgNumbers(t *testing.T) {
 	items := []string{"a", "b", "h", "d"}
@@ -101,79 +115,7 @@ func TestSort_Run(t *testing.T) {
 	testSortArrayOfPeople(t)
 	testSortArrayOfPtrInt(t)
 	testSortArrayOfStringInvalidFunctionArgType(t)
+	testSortArrayOfStringInvalidFunctionOutType(t)
 	testSortArrayOfStringInvalidFunctionArgNumbers(t)
 }
 
-/**
-func TestStream_Sort(t *testing.T) {
-
-	stream := koazee.StreamOf([]person{{"John", 23}, {"David", 30}, {"Michael", 27}})
-	stream = stream.Sort(func(person1, person2 person) int {
-		if person1.age < person2.age {
-			return -1
-		} else if person1.age > person2.age {
-			return 1
-		}
-		return 0
-	})
-	array := stream.Out().Val()
-	assert.True(t, array.([]person)[0].age > array.([]person)[1].age)
-	assert.True(t, array.([]person)[1].age > array.([]person)[2].age)
-
-	stream = koazee.StreamOf([]person{{"John", 23}, {"David", 30}, {"Michael", 27}})
-	stream = stream.Sort(func(person1, person2 person) int {
-		if person1.age < person2.age {
-			return 1
-		} else if person1.age > person2.age {
-			return -1
-		}
-		return 0
-	})
-	array = stream.Out().Val()
-	assert.True(t, array.([]person)[0].age < array.([]person)[1].age)
-	assert.True(t, array.([]person)[1].age < array.([]person)[2].age)
-}
-
-func TestStream_Sort_validation(t *testing.T) {
-	assert.Equal(
-		t,
-		errors.InvalidArgument(OpCode, "The filter operation requires a function as argument"),
-		koazee.StreamOf([]string{"Freedom", "for", "the", "animals"}).Sort(10).Out().Err())
-
-	assert.Equal(
-		t,
-		errors.EmptyStream(OpCode, "A nil Stream can not be sorted"),
-		koazee.Stream().Sort(func() {}).Out().Err())
-
-	assert.Equal(
-		t,
-		errors.InvalidArgument(OpCode, "The provided function must retrieve 2 arguments"),
-		koazee.StreamOf([]int{2, 3, 2}).Sort(func() {}).Out().Err())
-
-	assert.Equal(
-		t,
-		errors.InvalidArgument(OpCode, "The provided function must retrieve 2 arguments"),
-		koazee.StreamOf([]int{2, 3, 2}).Sort(func(val int) {}).Out().Err())
-
-	assert.Equal(
-		t,
-		errors.InvalidArgument(OpCode, "The provided function must return 1 value"),
-		koazee.StreamOf([]int{2, 3, 2}).Sort(func(val int, val2 string) {}).Out().Err())
-
-	assert.Equal(
-		t,
-		errors.InvalidArgument(OpCode, "The provided function must return 1 value"),
-		koazee.StreamOf([]int{2, 3, 2}).Sort(func(val int, val2 string) (string, string) { return "", "" }).Out().Err())
-
-	assert.Equal(
-		t,
-		errors.InvalidArgument(OpCode, "The type of the both arguments must be  int"),
-		koazee.StreamOf([]int{2, 3, 2}).Sort(func(val int, val2 string) string { return "hi" }).Out().Err())
-
-	assert.Equal(
-		t,
-		errors.InvalidArgument(OpCode, "The type of the Output in the provided function must be int"),
-		koazee.StreamOf([]int{2, 3, 2}).Sort(func(val int, val2 int) string { return "hi" }).Out().Err())
-
-}
-**/
