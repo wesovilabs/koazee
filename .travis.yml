@@ -13,7 +13,7 @@ script:
 - make deps
 - make install
 - make test-coverage
-- make check
+#- make check
 #- make benchmark
 
 after_success:
