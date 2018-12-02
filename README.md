@@ -39,7 +39,7 @@ Visit the [Koazee wiki](https://github.com/wesovilabs/koazee/wiki) to find out w
 | [Map](https://github.com/wesovilabs/koazee/wiki/Operation-map) | It converts the element in the stream |  v0.0.1 |
 | [Filter](https://github.com/wesovilabs/koazee/wiki/Operation-filter) | It discards those elements that doesn't match with the provided filter|  v0.0.1 |
 | [Reduce](https://github.com/wesovilabs/koazee/wiki/Operation-reduce) | It reduceshe stream to a single value by executing a provided function for each value of the stream|  v0.0.1 |
-| [Reduce](https://github.com/wesovilabs/koazee/wiki/Operation-foreach) | It does something over all the elements in the stream.|  v0.0.1 |
+| [ForEach](https://github.com/wesovilabs/koazee/wiki/Operation-foreach) | It does something over all the elements in the stream.|  v0.0.1 |
 | [RemoveDuplicates](https://github.com/wesovilabs/koazee/wiki/Operation-removeDuplcates) | It removes duplicated elements.|  v0.0.1 |
 | [Count](https://github.com/wesovilabs/koazee/wiki/Operation-count) | It returns the number of elements in a stream|  v0.0.1 |
 | [Contains](https://github.com/wesovilabs/koazee/wiki/Operation-contains) | It checks if the given element is found in the stream.|  v0.0.1 |
