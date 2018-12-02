@@ -68,6 +68,10 @@
   </url>
   
   <url>
+    <loc>http://wesovilabs.com/koazee/docs/compose/</loc>
+  </url>
+  
+  <url>
     <loc>http://wesovilabs.com/koazee/backup/typography/</loc>
   </url>
   
@@ -269,6 +273,10 @@
     <loc>http://wesovilabs.com/koazee/tags/markdown/</loc>
     <lastmod>2017-03-02T21:56:55+01:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://wesovilabs.com/koazee/password-recovery/</loc>
   </url>
   
   <url>

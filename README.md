@@ -9,18 +9,18 @@
 
 # Koazee
 
-## Lazy like a koala, smart like a chimpanzee
-
-Koazee full documentation is hosted on [http://wesovilabs.com/koazee](http://wesovilabs.com/koazee)
+> Lazy like a koala, smart like a chimpanzee
 
 
 ### What is Koazee?
 
-Koazee is a handy Golang library focused on helping developers and make their life easier by taking the hassle out of working with arrays.
-It takes an array and creates a stream. The stream can be easily manipulated by making use of the provided operations by Koazee.
+Koazee is a handy Golang library focused on helping developers and make their life easier by taking the hassle out of working with arrays. It takes an array and creates an stream. The stream can be easily manipulated by making use of the provided operations by Koazee. 
+
+Koazee is inspired in two of the most powerful, and well-known, techniques in Software development.
+
+Visit the [Koazee wiki](https://github.com/wesovilabs/koazee/wiki) to find out what Koazee can do.
 
 ### How does Koazee work?
-
 
 **Koazee is inspired in two of the most powerful, and well-known, techniques in Software development.**
 
@@ -33,93 +33,91 @@ It takes an array and creates a stream. The stream can be easily manipulated by 
 If you like how look the code below, that means that you should be using Koazee in your projects.
 
 
-```golang
+```go
 package main
 
 import (
-	"fmt"
-	"github.com/wesovilabs/koazee"
-	"strings"
+  "fmt"
+  "github.com/wesovilabs/koazee/stream"
+  "koazee-samples/database"
+  "strings"
 )
 
-var lenLowerThan6 = func(val string) bool { return len(val) <= 6 }
-var concatStrings = func(acc, val string) string {
-	if len(acc) == 0 {
-		return val
-	}
-	return fmt.Sprintf("%s %s", acc, val)
+var quotesStream = stream.New(database.GetQuotes())
+
+func printQuotesOrderedByAuthor() stream.Stream {
+  return quotesStream.
+    Sort(func(quoteLeft, quoteRight *database.Quote) int {
+      return strings.Compare(quoteLeft.Author, quoteRight.Author)
+    }).
+    ForEach(func(quote *database.Quote) {
+      fmt.Printf(" * %s said \"%s\"\n", quote.Author, quote.Text)
+    })
 }
-var concatStringsWitDash = func(acc, val string) string {
-	if len(acc) == 0 {
-		return val
-	}
-	return fmt.Sprintf("%s-%s", acc, val)
+
+func numberOfAnonymousQuotes() int {
+  count, _ := quotesStream.Filter(func(quote *database.Quote) bool {
+    return quote.Author == "Anonymous"
+  }).Count()
+  return count
 }
-var streamFlow = koazee.
-	Stream().
-	RemoveDuplicates().
-	Filter(lenLowerThan6).
-	Map(strings.ToUpper)
+
+func listOfAuthors() stream.Stream {
+  return quotesStream.
+    Map(func(quote *database.Quote) string {
+      return quote.Author
+    }).
+      RemoveDuplicates().
+      Sort(strings.Compare)
+}
+
+func printNameOfAuthors() stream.Stream {
+  return listOfAuthors().
+  	ForEach(func(author string) {
+      fmt.Printf(" * %s\n", author)
+    })
+}
+
+func quotesByAuthorOrderedByQuoteLen(author string) stream.Stream {
+  return quotesStream.
+  	Filter(func(quote *database.Quote) bool {
+      return quote.Author == author
+    }).
+    Map(func(quote *database.Quote) string {
+      return quote.Text
+    }).
+    Sort(func(quote1, quote2 string) int {
+      if len(quote1) > len(quote2) {
+        return 1
+      } else if len(quote1) < len(quote2) {
+        return -1
+      }
+      return 0
+    }).
+    ForEach(func(quote string) {
+      fmt.Println(quote)
+    })
+}
+
+
 
 func main() {
-	array := []string{"koazee", "telescope", "is", "created", "so", "great"}
-	fmt.Println(streamFlow.With(array).Reduce(concatStrings).String())
-	fmt.Println(streamFlow.With(array).Reduce(concatStringsWitDash).String())
+  count, _ := quotesStream.Count()
+  fmt.Printf("\n - Total quotes: %d\n", count)
+  fmt.Printf("\n - Total anonymous quotes: %d\n", numberOfAnonymousQuotes())
+  count, _ = listOfAuthors().Count()
+  fmt.Printf("\n - Total authors: %d\n", count)
+  fmt.Println("\nPrinting quotes ordered by author name")
+  fmt.Println("--------------------------------------")
+  printQuotesOrderedByAuthor().Do()
+  fmt.Println("\nPrinting list of authors sorted by name")
+  fmt.Println("--------------------------------------")
+  printNameOfAuthors().Do()
+  fmt.Println("\nPrinting list of quotes sorted bylen of quote and said by Albert Einstein")
+  quotesByAuthorOrderedByQuoteLen("Albert Einstein").Do()
+  fmt.Println("\nPrinting list of quotes sorted bylen of quote and said by anonymous")
+  quotesByAuthorOrderedByQuoteLen("Anonymous").Do()
 }
 ```
-
-
-#### How can I check an error in runtime?
-
-You always can check if any operation fail during the runtime
-
-```golang
-package main
-
-import (
-	"fmt"
-	"github.com/wesovilabs/koazee"
-	"github.com/wesovilabs/koazee/logger"
-	"strings"
-)
-
-var lenLowerThan6 = func(val string) bool { return len(val) <= 6 }
-var concatStrings = func(acc, val string) string {
-	if len(acc) == 0 {
-		return val
-	}
-	return fmt.Sprintf("%s %s", acc, val)
-}
-var streamFlow = koazee.
-	Stream().
-	RemoveDuplicates().
-	Filter(func(val string)string{
-		return "This should be an invalid operation!"
-	}).
-	Filter(lenLowerThan6).
-	Map(strings.ToUpper)
-
-func main() {
-	logger.Enabled=true
-	array := []string{"koazee", "telescope", "is", "created", "so", "great"}
-	out:=streamFlow.With(array).Out()
-	if out.Err()!=nil{
-		fmt.Println(out.Err())
-		return
-	}
-	fmt.Println(out.Val().([]int))
-}
-```
-
-If we run the above code the output will be
-
-```bash
-[koazee] 05:56:18.821227 with  [koazee telescope is created so great]
-[koazee] 05:56:18.821596 removeDuplicates [koazee telescope is created so great] -> [koazee telescope is created so great]
-[filter:err.invalid-argument] The type of the output in the provided function must be bool
-```
-
-
-You can find more documentation and examples on [http://wesovilabs.com/koazee](http://wesovilabs.com/koazee)
 
 *If you like this project and you think I should provide more functionality to Koazee, please feel free to star the repository*

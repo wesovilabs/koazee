@@ -35,7 +35,5 @@ install:
 	${GO} install github.com/golangci/golangci-lint/cmd/golangci-lint
 site:
 	cd .hugo; \
-	hugo server --buildDrafts
-doc:
-	cd .hugo; \
-	jekyll serve
+	hugo --theme=kube; \
+	hugo server --config=config-local.toml --theme=kube --buildDrafts

@@ -32,6 +32,21 @@ func testSortArrayOfPeople(t *testing.T) {
 	assert.Equal(t, "John", values.Interface().([]utils.Person)[3].FirstName)
 }
 
+func testSortEmptyArray(t *testing.T) {
+	items := []utils.Person{}
+	sort := sort.Sort{
+		ItemsValue: reflect.ValueOf(items),
+		ItemsType:  reflect.TypeOf(utils.Person{}),
+		Func: func(a, b utils.Person) int {
+			return strings.Compare(a.FirstName, b.FirstName)
+		},
+	}
+	values, err := sort.Run()
+	assert.Nil(t, err)
+	assert.NotNil(t, values)
+	assert.Equal(t, 0, values.Len())
+}
+
 func testSortArrayOfPtrInt(t *testing.T) {
 	items := []*int{
 		utils.IntPtr(10),
@@ -93,6 +108,21 @@ func testSortArrayOfStringInvalidFunctionOutType(t *testing.T) {
 	assert.Equal(t, err.Error(), "[sort:err.invalid-argument] The type of the Output in the provided function must be int")
 }
 
+func testSortArrayOfStringInvalidFunctionOutNumbers(t *testing.T) {
+	items := []string{"a", "b", "h", "d"}
+	sort := sort.Sort{
+		ItemsValue: reflect.ValueOf(items),
+		ItemsType:  reflect.TypeOf("a"),
+		Func: func(a, b string) (int, bool) {
+			return 0, true
+		},
+	}
+	values, err := sort.Run()
+	assert.Equal(t, reflect.ValueOf(nil), values)
+	assert.NotNil(t, err)
+	assert.Equal(t, err.Error(), "[sort:err.invalid-argument] The provided function must return 1 value")
+}
+
 func testSortArrayOfStringInvalidFunctionArgNumbers(t *testing.T) {
 	items := []string{"a", "b", "h", "d"}
 	sort := sort.Sort{
@@ -111,11 +141,26 @@ func testSortArrayOfStringInvalidFunctionArgNumbers(t *testing.T) {
 	assert.Equal(t, err.Error(), "[sort:err.invalid-argument] The provided function must retrieve 2 arguments")
 }
 
+func testSortArrayOfStringInvalidFunction(t *testing.T) {
+	items := []string{"a", "b", "h", "d"}
+	sort := sort.Sort{
+		ItemsValue: reflect.ValueOf(items),
+		ItemsType:  reflect.TypeOf("a"),
+		Func:       10,
+	}
+	values, err := sort.Run()
+	assert.Equal(t, reflect.ValueOf(nil), values)
+	assert.NotNil(t, err)
+	assert.Equal(t, err.Error(), "[sort:err.invalid-argument] The filter operation requires a function as argument")
+}
+
 func TestSort_Run(t *testing.T) {
 	testSortArrayOfPeople(t)
 	testSortArrayOfPtrInt(t)
+	testSortEmptyArray(t)
 	testSortArrayOfStringInvalidFunctionArgType(t)
 	testSortArrayOfStringInvalidFunctionOutType(t)
+	testSortArrayOfStringInvalidFunctionOutNumbers(t)
 	testSortArrayOfStringInvalidFunctionArgNumbers(t)
+	testSortArrayOfStringInvalidFunction(t)
 }
-

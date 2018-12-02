@@ -12,7 +12,7 @@ var quotes = []*Quote{
 	{Text: "Animals are not products. Life doesn’t have a price.", Author: "Anonymous"},
 	{Text: "Every living creature has the right to live ethically.", Author: "Dirk Verbeuren"},
 	{Text: "All life deserves respect, dignity, and compassion. All life.", Author: "Anonymous"},
-	{Text: "It’s not hard to make decisions once you know what your values are", Author: "Roy E. Disney"},
+	{Text: "It’s n  ot hard to make decisions once you know what your values are", Author: "Roy E. Disney"},
 	{Text: "May all that have life be delivered from suffering.", Author: "Buddha"},
 	{Text: "It is much easier to show compassion to animals. They are never wicked.", Author: "Haile Selassie"},
 	{Text: "I personally chose to go vegan because I educated myself on factory farming and cruelty to animals, and I suddenly realized that what was on my plate were living things, with feelings. And I just couldn’t disconnect myself from it any longer.", Author: "Ellen DeGeneres"},

@@ -81,4 +81,5 @@ func main() {
 	quotesByAuthorOrderedByQuoteLen("Albert Einstein").Do()
 	fmt.Println("\nPrinting list of quotes sorted bylen of quote and said by anonymous")
 	quotesByAuthorOrderedByQuoteLen("Anonymous").Do()
+
 }
