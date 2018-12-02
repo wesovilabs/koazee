@@ -1,34 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Guides on Koazee</title>
-    <link>http://wesovilabs.com/koazee/guides/</link>
-    <description>Recent content in Guides on Koazee</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    
-	<atom:link href="http://wesovilabs.com/koazee/guides/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Logging with Koazee</title>
-      <link>http://wesovilabs.com/koazee/guides/logging/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://wesovilabs.com/koazee/guides/logging/</guid>
-      <description>Enabling Koazee logging  Koazee provides support to log what it is happening in the stream. In the below example we will see how of easy is enable it. Actually, we just need to set a global variable ```golang logger.Enabled=true ``` Example package mainimport (&amp;#34;github.com/wesovilabs/koazee&amp;#34;&amp;#34;github.com/wesovilabs/koazee/logger&amp;#34;)var numbers = []int{1, 2, 3, 4, 4, 1}func main() {logger.Enabled = truekoazee.Stream().With(numbers).Filter(func(val int) bool {return val%2 == 0}).</description>
-    </item>
-    
-    <item>
-      <title>Performance improvements in Koazee v0.0.2</title>
-      <link>http://wesovilabs.com/koazee/guides/performance/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://wesovilabs.com/koazee/guides/performance/</guid>
-      <description>Why   After releasing Koazee Titi (v0.0.1) I was asked to publish some benchmark. As you know, Koazee is based in reflection and this is even more expensive than I expected before writing the tests.  Benchmark tests helped me to do big performance improvements in v0.0.2 as we will see in this guide. 
-
-Running benchmark tests locally  Benchmark tests are available in Koazee repository</description>
-    </item>
-    
-  </channel>
-</rss>
