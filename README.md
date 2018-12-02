@@ -43,6 +43,8 @@ Visit the [Koazee wiki](https://github.com/wesovilabs/koazee/wiki) to find out w
 | [RemoveDuplicates](https://github.com/wesovilabs/koazee/wiki/Operation-removeDuplcates) | It removes duplicated elements.|  v0.0.1 |
 | [Count](https://github.com/wesovilabs/koazee/wiki/Operation-count) | It returns the number of elements in a stream|  v0.0.1 |
 | [Contains](https://github.com/wesovilabs/koazee/wiki/Operation-contains) | It checks if the given element is found in the stream.|  v0.0.1 |
+| [Sort](https://github.com/wesovilabs/koazee/wiki/Operation-sort) | It sorts the elements in the stream by the given function.|  mav0.0.1ster |
+| [Reverse](https://github.com/wesovilabs/koazee/wiki/Operation-reverse) | It reverses the sequence of elements in the stream.|  master |
 
 ### Samples
 
