@@ -1,7 +1,7 @@
 language: go
 
 go:
-- "1.11.x"
+- "1.11"
 
 env:
 - GO111MODULE=auto
@@ -13,7 +13,7 @@ script:
 - make deps
 - make install
 - make test-coverage
-#- make check
+- make check
 #- make benchmark
 
 after_success:
