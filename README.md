@@ -46,6 +46,11 @@ Visit the [Koazee wiki](https://github.com/wesovilabs/koazee/wiki) to find out w
 | [Sort](https://github.com/wesovilabs/koazee/wiki/Operation-sort) | It sorts the elements in the stream by the given function.|  v0.0.1 |
 | [Reverse](https://github.com/wesovilabs/koazee/wiki/Operation-reverse) | It reverses the sequence of elements in the stream.|  master |
 
+
+### Benchmark
+
+You can check the Benchmark for the Koazee operations [here](https://github.com/wesovilabs/koazee/wiki/Benchmark-Report)
+
 ### Samples
 
 If you like how look the code below, that means that you should be using Koazee in your projects.
