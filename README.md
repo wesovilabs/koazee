@@ -51,6 +51,10 @@ Visit the [Koazee wiki](https://github.com/wesovilabs/koazee/wiki) to find out w
 
 You can check the Benchmark for the Koazee operations [here](https://github.com/wesovilabs/koazee/wiki/Benchmark-Report)
 
+### Guides & Tutorials
+
+[Shopping cart with Koazee](https://medium.com/wesovilabs/koazee-the-shopping-cart-a381bba32955)
+
 ### Samples
 
 If you like how look the code below, that means that you should be using Koazee in your projects.

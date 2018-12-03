@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/wesovilabs/koazee/stream"
-	"koazee-samples/database"
+	"koazee-samples-quotes/database"
 	"strings"
 )
 
