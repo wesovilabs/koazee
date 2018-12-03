@@ -1,18 +1,26 @@
-# Changelo
+# Changelog
 
 ## [Unreleased]
+
 ### Added
-- Benchmark testing for all the operations
+
+- Operation reverse
+
+
+## Gelada (v0.0.2) - 1/12/2018
+
+### Added
+- Benchmark testing for all the operations [Koazee Benchmark Report](https://github.com/wesovilabs/koazee/wiki/Benchmark-Report)
 - Working with generated code instead of reflection for primitive streams
 - Several changes in code to get a better performance
+- Full wiki [Koazee wiki](https://github.com/wesovilabs/koazee/wiki)
 - Caching validation types in operations
-### Changed
-- Stream nil is considered like an empty stream
-- Update [Koazee site documentation](http://wesovilabs.com/koazee/)
+- New examples can be found [here](https://github.com/wesovilabs/koazee/tree/master/samples)
 ### Removed
 - Compose operation
 - Interface S
 - Logger is deprecated
+- External Site has been removed
 
 
 ## Titi (v0.0.1) - 12/11/2018
