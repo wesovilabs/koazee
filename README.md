@@ -51,6 +51,8 @@ Visit the [Koazee wiki](https://github.com/wesovilabs/koazee/wiki) to find out w
 
 You can check the Benchmark for the Koazee operations [here](https://github.com/wesovilabs/koazee/wiki/Benchmark-Report)
 
+A benchmark compison with other frameworks can be found in [Koazee vs Go-Funk vs Go-Linq](https://medium.com/@ivan.corrales.solera/koazee-vs-go-funk-vs-go-linq-caf8ef18584e)
+
 ### Guides & Tutorials
 
 [Shopping cart with Koazee](https://medium.com/wesovilabs/koazee-the-shopping-cart-a381bba32955)

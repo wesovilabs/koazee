@@ -11,6 +11,6 @@ func (s Stream) Reduce(fn interface{}) Output {
 	if current.err != nil {
 		return Output{reflect.ValueOf(nil), current.err}
 	}
-	value, err := (&reduce.Reduce{ItemsType: s.itemsType, ItemsValue: s.itemsValue, Func: fn}).Run()
+	value, err := (&reduce.Reduce{ItemsType: current.itemsType, ItemsValue: current.itemsValue, Func: fn}).Run()
 	return Output{value, err}
 }
