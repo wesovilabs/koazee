@@ -35,6 +35,7 @@ Visit the [Koazee wiki](https://github.com/wesovilabs/koazee/wiki) to find out w
 | [First](https://github.com/wesovilabs/koazee/wiki/Operation-first) | It returns the element in the first position |  v0.0.1 |
 | [Last](https://github.com/wesovilabs/koazee/wiki/Operation-last) | It returns the element in the last position |  v0.0.1 |
 | [Add](https://github.com/wesovilabs/koazee/wiki/Operation-add) | It adds a new element in the last position |  v0.0.1 |
+| [Pop](https://github.com/wesovilabs/koazee/wiki/Operation-pop) | It extracts the first element in the stream and return this and the new stream | master |
 | [Drop](https://github.com/wesovilabs/koazee/wiki/Operation-drop) | It removes an element from the stream |  v0.0.1 |
 | [Map](https://github.com/wesovilabs/koazee/wiki/Operation-map) | It converts the element in the stream |  v0.0.1 |
 | [Filter](https://github.com/wesovilabs/koazee/wiki/Operation-filter) | It discards those elements that doesn't match with the provided filter|  v0.0.1 |
