@@ -2,7 +2,7 @@ package reverse_test
 
 import (
 	"fmt"
-	"github.com/magiconair/properties/assert"
+	"github.com/stretchr/testify/assert"
 	"github.com/wesovilabs/koazee"
 	"github.com/wesovilabs/koazee/utils"
 	"testing"
