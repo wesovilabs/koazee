@@ -63,9 +63,9 @@ func Test_containsBoolNotFound(t *testing.T) {
 func Test_containsBoolPtrNotFound(t *testing.T) {
 	searchedValue := false
 	searched := &searchedValue
-	trueValue:=true
+	trueValue := true
 	typeElement := reflect.TypeOf(searched)
-	found, contained := dispatch(reflect.ValueOf([]*bool{&trueValue,&trueValue}), searched, typeElement)
+	found, contained := dispatch(reflect.ValueOf([]*bool{&trueValue, &trueValue}), searched, typeElement)
 	assert.True(t, found)
 	assert.False(t, contained)
 }
