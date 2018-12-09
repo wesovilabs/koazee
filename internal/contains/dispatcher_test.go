@@ -53,17 +53,19 @@ func Test_containsBoolPtr(t *testing.T) {
 	assert.True(t, contained)
 }
 func Test_containsBoolNotFound(t *testing.T) {
-	searched := utils.ValueBool
+	searched := false
 	typeElement := reflect.TypeOf(searched)
-	found, contained := dispatch(reflect.ValueOf(utils.ArrayBool), searched, typeElement)
+	found, contained := dispatch(reflect.ValueOf([]bool{true, true}), searched, typeElement)
 	assert.True(t, found)
 	assert.False(t, contained)
 }
 
 func Test_containsBoolPtrNotFound(t *testing.T) {
-	searched := utils.ValueBoolPtr
+	searchedValue := false
+	searched := &searchedValue
+	trueValue:=true
 	typeElement := reflect.TypeOf(searched)
-	found, contained := dispatch(reflect.ValueOf(utils.ArrayBoolPtr), searched, typeElement)
+	found, contained := dispatch(reflect.ValueOf([]*bool{&trueValue,&trueValue}), searched, typeElement)
 	assert.True(t, found)
 	assert.False(t, contained)
 }
