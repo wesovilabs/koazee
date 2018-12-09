@@ -77,10 +77,11 @@ func BenchmarkPopString5000(b *testing.B) {
 		b.Fatalf("The stream should have %d elements but it has %d", 4999, len(streamOut.Out().Val().([]string)))
 	}
 }
+
 /**
 BenchmarkPopString10-4     	 3000000	       347 ns/op
 BenchmarkPopString100-4    	 5000000	       343 ns/op
 BenchmarkPopString1000-4   	 5000000	       338 ns/op
 BenchmarkPopString5000-4   	 5000000	       342 ns/op
 PASS
- */
+*/

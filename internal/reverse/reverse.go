@@ -29,7 +29,7 @@ func (op *Reverse) Run() (reflect.Value, *errors.Error) {
 	}
 	input := op.ItemsValue.Interface()
 	sort.SliceStable(input, func(i, j int) bool { return true })
-	return reflect.ValueOf(input),nil
+	return reflect.ValueOf(input), nil
 }
 
 func (op *Reverse) prepareMapWithKeys() map[interface{}]int {

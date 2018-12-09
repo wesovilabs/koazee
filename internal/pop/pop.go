@@ -26,7 +26,7 @@ func (op *Pop) Run() (reflect.Value, reflect.Value, *errors.Error) {
 }
 
 func (op *Pop) popAny() (reflect.Value, reflect.Value) {
-	slice := reflect.MakeSlice(reflect.SliceOf(op.ItemsType),0, op.Len-1)
+	slice := reflect.MakeSlice(reflect.SliceOf(op.ItemsType), 0, op.Len-1)
 	for index := 1; index < op.Len; index++ {
 		slice = reflect.Append(slice, op.ItemsValue.Index(index))
 	}

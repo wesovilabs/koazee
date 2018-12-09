@@ -6,7 +6,6 @@ import (
 	"testing"
 )
 
-
 func BenchmarkDeleteAtString10(b *testing.B) {
 	b.StopTimer()
 	var outStream stream.Stream
@@ -21,7 +20,7 @@ func BenchmarkDeleteAtString10(b *testing.B) {
 	}
 	for index, val := range outStream.Out().Val().([]string) {
 		if val != strings10[index+1] {
-			b.Fatalf("The element at index %d should be %s",index,strings10[index+1])
+			b.Fatalf("The element at index %d should be %s", index, strings10[index+1])
 		}
 	}
 }
@@ -40,7 +39,7 @@ func BenchmarkDeleteAtString100(b *testing.B) {
 	}
 	for index, val := range outStream.Out().Val().([]string) {
 		if val != strings100[index+1] {
-			b.Fatalf("The element at index %d should be %s",index,strings100[index+1])
+			b.Fatalf("The element at index %d should be %s", index, strings100[index+1])
 		}
 	}
 }
@@ -59,7 +58,7 @@ func BenchmarkDeleteAtString1000(b *testing.B) {
 	}
 	for index, val := range outStream.Out().Val().([]string) {
 		if val != strings1000[index+1] {
-			b.Fatalf("The element at index %d should be %s",index,strings1000[index+1])
+			b.Fatalf("The element at index %d should be %s", index, strings1000[index+1])
 		}
 	}
 }
@@ -78,8 +77,7 @@ func BenchmarkDeleteAtString5000(b *testing.B) {
 	}
 	for index, val := range outStream.Out().Val().([]string) {
 		if val != strings5000[index+1] {
-			b.Fatalf("The element at index %d should be %s",index,strings5000[index+1])
+			b.Fatalf("The element at index %d should be %s", index, strings5000[index+1])
 		}
 	}
 }
-
