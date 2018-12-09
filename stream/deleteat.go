@@ -7,7 +7,8 @@ type deleteAt struct {
 }
 
 func (m *deleteAt) run(s Stream) Stream {
-	value, err := (&deleteat.DeleteAt{ItemsType: s.itemsType, ItemsValue: s.itemsValue, Len: s.itemsLen, Index: m.index}).Run()
+	value, err := (&deleteat.DeleteAt{ItemsType: s.itemsType, ItemsValue: s.itemsValue, Len: s.itemsLen,
+		Index: m.index}).Run()
 	if err != nil {
 		s.err = err
 		return s

@@ -31,20 +31,3 @@ func (op *Reverse) Run() (reflect.Value, *errors.Error) {
 	sort.SliceStable(input, func(i, j int) bool { return true })
 	return reflect.ValueOf(input), nil
 }
-
-func (op *Reverse) prepareMapWithKeys() map[interface{}]int {
-	keys := make(map[interface{}]int)
-
-	if op.ItemsValue.Index(0).Kind() == reflect.Ptr {
-		for index := 0; index < op.ItemsValue.Len(); index++ {
-			v := op.ItemsValue.Index(index).Elem().Interface()
-			keys[v]++
-		}
-	} else {
-		for index := 0; index < op.ItemsValue.Len(); index++ {
-			v := op.ItemsValue.Index(index).Interface()
-			keys[v]++
-		}
-	}
-	return keys
-}

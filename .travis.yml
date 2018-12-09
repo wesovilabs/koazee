@@ -13,8 +13,8 @@ script:
 - make deps
 - make install
 - make test-coverage
-#- make check
-#- make benchmark
+- make check
+- make benchmark
 
 after_success:
 - bash <(curl -s https://codecov.io/bash)
