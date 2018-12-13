@@ -54,6 +54,3 @@ func main() {
 	process(cart.Items2)
 	fmt.Println(":--------------------------:")
 }
-
-
-

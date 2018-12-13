@@ -63,8 +63,6 @@ func quotesByAuthorOrderedByQuoteLen(author string) stream.Stream {
 		})
 }
 
-
-
 func main() {
 	count, _ := quotesStream.Count()
 	fmt.Printf("\n - Total quotes: %d\n", count)
