@@ -19,8 +19,7 @@ func (m *streamReverse) run(s Stream) Stream {
 	return s.withItemsValue(value)
 }
 
-// RemoveDuplicates remove all thoese elements are duplicated in the Stream, leaving only
-// an element with the same value
+// Reverse reverses the orderof the elements in the stream
 func (s Stream) Reverse() Stream {
 	s.operations = append(s.operations, &streamReverse{})
 	return s

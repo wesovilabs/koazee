@@ -5,7 +5,7 @@ import (
 	"reflect"
 )
 
-// Reduce
+// Reduce operation to calculate a single value from a stream
 func (s Stream) Reduce(fn interface{}) Output {
 	current := s.run()
 	if current.err != nil {

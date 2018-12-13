@@ -30,7 +30,7 @@ func (op *out) validate() *errors.Error {
 	return nil
 }
 
-// At returns the element in the Stream in the given position
+// Out returns the slice for the stream
 func (s Stream) Out() *Output {
 	current := s.run()
 	if current.err != nil {

@@ -5,7 +5,7 @@ import (
 	"reflect"
 )
 
-// At returns the element in the Stream in the given position
+// Pop returns the first element and the rest of the stream
 func (s Stream) Pop() (*Output, Stream) {
 	current := s.run()
 	if current.err != nil {

@@ -5,7 +5,7 @@ import (
 	"reflect"
 )
 
-// At returns the element in the Stream in the given position
+// First returns the first element in the stream
 func (s Stream) First() *Output {
 	current := s.run()
 	if current.err != nil {

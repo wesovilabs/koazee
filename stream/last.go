@@ -5,7 +5,7 @@ import (
 	"reflect"
 )
 
-// At returns the element in the Stream in the given position
+// Last returns the last element in the stream
 func (s Stream) Last() *Output {
 	current := s.run()
 	if current.err != nil {

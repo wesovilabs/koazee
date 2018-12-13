@@ -1,6 +1,6 @@
 package stream
 
-// At returns the element in the Stream in the given position
+// Do perform the queue of operations in the stream
 func (s Stream) Do() Stream {
 	sOut := s.run()
 	return sOut

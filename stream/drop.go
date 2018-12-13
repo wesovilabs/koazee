@@ -23,6 +23,7 @@ func (a *streamDrop) run(s Stream) Stream {
 	return s.withItemsValue(value)
 }
 
+// Drop remove all the occurrences for the given input
 func (s Stream) Drop(input interface{}) Stream {
 	s.operations = append(s.operations, &streamDrop{ItemsValue: s.itemsValue, ItemsType: s.itemsType, Item: input})
 	return s

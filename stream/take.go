@@ -1,13 +1,13 @@
 package stream
 
-import "github.com/wesovilabs/koazee/internal/filter"
+import "github.com/wesovilabs/koazee/internal/take"
 
 type take struct {
 	fn interface{}
 }
 
 func (m *take) run(s Stream) Stream {
-	value, err := (&filter.Filter{ItemsType: s.itemsType, ItemsValue: s.itemsValue, Func: m.fn}).Run()
+	value, err := (&take.Take{ItemsType: s.itemsType, ItemsValue: s.itemsValue, Func: m.fn}).Run()
 	if err != nil {
 		s.err = err
 		return s
@@ -15,8 +15,8 @@ func (m *take) run(s Stream) Stream {
 	return s.withItemsValue(value)
 }
 
-// Filter discard the elements in the Stream that don't match with the provided filter
+// Take takes the elements from the stream
 func (s Stream) Take(first, last int) Stream {
-	s.operations = append(s.operations, &streamFilter{fn})
+	s.operations = append(s.operations, &take{first, last})
 	return s
 }

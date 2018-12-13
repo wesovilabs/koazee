@@ -30,6 +30,7 @@ func (a *streamAdd) run(s Stream) Stream {
 	return s.withItemsValue(value)
 }
 
+// Add operation to add a new element in the stream
 func (s Stream) Add(input interface{}) Stream {
 	s.operations = append(s.operations, &streamAdd{ItemsValue: s.itemsValue, ItemsType: s.itemsType, Item: input})
 	return s

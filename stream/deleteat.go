@@ -16,7 +16,7 @@ func (m *deleteAt) run(s Stream) Stream {
 	return s.withItemsValue(value)
 }
 
-// Filter discard the elements in the Stream that don't match with the provided filter
+// DeleteAt deletes the element in the given position
 func (s Stream) DeleteAt(index int) Stream {
 	s.operations = append(s.operations, &deleteAt{index})
 	return s

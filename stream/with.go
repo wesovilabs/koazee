@@ -32,6 +32,7 @@ func (op *with) run(s Stream) Stream {
 		"Unsupported type! Only arrays are permitted"))
 }
 
+// With load the provided elements in the stream
 func (s Stream) With(data interface{}) Stream {
 	return (&with{data}).run(s)
 }
