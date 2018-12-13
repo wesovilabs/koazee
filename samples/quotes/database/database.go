@@ -29,7 +29,7 @@ var quotes = []*Quote{
 	{Text: "The problem is that humans have victimized animals to such a degree that they are not even considered victims. They are not even considered at all. They are nothing; they don’t count; they don’t matter. They are commodities like TV sets and cell phones. We have actually turned animals into inanimate objects – sandwiches and shoes", Author: "Gary Yourofsky"},
 	{Text: "If a kid ever realized what was involved in factory farming, they would never touch meat again.", Author: "James Cromwell"},
 	{Text: "Eating meat is the most disgusting thing I can think of. It’s like biting into your grandmother.", Author: "Morrisey"},
-	{Text: "I hold that the more helpless a creature, the more entitled it is to protection by man from the cruelty of man", Author: "Ghandi"},
+	{Text: "I hold that the more helpless a creature, the more entitled it is to protection by man from the cruelty of man", Author: "Gandhi"},
 	{Text: "One to change a few. A few to change many. Many to change the world. Starts with one.", Author: "Anonymous"},
 	{Text: "As I improved my diet, I started to learn to love my self, probably for the first time ever.", Author: "Frank Ferrante"},
 	{Text: "There is no fundamental difference between man and animals in their ability to feel pleasure and pain, happiness, and misery.", Author: "Charles Darwin"},

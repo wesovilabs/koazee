@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-const discount = 0.8 // percentage to payed when buy 3 or more items
+const discount = 0.8 // percentage to pay when buy 3 or more items
 
 // ItemTotal used to append the calculated priced to the items
 type ItemTotal struct {
