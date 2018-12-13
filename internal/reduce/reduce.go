@@ -5,14 +5,17 @@ import (
 	"reflect"
 )
 
+// OpCode code for operation reduce
 const OpCode = "reduce"
 
+// Reduce struct for this operation
 type Reduce struct {
 	ItemsType  reflect.Type
 	ItemsValue reflect.Value
 	Func       interface{}
 }
 
+// Run performs the operation
 func (r *Reduce) Run() (reflect.Value, *errors.Error) {
 	info, err := r.validate()
 	if err != nil {

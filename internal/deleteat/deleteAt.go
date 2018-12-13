@@ -8,6 +8,7 @@ import (
 // OpCode identifier for operation at
 const OpCode = "deleteAt"
 
+// DeleteAt structure
 type DeleteAt struct {
 	ItemsValue reflect.Value
 	ItemsType  reflect.Type
@@ -15,6 +16,7 @@ type DeleteAt struct {
 	Index      int
 }
 
+// Run perform operation
 func (op *DeleteAt) Run() (reflect.Value, *errors.Error) {
 	if err := op.validate(); err != nil {
 		return reflect.ValueOf(nil), err

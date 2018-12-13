@@ -108,7 +108,7 @@ func (o Output) Uint32() uint32 {
 	return 0
 }
 
-// Uint63 parses the Output of the Stream as a Uint type64
+// Uint64 parses the Output of the Stream as a Uint type64
 func (o Output) Uint64() uint64 {
 	if reflect.TypeOf(o.value.Interface()).Kind() == reflect.Uint64 {
 		return o.value.Interface().(uint64)
@@ -136,6 +136,7 @@ type lazyOp interface {
 	run(Stream) Stream
 }
 
+// Stream stream structure
 type Stream struct {
 	items      interface{}
 	itemsValue reflect.Value
