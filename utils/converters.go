@@ -2,7 +2,7 @@ package utils
 
 import "reflect"
 
-// Bool converts value to string
+// Bool converts value to bool
 func Bool(value reflect.Value) bool {
 	return value.Interface().(bool)
 }
@@ -12,12 +12,12 @@ func String(value reflect.Value) string {
 	return value.Interface().(string)
 }
 
-// String converts value to string
+// Float32 converts value to float32
 func Float32(value reflect.Value) float32 {
 	return value.Interface().(float32)
 }
 
-// String converts value to string
+// Float64 converts value to Float64
 func Float64(value reflect.Value) float64 {
 	return value.Interface().(float64)
 }

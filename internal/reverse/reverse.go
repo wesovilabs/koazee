@@ -9,19 +9,13 @@ import (
 // OpCode identifier for operation Reverse
 const OpCode = "reverse"
 
+// Reverse operation struct
 type Reverse struct {
 	ItemsValue reflect.Value
 	ItemsType  reflect.Type
 }
 
-func (rev SortSliceString) Len() int           { return len(rev.value) }
-func (rev SortSliceString) Less(i, j int) bool { return i < j }
-func (rev SortSliceString) Swap(i, j int)      { rev.value[i], rev.value[j] = rev.value[j], rev.value[i] }
-
-type SortSliceString struct {
-	value []string
-}
-
+// Run performs the operation
 func (op *Reverse) Run() (reflect.Value, *errors.Error) {
 	if found, result := dispatch(op.ItemsValue, op.ItemsType); found {
 		v := reflect.ValueOf(result)

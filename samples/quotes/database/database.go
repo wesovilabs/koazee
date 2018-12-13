@@ -1,5 +1,6 @@
 package database
 
+// Quote struct demo
 type Quote struct {
 	Text   string
 	Author string
@@ -119,7 +120,7 @@ var quotes = []*Quote{
 	{Text: "I’m a vegan. It makes me feel really good and bright.", Author: "Lea Michelle"},
 	{Text: "Being vegan just gives you such great karma.", Author: "Alicia Silverstone"},
 }
-
+// GetQuotes returns the quotes
 func GetQuotes() []*Quote {
 	return quotes
 }

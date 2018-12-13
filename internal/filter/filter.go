@@ -9,12 +9,14 @@ import (
 // OpCode identifier for operation Filter
 const OpCode = "filter"
 
+// Filter struct for operation
 type Filter struct {
 	ItemsType  reflect.Type
 	ItemsValue reflect.Value
 	Func       interface{}
 }
 
+// Run performs the operation
 func (op *Filter) Run() (reflect.Value, *errors.Error) {
 	info, err := op.validate()
 	if err != nil {

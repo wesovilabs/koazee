@@ -8,6 +8,7 @@ import (
 // OpCode identifier for operation drop
 const OpCode = "drop"
 
+// Drop struct for operation
 type Drop struct {
 	ItemsValue reflect.Value
 	ItemsType  reflect.Type

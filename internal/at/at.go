@@ -8,12 +8,14 @@ import (
 // OpCode identifier for operation at
 const OpCode = "at"
 
+// At operation struct
 type At struct {
 	ItemsValue reflect.Value
 	Len        int
 	Index      int
 }
 
+// Run performs the operation
 func (op *At) Run() (reflect.Value, *errors.Error) {
 	if err := op.validate(); err != nil {
 		return reflect.ValueOf(nil), err

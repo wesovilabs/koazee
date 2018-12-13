@@ -5,14 +5,17 @@ import (
 	"reflect"
 )
 
+// OpCode code
 const OpCode = "map"
 
+// Map structure
 type Map struct {
 	ItemsType  reflect.Type
 	ItemsValue reflect.Value
 	Func       interface{}
 }
 
+// Run performs the operation
 func (m *Map) Run() (reflect.Value, *errors.Error) {
 	mInfo, err := m.validate()
 	if err != nil {

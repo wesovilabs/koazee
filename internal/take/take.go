@@ -9,6 +9,7 @@ import (
 // OpCode identifier for operation Filter
 const OpCode = "take"
 
+// Take struct for operation
 type Take struct {
 	ItemsType  reflect.Type
 	ItemsValue reflect.Value
@@ -17,6 +18,7 @@ type Take struct {
 	Len        int
 }
 
+// Run performs the operation
 func (op *Take) Run() (reflect.Value, *errors.Error) {
 	if err := op.validate(); err != nil {
 		return reflect.ValueOf(nil), err

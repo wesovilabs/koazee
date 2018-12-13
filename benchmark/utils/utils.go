@@ -19,6 +19,7 @@ func arrayOfString(minLen, maxLen, cap int) []string {
 	return array
 }
 
+// ArrayOfInt returns an aarray of strings
 func ArrayOfInt(min, max, cap int) []int {
 	array := make([]int, cap)
 	for i := 0; i < cap; i++ {
@@ -27,6 +28,7 @@ func ArrayOfInt(min, max, cap int) []int {
 	return array
 }
 
+// RandStringRunes returns random string
 func RandStringRunes(n int) string {
 	b := make([]rune, n)
 	for i := range b {
@@ -35,6 +37,7 @@ func RandStringRunes(n int) string {
 	return string(b)
 }
 
+// ArrayOfString returns random string slice
 func ArrayOfString(min, max, cap int) []string {
 	array := make([]string, cap)
 	for i := 0; i < cap; i++ {

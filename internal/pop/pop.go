@@ -8,12 +8,14 @@ import (
 // OpCode identifier for operation pop
 const OpCode = "pop"
 
+// Pop struct for operation
 type Pop struct {
 	ItemsValue reflect.Value
 	ItemsType  reflect.Type
 	Len        int
 }
 
+// Run performs the operation
 func (op *Pop) Run() (reflect.Value, reflect.Value, *errors.Error) {
 	if err := op.validate(); err != nil {
 		return reflect.ValueOf(nil), reflect.ValueOf(nil), err

@@ -8,12 +8,14 @@ import (
 // OpCode identifier for operation Contains
 const OpCode = "contains"
 
+//Contains struct for contains operation
 type Contains struct {
 	ItemsType reflect.Type
 	Items     reflect.Value
 	Element   interface{}
 }
 
+// Run performs the action
 func (op *Contains) Run() (bool, *errors.Error) {
 	if op.Items.Len() == 0 {
 		return false, nil

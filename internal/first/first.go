@@ -8,11 +8,13 @@ import (
 // OpCode identifier for operation first
 const OpCode = "first"
 
+// First struct for the operation
 type First struct {
 	ItemsValue reflect.Value
 	Len        int
 }
 
+// Run performs the operation
 func (op *First) Run() (reflect.Value, *errors.Error) {
 	if err := op.validate(); err != nil {
 		return reflect.ValueOf(nil), err

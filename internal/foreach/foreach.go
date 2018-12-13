@@ -8,12 +8,14 @@ import (
 // OpCode identifier for operation Filter
 const OpCode = "forEach"
 
+// ForEach struct for the operation
 type ForEach struct {
 	ItemsType  reflect.Type
 	ItemsValue reflect.Value
 	Func       interface{}
 }
 
+// Run performs the operation
 func (op *ForEach) Run() (reflect.Value, *errors.Error) {
 	info, err := op.validate()
 	if err != nil {

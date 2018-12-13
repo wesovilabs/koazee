@@ -1,5 +1,6 @@
 package utils
 
+// Person struct used by tests
 type Person struct {
 	FirstName string
 	LastName  string

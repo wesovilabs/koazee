@@ -6,14 +6,17 @@ import (
 	"sort"
 )
 
+// OpCode code
 const OpCode = "sort"
 
+// Sort operation struct
 type Sort struct {
 	ItemsType  reflect.Type
 	ItemsValue reflect.Value
 	Func       interface{}
 }
 
+// Run performs the operation
 func (op *Sort) Run() (reflect.Value, *errors.Error) {
 	info, err := op.validate()
 	if err != nil {

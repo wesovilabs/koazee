@@ -2,13 +2,14 @@ package cart
 
 import "time"
 
+// Item structure
 type Item struct {
 	Name           string
 	Units          int
 	PricePerUnit   float32
 	ExpirationDate time.Time
 }
-
+// Items list of items
 var Items = []*Item{
 	{
 		Name:           "Lettuce",

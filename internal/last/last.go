@@ -8,11 +8,13 @@ import (
 // OpCode identifier for operation last
 const OpCode = "last"
 
+// Last struct for operation
 type Last struct {
 	ItemsValue reflect.Value
 	Len        int
 }
 
+// Run performs the operation
 func (op *Last) Run() (reflect.Value, *errors.Error) {
 	if err := op.validate(); err != nil {
 		return reflect.ValueOf(nil), err

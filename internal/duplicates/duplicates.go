@@ -8,11 +8,13 @@ import (
 // OpCode identifier for operation RemoveDuplicates
 const OpCode = "removeDuplicates"
 
+// RemoveDuplicates structure
 type RemoveDuplicates struct {
 	ItemsValue reflect.Value
 	ItemsType  reflect.Type
 }
 
+// Run performs the operation
 func (op *RemoveDuplicates) Run() (reflect.Value, *errors.Error) {
 
 	if err := op.validate(); err != nil {
