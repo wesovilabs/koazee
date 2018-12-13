@@ -25,13 +25,9 @@ func (op *Drop) Run() (reflect.Value, *errors.Error) {
 		return reflect.ValueOf(result), nil
 	}
 	newItems := reflect.MakeSlice(reflect.SliceOf(op.ItemsType), 0, 0)
-	// items := op.ItemsValue
-	// indexes := make([]int, 0)
 	for index := 0; index < op.ItemsValue.Len(); index++ {
 		val := op.ItemsValue.Index(index)
 		if equalsValues(val, info.itemValue) {
-			// items = reflect.Append(items[:index], op.ItemsValue[index:])
-			// indexes = append(indexes, index)
 			newItems = reflect.Append(newItems, val)
 		}
 	}
