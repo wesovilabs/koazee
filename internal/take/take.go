@@ -23,8 +23,7 @@ func (op *Take) Run() (reflect.Value, *errors.Error) {
 	if err := op.validate(); err != nil {
 		return reflect.ValueOf(nil), err
 	}
-
-	v := op.ItemsValue.Slice(op.FirstIndex, op.LastIndex)
+	v := op.ItemsValue.Slice(op.FirstIndex, op.LastIndex+1)
 	return v, nil
 }
 
