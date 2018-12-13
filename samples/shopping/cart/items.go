@@ -49,6 +49,7 @@ var Items = []*Item{
 		ExpirationDate: time.Now().Add(1 * time.Hour),
 	},
 }
+
 // Items2 slice of items
 var Items2 = []*Item{
 	{
