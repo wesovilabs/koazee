@@ -9,6 +9,7 @@ type Item struct {
 	PricePerUnit   float32
 	ExpirationDate time.Time
 }
+
 // Items list of items
 var Items = []*Item{
 	{
