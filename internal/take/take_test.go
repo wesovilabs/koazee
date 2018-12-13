@@ -17,5 +17,5 @@ func TestTake_Run(t *testing.T) {
 	newStream, err := op.Run()
 	assert.Nil(t, err)
 	out := newStream.Interface().([]*int)
-	assert.Len(t, out, 3)
+	assert.Len(t, out, 2)
 }
