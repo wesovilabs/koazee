@@ -12,12 +12,14 @@ const OpCode = "indexOf"
 // InvalidIndex default index
 const InvalidIndex = -1
 
+// IndexOf struct for handling the operation
 type IndexOf struct {
 	ItemsType reflect.Type
 	Items     reflect.Value
 	Element   interface{}
 }
 
+// Run performs the operation
 func (op *IndexOf) Run() (int, *errors.Error) {
 	if op.Items.Len() == 0 {
 		return InvalidIndex, errors.EmptyStream(OpCode, "stream is nil")
