@@ -1,4 +1,4 @@
- package stream
+package stream
 
 import (
 	"github.com/wesovilabs/koazee/errors"

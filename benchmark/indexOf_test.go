@@ -8,18 +8,18 @@ import (
 )
 
 /*
-BenchmarkIndexOfString10FirstElement-4     	 5000000	       293 ns/op
-BenchmarkIndexOfString100FirstElement-4    	 5000000	       295 ns/op
-BenchmarkIndexOfString1000FirstElement-4   	 5000000	       290 ns/op
-BenchmarkIndexOfString5000FirstElement-4   	 5000000	       290 ns/op
-BenchmarkIndexOfString10LastElement-4      	 2000000	       645 ns/op
-BenchmarkIndexOfString100LastElement-4     	  300000	      4410 ns/op
-BenchmarkIndexOfString1000LastElement-4    	   30000	     46691 ns/op
-BenchmarkIndexOfString5000LastElement-4    	   10000	    215756 ns/op
-BenchmarkIndexOfString10NotFound-4         	 1000000	      1180 ns/op
-BenchmarkIndexOfString100NotFound-4        	  200000	      8735 ns/op
-BenchmarkIndexOfString1000NotFound-4       	   20000	     82566 ns/op
-BenchmarkIndexOfString5000NotFound-4       	    3000	    440835 ns/op
+BenchmarkIndexOfString10FirstElement-4     	 5000000	       275 ns/op
+BenchmarkIndexOfString100FirstElement-4    	 5000000	       277 ns/op
+BenchmarkIndexOfString1000FirstElement-4   	 5000000	       280 ns/op
+BenchmarkIndexOfString5000FirstElement-4   	 5000000	       276 ns/op
+BenchmarkIndexOfString10LastElement-4      	 5000000	       273 ns/op
+BenchmarkIndexOfString100LastElement-4     	 5000000	       327 ns/op
+BenchmarkIndexOfString1000LastElement-4    	 2000000	       764 ns/op
+BenchmarkIndexOfString5000LastElement-4    	  300000	      3687 ns/op
+BenchmarkIndexOfString10NotFound-4         	 5000000	       266 ns/op
+BenchmarkIndexOfString100NotFound-4        	 5000000	       337 ns/op
+BenchmarkIndexOfString1000NotFound-4       	 1000000	      1248 ns/op
+BenchmarkIndexOfString5000NotFound-4       	  200000	      7288 ns/op
 */
 
 func BenchmarkIndexOfString10FirstElement(b *testing.B) {

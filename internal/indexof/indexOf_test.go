@@ -46,7 +46,7 @@ func TestIndexOf_Run(t *testing.T) {
 	}
 	index, err := indexOf.Run()
 	assert.Nil(t, err)
-	assert.Equal(t,2, index)
+	assert.Equal(t, 2, index)
 
 	person := utils.Person{FirstName: "John", LastName: "Doe", Age: 25, Male: true}
 	indexOf = &IndexOf{
@@ -59,8 +59,7 @@ func TestIndexOf_Run(t *testing.T) {
 	}
 	index, err = indexOf.Run()
 	assert.Nil(t, err)
-	assert.Equal(t,0, index)
-
+	assert.Equal(t, 0, index)
 
 	person = utils.Person{FirstName: "John", LastName: "Doe", Age: 25, Male: true}
 	indexOf = &IndexOf{
@@ -73,7 +72,7 @@ func TestIndexOf_Run(t *testing.T) {
 	}
 	index, err = indexOf.Run()
 	assert.NotNil(t, err)
-	assert.Equal(t,InvalidIndex, index)
+	assert.Equal(t, InvalidIndex, index)
 
 	personPtr := &utils.Person{FirstName: "John", LastName: "Doe", Age: 25, Male: true}
 	indexOf = &IndexOf{
@@ -86,6 +85,6 @@ func TestIndexOf_Run(t *testing.T) {
 	}
 	index, err = indexOf.Run()
 	assert.Nil(t, err)
-	assert.Equal(t,0, index)
+	assert.Equal(t, 0, index)
 
 }

@@ -13,10 +13,10 @@ import (
 )
 
 func TestStream_IndexOf(t *testing.T) {
-	index, _ := stream.New([]int{1, 3,5,7}).IndexOf(20)
+	index, _ := stream.New([]int{1, 3, 5, 7}).IndexOf(20)
 	assert.Equal(t, indexof.InvalidIndex, index)
 
-	index, _ = stream.New([]string{"koazee", "Koazee","koazee"}).IndexOf("koazee")
+	index, _ = stream.New([]string{"koazee", "Koazee", "koazee"}).IndexOf("koazee")
 	assert.Equal(t, 0, index)
 
 	index, _ = stream.New([]person{{firstName: "Ivan", age: 20}, {firstName: "Ivan", age: 50}}).IndexOf(person{

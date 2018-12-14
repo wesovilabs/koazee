@@ -8,6 +8,8 @@ import (
 
 // OpCode identifier for operation IndexOf
 const OpCode = "indexOf"
+
+// InvalidIndex default index
 const InvalidIndex = -1
 
 type IndexOf struct {
