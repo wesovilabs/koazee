@@ -40,6 +40,7 @@ Visit the [Koazee wiki](https://github.com/wesovilabs/koazee/wiki) to find out w
 | [ForEach](https://github.com/wesovilabs/koazee/wiki/Operation-foreach) | It does something over all the elements in the stream.|  v0.0.1 |
 | [IndexOf](https://github.com/wesovilabs/koazee/wiki/Operation-indexOf) | It returns the index of the  element in the stream.|  master |
 | [Last](https://github.com/wesovilabs/koazee/wiki/Operation-last) | It returns the element in the last position |  v0.0.1 |
+| [LastIndexOf](https://github.com/wesovilabs/koazee/wiki/Operation-lastIndexOf) | It returns the last occurrence for the  element in the stream.|  master |
 | [Map](https://github.com/wesovilabs/koazee/wiki/Operation-map) | It converts the element in the stream |  v0.0.1 |
 | [Pop](https://github.com/wesovilabs/koazee/wiki/Operation-pop) | It extracts the first element in the stream and return this and the new stream | master |
 | [Reduce](https://github.com/wesovilabs/koazee/wiki/Operation-reduce) | It reduceshe stream to a single value by executing a provided function for each value of the stream|  v0.0.1 |
