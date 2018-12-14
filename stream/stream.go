@@ -144,7 +144,6 @@ type Stream struct {
 	itemsLen   int
 	err        *errors.Error
 	operations []lazyOp
-	streams    []*Stream
 }
 
 func (s Stream) run() Stream {
