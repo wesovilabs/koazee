@@ -33,22 +33,22 @@ Visit the [Koazee wiki](https://github.com/wesovilabs/koazee/wiki) to find out w
 | [At](https://github.com/wesovilabs/koazee/wiki/Operation-at) | It returns the element in the given position |  v0.0.1 |
 | [Contains](https://github.com/wesovilabs/koazee/wiki/Operation-contains) | It checks if the given element is found in the stream.|  v0.0.1 |
 | [Count](https://github.com/wesovilabs/koazee/wiki/Operation-count) | It returns the number of elements in a stream|  v0.0.1 |
-| [DeleteAt](https://github.com/wesovilabs/koazee/wiki/Operation-deleteAt) | It remove the elements in the given position |  master |
+| [DeleteAt](https://github.com/wesovilabs/koazee/wiki/Operation-deleteAt) | It remove the elements in the given position |  v0.0.3 |
 | [Drop](https://github.com/wesovilabs/koazee/wiki/Operation-drop) | It removes an element from the stream |  v0.0.1 |
 | [Filter](https://github.com/wesovilabs/koazee/wiki/Operation-filter) | It discards those elements that doesn't match with the provided filter|  v0.0.1 |
 | [First](https://github.com/wesovilabs/koazee/wiki/Operation-first) | It returns the element in the first position |  v0.0.1 |
 | [ForEach](https://github.com/wesovilabs/koazee/wiki/Operation-foreach) | It does something over all the elements in the stream.|  v0.0.1 |
-| [IndexOf](https://github.com/wesovilabs/koazee/wiki/Operation-indexOf) | It returns the index of the  element in the stream.|  master |
+| [IndexOf](https://github.com/wesovilabs/koazee/wiki/Operation-indexOf) | It returns the index of the  element in the stream.|  v0.0.3 |
 | [Last](https://github.com/wesovilabs/koazee/wiki/Operation-last) | It returns the element in the last position |  v0.0.1 |
-| [LastIndexOf](https://github.com/wesovilabs/koazee/wiki/Operation-lastIndexOf) | It returns the last occurrence for the  element in the stream.|  master |
+| [LastIndexOf](https://github.com/wesovilabs/koazee/wiki/Operation-lastIndexOf) | It returns the last occurrence for the  element in the stream.|  v0.0.3 |
 | [Map](https://github.com/wesovilabs/koazee/wiki/Operation-map) | It converts the element in the stream |  v0.0.1 |
 | [Pop](https://github.com/wesovilabs/koazee/wiki/Operation-pop) | It extracts the first element in the stream and return this and the new stream | master |
 | [Reduce](https://github.com/wesovilabs/koazee/wiki/Operation-reduce) | It reduceshe stream to a single value by executing a provided function for each value of the stream|  v0.0.1 |
 | [RemoveDuplicates](https://github.com/wesovilabs/koazee/wiki/Operation-removeDuplcates) | It removes duplicated elements.|  v0.0.1 |
 | [Reverse](https://github.com/wesovilabs/koazee/wiki/Operation-reverse) | It reverses the sequence of elements in the stream.| master |
-| [Set](https://github.com/wesovilabs/koazee/wiki/Operation-set) | It replaces the element in the given index by the provided value |  master |
+| [Set](https://github.com/wesovilabs/koazee/wiki/Operation-set) | It replaces the element in the given index by the provided value |  v0.0.3 |
 | [Sort](https://github.com/wesovilabs/koazee/wiki/Operation-sort) | It sorts the elements in the stream|  v0.0.1 |
-| [Take](https://github.com/wesovilabs/koazee/wiki/Operation-take) | It returns a stream with the elements between the given indexes |  master |
+| [Take](https://github.com/wesovilabs/koazee/wiki/Operation-take) | It returns a stream with the elements between the given indexes |  v0.0.3 |
 
 
 ### Benchmark
