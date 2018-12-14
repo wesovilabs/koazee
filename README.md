@@ -42,10 +42,10 @@ Visit the [Koazee wiki](https://github.com/wesovilabs/koazee/wiki) to find out w
 | [Last](https://github.com/wesovilabs/koazee/wiki/Operation-last) | It returns the element in the last position |  v0.0.1 |
 | [LastIndexOf](https://github.com/wesovilabs/koazee/wiki/Operation-lastIndexOf) | It returns the last occurrence for the  element in the stream.|  v0.0.3 |
 | [Map](https://github.com/wesovilabs/koazee/wiki/Operation-map) | It converts the element in the stream |  v0.0.1 |
-| [Pop](https://github.com/wesovilabs/koazee/wiki/Operation-pop) | It extracts the first element in the stream and return this and the new stream | master |
+| [Pop](https://github.com/wesovilabs/koazee/wiki/Operation-pop) | It extracts the first element in the stream and return this and the new stream | v0.0.3 |
 | [Reduce](https://github.com/wesovilabs/koazee/wiki/Operation-reduce) | It reduceshe stream to a single value by executing a provided function for each value of the stream|  v0.0.1 |
 | [RemoveDuplicates](https://github.com/wesovilabs/koazee/wiki/Operation-removeDuplcates) | It removes duplicated elements.|  v0.0.1 |
-| [Reverse](https://github.com/wesovilabs/koazee/wiki/Operation-reverse) | It reverses the sequence of elements in the stream.| master |
+| [Reverse](https://github.com/wesovilabs/koazee/wiki/Operation-reverse) | It reverses the sequence of elements in the stream.| v0.0.3 |
 | [Set](https://github.com/wesovilabs/koazee/wiki/Operation-set) | It replaces the element in the given index by the provided value |  v0.0.3 |
 | [Sort](https://github.com/wesovilabs/koazee/wiki/Operation-sort) | It sorts the elements in the stream|  v0.0.1 |
 | [Take](https://github.com/wesovilabs/koazee/wiki/Operation-take) | It returns a stream with the elements between the given indexes |  v0.0.3 |
