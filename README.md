@@ -61,6 +61,16 @@ A benchmark compison with other frameworks can be found in [Koazee vs Go-Funk vs
 
 [Shopping cart with Koazee](https://medium.com/wesovilabs/koazee-the-shopping-cart-a381bba32955)
 
+
+### Getting started
+
+#### Stream creation
+
+Let's first obtain a stream from an existing array.
+
+{% gist fbf0f37e91e27bb8a858bdaa59853e4d %}
+
+
 ### Samples
 
 If you like how look the code below, that means that you should be using Koazee in your projects.
@@ -154,3 +164,5 @@ func main() {
 ```
 
 *If you like this project and you think I should provide more functionality to Koazee, please feel free to star the repository*
+
+
