@@ -61,7 +61,7 @@ stream: [1 5 4 3 2 7 1 8 2 3]
 Current release v0.0.3 (Gibbon) brings us 20 generic operations that are showed below
 
 #### stream.At / stream.First / stream.Last
-These operation return an element from the stream
+These operations return an element from the stream
 
 ```go
 package main
@@ -89,103 +89,334 @@ stream.Last: 3
 */
 ```
 
-### Samples
-
-If you like how look the code below, that means that you should be using Koazee in your projects.
-
+#### stream.Add / stream.Drop / stream.DeleteAt / stream.Pop / stream.Set
+These operations add or delete elements from the stream.
 
 ```go
 package main
 
 import (
-  "fmt"
-  "github.com/wesovilabs/koazee/stream"
-  "koazee-samples/database"
-  "strings"
+	"fmt"
+	"github.com/wesovilabs/koazee"
 )
 
-var quotesStream = stream.New(database.GetQuotes())
-
-func printQuotesOrderedByAuthor() stream.Stream {
-  return quotesStream.
-    Sort(func(quoteLeft, quoteRight *database.Quote) int {
-      return strings.Compare(quoteLeft.Author, quoteRight.Author)
-    }).
-    ForEach(func(quote *database.Quote) {
-      fmt.Printf(" * %s said \"%s\"\n", quote.Author, quote.Text)
-    })
-}
-
-func numberOfAnonymousQuotes() int {
-  count, _ := quotesStream.Filter(func(quote *database.Quote) bool {
-    return quote.Author == "Anonymous"
-  }).Count()
-  return count
-}
-
-func listOfAuthors() stream.Stream {
-  return quotesStream.
-    Map(func(quote *database.Quote) string {
-      return quote.Author
-    }).
-  	RemoveDuplicates().
-    Sort(strings.Compare)
-}
-
-func printNameOfAuthors() stream.Stream {
-  return listOfAuthors().
-    ForEach(func(author string) {
-      fmt.Printf(" * %s\n", author)
-    })
-}
-
-func quotesByAuthorOrderedByQuoteLen(author string) stream.Stream {
-  return quotesStream.
-    Filter(func(quote *database.Quote) bool {
-      return quote.Author == author
-    }).
-    Map(func(quote *database.Quote) string {
-      return quote.Text
-    }).
-    Sort(func(quote1, quote2 string) int {
-      if len(quote1) > len(quote2) {
-        return 1
-      } else if len(quote1) < len(quote2) {
-        return -1
-      }
-      return 0
-    }).
-    ForEach(func(quote string) {
-      fmt.Println(quote)
-    })
-}
-
-
+var numbers = []int{1, 5, 4, 3, 2, 7, 1, 8, 2, 3}
 
 func main() {
-  count, _ := quotesStream.Count()
-  fmt.Printf("\n - Total quotes: %d\n", count)
-  fmt.Printf("\n - Total anonymous quotes: %d\n", numberOfAnonymousQuotes())
-  count, _ = listOfAuthors().Count()
-  fmt.Printf("\n - Total authors: %d\n", count)
-  fmt.Println("\nPrinting quotes ordered by author name")
-  fmt.Println("--------------------------------------")
-  printQuotesOrderedByAuthor().Do()
-  fmt.Println("\nPrinting list of authors sorted by name")
-  fmt.Println("--------------------------------------")
-  printNameOfAuthors().Do()
-  fmt.Println("\nPrinting list of quotes sorted bylen of quote and said by Albert Einstein")
-  quotesByAuthorOrderedByQuoteLen("Albert Einstein").Do()
-  fmt.Println("\nPrinting list of quotes sorted bylen of quote and said by anonymous")
-  quotesByAuthorOrderedByQuoteLen("Anonymous").Do()
+	fmt.Printf("input: %v\n", numbers)
+
+	stream := koazee.StreamOf(numbers)
+	fmt.Print("stream.Add(10): ")
+	fmt.Println(stream.Add(10).Do().Out().Val())
+
+	fmt.Print("stream.Drop(5): ")
+	fmt.Println(stream.Drop(5).Do().Out().Val())
+
+	fmt.Print("stream.DeleteAt(4): ")
+	fmt.Println(stream.DeleteAt(4).Do().Out().Val())
+
+	fmt.Print("stream.Set(0,5): ")
+	fmt.Println(stream.Set(0, 5).Do().Out().Val())
+
+	fmt.Print("stream.Pop(): ")
+	val, newStream := stream.Pop()
+	fmt.Printf("%d ... ", val.Int())
+	fmt.Println(newStream.Out().Val())
+
 }
+
+/**
+go run main.go
+
+input: [1 5 4 3 2 7 1 8 2 3]
+stream.Add(10): [1 5 4 3 2 7 1 8 2 3 10]
+stream.Drop(5): [1 4 3 2 7 1 8 2 3]
+stream.DeleteAt(4): [1 5 4 3 7 1 8 2 3]
+stream.Set(0,5): [5 5 4 3 2 7 1 8 2 3]
+stream.Pop(): 1 ... [5 4 3 2 7 1 8 2 3]
+*/
 ```
+
+#### tream.Count / stream.IndexOf / stream.LastIndexOf / stream.Contains
+These operations return info from the elements in the stream
+
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/wesovilabs/koazee"
+)
+
+var numbers = []int{1, 5, 4, 3, 2, 7, 1, 8, 2, 3}
+
+func main() {
+	fmt.Printf("input: %v\n", numbers)
+	stream := koazee.StreamOf(numbers)
+	count, _ := stream.Count()
+	fmt.Printf("stream.Count(): %d\n", count)
+	index, _ := stream.IndexOf(2)
+	fmt.Printf("stream.IndexOf(2): %d\n", index)
+	index, _ = stream.LastIndexOf(2)
+	fmt.Printf("stream.LastIndexOf(2): %d\n", index)
+	contains, _ := stream.Contains(7)
+	fmt.Printf("stream.Contains(7): %v\n", contains)
+}
+
+/**
+go run main.go
+
+input: [1 5 4 3 2 7 1 8 2 3]
+stream.Count(): 10
+stream.IndexOf(2): 4
+stream.LastIndexOf(2): 8
+stream.Contains(7): true
+*/
+```
+
+#### stream.Sort / stream.Reverse
+These operations organize the elements in the stream.
+
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/wesovilabs/koazee"
+	"strings"
+)
+
+var animals = []string{"lynx", "dog", "cat", "monkey", "fox", "tiger", "lion"}
+
+func main() {
+	fmt.Print("input: ")
+	fmt.Println(animals)
+	stream := koazee.StreamOf(animals)
+
+	fmt.Print("stream.Reverse(): ")
+	fmt.Println(stream.Reverse().Out().Val())
+
+	fmt.Print("stream.Sort(strings.Compare): ")
+	fmt.Println(stream.Sort(strings.Compare).Out().Val())
+
+}
+
+/**
+go run main.go
+
+input: [lynx dog cat monkey fox tiger lion]
+stream.Reverse(): [lion tiger fox monkey cat dog lynx]
+stream.Sort(strings.Compare): [cat dog fox lion lynx monkey tiger]
+*/
+```
+
+#### stream.Take / stream.Filter / stream.RemoveDuplicates
+These operations return a filtered stream.
+
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/wesovilabs/koazee"
+)
+
+var animals = []string{"lynx", "dog", "cat", "monkey", "dog", "fox", "tiger", "lion"}
+
+func main() {
+	fmt.Print("input: ")
+	fmt.Println(animals)
+	stream := koazee.StreamOf(animals)
+
+	fmt.Print("stream.Take(1,4): ")
+	fmt.Println(stream.Take(1, 4).Out().Val())
+
+	fmt.Print("stream.Filter(len==4): ")
+	fmt.Println(stream.
+		Filter(
+			func(val string) bool {
+				return len(val) == 4
+			}).
+		Out().Val(),
+	)
+	fmt.Print("stream.RemoveDuplicates(): ")
+	fmt.Println(stream.RemoveDuplicates().Out().Val())
+}
+
+/**
+go run main.go
+
+input: [lynx dog cat monkey dog fox tiger lion]
+stream.Take(1,4): [dog cat monkey dog]
+stream.Filter(len==4): [lynx lion]
+stream.RemoveDuplicates(): [lynx dog cat monkey fox tiger lion]
+*/
+```
+
+#### stream.Map
+This operation performs a modification over all the elements in the stream.
+
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/wesovilabs/koazee"
+	"strings"
+)
+
+var animals = []string{"lynx", "dog", "cat", "monkey", "dog", "fox", "tiger", "lion"}
+
+func main() {
+	fmt.Printf("input: %v\n", animals)
+	stream := koazee.StreamOf(animals)
+	fmt.Print("stream.Map(strings.Title): ")
+	fmt.Println(stream.Map(strings.Title).Do().Out().Val())
+}
+
+/**
+go run main.go
+
+input: [lynx dog cat monkey dog fox tiger lion]
+stream.Map(strings.Title): [Lynx Dog Cat Monkey Dog Fox Tiger Lion]
+*/
+```
+
+#### stream.Reduce
+This operation give us a single output after iterating over the elements in the stream.
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/wesovilabs/koazee"
+)
+
+var numbers = []int{1, 5, 4, 3, 2, 7, 1, 8, 2, 3}
+
+func main() {
+	fmt.Printf("input: %v\n", numbers)
+	stream := koazee.StreamOf(numbers)
+	fmt.Print("stream.Reduce(sum): ")
+	fmt.Println(stream.Reduce(func(acc, val int) int {
+		return acc + val
+	}).Int())
+}
+
+/**
+go run main.go
+
+input: [1 5 4 3 2 7 1 8 2 3]
+stream.Reduce(sum): 36
+*/
+```
+
+#### stream.ForEach
+This operation iterates over the element in the stream.
+
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/wesovilabs/koazee"
+)
+
+type message struct {
+	user    string
+	message string
+}
+
+var messages = []*message{
+	{user: "John", message: "Hello Jane"},
+	{user: "Jane", message: "Hey John, how are you?"},
+	{user: "John", message: "I'm fine! and you?"},
+	{user: "Jane", message: "Me too"},
+}
+
+func main() {
+
+	stream := koazee.StreamOf(messages)
+	stream.ForEach(func(m *message) {
+		fmt.Printf("%s: \"%s\"\n", m.user, m.message)
+	}).Do()
+}
+
+/**
+go run main.go
+
+John: "Hello Jane"
+Jane: "Hey John, how are you?"
+John: "I'm fine! and you?"
+Jane: "Me too"
+*/
+```
+
+### Combine operations and evaluate them lazily
+The main goal of Koazee is providing a set of operations that can be combined and being evaluated lazily.
+
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/wesovilabs/koazee"
+	"strings"
+)
+
+type Person struct {
+	Name string
+	Male bool
+	Age  int
+}
+
+var people = []*Person{
+	{"John Smith", true, 32},
+	{"Peter Pan", true, 17},
+	{"Jane Doe", false, 20},
+	{"Anna Wallace", false, 35},
+	{"Tim O'Brian", true, 13},
+	{"Celia Hills", false, 15},
+}
+
+func main() {
+	stream := koazee.
+		StreamOf(people).
+		Filter(func(person *Person) bool {
+			return !person.Male
+		}).
+		Sort(func(person, otherPerson *Person) int {
+			return strings.Compare(person.Name, otherPerson.Name)
+		}).
+		ForEach(func(person *Person) {
+			fmt.Printf("%s is %d years old\n", person.Name, person.Age)
+		})
+
+	fmt.Println("Operations are not evaluated until we perform stream.Do()\n")
+	stream.Do()
+}
+
+/**
+go run main.go
+
+Operations are not evaluated until we perform stream.Do()
+
+Anna Wallace is 35 years old
+Celia Hills is 15 years old
+Jane Doe is 20 years old
+ */
+```
+
+
+### Samples
+
+A rich and growing set of examples can be found on [koazee-samples](https://github.com/wesovilabs/koazee-samples)
 
 ### Benchmark
 
 You can check the Benchmark for the Koazee operations [here](https://github.com/wesovilabs/koazee/wiki/Benchmark-Report)
 
-A benchmark compison with other frameworks can be found in [Koazee vs Go-Funk vs Go-Linq](https://medium.com/@ivan.corrales.solera/koazee-vs-go-funk-vs-go-linq-caf8ef18584e)
+A benchmark comparison with other frameworks can be found in [Koazee vs Go-Funk vs Go-Linq](https://medium.com/@ivan.corrales.solera/koazee-vs-go-funk-vs-go-linq-caf8ef18584e)
 
 ### Guides & Tutorials
 
