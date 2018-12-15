@@ -28,7 +28,33 @@ Visit the [Koazee wiki](https://github.com/wesovilabs/koazee/wiki) to find out w
 
 ## Getting started
 
-### Stream creation
+### Installing
+> Add Koazee to your project
+
+**Go modules**
+
+```
+module github.com/me/project
+require ( 
+  github.com/wesovilabs/koazee vX.Y.Z
+)
+```
+
+**Glide**
+
+```
+glide get github.com/wesovilabs/koazee
+```
+
+**Go dep**
+
+```
+go get github.com/wesovilabs/koazee
+```
+
+### Usage
+
+#### Stream creation
 
 Let's first obtain a stream from an existing array.
 
@@ -56,11 +82,11 @@ stream: [1 5 4 3 2 7 1 8 2 3]
 */
 ```
 
-### Stream operations
+#### Stream operations
 
 Current release v0.0.3 (Gibbon) brings us 20 generic operations that are showed below
 
-#### stream.At / stream.First / stream.Last
+##### stream.At / stream.First / stream.Last
 These operations return an element from the stream
 
 ```go
@@ -89,7 +115,7 @@ stream.Last: 3
 */
 ```
 
-#### stream.Add / stream.Drop / stream.DeleteAt / stream.Pop / stream.Set
+##### stream.Add / stream.Drop / stream.DeleteAt / stream.Pop / stream.Set
 These operations add or delete elements from the stream.
 
 ```go
@@ -137,7 +163,7 @@ stream.Pop(): 1 ... [5 4 3 2 7 1 8 2 3]
 */
 ```
 
-#### tream.Count / stream.IndexOf / stream.LastIndexOf / stream.Contains
+##### tream.Count / stream.IndexOf / stream.LastIndexOf / stream.Contains
 These operations return info from the elements in the stream
 
 ```go
@@ -174,7 +200,7 @@ stream.Contains(7): true
 */
 ```
 
-#### stream.Sort / stream.Reverse
+##### stream.Sort / stream.Reverse
 These operations organize the elements in the stream.
 
 ```go
@@ -210,7 +236,7 @@ stream.Sort(strings.Compare): [cat dog fox lion lynx monkey tiger]
 */
 ```
 
-#### stream.Take / stream.Filter / stream.RemoveDuplicates
+##### stream.Take / stream.Filter / stream.RemoveDuplicates
 These operations return a filtered stream.
 
 ```go
@@ -253,7 +279,7 @@ stream.RemoveDuplicates(): [lynx dog cat monkey fox tiger lion]
 */
 ```
 
-#### stream.Map
+##### stream.Map
 This operation performs a modification over all the elements in the stream.
 
 ```go
@@ -282,7 +308,7 @@ stream.Map(strings.Title): [Lynx Dog Cat Monkey Dog Fox Tiger Lion]
 */
 ```
 
-#### stream.Reduce
+##### stream.Reduce
 This operation give us a single output after iterating over the elements in the stream.
 ```go
 package main
@@ -311,7 +337,7 @@ stream.Reduce(sum): 36
 */
 ```
 
-#### stream.ForEach
+##### stream.ForEach
 This operation iterates over the element in the stream.
 
 ```go
@@ -352,7 +378,7 @@ Jane: "Me too"
 */
 ```
 
-### Combine operations and evaluate them lazily
+#### Combine operations and evaluate them lazily
 The main goal of Koazee is providing a set of operations that can be combined and being evaluated lazily.
 
 ```go
@@ -408,21 +434,23 @@ Jane Doe is 20 years old
 ```
 
 
-### Samples
+## Samples
 
 A rich and growing set of examples can be found on [koazee-samples](https://github.com/wesovilabs/koazee-samples)
 
-### Benchmark
+## Benchmark
 
 You can check the Benchmark for the Koazee operations [here](https://github.com/wesovilabs/koazee/wiki/Benchmark-Report)
 
 A benchmark comparison with other frameworks can be found in [Koazee vs Go-Funk vs Go-Linq](https://medium.com/@ivan.corrales.solera/koazee-vs-go-funk-vs-go-linq-caf8ef18584e)
 
-### Guides & Tutorials
+## Guides & Tutorials
 
 [Shopping cart with Koazee](https://medium.com/wesovilabs/koazee-the-shopping-cart-a381bba32955)
 
 
-*If you like this project and you think I should provide more functionality to Koazee, please feel free to star the repository*
+## Roadmap
+
+This is only the beginning! By the way, If you missed any operation in Koazee v0.0.3,  or you found a bug, please [create a new issue on Github or vote the existing ones](https://github.com/wesovilabs/koazee/issues)!
 
 
