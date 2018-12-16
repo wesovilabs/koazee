@@ -11,14 +11,14 @@
 
 ## What is Koazee?
 
-Koazee is a StreamLike, Inmutable, Lazy Loading and smart Golang Library to deal with slices. 
+Koazee is a StreamLike, Immutable, Lazy Loading and smart Golang Library to deal with slices. 
 
 
 Visit the [Koazee wiki](https://github.com/wesovilabs/koazee/wiki) to find out what Koazee can do.
 
 ## Koazee Highlights
 
-- **Inmutable**: Koazee won't modify your inputs. 
+- **Immutable**: Koazee won't modify your inputs. 
 - **StreamLike**: We can combine operations up our convenience. 
 - **Lazy loading**: Operations are not performed until they're required
 - **Generic**: Koazee provides a generic interface able to deal with slice of any type without creating custom functions.
