@@ -4,7 +4,7 @@ import (
 	"reflect"
 )
 
-type dispatchFunction func(items reflect.Value, fn interface{})
+type dispatchFunction func(items reflect.Value, fn interface{}) interface{}
 
 var dispatcher = map[string]dispatchFunction{
 	"string":   forEachString,
@@ -37,235 +37,262 @@ var dispatcher = map[string]dispatchFunction{
 	"*float64": forEachPtrFloat64,
 }
 
-func dispatch(items reflect.Value, itemsType reflect.Type, info *forEachInfo) bool {
+func dispatch(items reflect.Value, itemsType reflect.Type, info *forEachInfo) (bool, interface{}) {
 	input := itemsType.String()
 	if fnVal, ok := dispatcher[input]; ok {
-		fnVal(items, info.fnValue.Interface())
-		return true
+		return true, fnVal(items, info.fnValue.Interface())
 	}
-	return false
+	return false, nil
 }
 
-func forEachString(itemsValue reflect.Value, function interface{}) {
+func forEachString(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]string)
-	fn := function.(func(string))
+	fn := function.(func(string) string)
 	for i := 0; i < len(input); i++ {
-		fn(input[i])
+		input[i] = fn(input[i])
 	}
+	return input
 }
 
-func forEachPtrString(itemsValue reflect.Value, function interface{}) {
+func forEachPtrString(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]*string)
-	fn := function.(func(*string))
+	fn := function.(func(*string) *string)
 	for i := 0; i < len(input); i++ {
-		fn(input[i])
+		input[i] = fn(input[i])
 	}
+	return input
 }
 
-func forEachBool(itemsValue reflect.Value, function interface{}) {
+func forEachBool(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]bool)
-	fn := function.(func(bool))
+	fn := function.(func(bool) bool)
 	for i := 0; i < len(input); i++ {
-		fn(input[i])
+		input[i] = fn(input[i])
 	}
+	return input
 }
 
-func forEachPtrBool(itemsValue reflect.Value, function interface{}) {
+func forEachPtrBool(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]*bool)
-	fn := function.(func(*bool))
+	fn := function.(func(*bool) *bool)
 	for i := 0; i < len(input); i++ {
-		fn(input[i])
+		input[i] = fn(input[i])
 	}
+	return input
 }
 
-func forEachInt(itemsValue reflect.Value, function interface{}) {
+func forEachInt(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]int)
-	fn := function.(func(int))
+	fn := function.(func(int) int)
 	for i := 0; i < len(input); i++ {
-		fn(input[i])
+		input[i] = fn(input[i])
 	}
+	return input
 }
 
-func forEachPtrInt(itemsValue reflect.Value, function interface{}) {
+func forEachPtrInt(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]*int)
-	fn := function.(func(*int))
+	fn := function.(func(*int) *int)
 	for i := 0; i < len(input); i++ {
-		fn(input[i])
+		input[i] = fn(input[i])
 	}
+	return input
 }
 
-func forEachInt8(itemsValue reflect.Value, function interface{}) {
+func forEachInt8(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]int8)
-	fn := function.(func(int8))
+	fn := function.(func(int8) int8)
 	for i := 0; i < len(input); i++ {
-		fn(input[i])
+		input[i] = fn(input[i])
 	}
+	return input
 }
 
-func forEachPtrInt8(itemsValue reflect.Value, function interface{}) {
+func forEachPtrInt8(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]*int8)
-	fn := function.(func(*int8))
+	fn := function.(func(*int8) *int8)
 	for i := 0; i < len(input); i++ {
-		fn(input[i])
+		input[i] = fn(input[i])
 	}
+	return input
 }
 
-func forEachInt16(itemsValue reflect.Value, function interface{}) {
+func forEachInt16(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]int16)
-	fn := function.(func(int16))
+	fn := function.(func(int16) int16)
 	for i := 0; i < len(input); i++ {
-		fn(input[i])
+		input[i] = fn(input[i])
 	}
+	return input
 }
 
-func forEachPtrInt16(itemsValue reflect.Value, function interface{}) {
+func forEachPtrInt16(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]*int16)
-	fn := function.(func(*int16))
+	fn := function.(func(*int16) *int16)
 	for i := 0; i < len(input); i++ {
-		fn(input[i])
+		input[i] = fn(input[i])
 	}
+	return input
 }
 
-func forEachInt32(itemsValue reflect.Value, function interface{}) {
+func forEachInt32(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]int32)
-	fn := function.(func(int32))
+	fn := function.(func(int32) int32)
 	for i := 0; i < len(input); i++ {
-		fn(input[i])
+		input[i] = fn(input[i])
 	}
+	return input
 }
 
-func forEachPtrInt32(itemsValue reflect.Value, function interface{}) {
+func forEachPtrInt32(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]*int32)
-	fn := function.(func(*int32))
+	fn := function.(func(*int32) *int32)
 	for i := 0; i < len(input); i++ {
-		fn(input[i])
+		input[i] = fn(input[i])
 	}
+	return input
 }
 
-func forEachInt64(itemsValue reflect.Value, function interface{}) {
+func forEachInt64(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]int64)
-	fn := function.(func(int64))
+	fn := function.(func(int64) int64)
 	for i := 0; i < len(input); i++ {
-		fn(input[i])
+		input[i] = fn(input[i])
 	}
+	return input
 }
 
-func forEachPtrInt64(itemsValue reflect.Value, function interface{}) {
+func forEachPtrInt64(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]*int64)
-	fn := function.(func(*int64))
+	fn := function.(func(*int64) *int64)
 	for i := 0; i < len(input); i++ {
-		fn(input[i])
+		input[i] = fn(input[i])
 	}
+	return input
 }
 
-func forEachUint(itemsValue reflect.Value, function interface{}) {
+func forEachUint(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]uint)
-	fn := function.(func(uint))
+	fn := function.(func(uint) uint)
 	for i := 0; i < len(input); i++ {
-		fn(input[i])
+		input[i] = fn(input[i])
 	}
+	return input
 }
 
-func forEachPtrUint(itemsValue reflect.Value, function interface{}) {
+func forEachPtrUint(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]*uint)
-	fn := function.(func(*uint))
+	fn := function.(func(*uint) *uint)
 	for i := 0; i < len(input); i++ {
-		fn(input[i])
+		input[i] = fn(input[i])
 	}
+	return input
 }
 
-func forEachUint8(itemsValue reflect.Value, function interface{}) {
+func forEachUint8(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]uint8)
-	fn := function.(func(uint8))
+	fn := function.(func(uint8) uint8)
 	for i := 0; i < len(input); i++ {
-		fn(input[i])
+		input[i] = fn(input[i])
 	}
+	return input
 }
 
-func forEachPtrUint8(itemsValue reflect.Value, function interface{}) {
+func forEachPtrUint8(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]*uint8)
-	fn := function.(func(*uint8))
+	fn := function.(func(*uint8) *uint8)
 	for i := 0; i < len(input); i++ {
-		fn(input[i])
+		input[i] = fn(input[i])
 	}
+	return input
 }
 
-func forEachUint16(itemsValue reflect.Value, function interface{}) {
+func forEachUint16(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]uint16)
-	fn := function.(func(uint16))
+	fn := function.(func(uint16) uint16)
 	for i := 0; i < len(input); i++ {
-		fn(input[i])
+		input[i] = fn(input[i])
 	}
+	return input
 }
 
-func forEachPtrUint16(itemsValue reflect.Value, function interface{}) {
+func forEachPtrUint16(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]*uint16)
-	fn := function.(func(*uint16))
+	fn := function.(func(*uint16) *uint16)
 	for i := 0; i < len(input); i++ {
-		fn(input[i])
+		input[i] = fn(input[i])
 	}
+	return input
 }
 
-func forEachUint32(itemsValue reflect.Value, function interface{}) {
+func forEachUint32(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]uint32)
-	fn := function.(func(uint32))
+	fn := function.(func(uint32) uint32)
 	for i := 0; i < len(input); i++ {
-		fn(input[i])
+		input[i] = fn(input[i])
 	}
+	return input
 }
 
-func forEachPtrUint32(itemsValue reflect.Value, function interface{}) {
+func forEachPtrUint32(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]*uint32)
-	fn := function.(func(*uint32))
+	fn := function.(func(*uint32) *uint32)
 	for i := 0; i < len(input); i++ {
-		fn(input[i])
+		input[i] = fn(input[i])
 	}
+	return input
 }
 
-func forEachUint64(itemsValue reflect.Value, function interface{}) {
+func forEachUint64(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]uint64)
-	fn := function.(func(uint64))
+	fn := function.(func(uint64) uint64)
 	for i := 0; i < len(input); i++ {
-		fn(input[i])
+		input[i] = fn(input[i])
 	}
+	return input
 }
 
-func forEachPtrUint64(itemsValue reflect.Value, function interface{}) {
+func forEachPtrUint64(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]*uint64)
-	fn := function.(func(*uint64))
+	fn := function.(func(*uint64) *uint64)
 	for i := 0; i < len(input); i++ {
-		fn(input[i])
+		input[i] = fn(input[i])
 	}
+	return input
 }
 
-func forEachFloat32(itemsValue reflect.Value, function interface{}) {
+func forEachFloat32(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]float32)
-	fn := function.(func(float32))
+	fn := function.(func(float32) float32)
 	for i := 0; i < len(input); i++ {
-		fn(input[i])
+		input[i] = fn(input[i])
 	}
+	return input
 }
 
-func forEachPtrFloat32(itemsValue reflect.Value, function interface{}) {
+func forEachPtrFloat32(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]*float32)
-	fn := function.(func(*float32))
+	fn := function.(func(*float32) *float32)
 	for i := 0; i < len(input); i++ {
-		fn(input[i])
+		input[i] = fn(input[i])
 	}
+	return input
 }
 
-func forEachFloat64(itemsValue reflect.Value, function interface{}) {
+func forEachFloat64(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]float64)
-	fn := function.(func(float64))
+	fn := function.(func(float64) float64)
 	for i := 0; i < len(input); i++ {
-		fn(input[i])
+		input[i] = fn(input[i])
 	}
+	return input
 }
 
-func forEachPtrFloat64(itemsValue reflect.Value, function interface{}) {
+func forEachPtrFloat64(itemsValue reflect.Value, function interface{}) interface{} {
 	input := itemsValue.Interface().([]*float64)
-	fn := function.(func(*float64))
+	fn := function.(func(*float64) *float64)
 	for i := 0; i < len(input); i++ {
-		fn(input[i])
+		input[i] = fn(input[i])
 	}
+	return input
 }

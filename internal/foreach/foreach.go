@@ -1,8 +1,9 @@
 package foreach
 
 import (
-	"github.com/wesovilabs/koazee/errors"
 	"reflect"
+
+	"github.com/wesovilabs/koazee/errors"
 )
 
 // OpCode identifier for operation Filter
@@ -21,8 +22,8 @@ func (op *ForEach) Run() (reflect.Value, *errors.Error) {
 	if err != nil {
 		return reflect.ValueOf(nil), err
 	}
-	if found := dispatch(op.ItemsValue, op.ItemsType, info); found {
-		return op.ItemsValue, nil
+	if found, result := dispatch(op.ItemsValue, op.ItemsType, info); found {
+		return reflect.ValueOf(result), nil
 	}
 	function := reflect.ValueOf(op.Func)
 	for index := 0; index < op.ItemsValue.Len(); index++ {
@@ -48,13 +49,20 @@ func (op *ForEach) validate() (*forEachInfo, *errors.Error) {
 	if function.Type().NumIn() != 1 {
 		return nil, errors.InvalidArgument(OpCode, "The provided function must retrieve 1 argument")
 	}
-	if function.Type().NumOut() != 0 {
-		return nil, errors.InvalidArgument(OpCode, "The provided function can not return any value")
+	if function.Type().NumOut() != 1 {
+		return nil, errors.InvalidArgument(OpCode, "The provided DoFunc must return 1 value")
 	}
 	fnIn := reflect.New(function.Type().In(0)).Elem()
+	fnout := reflect.New(function.Type().Out(0)).Elem()
 	if fnIn.Type() != op.ItemsType {
 		return nil, errors.InvalidArgument(OpCode,
 			"The type of the argument in the provided function "+
+				"must be %s", op.ItemsType.String())
+	}
+
+	if fnout.Type() != op.ItemsType {
+		return nil, errors.InvalidArgument(OpCode,
+			"The type of the Output in the provided function "+
 				"must be %s", op.ItemsType.String())
 	}
 	item.fnValue = reflect.ValueOf(op.Func)
