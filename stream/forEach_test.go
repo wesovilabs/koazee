@@ -1,8 +1,10 @@
 package stream_test
 
 import (
-	"github.com/wesovilabs/koazee/internal/foreach"
+	"fmt"
 	"testing"
+
+	"github.com/wesovilabs/koazee/internal/foreach"
 
 	"github.com/wesovilabs/koazee"
 	"github.com/wesovilabs/koazee/errors"
@@ -16,6 +18,12 @@ func TestStream_ForEach(t *testing.T) {
 
 	}).Out().Val()
 	assert.Equal(t, []int{2, 1, 3, 2}, array)
+
+	s = koazee.StreamOf([]int{1, 2, 3, 4})
+	err := s.ForEach(func(value int) error {
+		return fmt.Errorf("test error")
+	}).Out().Err().UserError()
+	assert.EqualError(t, err, "test error")
 }
 
 func TestStream_ForEach_validation(t *testing.T) {
@@ -41,7 +49,7 @@ func TestStream_ForEach_validation(t *testing.T) {
 
 	assert.Equal(
 		t,
-		errors.InvalidArgument(foreach.OpCode, "The provided function can not return any value"),
+		errors.InvalidArgument(foreach.OpCode, "The provided function can not return any value or must return only an error"),
 		koazee.StreamOf([]int{2, 3, 2}).ForEach(func(val int) bool { return false }).Out().Err())
 
 	assert.Equal(
@@ -49,4 +57,6 @@ func TestStream_ForEach_validation(t *testing.T) {
 		errors.InvalidArgument(foreach.OpCode, "The provided function must retrieve 1 argument"),
 		koazee.StreamOf([]int{2, 3, 2}).ForEach(func(val, val2 int) {}).Out().Err())
 
+	err := koazee.StreamOf([]int{2, 3, 2}).ForEach(func(val int) error { return nil }).Out().Err()
+	assert.True(t, err == nil)
 }

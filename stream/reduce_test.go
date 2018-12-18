@@ -1,8 +1,10 @@
 package stream_test
 
 import (
-	"github.com/wesovilabs/koazee/internal/add"
+	"fmt"
 	"testing"
+
+	"github.com/wesovilabs/koazee/internal/add"
 
 	"github.com/wesovilabs/koazee"
 	"github.com/wesovilabs/koazee/errors"
@@ -36,6 +38,18 @@ func TestStream_Reduce(t *testing.T) {
 		return total + val.age
 	})
 	assert.Equal(t, 118, reduce.Val())
+
+	reduce = stream.New([]int{1, 2, 3, 4, 5}).Reduce(func(accum, val int) (int, error) {
+		return accum + val, nil
+	})
+	assert.Equal(t, 15, reduce.Val())
+	assert.True(t, reduce.Err() == nil)
+
+	reduce = stream.New([]int{1, 2, 3, 4, 5}).Reduce(func(accum, val int) (int, error) {
+		return accum + val, fmt.Errorf("test error")
+	})
+	assert.Error(t, reduce.Err(), "test error")
+
 }
 
 func TestStream_Reduce_validation(t *testing.T) {
@@ -61,8 +75,12 @@ func TestStream_Reduce_validation(t *testing.T) {
 
 	assert.Equal(
 		t,
-		errors.InvalidArgument(reduceInternal.OpCode, "The provided function must return 1 value"),
+		errors.InvalidArgument(reduceInternal.OpCode, "The provided function must return 1 value or the second value must be an error"),
 		koazee.StreamOf([]int{2, 3, 2}).Reduce(func(val, val2 bool) {}).Err())
+
+	assert.True(
+		t,
+		koazee.StreamOf([]int{2, 3, 2}).Reduce(func(val, val2 int) (int, error) { return 0, nil }).Err() == nil)
 
 	assert.Equal(
 		t,

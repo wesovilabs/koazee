@@ -28,4 +28,5 @@ type reduceInfo struct {
 	fnIn2Type reflect.Type
 	fnOutType reflect.Type
 	fnValue   reflect.Value
+	hasError  bool
 }

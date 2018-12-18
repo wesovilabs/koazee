@@ -23,5 +23,6 @@ func (c *cacheType) get(itemsType, funcInType reflect.Type) *forEachInfo {
 }
 
 type forEachInfo struct {
-	fnValue reflect.Value
+	fnValue  reflect.Value
+	hasError bool
 }

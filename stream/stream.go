@@ -1,8 +1,9 @@
 package stream
 
 import (
-	"github.com/wesovilabs/koazee/errors"
 	"reflect"
+
+	"github.com/wesovilabs/koazee/errors"
 )
 
 // Output structure for returning single values
@@ -14,11 +15,19 @@ type Output struct {
 // Val reurn the Output of the Stream
 func (o Output) Val() interface{} {
 	v := (o.value)
+	if !o.value.IsValid() {
+		return nil
+	}
 	return v.Interface()
 }
 
 // Err reurn the error in the Stream
-func (o Output) Err() *errors.Error { return o.error }
+func (o Output) Err() *errors.Error {
+	if o.error == nil || o.error.Code() == "" {
+		return nil
+	}
+	return o.error
+}
 
 // Bool parses the Output of the Stream as a bool type
 func (o Output) Bool() bool {

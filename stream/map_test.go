@@ -1,6 +1,7 @@
 package stream_test
 
 import (
+	"strconv"
 	"strings"
 	"testing"
 
@@ -36,6 +37,16 @@ func TestStream_Map(t *testing.T) {
 		return p.firstName
 	}).Out().Val()
 	assert.Equal(t, []string{"John", "Jane", "Jean"}, out)
+
+	s = stream.New([]string{"1", "2", "3"})
+	o := s.Map(strconv.Atoi).Out()
+	assert.Equal(t, []int{1, 2, 3}, o.Val())
+	assert.Equal(t, o.Err().UserError(), nil)
+
+	s = stream.New([]string{"1", "2", "three"})
+	o = s.Map(strconv.Atoi).Out()
+	assert.Equal(t, nil, o.Val())
+	assert.IsType(t, &strconv.NumError{}, o.Err().UserError())
 }
 
 func TestStream_Map_validation(t *testing.T) {
@@ -56,7 +67,16 @@ func TestStream_Map_validation(t *testing.T) {
 
 	assert.Equal(
 		t,
-		errors.InvalidArgument(mapInternal.OpCode, "The provided function must return 1 value"),
+		errors.InvalidArgument(mapInternal.OpCode, "The provided function must return 1 value or the second value must be an error"),
 		koazee.StreamOf([]int{2, 3, 2}).Map(func(val int) {}).Out().Err())
 
+	assert.Equal(
+		t,
+		errors.InvalidArgument(mapInternal.OpCode, "The provided function must return 1 value or the second value must be an error"),
+		koazee.StreamOf([]int{2, 3, 2}).Map(func(val int) (string, int) { return "", 0 }).Out().Err())
+
+	assert.Equal(
+		t,
+		nil,
+		koazee.StreamOf([]int{2, 3, 2}).Map(func(val int) (string, error) { return "", nil }).Out().Err().UserError())
 }
