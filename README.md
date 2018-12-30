@@ -115,7 +115,7 @@ stream.Last: 3
 */
 ```
 
-##### stream.Add / stream.Drop / stream.DeleteAt / stream.Pop / stream.Set
+##### stream.Add / stream.Drop / stream.DropWhile / stream.DeleteAt / stream.Pop / stream.Set
 These operations add or delete elements from the stream.
 
 ```go
@@ -137,6 +137,9 @@ func main() {
 
 	fmt.Print("stream.Drop(5): ")
 	fmt.Println(stream.Drop(5).Do().Out().Val())
+	
+	fmt.Print("stream.DropWhile(val<4): ")
+	fmt.Println(stream.DropWhile(func(element int)bool{return element<4}).Do().Out().Val())
 
 	fmt.Print("stream.DeleteAt(4): ")
 	fmt.Println(stream.DeleteAt(4).Do().Out().Val())
