@@ -138,8 +138,8 @@ func main() {
 	fmt.Print("stream.Drop(5): ")
 	fmt.Println(stream.Drop(5).Do().Out().Val())
 	
-	fmt.Print("stream.DropWhile(val<4): ")
-	fmt.Println(stream.DropWhile(func(element int)bool{return element<4}).Do().Out().Val())
+	fmt.Print("stream.DropWhile(val<=5): ")
+	fmt.Println(stream.DropWhile(func(element int)bool{return element<=5}).Do().Out().Val())
 
 	fmt.Print("stream.DeleteAt(4): ")
 	fmt.Println(stream.DeleteAt(4).Do().Out().Val())
@@ -160,13 +160,14 @@ go run main.go
 input: [1 5 4 3 2 7 1 8 2 3]
 stream.Add(10): [1 5 4 3 2 7 1 8 2 3 10]
 stream.Drop(5): [1 4 3 2 7 1 8 2 3]
+stream.DropWhile(val<=5): [7 8]
 stream.DeleteAt(4): [1 5 4 3 7 1 8 2 3]
 stream.Set(0,5): [5 5 4 3 2 7 1 8 2 3]
 stream.Pop(): 1 ... [5 4 3 2 7 1 8 2 3]
 */
 ```
 
-##### tream.Count / stream.IndexOf / stream.LastIndexOf / stream.Contains
+##### tream.Count / stream.IndexOf / stream.IndexesOf / stream.LastIndexOf / stream.Contains
 These operations return info from the elements in the stream
 
 ```go
@@ -186,6 +187,8 @@ func main() {
 	fmt.Printf("stream.Count(): %d\n", count)
 	index, _ := stream.IndexOf(2)
 	fmt.Printf("stream.IndexOf(2): %d\n", index)
+	indexes, _ := stream.IndexesOf(2)
+    fmt.Printf("stream.IndexesOf(2): %d\n", indexes)
 	index, _ = stream.LastIndexOf(2)
 	fmt.Printf("stream.LastIndexOf(2): %d\n", index)
 	contains, _ := stream.Contains(7)
@@ -198,6 +201,7 @@ go run main.go
 input: [1 5 4 3 2 7 1 8 2 3]
 stream.Count(): 10
 stream.IndexOf(2): 4
+stream.IndexesOf(2): [4 8]
 stream.LastIndexOf(2): 8
 stream.Contains(7): true
 */
@@ -436,6 +440,32 @@ Jane Doe is 20 years old
  */
 ```
 
+## Available Operations
+
+| Operation  | Description  | Since  |
+|---|---|---|
+| Add | It adds a new element in the last position |  v0.0.1 |
+| At | It returns the element in the given position |  v0.0.1 |
+| Contains | It checks if the given element is found in the stream.|  v0.0.1 |
+| Count | It returns the number of elements in a stream|  v0.0.1 |
+| DeleteAt| It remove the elements in the given position |  v0.0.3 |
+| Drop | It removes an element from the stream |  v0.0.1 |
+| DropWhile | It removes the elements in the stream that match with the given input function | master |
+| Filter | It discards those elements that doesn't match with the provided filter|  v0.0.1 |
+| First | It returns the element in the first position |  v0.0.1 |
+| ForEach | It does something over all the elements in the stream.|  v0.0.1 |
+| IndexOf | It returns the first index of the  element in the stream.|  v0.0.3 |
+| IndexesOf | It returns the index for all the occurrences of the  element in the stream.|  master |
+| Last | It returns the element in the last position |  v0.0.1 |
+| LastIndexOf | It returns the last occurrence for the  element in the stream.|  v0.0.3 |
+| Map | It converts the element in the stream |  v0.0.1 |
+| Pop | It extracts the first element in the stream and return this and the new stream | v0.0.3 |
+| Reduce | It reduceshe stream to a single value by executing a provided function for each value of the stream|  v0.0.1 |
+| RemoveDuplicates | It removes duplicated elements.|  v0.0.1 |
+| Reverse| It reverses the sequence of elements in the stream.| v0.0.3 |
+| Set | It replaces the element in the given index by the provided value |  v0.0.3 |
+| Sort | It sorts the elements in the stream|  v0.0.1 |
+| Take | It returns a stream with the elements between the given indexes |  v0.0.3 |
 
 ## Samples
 
