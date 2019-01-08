@@ -1,8 +1,9 @@
 package maps
 
 import (
-	"github.com/wesovilabs/koazee/errors"
 	"reflect"
+
+	"github.com/wesovilabs/koazee/errors"
 )
 
 // OpCode code
@@ -21,8 +22,11 @@ func (m *Map) Run() (reflect.Value, *errors.Error) {
 	if err != nil {
 		return reflect.ValueOf(nil), err
 	}
-	if found, result := dispatch(m.ItemsValue, m.Func, mInfo); found {
-		return reflect.ValueOf(result), nil
+	// dispatch functions do not handle errors
+	if !mInfo.hasError {
+		if found, result := dispatch(m.ItemsValue, m.Func, mInfo); found {
+			return reflect.ValueOf(result), nil
+		}
 	}
 	newItems := reflect.MakeSlice(reflect.SliceOf(mInfo.fnOutputType), 0, 0)
 	fn := reflect.ValueOf(m.Func)
@@ -31,12 +35,22 @@ func (m *Map) Run() (reflect.Value, *errors.Error) {
 		for index := 0; index < m.ItemsValue.Len(); index++ {
 			argv[0] = reflect.ValueOf(reflect.ValueOf(m.ItemsValue.Index(index).Interface()).Elem().Addr().Interface())
 			result := fn.Call(argv)
+			if mInfo.hasError {
+				if !result[1].IsNil() {
+					return reflect.ValueOf(nil), errors.UserError(OpCode, result[1].Interface().(error))
+				}
+			}
 			newItems = reflect.Append(newItems, result[0])
 		}
 	} else {
 		for index := 0; index < m.ItemsValue.Len(); index++ {
 			argv[0] = m.ItemsValue.Index(index)
 			result := fn.Call(argv)
+			if mInfo.hasError {
+				if !result[1].IsNil() {
+					return reflect.ValueOf(nil), errors.UserError(OpCode, result[1].Interface().(error))
+				}
+			}
 			newItems = reflect.Append(newItems, result[0])
 		}
 	}
@@ -62,8 +76,10 @@ func (m *Map) validate() (*mapInfo, *errors.Error) {
 	if item.fnValue.Type().NumIn() != 1 {
 		return nil, errors.InvalidArgument(OpCode, "The provided function must retrieve 1 argument")
 	}
-	if item.fnValue.Type().NumOut() != 1 {
-		return nil, errors.InvalidArgument(OpCode, "The provided function must return 1 value")
+	numOut := item.fnValue.Type().NumOut()
+	errType := reflect.TypeOf((*error)(nil)).Elem()
+	if !(numOut == 1 || (numOut == 2 && item.fnValue.Type().Out(1).Implements(errType))) {
+		return nil, errors.InvalidArgument(OpCode, "The provided function must return 1 value or the second value must be an error")
 	}
 	fnIn := reflect.New(item.fnValue.Type().In(0)).Elem()
 	if fnIn.Type() != m.ItemsType {
@@ -73,6 +89,7 @@ func (m *Map) validate() (*mapInfo, *errors.Error) {
 	}
 	item.fnOutputType = reflect.New(item.fnValue.Type().Out(0)).Elem().Type()
 	item.isPtr = m.ItemsValue.Index(0).Kind() == reflect.Ptr
+	item.hasError = numOut == 2
 	cache.add(m.ItemsType, fnType, item)
 	return item, nil
 }

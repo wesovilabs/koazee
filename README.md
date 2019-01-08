@@ -289,6 +289,8 @@ stream.RemoveDuplicates(): [lynx dog cat monkey fox tiger lion]
 ##### stream.Map
 This operation performs a modification over all the elements in the stream.
 
+You can now optionally return an error as the second parameter to stop processing of the stream. The error will be available in `stream.Out().Err().UserError()`.
+
 ```go
 package main
 
@@ -317,6 +319,9 @@ stream.Map(strings.Title): [Lynx Dog Cat Monkey Dog Fox Tiger Lion]
 
 ##### stream.Reduce
 This operation give us a single output after iterating over the elements in the stream.
+
+You can now optionally return an error as the second parameter to stop processing of the stream. The error will be available in `stream.Out().Err().UserError()`.
+
 ```go
 package main
 
@@ -346,6 +351,8 @@ stream.Reduce(sum): 36
 
 ##### stream.ForEach
 This operation iterates over the element in the stream.
+
+You can now optionally return an error as the second parameter to stop processing of the stream. The error will be available in `stream.Out().Err().UserError()`.
 
 ```go
 package main

@@ -6,14 +6,18 @@ import (
 
 // Error encapsulates error info
 type Error struct {
-	op   string
-	code ErrCode
-	msg  string
-	meta map[string]interface{}
+	op      string
+	code    ErrCode
+	msg     string
+	userErr error
+	meta    map[string]interface{}
 }
 
 // Error converts the error into a readable message
 func (e Error) Error() string {
+	if e.userErr != nil {
+		return fmt.Sprintf("[%s:%s] %s", e.op, e.code, e.userErr.Error())
+	}
 	out := fmt.Sprintf("[%s:%s] %s", e.op, e.code, e.msg)
 	if e.meta != nil {
 		for k, v := range e.meta {
@@ -21,6 +25,14 @@ func (e Error) Error() string {
 		}
 	}
 	return out
+}
+
+// UserError returns the error from the user's function, if any.
+func (e *Error) UserError() error {
+	if e == nil {
+		return nil
+	}
+	return e.userErr
 }
 
 // New creates a new instance of Error

@@ -1,8 +1,9 @@
 package reduce
 
 import (
-	"github.com/wesovilabs/koazee/errors"
 	"reflect"
+
+	"github.com/wesovilabs/koazee/errors"
 )
 
 // OpCode code for operation reduce
@@ -21,9 +22,11 @@ func (r *Reduce) Run() (reflect.Value, *errors.Error) {
 	if err != nil {
 		return reflect.ValueOf(nil), err
 	}
-	if found, result := dispatch(r.ItemsValue, r.Func, info); found {
-		v := reflect.ValueOf(result)
-		return v, nil
+	if !info.hasError {
+		if found, result := dispatch(r.ItemsValue, r.Func, info); found {
+			v := reflect.ValueOf(result)
+			return v, nil
+		}
 	}
 	var argv = make([]reflect.Value, 2)
 	acc := reflect.New(info.fnIn1Type).Elem()
@@ -32,6 +35,9 @@ func (r *Reduce) Run() (reflect.Value, *errors.Error) {
 		argv[1] = r.ItemsValue.Index(i)
 		output := info.fnValue.Call(argv)
 		acc = output[0]
+		if info.hasError && !output[1].IsNil() {
+			return reflect.ValueOf(nil), errors.UserError(OpCode, output[1].Interface().(error))
+		}
 	}
 	return acc, nil
 }
@@ -54,8 +60,10 @@ func (r *Reduce) validate() (*reduceInfo, *errors.Error) {
 	if fnType.NumIn() != 2 {
 		return nil, errors.InvalidArgument(OpCode, "The provided function must retrieve 2 arguments")
 	}
-	if fnType.NumOut() != 1 {
-		return nil, errors.InvalidArgument(OpCode, "The provided function must return 1 value")
+	numOut := fnType.NumOut()
+	errType := reflect.TypeOf((*error)(nil)).Elem()
+	if !(numOut == 1 || (numOut == 2 && fnType.Out(1).Implements(errType))) {
+		return nil, errors.InvalidArgument(OpCode, "The provided function must return 1 value or the second value must be an error")
 	}
 	fnIn2 := reflect.New(fnType.In(1)).Elem()
 	if fnIn2.Type() != r.ItemsType {
@@ -65,6 +73,7 @@ func (r *Reduce) validate() (*reduceInfo, *errors.Error) {
 	info.fnIn1Type = fnType.In(0)
 	info.fnIn2Type = fnType.In(1)
 	info.fnOutType = fnType.Out(0)
+	info.hasError = numOut == 2
 	if info.fnIn1Type != info.fnOutType {
 		return nil, errors.InvalidArgument(OpCode, "The type of the first argument and "+
 			"the Output in the provided function must be the same")

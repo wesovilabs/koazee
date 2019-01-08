@@ -27,4 +27,5 @@ type mapInfo struct {
 	fnInputType  reflect.Type
 	fnOutputType reflect.Type
 	isPtr        bool
+	hasError     bool
 }
