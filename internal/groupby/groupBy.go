@@ -37,7 +37,7 @@ func (op *GroupBy) Run() (reflect.Value, *errors.Error) {
 				}
 			}
 			keyContent := output.MapIndex(result[0])
-			if keyContent.Len() == 0 {
+			if keyContent.IsValid() {
 				output.SetMapIndex(result[0], reflect.ValueOf([]interface{}{val}))
 			} else {
 				output.SetMapIndex(result[0], reflect.AppendSlice(keyContent, val))
