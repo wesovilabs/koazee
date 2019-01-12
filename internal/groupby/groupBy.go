@@ -41,7 +41,7 @@ func (op *GroupBy) Run() (reflect.Value, *errors.Error) {
 			keyContent := output.MapIndex(result[0])
 
 			if !keyContent.IsValid() {
-				slice := reflect.MakeSlice(sliceType, 0, 0)
+				slice := reflect.MakeSlice(op.ItemsType, 0, 0)
 				fmt.Println(slice)
 				fmt.Println(val)
 				newSlice:=reflect.AppendSlice(slice, val)
