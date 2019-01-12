@@ -307,6 +307,9 @@ func main() {
 	stream := koazee.StreamOf(animals)
 	fmt.Print("stream.Map(strings.Title): ")
 	fmt.Println(stream.Map(strings.Title).Do().Out().Val())
+	fmt.Print("stream.GroupBy(strings.Len): ")
+	out, _ := stream.GroupBy(func(val string)int{return len(val)})
+	fmt.Println(out)
 }
 
 /**
@@ -314,6 +317,7 @@ go run main.go
 
 input: [lynx dog cat monkey dog fox tiger lion]
 stream.Map(strings.Title): [Lynx Dog Cat Monkey Dog Fox Tiger Lion]
+stream.GroupBy(strings.Len): map[5:[tiger] 4:[lynx lion] 3:[dog cat dog fox] 6:[monkey]]
 */
 ```
 
@@ -461,6 +465,7 @@ Jane Doe is 20 years old
 | Filter | It discards those elements that doesn't match with the provided filter|  v0.0.1 |
 | First | It returns the element in the first position |  v0.0.1 |
 | ForEach | It does something over all the elements in the stream.|  v0.0.1 |
+| GroupBy | It returns a map of array of elements grouped by the function.|  master |
 | IndexOf | It returns the first index of the  element in the stream.|  v0.0.3 |
 | IndexesOf | It returns the index for all the occurrences of the  element in the stream.|  master |
 | Last | It returns the element in the last position |  v0.0.1 |
