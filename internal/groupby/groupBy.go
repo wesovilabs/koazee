@@ -27,7 +27,8 @@ func (op *GroupBy) Run() (map[interface{}][]interface{}, *errors.Error) {
 		fn := reflect.ValueOf(op.Func)
 		var argv = make([]reflect.Value, 1)
 		for index := 0; index < op.ItemsValue.Len(); index++ {
-			argv[0] = op.ItemsValue.Index(index)
+			val:=op.ItemsValue.Index(index)
+			argv[0] = val
 			result := fn.Call(argv)
 			if gInfo.hasError {
 				if !result[1].IsNil() {
@@ -35,9 +36,9 @@ func (op *GroupBy) Run() (map[interface{}][]interface{}, *errors.Error) {
 				}
 			}
 			if len(output[result]) == 0 {
-				output[result] = []interface{}{argv[0]}
+				output[result] = []interface{}{val}
 			} else {
-				output[result] = append(output[result], argv[0])
+				output[result] = append(output[result], val)
 			}
 		}
 		return output, nil
