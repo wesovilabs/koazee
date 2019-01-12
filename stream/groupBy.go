@@ -3,10 +3,11 @@ package stream
 import (
 	"github.com/wesovilabs/koazee/errors"
 	"github.com/wesovilabs/koazee/internal/groupby"
+	"reflect"
 )
 
 // IndexesOf check if the passed element is found in the Stream
-func (s Stream) GroupBy(fn interface{}) (map[interface{}][]interface{}, *errors.Error) {
+func (s Stream) GroupBy(fn interface{}) (reflect.Value, *errors.Error) {
 	current := s.run()
 	if current.err != nil {
 		return nil, current.err

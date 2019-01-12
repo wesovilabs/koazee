@@ -16,34 +16,37 @@ type GroupBy struct {
 }
 
 // Run performs the operation
-func (op *GroupBy) Run() (map[interface{}][]interface{}, *errors.Error) {
+func (op *GroupBy) Run() (reflect.Value, *errors.Error) {
 	gInfo, err := op.validate()
 	if err != nil {
-		return nil, err
+		return reflect.ValueOf(nil), err
 	}
 	// dispatch functions do not handle errors
 	if !gInfo.hasError {
-		output := make(map[interface{}][]interface{})
+		mapType := reflect.MapOf(gInfo.fnOutputType, op.ItemsType)
+		output := reflect.MakeMap(mapType)
 		fn := reflect.ValueOf(op.Func)
 		var argv = make([]reflect.Value, 1)
 		for index := 0; index < op.ItemsValue.Len(); index++ {
-			val:=op.ItemsValue.Index(index)
+			val := op.ItemsValue.Index(index)
 			argv[0] = val
 			result := fn.Call(argv)
 			if gInfo.hasError {
 				if !result[1].IsNil() {
-					return nil, errors.UserError(OpCode, result[1].Interface().(error))
+					return reflect.ValueOf(nil), errors.UserError(OpCode, result[1].Interface().(error))
 				}
 			}
-			if len(output[result]) == 0 {
-				output[result] = []interface{}{val}
+			valKey := reflect.ValueOf(output)
+			keyContent := output.MapIndex(valKey)
+			if keyContent.IsNil() {
+				output.SetMapIndex(valKey, reflect.ValueOf([]interface{}{val}))
 			} else {
-				output[result] = append(output[result], val)
+				output.SetMapIndex(valKey, reflect.AppendSlice(keyContent, val))
 			}
 		}
 		return output, nil
 	}
-	return nil, err
+	return reflect.ValueOf(nil), err
 }
 
 // Run performs the operation
