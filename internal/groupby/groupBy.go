@@ -40,10 +40,10 @@ func (op *GroupBy) Run() (reflect.Value, *errors.Error) {
 			keyContent := output.MapIndex(result[0])
 
 			if !keyContent.IsValid() {
-				slice := reflect.MakeSlice(reflect.SliceOf(sliceType), 0, 0)
-				output.SetMapIndex(result[0], reflect.AppendSlice(slice, val))
+				slice := reflect.MakeSlice(sliceType, 0, 0)
+				output.SetMapIndex(keyContent, reflect.AppendSlice(slice, val))
 			} else {
-				output.SetMapIndex(result[0], reflect.AppendSlice(keyContent, val))
+				output.SetMapIndex(keyContent, reflect.AppendSlice(keyContent, val))
 			}
 		}
 		return output, nil
