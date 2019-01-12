@@ -36,12 +36,11 @@ func (op *GroupBy) Run() (reflect.Value, *errors.Error) {
 					return reflect.ValueOf(nil), errors.UserError(OpCode, result[1].Interface().(error))
 				}
 			}
-			valKey := reflect.ValueOf(output)
-			keyContent := output.MapIndex(valKey)
+			keyContent := output.MapIndex(output)
 			if keyContent.IsNil() {
-				output.SetMapIndex(valKey, reflect.ValueOf([]interface{}{val}))
+				output.SetMapIndex(output, reflect.ValueOf([]interface{}{val}))
 			} else {
-				output.SetMapIndex(valKey, reflect.AppendSlice(keyContent, val))
+				output.SetMapIndex(output, reflect.AppendSlice(keyContent, val))
 			}
 		}
 		return output, nil
