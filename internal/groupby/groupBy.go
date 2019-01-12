@@ -1,7 +1,6 @@
 package groupby
 
 import (
-	"fmt"
 	"github.com/wesovilabs/koazee/errors"
 	"reflect"
 )
@@ -38,9 +37,8 @@ func (op *GroupBy) Run() (reflect.Value, *errors.Error) {
 				}
 			}
 			keyContent := output.MapIndex(result[0])
-			fmt.Println(keyContent)
-			fmt.Println(reflect.Zero(op.ItemsType))
-			if keyContent == reflect.Zero(op.ItemsType) {
+
+			if !keyContent.IsValid() {
 				output.SetMapIndex(result[0], reflect.ValueOf([]interface{}{val}))
 			} else {
 				output.SetMapIndex(result[0], reflect.AppendSlice(keyContent, val))
