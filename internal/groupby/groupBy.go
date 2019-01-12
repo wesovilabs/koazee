@@ -23,7 +23,7 @@ func (op *GroupBy) Run() (reflect.Value, *errors.Error) {
 	}
 	// dispatch functions do not handle errors
 	if !gInfo.hasError {
-		mapType := reflect.MapOf(gInfo.fnOutputType, op.ItemsType)
+		mapType := reflect.MapOf(gInfo.fnOutputType, reflect.SliceOf(op.ItemsType))
 		output := reflect.MakeMap(mapType)
 		fn := reflect.ValueOf(op.Func)
 		var argv = make([]reflect.Value, 1)
