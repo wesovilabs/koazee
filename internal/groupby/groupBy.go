@@ -1,6 +1,7 @@
 package groupby
 
 import (
+	"fmt"
 	"github.com/wesovilabs/koazee/errors"
 	"reflect"
 )
@@ -41,10 +42,12 @@ func (op *GroupBy) Run() (reflect.Value, *errors.Error) {
 
 			if !keyContent.IsValid() {
 				slice := reflect.MakeSlice(sliceType, 0, 0)
-				newSlice:=reflect.AppendSlice(val,slice)
+				fmt.Println(slice)
+				fmt.Println(val)
+				newSlice:=reflect.AppendSlice(slice, val)
 				output.SetMapIndex(keyContent,newSlice )
 			} else {
-				output.SetMapIndex(keyContent, reflect.AppendSlice(val,keyContent))
+				output.SetMapIndex(keyContent, reflect.AppendSlice(keyContent, val))
 			}
 		}
 		return output, nil
