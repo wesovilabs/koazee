@@ -10,10 +10,10 @@ import (
 func (s Stream) GroupBy(fn interface{}) (reflect.Value, *errors.Error) {
 	current := s.run()
 	if current.err != nil {
-		return nil, current.err
+		return reflect.ValueOf(nil), current.err
 	}
 	if current.itemsLen == 0 {
-		return nil, nil
+		return reflect.ValueOf(nil), nil
 	}
 	return (&groupby.GroupBy{ItemsValue: current.itemsValue, ItemsType: current.itemsType, Func: fn}).Run()
 }
