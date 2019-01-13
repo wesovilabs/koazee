@@ -23,6 +23,10 @@ func (op *GroupBy) Run() (reflect.Value, *errors.Error) {
 	}
 	// dispatch functions do not handle errors
 	if !gInfo.hasError {
+		if found, result := dispatch(op.ItemsValue, op.Func, gInfo); found {
+			return reflect.ValueOf(result), nil
+		}
+
 		sliceType := reflect.SliceOf(op.ItemsType)
 		mapType := reflect.MapOf(gInfo.fnOutputType, sliceType)
 		output := reflect.MakeMap(mapType)
@@ -40,8 +44,8 @@ func (op *GroupBy) Run() (reflect.Value, *errors.Error) {
 			keyContent := output.MapIndex(result[0])
 			if !keyContent.IsValid() {
 				slice := reflect.MakeSlice(sliceType, 0, 0)
-				newSlice:=reflect.Append(slice, val)
-				output.SetMapIndex(result[0],newSlice )
+				newSlice := reflect.Append(slice, val)
+				output.SetMapIndex(result[0], newSlice)
 			} else {
 				output.SetMapIndex(result[0], reflect.Append(keyContent, val))
 			}
