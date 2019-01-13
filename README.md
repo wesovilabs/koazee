@@ -4,11 +4,6 @@
 [![codecov](https://codecov.io/gh/wesovilabs/koazee/branch/master/graph/badge.svg)](https://codecov.io/gh/wesovilabs/koazee)
 [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/avelino/awesome-go#Utilities)
 
-
-[![Watch on GitHub][github-watch-badge]][github-watch]
-[![Star on GitHub][github-star-badge]][github-star]
-[![Tweet][twitter-badge]][twitter]
-
 # Koazee
 
 > Lazy like a koala, smart like a chimpanzee
@@ -533,7 +528,7 @@ This is only the beginning! By the way, If you missed any operation in Koazee v0
 
 
 ## Contributors
-- [@ivancorrales](https://github.com/ivancorrales)
+- ![](https://avatars2.githubusercontent.com/u/12560219?s=60&v=4) [@ivancorrales](https://github.com/ivancorrales)
 - [@xuyz](https://github.com/xuyz)
 - [@u5surf](https://github.com/u5surf)
 - [@flowonyx](https://github.com/flowonyx)
