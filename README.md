@@ -285,6 +285,38 @@ stream.Filter(len==4): [lynx lion]
 stream.RemoveDuplicates(): [lynx dog cat monkey fox tiger lion]
 */
 ```
+##### stream.GroupBy
+This operation creates groups depending the returned value by the function
+
+You can now optionally return an error as the second parameter to stop processing of the stream. The error will be available in `stream.Out().Err().UserError()`.
+
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/wesovilabs/koazee"
+	"strings"
+)
+
+var animals = []string{"lynx", "dog", "cat", "monkey", "dog", "fox", "tiger", "lion"}
+
+func main() {
+	fmt.Printf("input: %v\n", animals)
+	stream := koazee.StreamOf(animals)
+	fmt.Print("stream.GroupBy(strings.Len): ")
+	out, _ := stream.GroupBy(func(val string)int{return len(val)})
+	fmt.Println(out)
+}
+
+/**
+go run main.go
+
+input: [lynx dog cat monkey dog fox tiger lion]
+stream.GroupBy(strings.Len): map[5:[tiger] 4:[lynx lion] 3:[dog cat dog fox] 6:[monkey]]
+*/
+```
+
 
 ##### stream.Map
 This operation performs a modification over all the elements in the stream.
@@ -307,9 +339,6 @@ func main() {
 	stream := koazee.StreamOf(animals)
 	fmt.Print("stream.Map(strings.Title): ")
 	fmt.Println(stream.Map(strings.Title).Do().Out().Val())
-	fmt.Print("stream.GroupBy(strings.Len): ")
-	out, _ := stream.GroupBy(func(val string)int{return len(val)})
-	fmt.Println(out)
 }
 
 /**
@@ -317,7 +346,6 @@ go run main.go
 
 input: [lynx dog cat monkey dog fox tiger lion]
 stream.Map(strings.Title): [Lynx Dog Cat Monkey Dog Fox Tiger Lion]
-stream.GroupBy(strings.Len): map[5:[tiger] 4:[lynx lion] 3:[dog cat dog fox] 6:[monkey]]
 */
 ```
 
@@ -499,3 +527,8 @@ A benchmark comparison with other frameworks can be found in [Koazee vs Go-Funk 
 This is only the beginning! By the way, If you missed any operation in Koazee v0.0.3,  or you found a bug, please [create a new issue on Github or vote the existing ones](https://github.com/wesovilabs/koazee/issues)!
 
 
+## Contributors
+- [@ivancorrales](https://github.com/ivancorrales)
+- [@xuyz](https://github.com/xuyz)
+- [@u5surf](https://github.com/u5surf)
+- [@flowonyx](https://github.com/flowonyx)
