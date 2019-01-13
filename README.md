@@ -286,7 +286,7 @@ stream.RemoveDuplicates(): [lynx dog cat monkey fox tiger lion]
 */
 ```
 ##### stream.GroupBy
-This operation creates groups depending the returned value by the function
+This operation creates groups depending on the returned function value
 
 You can now optionally return an error as the second parameter to stop processing of the stream. The error will be available in `stream.Out().Err().UserError()`.
 
@@ -489,13 +489,13 @@ Jane Doe is 20 years old
 | Count | It returns the number of elements in a stream|  v0.0.1 |
 | DeleteAt| It remove the elements in the given position |  v0.0.3 |
 | Drop | It removes an element from the stream |  v0.0.1 |
-| DropWhile | It removes the elements in the stream that match with the given input function | master |
+| DropWhile | It removes the elements in the stream that match with the given input function | v0.0.4 |
 | Filter | It discards those elements that doesn't match with the provided filter|  v0.0.1 |
 | First | It returns the element in the first position |  v0.0.1 |
 | ForEach | It does something over all the elements in the stream.|  v0.0.1 |
-| GroupBy | It returns a map of array of elements grouped by the function.|  master |
+| GroupBy | It creates groups depending on the returned function value|  v0.0.4 |
 | IndexOf | It returns the first index of the  element in the stream.|  v0.0.3 |
-| IndexesOf | It returns the index for all the occurrences of the  element in the stream.|  master |
+| IndexesOf | It returns the index for all the occurrences of the  element in the stream.|  v0.0.4 |
 | Last | It returns the element in the last position |  v0.0.1 |
 | LastIndexOf | It returns the last occurrence for the  element in the stream.|  v0.0.3 |
 | Map | It converts the element in the stream |  v0.0.1 |
