@@ -528,7 +528,7 @@ This is only the beginning! By the way, If you missed any operation in Koazee v0
 
 
 ## Contributors
-- ![](https://avatars2.githubusercontent.com/u/12560219?s=60&v=4) [@ivancorrales](https://github.com/ivancorrales)
+- [@ivancorrales](https://github.com/ivancorrales)
 - [@xuyz](https://github.com/xuyz)
 - [@u5surf](https://github.com/u5surf)
 - [@flowonyx](https://github.com/flowonyx)
