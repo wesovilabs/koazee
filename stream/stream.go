@@ -182,6 +182,10 @@ func New(items interface{}) Stream {
 	return s
 }
 
+func (s Stream) WithOperations(operations []lazyOp) {
+	s.operations = operations
+}
+
 func (s Stream) withItemsValue(items reflect.Value) Stream {
 	s.itemsValue = items
 	s.items = items.Interface()

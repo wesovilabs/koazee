@@ -5,12 +5,22 @@ import (
 	"reflect"
 )
 
-// Reduce operation to calculate a single value from a stream
-func (s Stream) Reduce(fn interface{}) Output {
-	current := s.run()
-	if current.err != nil {
-		return Output{reflect.ValueOf(nil), current.err}
+// OpCode identifier for operation sort
+
+type streamReduce struct {
+	fn interface{}
+}
+
+func (m *streamReduce) run(s Stream) Output {
+	value, err := (&reduce.Reduce{ItemsType: s.itemsType, ItemsValue: s.itemsValue, Func: m.fn}).Run()
+	if err != nil {
+		return Output{reflect.ValueOf(nil), err}
 	}
-	value, err := (&reduce.Reduce{ItemsType: current.itemsType, ItemsValue: current.itemsValue, Func: fn}).Run()
 	return Output{value, err}
+}
+
+// Reduce operation to calculate a single value from a stream
+func (s Stream) Reduce(fn interface{}) StreamVal {
+	op := &streamReduce{fn}
+	return StreamVal{nil, op, s}
 }
