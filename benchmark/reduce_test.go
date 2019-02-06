@@ -14,7 +14,7 @@ func BenchmarkReduceString10SumLen(b *testing.B) {
 		stream := koazee.
 			StreamOf(strings10)
 		b.StartTimer()
-		result = stream.Reduce(func(acc int, val string) int { return acc + len(val) })
+		result = stream.Reduce(func(acc int, val string) int { return acc + len(val) }).Do()
 	}
 	expected := 0
 	for _, val := range strings10 {
@@ -33,7 +33,7 @@ func BenchmarkReduceString100SumLen(b *testing.B) {
 		stream := koazee.
 			StreamOf(strings100)
 		b.StartTimer()
-		result = stream.Reduce(func(acc int, val string) int { return acc + len(val) })
+		result = stream.Reduce(func(acc int, val string) int { return acc + len(val) }).Do()
 	}
 	expected := 0
 	for _, val := range strings100 {
@@ -52,7 +52,7 @@ func BenchmarkReduceString1000SumLen(b *testing.B) {
 		stream := koazee.
 			StreamOf(strings1000)
 		b.StartTimer()
-		result = stream.Reduce(func(acc int, val string) int { return acc + len(val) })
+		result = stream.Reduce(func(acc int, val string) int { return acc + len(val) }).Do()
 	}
 	expected := 0
 	for _, val := range strings1000 {
@@ -71,7 +71,7 @@ func BenchmarkReduceString5000SumLen(b *testing.B) {
 		stream := koazee.
 			StreamOf(strings5000)
 		b.StartTimer()
-		result = stream.Reduce(func(acc int, val string) int { return acc + len(val) })
+		result = stream.Reduce(func(acc int, val string) int { return acc + len(val) }).Do()
 	}
 	expected := 0
 	for _, val := range strings5000 {
@@ -90,7 +90,7 @@ func BenchmarkReduceInt10Sum(b *testing.B) {
 		stream := koazee.
 			StreamOf(numbers10)
 		b.StartTimer()
-		result = stream.Reduce(func(acc, val int) int { return acc + val })
+		result = stream.Reduce(func(acc, val int) int { return acc + val }).Do()
 	}
 	expected := 0
 	for _, val := range numbers10 {
@@ -109,7 +109,7 @@ func BenchmarkReduceInt100Sum(b *testing.B) {
 		stream := koazee.
 			StreamOf(numbers100)
 		b.StartTimer()
-		result = stream.Reduce(func(acc, val int) int { return acc + val })
+		result = stream.Reduce(func(acc, val int) int { return acc + val }).Do()
 	}
 	expected := 0
 	for _, val := range numbers100 {
@@ -128,7 +128,7 @@ func BenchmarkReduceInt1000Sum(b *testing.B) {
 		stream := koazee.
 			StreamOf(numbers1000)
 		b.StartTimer()
-		result = stream.Reduce(func(acc, val int) int { return acc + val })
+		result = stream.Reduce(func(acc, val int) int { return acc + val }).Do()
 	}
 	expected := 0
 	for _, val := range numbers1000 {
@@ -147,7 +147,7 @@ func BenchmarkReduceInt5000Sum(b *testing.B) {
 		stream := koazee.
 			StreamOf(numbers2500)
 		b.StartTimer()
-		result = stream.Reduce(func(acc, val int) int { return acc + val })
+		result = stream.Reduce(func(acc, val int) int { return acc + val }).Do()
 	}
 	expected := 0
 	for _, val := range numbers2500 {

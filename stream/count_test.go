@@ -10,21 +10,15 @@ import (
 )
 
 func TestStream_Count(t *testing.T) {
-	counter, _ := stream.New([]bool{true, false, false}).Count()
+	counter:= stream.New([]bool{true, false, false}).Count().Do().Int()
 	assert.Equal(t, 3, counter)
 }
 
 func TestStream_Count_validate(t *testing.T) {
 
-	count, err := stream.New(nil).Count()
-	assert.Nil(t, err)
-	assert.Equal(
-		t,
-		0,
-		count,
-	)
 
-	_, err = stream.New([]int{}).Add("home").Count()
+
+	err := stream.New([]int{}).Add("home").Count().Do().Err()
 	// To verify how errors are propagated
 	assert.Equal(
 		t,

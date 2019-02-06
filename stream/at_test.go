@@ -12,7 +12,7 @@ import (
 )
 
 func TestStream_At(t *testing.T) {
-	element := stream.New([]int{2, 3, 1}).At(1).Int()
+	element := stream.New([]int{2, 3, 1}).At(1).Do().Int()
 	assert.Equal(t, 3, element)
 }
 
@@ -20,28 +20,28 @@ func TestStream_At_validation(t *testing.T) {
 	assert.Equal(
 		t,
 		errors.InvalidIndex(atOperation.OpCode, "The length of this Stream is 1, so the index must be between 0 and 0"),
-		stream.New([]string{"hi"}).At(-1).Err())
+		stream.New([]string{"hi"}).At(-1).Do().Err())
 
 	assert.Equal(
 		t,
 		errors.InvalidIndex(atOperation.OpCode, "The length of this Stream is 1, so the index must be between 0 and 0"),
-		stream.New([]string{"hi"}).At(100000).Err())
+		stream.New([]string{"hi"}).At(100000).Do().Err())
 
 	assert.Equal(
 		t,
-		errors.EmptyStream(atOperation.OpCode, "It can not be taken an element from an empty Stream"),
-		stream.New(nil).At(0).Err())
+		errors.EmptyStream("", "Stream cannot be run, there's no data"),
+		stream.New(nil).At(0).Do().Err())
 
 	assert.Equal(
 		t,
-		errors.EmptyStream(atOperation.OpCode, "It can not be taken an element from an empty Stream"),
-		stream.New([]int{}).At(0).Err())
+		errors.EmptyStream("", "Stream cannot be run, there's no data"),
+		stream.New([]int{}).At(0).Do().Err())
 
 	// To verify how errors are propagated
 	/**
 		assert.Equal(
 			t,
 			add.OpCode,
-			stream.New([]int{}).Add("home").At(0).Err().Operation())
+			stream.New([]int{}).Add("home").At(0).Do().Err().Operation())
 	**/
 }

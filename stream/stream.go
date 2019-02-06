@@ -14,7 +14,7 @@ type Output struct {
 
 // Val reurn the Output of the Stream
 func (o Output) Val() interface{} {
-	v := (o.value)
+	v := o.value
 	if !o.value.IsValid() {
 		return nil
 	}
@@ -27,6 +27,14 @@ func (o Output) Err() *errors.Error {
 		return nil
 	}
 	return o.error
+}
+
+// Error returns the error message
+func (o Output) Error() string {
+	if o.error == nil || o.error.Code() == "" {
+		return ""
+	}
+	return o.error.Error()
 }
 
 // Bool parses the Output of the Stream as a bool type

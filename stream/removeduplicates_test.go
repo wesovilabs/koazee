@@ -34,7 +34,7 @@ func TestStream_RemoveDuplicates(t *testing.T) {
 		[]*person{{"John", 50}},
 		stream.New([]*person{{"John", 50}, {"John", 50}}).RemoveDuplicates().Out().Val())
 
-	counter, _ := koazee.Stream().RemoveDuplicates().Count()
+	counter := koazee.Stream().RemoveDuplicates().Count().Do().Int()
 	assert.Equal(t,
 		0,
 		counter,

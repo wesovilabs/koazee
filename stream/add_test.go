@@ -11,19 +11,18 @@ import (
 
 func TestStream_Add(t *testing.T) {
 	s := koazee.StreamOf([]string{"home", "welcome", "beer"})
-	counter, _ := s.Count()
-	newCounter, _ := s.Add("animals").Count()
+	counter:= s.Count().Do().Int()
+	newCounter := s.Add("animals").Count().Do().Int()
 	assert.Equal(t, counter+1, newCounter)
 
 	s = koazee.StreamOf([]*person{{age: 20, firstName: "John"}})
-	counter, _ = s.Count()
-	newCounter, _ = s.Add(&person{firstName: "Ivan", age: 34}).Count()
+	counter = s.Count().Do().Int()
+	newCounter = s.Add(&person{firstName: "Ivan", age: 34}).Count().Do().Int()
 	assert.Equal(t, counter+1, newCounter)
 
-	s = koazee.Stream()
-	counter, _ = s.Count()
-	newCounter, _ = s.Add(10).Count()
-	assert.Equal(t, counter+1, newCounter)
+	s = koazee.Stream().With([]int{1})
+	newCounter = s.Add(10).Count().Do().Int()
+	assert.Equal(t, 2, newCounter)
 
 }
 

@@ -11,16 +11,16 @@ import (
 
 func TestStream_Drop(t *testing.T) {
 	stream := koazee.StreamOf([]string{"home", "phone"})
-	counter, _ := stream.Count()
-	newCounter, _ := stream.Drop("phone").Count()
+	counter := stream.Count().Do().Int()
+	newCounter:= stream.Drop("phone").Count().Do().Int()
 	assert.Equal(t, counter-1, newCounter)
 
 	stream = koazee.StreamOf([]string{"home", "phone"})
-	counter, _ = stream.Count()
-	newCounter, _ = stream.Drop("missing").Count()
+	counter = stream.Count().Do().Int()
+	newCounter = stream.Drop("missing").Count().Do().Int()
 	assert.Equal(t, counter, newCounter)
 
-	counter, _ = koazee.Stream().Drop(10).Count()
+	counter = koazee.Stream().Drop(10).Count().Do().Int()
 	assert.Equal(
 		t,
 		0,

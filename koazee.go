@@ -9,7 +9,7 @@ import (
 
 // Stream Initialize an empty stream
 func Stream() stream.Stream {
-	return stream.New(nil)
+	return stream.New([]interface{}{})
 }
 
 // StreamOf loads the data into the stream
