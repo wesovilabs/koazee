@@ -13,6 +13,6 @@ func TestCollection(t *testing.T) {
 	assert.Equal(t, stream.Out().Err(),
 		errors.InvalidType(":load", "Unsupported type! Only arrays are permitted"))
 	stream = StreamOf([]string{"welcome", "to", "my", "place"})
-	count:= stream.Count().Do().Int()
+	count := stream.Count().Do().Int()
 	assert.Equal(t, count, 4)
 }

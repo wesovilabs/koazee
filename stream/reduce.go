@@ -5,7 +5,6 @@ import (
 	"reflect"
 )
 
-
 type streamReduce struct {
 	fn interface{}
 }

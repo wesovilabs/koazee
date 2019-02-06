@@ -96,6 +96,6 @@ func TestStream_Reduce_validation(t *testing.T) {
 	// To verify how errors are propagated
 	assert.Equal(
 		t,
-		errors.InvalidType(add.OpCode,"invalid type"),
+		errors.InvalidType(add.OpCode, "invalid type"),
 		stream.New([]int{}).Add("home").Do().Out().Err())
 }

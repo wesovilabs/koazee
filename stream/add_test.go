@@ -11,7 +11,7 @@ import (
 
 func TestStream_Add(t *testing.T) {
 	s := koazee.StreamOf([]string{"home", "welcome", "beer"})
-	counter:= s.Count().Do().Int()
+	counter := s.Count().Do().Int()
 	newCounter := s.Add("animals").Count().Do().Int()
 	assert.Equal(t, counter+1, newCounter)
 

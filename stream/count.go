@@ -3,7 +3,6 @@ package stream
 import "reflect"
 
 type streamCount struct {
-
 }
 
 func (m *streamCount) run(s Stream) Output {
