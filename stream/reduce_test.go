@@ -55,12 +55,12 @@ func TestStream_Reduce(t *testing.T) {
 func TestStream_Reduce_validation(t *testing.T) {
 	assert.Equal(
 		t,
-		errors.InvalidArgument(reduceInternal.OpCode, "The provided function must retrieve 2 arguments"),
+		errors.InvalidArgument(reduceInternal.OpCode, "The reduce operation requires a function as argument"),
 		koazee.StreamOf([]string{"Freedom", "for", "the", "animals"}).Reduce(10).Do().Err())
 
 	assert.Equal(
 		t,
-		errors.EmptyStream(reduceInternal.OpCode, "A nil Stream can not be reduced"),
+		errors.InvalidArgument(reduceInternal.OpCode, "The provided function must retrieve 2 arguments"),
 		koazee.Stream().Reduce(func() {}).Do().Err())
 
 	assert.Equal(
@@ -96,6 +96,6 @@ func TestStream_Reduce_validation(t *testing.T) {
 	// To verify how errors are propagated
 	assert.Equal(
 		t,
-		add.OpCode,
-		stream.New([]int{}).Add("home").Out().Err())
+		errors.InvalidType(add.OpCode,"invalid type"),
+		stream.New([]int{}).Add("home").Do().Out().Err())
 }
