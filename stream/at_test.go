@@ -34,7 +34,7 @@ func TestStream_At_validation(t *testing.T) {
 
 	assert.Equal(
 		t,
-		errors.EmptyStream("", "Stream cannot be run, there's no data"),
+		errors.EmptyStream(atOperation.OpCode, "It can not be taken an element from an empty Stream"),
 		stream.New([]int{}).At(0).Do().Err())
 
 	// To verify how errors are propagated

@@ -22,7 +22,7 @@ func TestStream_First_validation(t *testing.T) {
 
 	assert.Equal(
 		t,
-		errors.EmptyStream(first.OpCode, "It can not be taken an element from an empty Stream"),
+		errors.EmptyStream("", "Stream cannot be run, there's no data"),
 		stream.New(nil).First().Do().Err())
 
 	assert.Equal(
