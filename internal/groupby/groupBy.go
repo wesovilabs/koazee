@@ -16,15 +16,15 @@ type GroupBy struct {
 }
 
 // Run performs the operation
-func (op *GroupBy) Run() (reflect.Value, *errors.Error) {
+func (op *GroupBy) Run() (interface{}, *errors.Error) {
 	gInfo, err := op.validate()
 	if err != nil {
-		return reflect.ValueOf(nil), err
+		return nil, err
 	}
 	// dispatch functions do not handle errors
 	if !gInfo.hasError {
 		if found, result := dispatch(op.ItemsValue, op.Func, gInfo); found {
-			return reflect.ValueOf(result), nil
+			return result, nil
 		}
 
 		sliceType := reflect.SliceOf(op.ItemsType)
@@ -38,7 +38,7 @@ func (op *GroupBy) Run() (reflect.Value, *errors.Error) {
 			result := fn.Call(argv)
 			if gInfo.hasError {
 				if !result[1].IsNil() {
-					return reflect.ValueOf(nil), errors.UserError(OpCode, result[1].Interface().(error))
+					return nil, errors.UserError(OpCode, result[1].Interface().(error))
 				}
 			}
 			keyContent := output.MapIndex(result[0])
@@ -50,9 +50,9 @@ func (op *GroupBy) Run() (reflect.Value, *errors.Error) {
 				output.SetMapIndex(result[0], reflect.Append(keyContent, val))
 			}
 		}
-		return output, nil
+		return output.Interface(), nil
 	}
-	return reflect.ValueOf(nil), err
+	return nil, err
 }
 
 // Run performs the operation
