@@ -23,6 +23,7 @@ func (c *cacheType) get(itemsType, funcType reflect.Type) *filterInfo {
 }
 
 type filterInfo struct {
-	fnValue     reflect.Value
-	fnInputType reflect.Type
+	fnValue   reflect.Value
+	fnIn1Type reflect.Type
+	fnIn2Type reflect.Type
 }
