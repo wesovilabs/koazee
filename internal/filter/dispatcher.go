@@ -38,10 +38,12 @@ var dispatcher = map[string]dispatchFunction{
 }
 
 func dispatch(items reflect.Value, function interface{}, info *filterInfo) (bool, reflect.Value) {
-	input := info.fnInputType.String()
+	input := info.fnIn1Type.String()
 	if fnVal, ok := dispatcher[input]; ok {
-		res := reflect.ValueOf(fnVal(items, function))
-		return true, res
+		if info.fnIn2Type == nil {
+			res := reflect.ValueOf(fnVal(items, function))
+			return true, res
+		}
 	}
 	return false, reflect.ValueOf(nil)
 }

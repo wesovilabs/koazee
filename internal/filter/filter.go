@@ -26,6 +26,21 @@ func (op *Filter) Run() (reflect.Value, *errors.Error) {
 		return result, nil
 	}
 
+	if op.ItemsValue.Type().Kind() == reflect.Map {
+		newItems := reflect.MakeMap(op.ItemsValue.Type())
+		fn := reflect.ValueOf(op.Func)
+		for _, key := range op.ItemsValue.MapKeys() {
+			item := op.ItemsValue.MapIndex(key)
+			argv := make([]reflect.Value, 2)
+			argv[0] = item
+			argv[1] = key
+			if fn.Call(argv)[0].Bool() {
+				newItems.SetMapIndex(key, item)
+			}
+		}
+		return newItems, nil
+	}
+
 	newItems := reflect.MakeSlice(reflect.SliceOf(op.ItemsType), 0, 0)
 	fn := reflect.ValueOf(op.Func)
 	for index := 0; index < op.ItemsValue.Len(); index++ {
@@ -50,16 +65,17 @@ func (op *Filter) validate() (*filterInfo, *errors.Error) {
 	if function.Type().Kind() != reflect.Func {
 		return nil, errors.InvalidArgument(OpCode, "The filter operation requires a function as argument")
 	}
-	if function.Type().NumIn() != 1 {
-		return nil, errors.InvalidArgument(OpCode, "The provided function must retrieve 1 argument")
+	fnNumIn := function.Type().NumIn()
+	if fnNumIn != 1 && fnNumIn != 2 {
+		return nil, errors.InvalidArgument(OpCode, "The provided function must retrieve 1 or 2 argument")
 	}
 	if function.Type().NumOut() != 1 {
 		return nil, errors.InvalidArgument(OpCode, "The provided function must return 1 value")
 	}
 	fnOut := reflect.New(function.Type().Out(0)).Elem()
-	fnIn := reflect.New(function.Type().In(0)).Elem()
+	fnIn1 := reflect.New(function.Type().In(0)).Elem()
 
-	if fnIn.Type() != op.ItemsType {
+	if fnIn1.Type() != op.ItemsType {
 		return nil, errors.InvalidArgument(OpCode,
 			"The type of the argument in the provided function must be %s",
 			op.ItemsType.String())
@@ -67,7 +83,19 @@ func (op *Filter) validate() (*filterInfo, *errors.Error) {
 	if fnOut.Kind() != reflect.Bool {
 		return nil, errors.InvalidArgument(OpCode, "The type of the Output in the provided function must be bool")
 	}
-	item.fnInputType = fnIn.Type()
+	item.fnIn1Type = fnIn1.Type()
+
+	if fnNumIn == 2 {
+		fnIn2 := reflect.New(function.Type().In(1)).Elem()
+		keyType := op.ItemsValue.MapKeys()[0].Type()
+		if fnIn2.Type() != keyType {
+			return nil, errors.InvalidArgument(OpCode,
+				"The type of the argument 2 in the provided function must be %s",
+				keyType.String())
+		}
+		item.fnIn2Type = fnIn2.Type()
+	}
+
 	cache.add(op.ItemsType, fnType, item)
 	return item, nil
 }
