@@ -43,10 +43,14 @@ func (op *Filter) Run() (reflect.Value, *errors.Error) {
 
 	newItems := reflect.MakeSlice(reflect.SliceOf(op.ItemsType), 0, 0)
 	fn := reflect.ValueOf(op.Func)
+	fnNum := fn.Type().NumIn()
 	for index := 0; index < op.ItemsValue.Len(); index++ {
 		item := op.ItemsValue.Index(index)
-		argv := make([]reflect.Value, 1)
+		argv := make([]reflect.Value, fnNum)
 		argv[0] = item
+		if fnNum == 2 {
+			argv[1] = reflect.ValueOf(index)
+		}
 		if fn.Call(argv)[0].Bool() {
 			newItems = reflect.Append(newItems, item)
 		}
@@ -87,7 +91,14 @@ func (op *Filter) validate() (*filterInfo, *errors.Error) {
 
 	if fnNumIn == 2 {
 		fnIn2 := reflect.New(function.Type().In(1)).Elem()
-		keyType := op.ItemsValue.MapKeys()[0].Type()
+
+		var keyType reflect.Type
+		if op.ItemsValue.Type().Kind() == reflect.Map {
+			keyType = op.ItemsValue.MapKeys()[0].Type()
+		} else {
+			keyType = reflect.TypeOf(0)
+		}
+
 		if fnIn2.Type() != keyType {
 			return nil, errors.InvalidArgument(OpCode,
 				"The type of the argument 2 in the provided function must be %s",
