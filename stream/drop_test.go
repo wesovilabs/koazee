@@ -1,8 +1,10 @@
 package stream_test
 
 import (
-	"github.com/wesovilabs/koazee/internal/drop"
 	"testing"
+
+	"github.com/wesovilabs/koazee/internal/drop"
+	"github.com/wesovilabs/koazee/utils"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/wesovilabs/koazee"
@@ -28,6 +30,7 @@ func TestStream_Drop(t *testing.T) {
 	)
 
 }
+
 func TestStream_Drop_validation(t *testing.T) {
 
 	assert.Equal(
@@ -41,4 +44,21 @@ func TestStream_Drop_validation(t *testing.T) {
 		errors.InvalidArgument(drop.OpCode,
 			"A nil value can not be dropped from a Stream of non-pointers values"),
 		koazee.Stream().Drop(nil).With([]int{2, 3, 1}).Out().Err())
+}
+
+func TestStream_Drop_With_Struct(t *testing.T) {
+	expect := []utils.Person{
+		{"John", "Doe", 23, true},
+		{"Jim", "Doe", 56, true},
+		{"Jamie", "Doe", 89, false},
+	}
+	actual := koazee.StreamOf([]utils.Person{
+		{"John", "Doe", 23, true},
+		{"Jane", "Doe", 22, false},
+		{"Jim", "Doe", 56, true},
+		{"Jamie", "Doe", 89, false},
+	}).
+		Drop(utils.Person{"Jane", "Doe", 22, false}).
+		Out().Val()
+	assert.Equal(t, expect, actual)
 }

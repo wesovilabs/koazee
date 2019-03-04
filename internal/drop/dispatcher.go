@@ -35,10 +35,12 @@ var dispatcher = map[string]dispatchFunction{
 	"*float64": dropPtrFloat64,
 }
 
-func dispatch(items reflect.Value, itemValue interface{}, info *dropInfo) (bool, interface{}) {
+func dispatch(items reflect.Value, itemValue interface{}, info *dropInfo, option Option) (bool, interface{}) {
 	input := (*info.itemType).String()
 	if fnVal, ok := dispatcher[input]; ok {
-		return true, fnVal(items, itemValue)
+		if option == None {
+			return true, fnVal(items, itemValue)
+		}
 	}
 	return false, nil
 }
