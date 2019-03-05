@@ -1,18 +1,30 @@
 package drop
 
 import (
-	"github.com/wesovilabs/koazee/errors"
 	"reflect"
+
+	"github.com/wesovilabs/koazee/errors"
 )
 
 // OpCode identifier for operation drop
 const OpCode = "drop"
+
+// Option defines drop option
+type Option int
+
+// Options
+const (
+	None Option = iota
+	Left
+	Right
+)
 
 // Drop struct for operation
 type Drop struct {
 	ItemsValue reflect.Value
 	ItemsType  reflect.Type
 	Item       interface{}
+	Option     Option
 }
 
 // Run performs the operations whenever is called
@@ -21,23 +33,47 @@ func (op *Drop) Run() (reflect.Value, *errors.Error) {
 	if err != nil {
 		return reflect.ValueOf(nil), err
 	}
-	if found, result := dispatch(op.ItemsValue, op.Item, info); found {
+	if found, result := dispatch(op.ItemsValue, op.Item, info, op.Option); found {
 		return reflect.ValueOf(result), nil
 	}
+
+	isFounded := false
 	newItems := reflect.MakeSlice(reflect.SliceOf(op.ItemsType), 0, 0)
 	for index := 0; index < op.ItemsValue.Len(); index++ {
 		val := op.ItemsValue.Index(index)
-		if equalsValues(val, info.itemValue) {
-			newItems = reflect.Append(newItems, val)
+		switch op.Option {
+		case None:
+			if equalsValues(val, info.itemValue) == false {
+				isFounded = true
+				newItems = reflect.Append(newItems, val)
+			}
+		case Left:
+			if isFounded || equalsValues(val, info.itemValue) {
+				isFounded = true
+				newItems = reflect.Append(newItems, val)
+			}
+		case Right:
+			if equalsValues(val, info.itemValue) {
+				isFounded = true
+				newItems = reflect.Append(newItems, val)
+			} else if isFounded == false {
+				newItems = reflect.Append(newItems, val)
+			}
 		}
 	}
-	return newItems, nil
+
+	if isFounded {
+		return newItems, nil
+	}
+	return op.ItemsValue, nil
 }
 
 func (op *Drop) validate() (*dropInfo, *errors.Error) {
 	itemType := reflect.TypeOf(op.Item)
 	if info := cache.get(op.ItemsType, itemType); info != nil {
-		return info, nil
+		if equalsValues(info.itemValue, reflect.ValueOf(op.Item)) {
+			return info, nil
+		}
 	}
 	info := &dropInfo{itemType: &itemType}
 	if op.ItemsValue.Len() > 0 {
