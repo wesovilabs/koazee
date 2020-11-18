@@ -43,6 +43,12 @@ func TestStream_Chunk(t *testing.T) {
 			args: args{size: 2},
 			want: koazee.StreamOf([][]string{{utils.ArrayString[0] + "a", utils.ArrayString[1] + "a", "b"}, {utils.ArrayString[2] + "a", utils.ArrayString[3] + "a", "b"}, {utils.ArrayString[4] + "a", "b"}}),
 		},
+		{
+			name: "emptyAfter",
+			s:    koazee.StreamOf([]string{}).Chunk(2).Map(func(v []string) []string { return append(v, "a") }),
+			args: args{size: 2},
+			want: koazee.StreamOf([][]string{}),
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

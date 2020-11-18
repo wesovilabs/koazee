@@ -12,12 +12,16 @@ type streamChunk struct {
 
 func (m *streamChunk) run(s Stream) Stream {
 	if s.itemsLen == 0 {
-		return s
+		result := s
+		result.itemsType = reflect.SliceOf(reflect.SliceOf(s.itemsType)).Elem()
+		return result
 	}
 	value, err := (&chunk.Chunk{ItemsValue: s.itemsValue, ItemsType: s.itemsType, Size: m.size}).Run()
 	if err != nil {
-		s.err = err
-		return s
+		result := s
+		result.itemsType = reflect.SliceOf(reflect.SliceOf(s.itemsType)).Elem()
+		result.err = err
+		return result
 	}
 	result := s.withItemsValue(value)
 	result.itemsType = reflect.TypeOf(value.Interface()).Elem()
