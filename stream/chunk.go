@@ -1,6 +1,8 @@
 package stream
 
 import (
+	"reflect"
+
 	"github.com/wesovilabs/koazee/internal/chunk"
 )
 
@@ -8,20 +10,22 @@ type streamChunk struct {
 	size uint
 }
 
-// Chunk the elements into the stream with split into groups the length of specified size.
-func (s Stream) Chunk(size uint) Stream {
-	current := s.run()
-	if current.err != nil {
-		s.err = current.err
-		return s
-	}
+func (m *streamChunk) run(s Stream) Stream {
 	if s.itemsLen == 0 {
 		return s
 	}
-	value, err := (&chunk.Chunk{ItemsValue: current.itemsValue, ItemsType: current.itemsType, Size: size}).Run()
+	value, err := (&chunk.Chunk{ItemsValue: s.itemsValue, ItemsType: s.itemsType, Size: m.size}).Run()
 	if err != nil {
 		s.err = err
 		return s
 	}
-	return New(value.Interface())
+	result := s.withItemsValue(value)
+	result.itemsType = reflect.TypeOf(value.Interface()).Elem()
+	return result
+}
+
+// Chunk the elements into the stream with split into groups the length of specified size.
+func (s Stream) Chunk(size uint) Stream {
+	s.operations = append(s.operations, &streamChunk{size: size})
+	return s
 }
