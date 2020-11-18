@@ -485,6 +485,7 @@ Jane Doe is 20 years old
 |---|---|---|
 | Add | It adds a new element in the last position |  v0.0.1 |
 | At | It returns the element in the given position |  v0.0.1 |
+| Chunk | elements into the stream with split into groups the length of specified size. |  v0.0.6 |
 | Contains | It checks if the given element is found in the stream.|  v0.0.1 |
 | Count | It returns the number of elements in a stream|  v0.0.1 |
 | DeleteAt| It remove the elements in the given position |  v0.0.3 |
